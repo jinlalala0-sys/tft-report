@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFT 陣容分析报告 - 2026-09-15 (恭喜发财)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+h1 { text-align: center; color: #58a6ff; margin: 20px 0; font-size: 1.8em; }
+h2 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin: 30px 0 15px; font-size: 1.3em; }
+.subtitle { text-align: center; color: #8b949e; margin-bottom: 20px; font-size: 0.9em; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85em; }
+th { background: #161b22; color: #58a6ff; padding: 10px 8px; text-align: left; border: 1px solid #30363d; position: sticky; top: 0; }
+td { padding: 8px; border: 1px solid #30363d; }
+tr:nth-child(even) { background: #161b22; }
+tr:hover { background: #1f2937; }
+.tier-S { color: #ff4757; font-weight: bold; }
+.tier-A { color: #ff9f43; font-weight: bold; }
+.tier-B { color: #feca57; font-weight: bold; }
+.tier-C { color: #48dbfb; }
+.tier-D { color: #8b949e; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; margin: 10px 0; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.card-name { font-size: 1.1em; font-weight: bold; }
+.card-tier { padding: 2px 8px; border-radius: 4px; font-size: 0.85em; }
+.metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }
+.metric { text-align: center; background: #0d1117; padding: 6px; border-radius: 4px; }
+.metric-label { font-size: 0.7em; color: #8b949e; }
+.metric-value { font-size: 0.9em; font-weight: bold; }
+.heroes { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.hero-tag { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 3px 8px; font-size: 0.8em; }
+.code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; margin-top: 8px; font-family: monospace; font-size: 0.8em; word-break: break-all; position: relative; }
+.code-box:hover { border-color: #58a6ff; }
+.copy-btn { background: #21262d; border: 1px solid #30363d; border-radius: 3px; padding: 2px 8px; cursor: pointer; color: #58a6ff; font-size: 0.75em; }
+.copy-btn:hover { background: #30363d; }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+.filter-btn { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 5px 12px; cursor: pointer; color: #c9d1d9; font-size: 0.85em; }
+.filter-btn.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+.filter-btn:hover { border-color: #58a6ff; }
+@media (max-width: 768px) {
+    .metrics { grid-template-columns: repeat(3, 1fr); }
+    table { font-size: 0.75em; }
+    th, td { padding: 5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>TFT 陣容分析报告 - 2026-09-15 (恭喜发财)</h1>
+<div class="subtitle">S16 恭喜发财 | 版本 17.8b | 309,783 局 | 数据来源: dataj.cc</div>
+<h2>胜率排行</h2>
+<table><thead><tr><th>#</th><th>陣容名称</th><th>段位</th><th>前四率</th><th>登顶率</th><th>出场率</th><th>平均排名</th><th>样本数</th><th>陣容码</th></tr></thead><tbody>
+<tr><td>1</td><td>祖安铁男</td><td class="tier-S">S</td><td>89.0%</td><td>23.1%</td><td>0.35%</td><td>2.70</td><td>1084</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg2Nz...</td></tr>
+<tr><td>2</td><td>暗影岛铁男</td><td class="tier-S">S</td><td>82.8%</td><td>15.9%</td><td>0.22%</td><td>3.07</td><td>681</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>3</td><td>诺克铁男</td><td class="tier-S">S</td><td>80.1%</td><td>27.5%</td><td>0.02%</td><td>2.92</td><td>61</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>4</td><td>虚空双龙</td><td class="tier-S">S</td><td>74.4%</td><td>23.0%</td><td>0.36%</td><td>3.23</td><td>1115</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>5</td><td>德玛月男</td><td class="tier-S">S</td><td>72.3%</td><td>10.5%</td><td>0.23%</td><td>3.54</td><td>712</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>6</td><td>巨神峰维克托</td><td class="tier-S">S</td><td>67.8%</td><td>8.0%</td><td>0.51%</td><td>3.75</td><td>1579</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>7</td><td>弗雷德玛瑞兹</td><td class="tier-S">S</td><td>60.4%</td><td>14.0%</td><td>0.13%</td><td>3.98</td><td>402</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>8</td><td>千珏95</td><td class="tier-S">S</td><td>60.1%</td><td>14.3%</td><td>0.14%</td><td>3.99</td><td>433</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>9</td><td>德玛凯隐</td><td class="tier-S">S</td><td>55.2%</td><td>16.1%</td><td>0.40%</td><td>4.17</td><td>1239</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>10</td><td>皮城霸王龙</td><td class="tier-A">A</td><td>50.8%</td><td>15.1%</td><td>0.31%</td><td>4.35</td><td>960</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>11</td><td>艾欧84</td><td class="tier-B">B</td><td>48.6%</td><td>17.6%</td><td>0.50%</td><td>4.46</td><td>1548</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>12</td><td>8约德尔</td><td class="tier-C">C</td><td>40.9%</td><td>13.3%</td><td>0.39%</td><td>4.79</td><td>1208</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>13</td><td>比尔95</td><td class="tier-D">D</td><td>39.0%</td><td>15.9%</td><td>0.26%</td><td>4.88</td><td>805</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>14</td><td>以绪岩宝</td><td class="tier-D">D</td><td>36.5%</td><td>16.7%</td><td>0.89%</td><td>5.19</td><td>2757</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+<tr><td>15</td><td>诺克萨斯</td><td class="tier-D">D</td><td>22.4%</td><td>8.0%</td><td>0.05%</td><td>5.73</td><td>154</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4NTYxNzg5ND...</td></tr>
+</tbody></table>
+<h2>转职/海克斯筛选器</h2>
+<div class="filter-bar">
+<button class="filter-btn" onclick="filterTier('S')">S级 (9)</button>
+<button class="filter-btn" onclick="filterTier('A')">A级 (1)</button>
+<button class="filter-btn" onclick="filterTier('B')">B级 (1)</button>
+<button class="filter-btn" onclick="filterTier('C')">C级 (1)</button>
+<button class="filter-btn" onclick="filterTier('D')">D级 (3)</button>
+<button class="filter-btn active" onclick="filterTier('all')">全部</button>
+</div>
+<h2>段位分组陣容卡片</h2>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">祖安铁男</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">89.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">23.1%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.35%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">2.70</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1084</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">莫德凯撒吉格斯孙悟空杰斯沃里克蒙多医生金克丝艾克蔚</span>
+</div>
+<div class="code-box" id="code-66"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg2NzAwODE3NzE4</span><button class="copy-btn" onclick="copyCode('66', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">暗影岛铁男</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">82.8%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">15.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.22%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.07</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">681</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">莫德凯撒卡莉丝塔锤石奥恩杰斯斯维因安蓓萨洛里斯</span>
+</div>
+<div class="code-box" id="code-65"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU5MjY4NzY1</span><button class="copy-btn" onclick="copyCode('65', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">诺克铁男</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">80.1%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">27.5%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.02%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">2.92</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">61</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">莫德凯撒梅尔斯维因塞拉斯安蓓萨德莱厄斯德莱文贝蕾亚</span>
+</div>
+<div class="code-box" id="code-78"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU3NzE0MjM5</span><button class="copy-btn" onclick="copyCode('78', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">虚空双龙</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">74.4%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">23.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.36%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.23</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1115</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">纳什男爵远古巨龙奥恩塞拉斯希瓦娜斯维因布隆瑟庄妮</span>
+</div>
+<div class="code-box" id="code-67"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU5MTE4ODE0</span><button class="copy-btn" onclick="copyCode('67', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">德玛月男</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">72.3%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">10.5%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.23%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.54</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">712</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">厄斐琉斯巴德赵信加里奥奥恩盖伦斯维因拉克丝波比嘉文四世</span>
+</div>
+<div class="code-box" id="code-64"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU5Mzg1OTY3</span><button class="copy-btn" onclick="copyCode('64', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">巨神峰维克托</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">67.8%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">8.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.51%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.75</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1579</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">维克托佐伊蕾欧娜巴德蔚妮蔻杰斯阿利斯塔</span>
+</div>
+<div class="code-box" id="code-63"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU5NjI3Nzgz</span><button class="copy-btn" onclick="copyCode('63', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">弗雷德玛瑞兹</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">60.4%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">14.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.13%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.98</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">402</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">瑞兹丽桑卓奥恩加里奥布隆盖伦孙悟空凯南可酷伯与悠米赵信</span>
+</div>
+<div class="code-box" id="code-73"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU4NTExODU4</span><button class="copy-btn" onclick="copyCode('73', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">千珏95</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">60.1%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">14.3%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.14%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.99</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">433</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">千珏卢锡安与赛娜塞拉斯塔里克希瓦娜费德提克斯维因德莱厄斯德莱文</span>
+</div>
+<div class="code-box" id="code-80"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU3MjQyODAw</span><button class="copy-btn" onclick="copyCode('80', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">德玛凯隐</span><span class="card-tier tier-S">S级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">55.2%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">16.1%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.40%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.17</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1239</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">凯隐拉克丝盖伦加里奥塞拉斯希瓦娜赵信波比嘉文四世</span>
+</div>
+<div class="code-box" id="code-70"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU4NzQ2NzQ1</span><button class="copy-btn" onclick="copyCode('70', this)">复制</button></div>
+</div>
+<div class="card" data-tier="A">
+<div class="card-header"><span class="card-name">皮城霸王龙</span><span class="card-tier tier-A">A级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">50.8%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">15.1%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.31%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.35</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">960</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">海克斯霸龙卢锡安与赛娜杰斯奥恩伊莉丝洛里斯瑟庄妮蔚凯特琳</span>
+</div>
+<div class="code-box" id="code-81"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU3MDMwMjMw</span><button class="copy-btn" onclick="copyCode('81', this)">复制</button></div>
+</div>
+<div class="card" data-tier="B">
+<div class="card-header"><span class="card-name">艾欧84</span><span class="card-tier tier-B">B级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">48.6%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">17.6%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.50%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.46</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1548</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">芸阿娜彗孙悟空瑟提千珏凯南赵信慎</span>
+</div>
+<div class="code-box" id="code-68"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU4OTc3NjM3</span><button class="copy-btn" onclick="copyCode('68', this)">复制</button></div>
+</div>
+<div class="card" data-tier="C">
+<div class="card-header"><span class="card-name">8约德尔</span><span class="card-tier tier-C">C级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">40.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">13.3%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.39%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.79</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1208</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">提莫菲兹可酷伯与悠米凯南基兰斯维因崔丝塔娜波比兰博璐璐</span>
+</div>
+<div class="code-box" id="code-62"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU5ODA4NzEx</span><button class="copy-btn" onclick="copyCode('62', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">比尔95</span><span class="card-tier tier-D">D级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">39.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">15.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.26%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.88</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">805</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">厄运小姐卢锡安与赛娜塔姆诺提勒斯奥恩千珏希瓦娜崔斯特俄洛伊</span>
+</div>
+<div class="code-box" id="code-72"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU4NjQwODcy</span><button class="copy-btn" onclick="copyCode('72', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">以绪岩宝</span><span class="card-tier tier-D">D级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">36.5%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">16.7%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.89%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.19</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">2757</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">岩宝奈德丽斯卡纳巴德妮蔻费德提克米利欧蔚奥莉安娜</span>
+</div>
+<div class="code-box" id="code-74"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU4MzUxMjkz</span><button class="copy-btn" onclick="copyCode('74', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">诺克萨斯</span><span class="card-tier tier-D">D级</span></div>
+<div class="metrics">
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">22.4%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">8.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.05%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.73</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">154</div></div>
+</div>
+<div class="heroes">
+<span class="hero-tag">梅尔乐芙兰斯维因费德提克安蓓萨德莱厄斯可酷伯与悠米赛恩贝蕾亚</span>
+</div>
+<div class="code-box" id="code-79"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5NDU3Mzk5NjYy</span><button class="copy-btn" onclick="copyCode('79', this)">复制</button></div>
+</div>
+<div class="subtitle">共 15 个陣容 | 15 个有陣容码 | 数据来源: dataj.cc</div>
+</div>
+<script>
+function copyCode(id, btn) {
+    var box = document.getElementById('code-' + id);
+    var code = box.querySelector('span').textContent;
+    navigator.clipboard.writeText(code).then(function() {
+        btn.textContent = '已复制';
+        setTimeout(function() { btn.textContent = '复制'; }, 2000);
+    });
+}
+function filterTier(tier) {
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(c) {
+        if (tier === 'all' || c.dataset.tier === tier) {
+            c.style.display = '';
+        } else {
+            c.style.display = 'none';
+        }
+    });
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.remove('active');
+    });
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
