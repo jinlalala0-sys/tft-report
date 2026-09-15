@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TFT S18 闃靛鍒嗘瀽鎶ュ憡 - 2026-09-15</title>
+<title>TFT 阵容分析报告 - 2026-09-15 (自然之力)</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
@@ -28,616 +28,580 @@ tr:hover { background: #1f2937; }
 .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }
 .metric { text-align: center; background: #0d1117; padding: 6px; border-radius: 4px; }
 .metric-label { font-size: 0.7em; color: #8b949e; }
-.metric-value { font-size: 1.1em; font-weight: bold; color: #58a6ff; }
-.game-code { background: #0d1117; border: 1px dashed #30363d; padding: 8px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 0.8em; word-break: break-all; position: relative; }
-.copy-btn { position: absolute; right: 8px; top: 8px; background: #238636; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; font-size: 0.75em; }
-.copy-btn:hover { background: #2ea043; }
-.hero-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.hero-tag { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 4px 8px; font-size: 0.8em; }
-.hero-cost-1 { border-left: 3px solid #8b949e; }
-.hero-cost-2 { border-left: 3px solid #58a6ff; }
-.hero-cost-3 { border-left: 3px solid #a371f7; }
-.hero-cost-4 { border-left: 3px solid #f0883e; }
-.hero-cost-5 { border-left: 3px solid #ff4757; }
-.hero-core { background: #1f2937; border-color: #f0883e; }
-.filter-section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; margin: 15px 0; }
-.filter-tabs { display: flex; gap: 10px; margin-bottom: 15px; }
-.filter-tab { padding: 6px 16px; background: #21262d; border: 1px solid #30363d; border-radius: 4px; cursor: pointer; font-size: 0.85em; }
-.filter-tab.active { background: #238636; border-color: #2ea043; }
-.trait-tags, .hex-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.trait-tag, .hex-tag { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 4px 10px; font-size: 0.8em; cursor: pointer; }
-.trait-tag:hover, .hex-tag:hover { background: #30363d; }
-.trait-tag.selected, .hex-tag.selected { background: #238636; border-color: #2ea043; }
-.recommend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 15px; }
-.section { margin: 20px 0; }
-.note { color: #8b949e; font-size: 0.85em; margin: 10px 0; }
+.metric-value { font-size: 0.9em; font-weight: bold; }
+.heroes { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.hero-tag { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 3px 8px; font-size: 0.8em; }
+.code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; margin-top: 8px; font-family: monospace; font-size: 0.8em; position: relative; display: flex; align-items: center; gap: 8px; }
+.code-box:hover { border-color: #58a6ff; }
+.code-box span { flex: 1; word-break: break-all; user-select: all; }
+.copy-btn { padding: 4px 12px; background: #4a90d9; color: white; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap; font-size: 0.85em; flex-shrink: 0; }
+.copy-btn:hover { background: #357abd; }
+.copy-btn:active { background: #2a5a9d; }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+.filter-btn { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 5px 12px; cursor: pointer; color: #c9d1d9; font-size: 0.85em; }
+.filter-btn.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+.filter-btn:hover { border-color: #58a6ff; }
 @media (max-width: 768px) {
-  .metrics { grid-template-columns: repeat(3, 1fr); }
-  .recommend-grid { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: repeat(3, 1fr); }
+    table { font-size: 0.75em; }
+    th, td { padding: 5px; }
 }
 </style>
 </head>
 <body>
 <div class="container">
-<h1>TFT S18 闃靛鍒嗘瀽鎶ュ憡</h1>
-<p class="subtitle">鏁版嵁鏉ユ簮: dataj.cc | 鐗堟湰: 18.2 | 瀵规垬鏍锋湰: 138888 | 闃靛鏁? 33 | 鏇存柊鏃ユ湡: 2026-09-15</p><h2>鑳滅巼鎺掕琛?/h2>
-<div class="section">
-<table>
-<thead><tr><th>鎺掑悕</th><th>闃靛鍚嶇О</th><th>娈典綅</th><th>骞冲潎鍚嶆</th><th>閫夊彇鐜?/th><th>鍚冮浮鐜?/th><th>鍓嶅洓鐜?/th><th>鏍锋湰閲?/th></tr></thead>
-<tbody><tr><td>1</td><td>地狱火95</td><td class="tier-S">S</td><td>3.52</td><td>0.81%</td><td>28.69%</td><td>66.33%</td><td>14000</td></tr><tr><td>2</td><td>巨龙95</td><td class="tier-S">S</td><td>3.65</td><td>0.52%</td><td>26.68%</td><td>64.05%</td><td>9007</td></tr><tr><td>3</td><td>重装女警</td><td class="tier-S">S</td><td>4.11</td><td>0.2%</td><td>7.15%</td><td>60.74%</td><td>3495</td></tr><tr><td>4</td><td>野怪小红</td><td class="tier-S">S</td><td>3.92</td><td>0.32%</td><td>15.37%</td><td>60.6%</td><td>5584</td></tr><tr><td>5</td><td>7野怪鸡哥</td><td class="tier-A">A</td><td>4.02</td><td>0.13%</td><td>13.24%</td><td>59.36%</td><td>2259</td></tr><tr><td>6</td><td>古纳拉95</td><td class="tier-A">A</td><td>4.11</td><td>0.14%</td><td>16.96%</td><td>57.27%</td><td>2483</td></tr><tr><td>7</td><td>射箭韦鲁斯</td><td class="tier-A">A</td><td>4.18</td><td>0.14%</td><td>12.38%</td><td>57.2%</td><td>2416</td></tr><tr><td>8</td><td>主宰女警</td><td class="tier-A">A</td><td>4.29</td><td>0.3%</td><td>6%</td><td>56.04%</td><td>5150</td></tr><tr><td>9</td><td>卡丽蜜儿</td><td class="tier-A">A</td><td>4.23</td><td>0.52%</td><td>12.61%</td><td>56.01%</td><td>8995</td></tr><tr><td>10</td><td>永森95</td><td class="tier-A">A</td><td>4.12</td><td>0.02%</td><td>17.99%</td><td>54.28%</td><td>339</td></tr><tr><td>11</td><td>神器天使</td><td class="tier-B">B</td><td>4.35</td><td>0.11%</td><td>11.28%</td><td>53.61%</td><td>1826</td></tr><tr><td>12</td><td>森林月男</td><td class="tier-B">B</td><td>4.41</td><td>0.24%</td><td>10.94%</td><td>51.94%</td><td>4149</td></tr><tr><td>13</td><td>5迅射月男</td><td class="tier-B">B</td><td>4.48</td><td>0.19%</td><td>8.26%</td><td>51.85%</td><td>3379</td></tr><tr><td>14</td><td>月男Flex</td><td class="tier-C">C</td><td>4.59</td><td>1.14%</td><td>7.33%</td><td>49.22%</td><td>19739</td></tr><tr><td>15</td><td>皎月螳螂</td><td class="tier-C">C</td><td>4.57</td><td>0.11%</td><td>9.64%</td><td>48.23%</td><td>1868</td></tr><tr><td>16</td><td>神谕狐狸</td><td class="tier-C">C</td><td>4.67</td><td>0.03%</td><td>9.95%</td><td>47.89%</td><td>593</td></tr><tr><td>17</td><td>护卫豹轮</td><td class="tier-C">C</td><td>4.52</td><td>0.02%</td><td>14.66%</td><td>47.84%</td><td>416</td></tr><tr><td>18</td><td>裁决螳螂</td><td class="tier-C">C</td><td>4.61</td><td>0.19%</td><td>8.93%</td><td>47.58%</td><td>3382</td></tr><tr><td>19</td><td>野怪小蓝</td><td class="tier-C">C</td><td>4.63</td><td>0.09%</td><td>9.57%</td><td>46.34%</td><td>1599</td></tr><tr><td>20</td><td>裁决芸阿娜</td><td class="tier-C">C</td><td>4.68</td><td>0%</td><td>5.88%</td><td>44.12%</td><td>68</td></tr><tr><td>21</td><td>剑圣大嘴</td><td class="tier-D">D</td><td>4.82</td><td>0.11%</td><td>6.52%</td><td>43.83%</td><td>1903</td></tr><tr><td>22</td><td>6主宰Flex</td><td class="tier-D">D</td><td>4.86</td><td>0.15%</td><td>7.69%</td><td>43.52%</td><td>2562</td></tr><tr><td>23</td><td>螳螂蛇女</td><td class="tier-D">D</td><td>4.86</td><td>0.04%</td><td>4.42%</td><td>43.29%</td><td>633</td></tr><tr><td>24</td><td>莲华阿狸</td><td class="tier-D">D</td><td>4.87</td><td>0.36%</td><td>13.11%</td><td>41.11%</td><td>6283</td></tr><tr><td>25</td><td>重装豹女</td><td class="tier-D">D</td><td>5.03</td><td>0.01%</td><td>6.4%</td><td>40.89%</td><td>203</td></tr><tr><td>26</td><td>裁决奶妈</td><td class="tier-D">D</td><td>5.01</td><td>0.56%</td><td>6.58%</td><td>40.48%</td><td>9752</td></tr><tr><td>27</td><td>黑豹轮</td><td class="tier-D">D</td><td>5.15</td><td>0.1%</td><td>5.27%</td><td>38.04%</td><td>1785</td></tr><tr><td>28</td><td>世纪和解</td><td class="tier-D">D</td><td>5.28</td><td>0.04%</td><td>4.91%</td><td>35.06%</td><td>713</td></tr><tr><td>29</td><td>护卫蛇女</td><td class="tier-D">D</td><td>5.24</td><td>0.01%</td><td>2.43%</td><td>34.47%</td><td>206</td></tr><tr><td>30</td><td>召唤双鸡</td><td class="tier-D">D</td><td>5.43</td><td>0.01%</td><td>6.7%</td><td>31.96%</td><td>194</td></tr><tr><td>31</td><td>花仙狮子狗</td><td class="tier-D">D</td><td>5.89</td><td>0.01%</td><td>6.81%</td><td>25.96%</td><td>235</td></tr><tr><td>32</td><td>花仙小炮</td><td class="tier-D">D</td><td>5.71</td><td>0.02%</td><td>2.22%</td><td>25.86%</td><td>406</td></tr><tr><td>33</td><td>召唤鸡哥</td><td class="tier-D">D</td><td>6.27</td><td>0%</td><td>1.56%</td><td>21.88%</td><td>64</td></tr></tbody></table></div><h2>闃靛鎺ㄨ崘</h2><div class="section"><div class="recommend-grid"><div class="card">
-<div class="card-header">
-<span class="card-name">地狱火95</span>
-<span class="card-tier tier-S">S</span>
+<h1>TFT 阵容分析报告 - 2026-09-15 (自然之力)</h1>
+<div class="subtitle">S18 自然之力 | 版本 18.2 | 138,888 局 | 数据来源: dataj.cc</div>
+<h2>胜率排行</h2>
+<table><thead><tr><th>#</th><th>阵容名称</th><th>段位</th><th>前四率</th><th>登顶率</th><th>出场率</th><th>平均排名</th><th>样本数</th><th>阵容码</th></tr></thead><tbody>
+<tr><td>1</td><td>地狱火95</td><td class="tier-S">S</td><td>66.3%</td><td>28.7%</td><td>0.81%</td><td>3.52</td><td>1124</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>2</td><td>巨龙95</td><td class="tier-S">S</td><td>64.0%</td><td>26.7%</td><td>0.52%</td><td>3.65</td><td>722</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>3</td><td>重装女警</td><td class="tier-S">S</td><td>60.7%</td><td>7.2%</td><td>0.2%</td><td>4.11</td><td>277</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>4</td><td>野怪小红</td><td class="tier-S">S</td><td>60.6%</td><td>15.4%</td><td>0.32%</td><td>3.92</td><td>444</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>5</td><td>7野怪鸡哥</td><td class="tier-S">S</td><td>59.4%</td><td>13.2%</td><td>0.13%</td><td>4.02</td><td>180</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>6</td><td>古纳拉95</td><td class="tier-S">S</td><td>57.3%</td><td>17.0%</td><td>0.14%</td><td>4.11</td><td>194</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>7</td><td>射箭韦鲁斯</td><td class="tier-S">S</td><td>57.2%</td><td>12.4%</td><td>0.14%</td><td>4.18</td><td>194</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>8</td><td>卡丽蜜儿</td><td class="tier-S">S</td><td>56.0%</td><td>12.6%</td><td>0.52%</td><td>4.23</td><td>722</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>9</td><td>永森95</td><td class="tier-S">S</td><td>54.3%</td><td>18.0%</td><td>0.02%</td><td>4.12</td><td>27</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>10</td><td>主宰女警</td><td class="tier-A">A</td><td>56.0%</td><td>6.0%</td><td>0.3%</td><td>4.29</td><td>416</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>11</td><td>森林天使</td><td class="tier-A">A</td><td>53.6%</td><td>11.3%</td><td>0.11%</td><td>4.35</td><td>152</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>12</td><td>森林月男</td><td class="tier-B">B</td><td>51.9%</td><td>10.9%</td><td>0.24%</td><td>4.41</td><td>333</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>13</td><td>5迅射月男</td><td class="tier-B">B</td><td>51.9%</td><td>8.3%</td><td>0.19%</td><td>4.48</td><td>263</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>14</td><td>月男Flex</td><td class="tier-B">B</td><td>49.2%</td><td>7.3%</td><td>1.14%</td><td>4.59</td><td>1583</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>15</td><td>皎月螳螂</td><td class="tier-B">B</td><td>48.2%</td><td>9.6%</td><td>0.11%</td><td>4.57</td><td>152</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>16</td><td>护卫豹轮</td><td class="tier-B">B</td><td>47.8%</td><td>14.7%</td><td>0.02%</td><td>4.52</td><td>27</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>17</td><td>神谕狐狸</td><td class="tier-C">C</td><td>47.9%</td><td>9.9%</td><td>0.03%</td><td>4.67</td><td>41</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>18</td><td>裁决螳螂</td><td class="tier-C">C</td><td>47.6%</td><td>8.9%</td><td>0.19%</td><td>4.61</td><td>263</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>19</td><td>野怪小蓝</td><td class="tier-C">C</td><td>46.3%</td><td>9.6%</td><td>0.09%</td><td>4.63</td><td>124</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>20</td><td>裁决芸阿娜</td><td class="tier-C">C</td><td>44.1%</td><td>5.9%</td><td>0.0%</td><td>4.68</td><td>0</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>21</td><td>剑圣大嘴</td><td class="tier-D">D</td><td>43.8%</td><td>6.5%</td><td>0.11%</td><td>4.82</td><td>152</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>22</td><td>6主宰Flex</td><td class="tier-D">D</td><td>43.5%</td><td>7.7%</td><td>0.15%</td><td>4.86</td><td>208</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>23</td><td>螳螂蛇女</td><td class="tier-D">D</td><td>43.3%</td><td>4.4%</td><td>0.04%</td><td>4.86</td><td>55</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>24</td><td>莲华阿狸</td><td class="tier-D">D</td><td>41.1%</td><td>13.1%</td><td>0.36%</td><td>4.87</td><td>499</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>25</td><td>重装豹女</td><td class="tier-D">D</td><td>40.9%</td><td>6.4%</td><td>0.01%</td><td>5.03</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>26</td><td>裁决奶妈</td><td class="tier-D">D</td><td>40.5%</td><td>6.6%</td><td>0.56%</td><td>5.01</td><td>777</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>27</td><td>黑豹轮</td><td class="tier-D">D</td><td>38.0%</td><td>5.3%</td><td>0.1%</td><td>5.15</td><td>138</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>28</td><td>世纪和解</td><td class="tier-D">D</td><td>35.1%</td><td>4.9%</td><td>0.04%</td><td>5.28</td><td>55</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>29</td><td>护卫蛇女</td><td class="tier-D">D</td><td>34.5%</td><td>2.4%</td><td>0.01%</td><td>5.24</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>30</td><td>召唤双鸡</td><td class="tier-D">D</td><td>32.0%</td><td>6.7%</td><td>0.01%</td><td>5.43</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>31</td><td>花仙狮子狗</td><td class="tier-D">D</td><td>26.0%</td><td>6.8%</td><td>0.01%</td><td>5.89</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>32</td><td>花仙小炮</td><td class="tier-D">D</td><td>25.9%</td><td>2.2%</td><td>0.02%</td><td>5.71</td><td>27</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>33</td><td>召唤鸡哥</td><td class="tier-D">D</td><td>21.9%</td><td>1.6%</td><td>0.0%</td><td>6.27</td><td>0</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+</tbody></table>
+<h2>转职/海克斯筛选器</h2>
+<div class="filter-bar">
+<button class="filter-btn" onclick="filterTier('A')">A级 (2)</button>
+<button class="filter-btn" onclick="filterTier('B')">B级 (5)</button>
+<button class="filter-btn" onclick="filterTier('C')">C级 (4)</button>
+<button class="filter-btn" onclick="filterTier('D')">D级 (13)</button>
+<button class="filter-btn" onclick="filterTier('S')">S级 (9)</button>
+<button class="filter-btn active" onclick="filterTier('all')">全部</button>
 </div>
+<h2>段位分组阵容卡片</h2>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">地狱火95</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">3.52</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.81%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">28.69%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">66.33%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">14000</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">66.3%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">28.7%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.81%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.52</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1124</div></div>
 </div>
-<div class="game-code">【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core">希维尔 (4璐?</span><span class="hero-tag hero-cost-5 hero-core">艾希 (5璐?</span><span class="hero-tag hero-cost-5 hero-core">凯南 (5璐?</span><span class="hero-tag hero-cost-4 hero-core">阿木木 (4璐?</span><span class="hero-tag hero-cost-5">塔里克 (5璐?</span><span class="hero-tag hero-cost-4">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-1">韦鲁斯 (1璐?</span></div>
-</div><div class="card">
-<div class="card-header">
-<span class="card-name">巨龙95</span>
-<span class="card-tier tier-S">S</span>
+<div class="heroes">
+<span class="hero-tag">希维尔艾希凯南阿木木塔里克苍蓝雕纹魔像蔚慎韦鲁斯</span>
 </div>
+<div class="code-box" id="code-112"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw</span><button class="copy-btn" onclick="copyCode('112', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">巨龙95</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">3.65</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.52%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">26.68%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">64.05%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">9007</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">64.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">26.7%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.52%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.65</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">722</div></div>
 </div>
-<div class="game-code">【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-5 hero-core">远古巨龙 (5璐?</span><span class="hero-tag hero-cost-5 hero-core">德莱文 (5璐?</span><span class="hero-tag hero-cost-5 hero-core">茂凯 (5璐?</span><span class="hero-tag hero-cost-4 hero-core">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-5">艾翁 (5璐?</span><span class="hero-tag hero-cost-5">塔里克 (5璐?</span><span class="hero-tag hero-cost-5">凯南 (5璐?</span><span class="hero-tag hero-cost-4">阿木木 (4璐?</span></div>
-</div><div class="card">
-<div class="card-header">
-<span class="card-name">重装女警</span>
-<span class="card-tier tier-S">S</span>
+<div class="heroes">
+<span class="hero-tag">远古巨龙德莱文茂凯苍蓝雕纹魔像艾翁塔里克凯南阿木木</span>
 </div>
+<div class="code-box" id="code-89"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz</span><button class="copy-btn" onclick="copyCode('89', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">重装女警</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.11</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.2%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">7.15%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">60.74%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">3495</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">60.7%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">7.2%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.2%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.11</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">277</div></div>
 </div>
-<div class="game-code">【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-2 hero-core">凯特琳 (2璐?</span><span class="hero-tag hero-cost-4 hero-core">希维尔 (4璐?</span><span class="hero-tag hero-cost-3 hero-core">赫卡里姆 (3璐?</span><span class="hero-tag hero-cost-2 hero-core">伊莉丝 (2璐?</span><span class="hero-tag hero-cost-4">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3">崔丝塔娜 (3璐?</span></div>
-</div><div class="card">
-<div class="card-header">
-<span class="card-name">野怪小红</span>
-<span class="card-tier tier-S">S</span>
+<div class="heroes">
+<span class="hero-tag">凯特琳希维尔赫卡里姆伊莉丝苍蓝雕纹魔像蔚崔丝塔娜洛</span>
 </div>
+<div class="code-box" id="code-100"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</span><button class="copy-btn" onclick="copyCode('100', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">野怪小红</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">3.92</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.32%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">15.37%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">60.6%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">5584</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">60.6%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">15.4%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.32%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">3.92</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">444</div></div>
 </div>
-<div class="game-code">【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-1 hero-core">绯红树怪 (1璐?</span><span class="hero-tag hero-cost-5 hero-core">远古巨龙 (5璐?</span><span class="hero-tag hero-cost-3 hero-core">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-1 hero-core">苍蓝哨戒 (1璐?</span><span class="hero-tag hero-cost-5">纳尔 (5璐?</span><span class="hero-tag hero-cost-4">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-2">峡谷迅捷蟹 (2璐?</span></div>
-</div><div class="card">
-<div class="card-header">
-<span class="card-name">7野怪鸡哥</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">绯红树怪远古巨龙远古石甲虫苍蓝哨戒纳尔苍蓝雕纹魔像峡谷迅捷蟹洛</span>
 </div>
+<div class="code-box" id="code-104"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</span><button class="copy-btn" onclick="copyCode('104', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">7野怪鸡哥</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.02</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.13%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">13.24%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">59.36%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">2259</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">59.4%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">13.2%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.13%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.02</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">180</div></div>
 </div>
-<div class="game-code">【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core">深红锋喙鸟 (3璐?</span><span class="hero-tag hero-cost-4 hero-core">绯红印记树怪 (4璐?</span><span class="hero-tag hero-cost-4 hero-core">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3 hero-core">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-2">魔沼蛙 (2璐?</span><span class="hero-tag hero-cost-2">峡谷迅捷蟹 (2璐?</span><span class="hero-tag hero-cost-2">暗影狼 (2璐?</span><span class="hero-tag hero-cost-1">绯红树怪 (1璐?</span><span class="hero-tag hero-cost-1">苍蓝哨戒 (1璐?</span></div>
-</div></div></div><h2>杞亴/娴峰厠鏂瓫閫夊櫒</h2>
-<div class="filter-section">
-<div class="filter-tabs">
-<div class="filter-tab active" onclick="switchFilter('traits', this)">缇佺粖绛涢€?/div>
-<div class="filter-tab" onclick="switchFilter('hexes', this)">寮哄寲绗︽枃绛涢€?/div>
+<div class="heroes">
+<span class="hero-tag">深红锋喙鸟绯红印记树怪苍蓝雕纹魔像远古石甲虫魔沼蛙峡谷迅捷蟹暗影狼绯红树怪苍蓝哨戒</span>
 </div>
-<div id="traits-filter" class="trait-tags"><span class="trait-tag" onclick="toggleFilter(this, '宝石骑士')">宝石骑士 (8)</span><span class="trait-tag" onclick="toggleFilter(this, '裁决使')">裁决使 (5)</span><span class="trait-tag" onclick="toggleFilter(this, '翠神')">翠神 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '地狱火')">地狱火 (8)</span><span class="trait-tag" onclick="toggleFilter(this, '帝王斑蝶')">帝王斑蝶 (5)</span><span class="trait-tag" onclick="toggleFilter(this, '顶级掠食者')">顶级掠食者 (4)</span><span class="trait-tag" onclick="toggleFilter(this, '斗士')">斗士 (12)</span><span class="trait-tag" onclick="toggleFilter(this, '法师')">法师 (5)</span><span class="trait-tag" onclick="toggleFilter(this, '腐蚀巨口')">腐蚀巨口 (1)</span><span class="trait-tag" onclick="toggleFilter(this, '黑荆棘')">黑荆棘 (4)</span><span class="trait-tag" onclick="toggleFilter(this, '护卫')">护卫 (10)</span><span class="trait-tag" onclick="toggleFilter(this, '花仙子')">花仙子 (8)</span><span class="trait-tag" onclick="toggleFilter(this, '荆棘之兴')">荆棘之兴 (5)</span><span class="trait-tag" onclick="toggleFilter(this, '绝命花妖')">绝命花妖 (6)</span><span class="trait-tag" onclick="toggleFilter(this, '狂战士')">狂战士 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '莲华')">莲华 (1)</span><span class="trait-tag" onclick="toggleFilter(this, '猎人')">猎人 (9)</span><span class="trait-tag" onclick="toggleFilter(this, '灵魂莲华')">灵魂莲华 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '魔岩巨兽')">魔岩巨兽 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '魔战士')">魔战士 (4)</span><span class="trait-tag" onclick="toggleFilter(this, '前卫')">前卫 (1)</span><span class="trait-tag" onclick="toggleFilter(this, '日蚀骑士')">日蚀骑士 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '赏金猎人')">赏金猎人 (2)</span><span class="trait-tag" onclick="toggleFilter(this, '神谕')">神谕 (7)</span><span class="trait-tag" onclick="toggleFilter(this, '神谕者')">神谕者 (1)</span><span class="trait-tag" onclick="toggleFilter(this, '宿敌')">宿敌 (6)</span><span class="trait-tag" onclick="toggleFilter(this, '峡谷野怪')">峡谷野怪 (9)</span><span class="trait-tag" onclick="toggleFilter(this, '迅捷射手')">迅捷射手 (7)</span><span class="trait-tag" onclick="toggleFilter(this, '野兽之灵')">野兽之灵 (11)</span><span class="trait-tag" onclick="toggleFilter(this, '永恒之森')">永恒之森 (7)</span><span class="trait-tag" onclick="toggleFilter(this, '远古树精')">远古树精 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '约德尔人')">约德尔人 (2)</span><span class="trait-tag" onclick="toggleFilter(this, '月华神女')">月华神女 (3)</span><span class="trait-tag" onclick="toggleFilter(this, '月蚀骑士')">月蚀骑士 (9)</span><span class="trait-tag" onclick="toggleFilter(this, '召唤师')">召唤师 (5)</span><span class="trait-tag" onclick="toggleFilter(this, '重装战士')">重装战士 (16)</span><span class="trait-tag" onclick="toggleFilter(this, '主宰')">主宰 (19)</span></div><div id="hexes-filter" class="hex-tags" style="display:none"><span class="hex-tag" onclick="toggleFilter(this, '阿福的百宝袋')">阿福的百宝袋 (4)</span><span class="hex-tag" onclick="toggleFilter(this, '宝宝学院')">宝宝学院 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '爆炸式增长+')">爆炸式增长+ (3)</span><span class="hex-tag" onclick="toggleFilter(this, '便携锻炉')">便携锻炉 (28)</span><span class="hex-tag" onclick="toggleFilter(this, '别再错过')">别再错过 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '玻璃大炮 II')">玻璃大炮 II (1)</span><span class="hex-tag" onclick="toggleFilter(this, '不侦察，不变阵')">不侦察，不变阵 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '炽天使之拥')">炽天使之拥 (5)</span><span class="hex-tag" onclick="toggleFilter(this, '厨神阿福')">厨神阿福 (8)</span><span class="hex-tag" onclick="toggleFilter(this, '大百宝袋')">大百宝袋 (31)</span><span class="hex-tag" onclick="toggleFilter(this, '大剑溢流')">大剑溢流 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '嘀嘀街区')">嘀嘀街区 (7)</span><span class="hex-tag" onclick="toggleFilter(this, '嘀嘀街区加强版')">嘀嘀街区加强版 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '嘀个痛快！ I')">嘀个痛快！ I (1)</span><span class="hex-tag" onclick="toggleFilter(this, '顶尖构筑')">顶尖构筑 (4)</span><span class="hex-tag" onclick="toggleFilter(this, '镀金钢铁')">镀金钢铁 (6)</span><span class="hex-tag" onclick="toggleFilter(this, '飞升')">飞升 (12)</span><span class="hex-tag" onclick="toggleFilter(this, '更要命的帽子')">更要命的帽子 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '更要命的战刃')">更要命的战刃 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '光明圣物')">光明圣物 (5)</span><span class="hex-tag" onclick="toggleFilter(this, '锅铲厨房')">锅铲厨房 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '后排蓝图')">后排蓝图 (5)</span><span class="hex-tag" onclick="toggleFilter(this, '后期收益')">后期收益 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '黄金命运')">黄金命运 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '活体锻炉')">活体锻炉 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '加冕礼')">加冕礼 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '剑之工匠')">剑之工匠 (4)</span><span class="hex-tag" onclick="toggleFilter(this, '节外生枝')">节外生枝 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '节外生枝+')">节外生枝+ (1)</span><span class="hex-tag" onclick="toggleFilter(this, '金色炊具')">金色炊具 (4)</span><span class="hex-tag" onclick="toggleFilter(this, '巨化术')">巨化术 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '棱彩门票')">棱彩门票 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '蔓延之根')">蔓延之根 (9)</span><span class="hex-tag" onclick="toggleFilter(this, '蔓延之根+')">蔓延之根+ (2)</span><span class="hex-tag" onclick="toggleFilter(this, '毛茸茸小朋友')">毛茸茸小朋友 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '男爵幻域')">男爵幻域 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '女巫使魔')">女巫使魔 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '欧米茄之怪')">欧米茄之怪 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '潘朵拉的备战席')">潘朵拉的备战席 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '前线地基')">前线地基 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '强化之能量')">强化之能量 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '三幻神')">三幻神 (8)</span><span class="hex-tag" onclick="toggleFilter(this, '奢侈品订购')">奢侈品订购 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '升级咯！')">升级咯！ (3)</span><span class="hex-tag" onclick="toggleFilter(this, '生日聚会')">生日聚会 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '时间跳跃')">时间跳跃 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '世纪和解')">世纪和解 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '手气不错')">手气不错 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '兽性本能')">兽性本能 (4)</span><span class="hex-tag" onclick="toggleFilter(this, '兽性本能+')">兽性本能+ (4)</span><span class="hex-tag" onclick="toggleFilter(this, '双城赢家')">双城赢家 (31)</span><span class="hex-tag" onclick="toggleFilter(this, '双排')">双排 (10)</span><span class="hex-tag" onclick="toggleFilter(this, '双子守护神')">双子守护神 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '太阳的抉择')">太阳的抉择 (2)</span><span class="hex-tag" onclick="toggleFilter(this, '团队建设')">团队建设 (6)</span><span class="hex-tag" onclick="toggleFilter(this, '纹章树')">纹章树 (6)</span><span class="hex-tag" onclick="toggleFilter(this, '纹章树+')">纹章树+ (2)</span><span class="hex-tag" onclick="toggleFilter(this, '小小福袋')">小小福袋 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '星界赐福 II')">星界赐福 II (2)</span><span class="hex-tag" onclick="toggleFilter(this, '一波带走俩')">一波带走俩 (4)</span><span class="hex-tag" onclick="toggleFilter(this, '英勇福袋+')">英勇福袋+ (1)</span><span class="hex-tag" onclick="toggleFilter(this, '英勇福袋++')">英勇福袋++ (14)</span><span class="hex-tag" onclick="toggleFilter(this, '游神的盟友')">游神的盟友 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '绽灵花的约定')">绽灵花的约定 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '杖之工匠')">杖之工匠 (5)</span><span class="hex-tag" onclick="toggleFilter(this, '正义报复')">正义报复 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '致命丽花')">致命丽花 (3)</span><span class="hex-tag" onclick="toggleFilter(this, '终身黄铜 I')">终身黄铜 I (1)</span><span class="hex-tag" onclick="toggleFilter(this, '终身黄铜 II')">终身黄铜 II (1)</span><span class="hex-tag" onclick="toggleFilter(this, '专属定制')">专属定制 (21)</span><span class="hex-tag" onclick="toggleFilter(this, '自然庇护所')">自然庇护所 (1)</span><span class="hex-tag" onclick="toggleFilter(this, '纵深 I')">纵深 I (2)</span><span class="hex-tag" onclick="toggleFilter(this, '纵深 II')">纵深 II (3)</span><span class="hex-tag" onclick="toggleFilter(this, '纵深 III')">纵深 III (3)</span></div><p class="note">鐐瑰嚮鏍囩绛涢€夊寘鍚缇佺粖/娴峰厠鏂殑闃靛</p></div><h2>娈典綅鍒嗙粍闃靛鍗＄墖</h2><div class="section"><h3 class="tier-S">娈典綅 S (4 涓樀瀹?</h3><div class="card" data-traits="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hexes="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">
-<div class="card-header">
-<span class="card-name">地狱火95</span>
-<span class="card-tier tier-S">S</span>
+<div class="code-box" id="code-99"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5</span><button class="copy-btn" onclick="copyCode('99', this)">复制</button></div>
 </div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">古纳拉95</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">3.52</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.81%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">28.69%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">66.33%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">14000</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">57.3%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">17.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.14%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.11</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">194</div></div>
 </div>
-<div class="game-code">【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">希维尔 (4璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">艾希 (5璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">凯南 (5璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">阿木木 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">塔里克 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-1" data-trait="地狱火,猎人,野兽之灵,重装战士,主宰,宝石骑士" data-hex="厨神阿福,阿福的百宝袋,镀金钢铁,双排,双城赢家,金色炊具,蔓延之根,大百宝袋,专属定制,顶尖构筑">韦鲁斯 (1璐?</span></div>
-</div><div class="card" data-traits="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hexes="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">
-<div class="card-header">
-<span class="card-name">巨龙95</span>
-<span class="card-tier tier-S">S</span>
+<div class="heroes">
+<span class="hero-tag">拉露恩远古巨龙纳尔苍蓝雕纹魔像塔里克黛安娜赫卡里姆阿利斯塔</span>
 </div>
+<div class="code-box" id="code-113"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</span><button class="copy-btn" onclick="copyCode('113', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">射箭韦鲁斯</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">3.65</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.52%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">26.68%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">64.05%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">9007</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">57.2%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">12.4%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.14%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.18</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">194</div></div>
 </div>
-<div class="game-code">【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-5 hero-core" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">远古巨龙 (5璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">德莱文 (5璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">茂凯 (5璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">艾翁 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">塔里克 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">凯南 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="地狱火,重装战士,主宰,宝石骑士,翠神,顶级掠食者,赏金猎人,远古树精" data-hex="厨神阿福,双排,镀金钢铁,升级咯！,生日聚会,顶尖构筑,后期收益,爆炸式增长+,大百宝袋,专属定制">阿木木 (4璐?</span></div>
-</div><div class="card" data-traits="重装战士,猎人,花仙子,野兽之灵,主宰" data-hexes="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">
-<div class="card-header">
-<span class="card-name">重装女警</span>
-<span class="card-tier tier-S">S</span>
+<div class="heroes">
+<span class="hero-tag">韦鲁斯凯尔瑟庄妮慎蕾欧娜洛厄斐琉斯黛安娜</span>
 </div>
+<div class="code-box" id="code-110"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</span><button class="copy-btn" onclick="copyCode('110', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">卡丽蜜儿</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.11</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.2%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">7.15%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">60.74%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">3495</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">56.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">12.6%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.52%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.23</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">722</div></div>
 </div>
-<div class="game-code">【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-2 hero-core" data-trait="重装战士,猎人,花仙子,野兽之灵,主宰" data-hex="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">凯特琳 (2璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="重装战士,猎人,花仙子,野兽之灵,主宰" data-hex="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">希维尔 (4璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="重装战士,猎人,花仙子,野兽之灵,主宰" data-hex="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">赫卡里姆 (3璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="重装战士,猎人,花仙子,野兽之灵,主宰" data-hex="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">伊莉丝 (2璐?</span><span class="hero-tag hero-cost-4" data-trait="重装战士,猎人,花仙子,野兽之灵,主宰" data-hex="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="重装战士,猎人,花仙子,野兽之灵,主宰" data-hex="双城赢家,女巫使魔,便携锻炉,飞升,光明圣物,英勇福袋++,嘀嘀街区,一波带走俩,大百宝袋,专属定制">崔丝塔娜 (3璐?</span></div>
-</div><div class="card" data-traits="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hexes="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">
-<div class="card-header">
-<span class="card-name">野怪小红</span>
-<span class="card-tier tier-S">S</span>
+<div class="heroes">
+<span class="hero-tag">阿卡丽卡蜜尔奥恩韦鲁斯蕾欧娜阿木木瑟庄妮凯尔</span>
 </div>
+<div class="code-box" id="code-115"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2</span><button class="copy-btn" onclick="copyCode('115', this)">复制</button></div>
+</div>
+<div class="card" data-tier="S">
+<div class="card-header"><span class="card-name">永森95</span><span class="card-tier tier-S">S级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">3.92</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.32%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">15.37%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">60.6%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">5584</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">54.3%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">18.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.02%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.12</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">27</div></div>
 </div>
-<div class="game-code">【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-1 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">绯红树怪 (1璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">远古巨龙 (5璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">苍蓝哨戒 (1璐?</span><span class="hero-tag hero-cost-5" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">纳尔 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-2" data-trait="峡谷野怪,斗士,神谕,重装战士,主宰,顶级掠食者" data-hex="欧米茄之怪,纵深 II,炽天使之拥,纵深 III,加冕礼,双城赢家,双排,大百宝袋,纵深 I,便携锻炉">峡谷迅捷蟹 (2璐?</span></div>
-</div></div><div class="section"><h3 class="tier-A">娈典綅 A (6 涓樀瀹?</h3><div class="card" data-traits="峡谷野怪,狂战士,神谕" data-hexes="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">
-<div class="card-header">
-<span class="card-name">7野怪鸡哥</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">伊泽瑞尔德莱文艾翁凯南塔里克纳尔茂凯阿木木阿利斯塔</span>
 </div>
+<div class="code-box" id="code-91"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3</span><button class="copy-btn" onclick="copyCode('91', this)">复制</button></div>
+</div>
+<div class="card" data-tier="A">
+<div class="card-header"><span class="card-name">主宰女警</span><span class="card-tier tier-A">A级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.02</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.13%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">13.24%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">59.36%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">2259</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">56.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">6.0%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.3%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.29</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">416</div></div>
 </div>
-<div class="game-code">【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">深红锋喙鸟 (3璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">绯红印记树怪 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-2" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">魔沼蛙 (2璐?</span><span class="hero-tag hero-cost-2" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">峡谷迅捷蟹 (2璐?</span><span class="hero-tag hero-cost-2" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">暗影狼 (2璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">绯红树怪 (1璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,狂战士,神谕" data-hex="欧米茄之怪,纵深 II,纵深 III,便携锻炉,双城赢家,加冕礼,大百宝袋,双排,英勇福袋++,嘀嘀街区">苍蓝哨戒 (1璐?</span></div>
-</div><div class="card" data-traits="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hexes="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">
-<div class="card-header">
-<span class="card-name">古纳拉95</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">凯特琳希维尔峡谷迅捷蟹瑟庄妮阿木木崔丝塔娜蔚洛</span>
 </div>
+<div class="code-box" id="code-106"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy</span><button class="copy-btn" onclick="copyCode('106', this)">复制</button></div>
+</div>
+<div class="card" data-tier="A">
+<div class="card-header"><span class="card-name">森林天使</span><span class="card-tier tier-A">A级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.11</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.14%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">16.96%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">57.27%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">2483</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">53.6%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">11.3%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.11%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.35</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">152</div></div>
 </div>
-<div class="game-code">【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-5 hero-core" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">拉露恩 (5璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">远古巨龙 (5璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">纳尔 (5璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">塔里克 (5璐?</span><span class="hero-tag hero-cost-3" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">黛安娜 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">赫卡里姆 (3璐?</span><span class="hero-tag hero-cost-2" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">阿利斯塔 (2璐?</span><span class="hero-tag hero-cost-0" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">石皮树 (0璐?</span><span class="hero-tag hero-cost-0" data-trait="重装战士,永恒之森,峡谷野怪,斗士,月蚀骑士,宝石骑士,顶级掠食者,月华神女" data-hex="生日聚会,升级咯！,顶尖构筑,双排,后期收益,镀金钢铁,爆炸式增长+,专属定制,大百宝袋,双城赢家">生命花 (0璐?</span></div>
-</div><div class="card" data-traits="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hexes="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">
-<div class="card-header">
-<span class="card-name">射箭韦鲁斯</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">凯尔霞奥恩蕾欧娜瑟庄妮乐芙兰洛</span>
 </div>
+<div class="code-box" id="code-88"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0</span><button class="copy-btn" onclick="copyCode('88', this)">复制</button></div>
+</div>
+<div class="card" data-tier="B">
+<div class="card-header"><span class="card-name">森林月男</span><span class="card-tier tier-B">B级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.18</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.14%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">12.38%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">57.2%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">2416</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">51.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">10.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.24%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.41</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">333</div></div>
 </div>
-<div class="game-code">【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-1 hero-core" data-trait="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hex="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">韦鲁斯 (1璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hex="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">凯尔 (2璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hex="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">瑟庄妮 (2璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hex="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">蕾欧娜 (1璐?</span><span class="hero-tag hero-cost-4" data-trait="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hex="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="日蚀骑士,迅捷射手,地狱火,护卫,月蚀骑士,重装战士,主宰" data-hex="便携锻炉,嘀嘀街区,大百宝袋,太阳的抉择,双城赢家,棱彩门票,英勇福袋++,专属定制,不侦察，不变阵,潘朵拉的备战席">黛安娜 (3璐?</span></div>
-</div><div class="card" data-traits="主宰,猎人,花仙子,野兽之灵" data-hexes="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">
-<div class="card-header">
-<span class="card-name">主宰女警</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">厄斐琉斯伊泽瑞尔莉莉娅纳尔拉露恩索拉卡阿利斯塔奥恩霞</span>
 </div>
+<div class="code-box" id="code-105"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy</span><button class="copy-btn" onclick="copyCode('105', this)">复制</button></div>
+</div>
+<div class="card" data-tier="B">
+<div class="card-header"><span class="card-name">5迅射月男</span><span class="card-tier tier-B">B级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.29</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.3%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">6%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">56.04%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">5150</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">51.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">8.3%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.19%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.48</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">263</div></div>
 </div>
-<div class="game-code">【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-2 hero-core" data-trait="主宰,猎人,花仙子,野兽之灵" data-hex="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">凯特琳 (2璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="主宰,猎人,花仙子,野兽之灵" data-hex="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">希维尔 (4璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="主宰,猎人,花仙子,野兽之灵" data-hex="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">峡谷迅捷蟹 (2璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="主宰,猎人,花仙子,野兽之灵" data-hex="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">瑟庄妮 (2璐?</span><span class="hero-tag hero-cost-4" data-trait="主宰,猎人,花仙子,野兽之灵" data-hex="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">阿木木 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="主宰,猎人,花仙子,野兽之灵" data-hex="双城赢家,便携锻炉,飞升,英勇福袋++,更要命的战刃,大百宝袋,一波带走俩,嘀嘀街区,团队建设,光明圣物">崔丝塔娜 (3璐?</span></div>
-</div><div class="card" data-traits="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hexes="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">
-<div class="card-header">
-<span class="card-name">卡丽蜜儿</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">绯红印记树怪阿木木厄斐琉斯苍蓝雕纹魔像深红锋喙鸟黛安娜霞韦鲁斯洛</span>
 </div>
+<div class="code-box" id="code-114"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz</span><button class="copy-btn" onclick="copyCode('114', this)">复制</button></div>
+</div>
+<div class="card" data-tier="B">
+<div class="card-header"><span class="card-name">月男Flex</span><span class="card-tier tier-B">B级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.23</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.52%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">12.61%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">56.01%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">8995</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">49.2%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">7.3%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">1.14%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.59</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">1583</div></div>
 </div>
-<div class="game-code">【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-1 hero-core" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">阿卡丽 (1璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">卡蜜尔 (1璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">奥恩 (1璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">韦鲁斯 (1璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">蕾欧娜 (1璐?</span><span class="hero-tag hero-cost-4" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">阿木木 (4璐?</span><span class="hero-tag hero-cost-2" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">瑟庄妮 (2璐?</span><span class="hero-tag hero-cost-2" data-trait="地狱火,日蚀骑士,护卫,狂战士,迅捷射手,主宰" data-hex="宝宝学院,便携锻炉,不侦察，不变阵,大百宝袋,嘀嘀街区,剑之工匠,双城赢家,专属定制,别再错过,棱彩门票">凯尔 (2璐?</span></div>
-</div><div class="card" data-traits="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hexes="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">
-<div class="card-header">
-<span class="card-name">永森95</span>
-<span class="card-tier tier-A">A</span>
+<div class="heroes">
+<span class="hero-tag">厄斐琉斯婕拉苍蓝雕纹魔像墨菲特深红锋喙鸟黛安娜远古石甲虫雷克塞</span>
 </div>
+<div class="code-box" id="code-95"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4</span><button class="copy-btn" onclick="copyCode('95', this)">复制</button></div>
+</div>
+<div class="card" data-tier="B">
+<div class="card-header"><span class="card-name">皎月螳螂</span><span class="card-tier tier-B">B级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.12</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.02%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">17.99%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">54.28%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">339</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">48.2%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">9.6%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.11%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.57</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">152</div></div>
 </div>
-<div class="game-code">【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">伊泽瑞尔 (4璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">德莱文 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">艾翁 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">凯南 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">塔里克 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">纳尔 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">茂凯 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">阿木木 (4璐?</span><span class="hero-tag hero-cost-2" data-trait="永恒之森,裁决使,地狱火,斗士,主宰,宝石骑士,翠神,赏金猎人,远古树精" data-hex="双排,后期收益,奢侈品订购,爆炸式增长+,双城赢家,生日聚会,顶尖构筑,镀金钢铁,升级咯！,专属定制">阿利斯塔 (2璐?</span></div>
-</div></div><div class="section"><h3 class="tier-B">娈典綅 B (3 涓樀瀹?</h3><div class="card" data-traits="日蚀骑士,永恒之森,护卫,花仙子,迅捷射手,主宰" data-hexes="便携锻炉,嘀嘀街区,双城赢家,飞升,英勇福袋++,棱彩门票,大百宝袋,太阳的抉择,专属定制,杖之工匠">
-<div class="card-header">
-<span class="card-name">神器天使</span>
-<span class="card-tier tier-B">B</span>
+<div class="heroes">
+<span class="hero-tag">黛安娜卡兹克赫卡里姆伊莉丝拉露恩苍蓝雕纹魔像厄斐琉斯克格莫</span>
 </div>
+<div class="code-box" id="code-109"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5</span><button class="copy-btn" onclick="copyCode('109', this)">复制</button></div>
+</div>
+<div class="card" data-tier="B">
+<div class="card-header"><span class="card-name">护卫豹轮</span><span class="card-tier tier-B">B级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.35</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.11%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">11.28%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">53.61%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">1826</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">47.8%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">14.7%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.02%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.52</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">27</div></div>
 </div>
-<div class="game-code">【阵容码】#神器天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-2 hero-core" data-trait="日蚀骑士,永恒之森,护卫,花仙子,迅捷射手,主宰" data-hex="便携锻炉,嘀嘀街区,双城赢家,飞升,英勇福袋++,棱彩门票,大百宝袋,太阳的抉择,专属定制,杖之工匠">凯尔 (2璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="日蚀骑士,永恒之森,护卫,花仙子,迅捷射手,主宰" data-hex="便携锻炉,嘀嘀街区,双城赢家,飞升,英勇福袋++,棱彩门票,大百宝袋,太阳的抉择,专属定制,杖之工匠">奥恩 (1璐?</span><span class="hero-tag hero-cost-1 hero-core" data-trait="日蚀骑士,永恒之森,护卫,花仙子,迅捷射手,主宰" data-hex="便携锻炉,嘀嘀街区,双城赢家,飞升,英勇福袋++,棱彩门票,大百宝袋,太阳的抉择,专属定制,杖之工匠">蕾欧娜 (1璐?</span><span class="hero-tag hero-cost-2" data-trait="日蚀骑士,永恒之森,护卫,花仙子,迅捷射手,主宰" data-hex="便携锻炉,嘀嘀街区,双城赢家,飞升,英勇福袋++,棱彩门票,大百宝袋,太阳的抉择,专属定制,杖之工匠">瑟庄妮 (2璐?</span><span class="hero-tag hero-cost-2" data-trait="日蚀骑士,永恒之森,护卫,花仙子,迅捷射手,主宰" data-hex="便携锻炉,嘀嘀街区,双城赢家,飞升,英勇福袋++,棱彩门票,大百宝袋,太阳的抉择,专属定制,杖之工匠">乐芙兰 (2璐?</span></div>
-</div><div class="card" data-traits="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hexes="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">
-<div class="card-header">
-<span class="card-name">森林月男</span>
-<span class="card-tier tier-B">B</span>
+<div class="heroes">
+<span class="hero-tag">希维尔奈德丽莉莉娅艾希阿木木苍蓝雕纹魔像克格莫慎洛</span>
 </div>
+<div class="code-box" id="code-108"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1</span><button class="copy-btn" onclick="copyCode('108', this)">复制</button></div>
+</div>
+<div class="card" data-tier="C">
+<div class="card-header"><span class="card-name">神谕狐狸</span><span class="card-tier tier-C">C级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.41</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.24%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">10.94%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">51.94%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">4149</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">47.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">9.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.03%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.67</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">41</div></div>
 </div>
-<div class="game-code">【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">伊泽瑞尔 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">莉莉娅 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">纳尔 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">拉露恩 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">索拉卡 (4璐?</span><span class="hero-tag hero-cost-2" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">阿利斯塔 (2璐?</span><span class="hero-tag hero-cost-1" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">奥恩 (1璐?</span><span class="hero-tag hero-cost-0" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">石皮树 (0璐?</span><span class="hero-tag hero-cost-0" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">石皮树 (0璐?</span><span class="hero-tag hero-cost-0" data-trait="永恒之森,裁决使,斗士,护卫,花仙子,迅捷射手,月蚀骑士,绝命花妖,月华神女" data-hex="厨神阿福,蔓延之根,双城赢家,纹章树,阿福的百宝袋,飞升,蔓延之根+,纹章树+,自然庇护所,大百宝袋">生命花 (0璐?</span></div>
-</div><div class="card" data-traits="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hexes="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">
-<div class="card-header">
-<span class="card-name">5迅射月男</span>
-<span class="card-tier tier-B">B</span>
+<div class="heroes">
+<span class="hero-tag">阿狸莫甘娜苍蓝雕纹魔像瑟提塔里克小型石甲虫克格莫苍蓝哨戒卡尔玛</span>
 </div>
+<div class="code-box" id="code-111"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2</span><button class="copy-btn" onclick="copyCode('111', this)">复制</button></div>
+</div>
+<div class="card" data-tier="C">
+<div class="card-header"><span class="card-name">裁决螳螂</span><span class="card-tier tier-C">C级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.48</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.19%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">8.26%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">51.85%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">3379</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">47.6%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">8.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.19%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.61</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">263</div></div>
 </div>
-<div class="game-code">【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">绯红印记树怪 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">阿木木 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">深红锋喙鸟 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">黛安娜 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="迅捷射手,峡谷野怪,地狱火,花仙子,狂战士,月蚀骑士,重装战士,主宰" data-hex="金色炊具,后排蓝图,双城赢家,大百宝袋,便携锻炉,专属定制,厨神阿福,剑之工匠,节外生枝+,大剑溢流">韦鲁斯 (1璐?</span></div>
-</div></div><div class="section"><h3 class="tier-C">娈典綅 C (7 涓樀瀹?</h3><div class="card" data-traits="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hexes="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">
-<div class="card-header">
-<span class="card-name">月男Flex</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">卡兹克索拉卡费德提克赫卡里姆伊泽瑞尔厄斐琉斯黛安娜奥恩</span>
 </div>
+<div class="code-box" id="code-116"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5</span><button class="copy-btn" onclick="copyCode('116', this)">复制</button></div>
+</div>
+<div class="card" data-tier="C">
+<div class="card-header"><span class="card-name">野怪小蓝</span><span class="card-tier tier-C">C级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.59</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">1.14%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">7.33%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">49.22%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">19739</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">46.3%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">9.6%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.09%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.63</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">124</div></div>
 </div>
-<div class="game-code">【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">婕拉 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">墨菲特 (4璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">深红锋喙鸟 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">黛安娜 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,斗士,黑荆棘,迅捷射手,月蚀骑士,召唤师,重装战士,荆棘之兴,魔岩巨兽" data-hex="双城赢家,便携锻炉,飞升,大百宝袋,专属定制,一波带走俩,男爵幻域,双排,光明圣物,时间跳跃">雷克塞 (1璐?</span></div>
-</div><div class="card" data-traits="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hexes="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">
-<div class="card-header">
-<span class="card-name">皎月螳螂</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">苍蓝哨戒远古巨龙苍蓝雕纹魔像远古石甲虫塔里克纳尔绯红印记树怪峡谷迅捷蟹</span>
 </div>
+<div class="code-box" id="code-107"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3</span><button class="copy-btn" onclick="copyCode('107', this)">复制</button></div>
+</div>
+<div class="card" data-tier="C">
+<div class="card-header"><span class="card-name">裁决芸阿娜</span><span class="card-tier tier-C">C级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.57</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.11%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">9.64%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">48.23%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">1868</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">44.1%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">5.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.0%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.68</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">0</div></div>
 </div>
-<div class="game-code">【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">黛安娜 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">卡兹克 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">赫卡里姆 (3璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">伊莉丝 (2璐?</span><span class="hero-tag hero-cost-5" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">拉露恩 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="重装战士,月蚀骑士,神谕,帝王斑蝶,宿敌,月华神女" data-hex="便携锻炉,英勇福袋++,双城赢家,大百宝袋,三幻神,团队建设,世纪和解,专属定制,嘀嘀街区,正义报复">克格莫 (3璐?</span></div>
-</div><div class="card" data-traits="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hexes="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">
-<div class="card-header">
-<span class="card-name">神谕狐狸</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">芸阿娜阿利斯塔瑟提伊泽瑞尔索拉卡阿狸阿兹尔乐芙兰</span>
 </div>
+<div class="code-box" id="code-85"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5</span><button class="copy-btn" onclick="copyCode('85', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">剑圣大嘴</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.67</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.03%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">9.95%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">47.89%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">593</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">43.8%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">6.5%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.11%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.82</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">152</div></div>
 </div>
-<div class="game-code">【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">阿狸 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">莫甘娜 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">瑟提 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">塔里克 (5璐?</span><span class="hero-tag hero-cost-3" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">小型石甲虫 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">克格莫 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">苍蓝哨戒 (1璐?</span><span class="hero-tag hero-cost-1" data-trait="神谕,灵魂莲华,法师,重装战士,宝石骑士,帝王斑蝶" data-hex="后排蓝图,双城赢家,大百宝袋,便携锻炉,双排,蔓延之根,纹章树,节外生枝,专属定制,三幻神">卡尔玛 (1璐?</span></div>
-</div><div class="card" data-traits="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hexes="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">
-<div class="card-header">
-<span class="card-name">护卫豹轮</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">易克格莫远古石甲虫奈德丽瑟提蔚魔沼蛙约里克</span>
 </div>
+<div class="code-box" id="code-86"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5</span><button class="copy-btn" onclick="copyCode('86', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">6主宰Flex</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.52</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.02%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">14.66%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">47.84%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">416</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">43.5%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">7.7%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.15%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.86</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">208</div></div>
 </div>
-<div class="game-code">【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">希维尔 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">奈德丽 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">莉莉娅 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">艾希 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">阿木木 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="地狱火,护卫,花仙子,猎人,魔战士,神谕,野兽之灵,重装战士,主宰,帝王斑蝶" data-hex="厨神阿福,蔓延之根,兽性本能,兽性本能+,纹章树+,便携锻炉,大百宝袋,专属定制,纹章树,阿福的百宝袋">克格莫 (3璐?</span></div>
-</div><div class="card" data-traits="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hexes="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">
-<div class="card-header">
-<span class="card-name">裁决螳螂</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">希维尔艾希阿木木茂凯蔚瑟庄妮峡谷迅捷蟹洛</span>
 </div>
+<div class="code-box" id="code-117"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5</span><button class="copy-btn" onclick="copyCode('117', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">螳螂蛇女</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.61</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.19%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">8.93%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">47.58%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">3382</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">43.3%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">4.4%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.04%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.86</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">55</div></div>
 </div>
-<div class="game-code">【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">卡兹克 (3璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">索拉卡 (4璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">费德提克 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">赫卡里姆 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">伊泽瑞尔 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">黛安娜 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">奥恩 (1璐?</span><span class="hero-tag hero-cost-0" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">生命花 (0璐?</span><span class="hero-tag hero-cost-0" data-trait="永恒之森,裁决使,护卫,绝命花妖,月蚀骑士,重装战士,宿敌" data-hex="便携锻炉,双城赢家,英勇福袋++,团队建设,三幻神,大百宝袋,专属定制,光明圣物,嘀嘀街区加强版,英勇福袋+">石皮树 (0璐?</span></div>
-</div><div class="card" data-traits="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hexes="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">
-<div class="card-header">
-<span class="card-name">野怪小蓝</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">卡西奥佩娅卡兹克费德提克拉莫斯阿狸莉莉娅索拉卡慎</span>
 </div>
+<div class="code-box" id="code-103"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0</span><button class="copy-btn" onclick="copyCode('103', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">莲华阿狸</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.63</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.09%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">9.57%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">46.34%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">1599</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">41.1%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">13.1%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.36%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">4.87</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">499</div></div>
 </div>
-<div class="game-code">【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-1 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">苍蓝哨戒 (1璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">远古巨龙 (5璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-5" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">塔里克 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">纳尔 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">绯红印记树怪 (4璐?</span><span class="hero-tag hero-cost-2" data-trait="峡谷野怪,斗士,神谕,重装战士,宝石骑士,顶级掠食者" data-hex="欧米茄之怪,炽天使之拥,纵深 II,更要命的帽子,纵深 III,双城赢家,便携锻炉,纵深 I,镀金钢铁,大百宝袋">峡谷迅捷蟹 (2璐?</span></div>
-</div><div class="card" data-traits="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hexes="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">
-<div class="card-header">
-<span class="card-name">裁决芸阿娜</span>
-<span class="card-tier tier-C">C</span>
+<div class="heroes">
+<span class="hero-tag">阿狸希维尔艾希瑟提纳尔婕拉蔚约里克卡尔玛</span>
 </div>
+<div class="code-box" id="code-84"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0</span><button class="copy-btn" onclick="copyCode('84', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">重装豹女</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.68</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">5.88%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">44.12%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">68</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">40.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">6.4%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.01%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.03</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">13</div></div>
 </div>
-<div class="game-code">【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-2 hero-core" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">芸阿娜 (2璐?</span><span class="hero-tag hero-cost-2 hero-core" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">阿利斯塔 (2璐?</span><span class="hero-tag hero-cost-4" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">瑟提 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">伊泽瑞尔 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">索拉卡 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">阿狸 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">阿兹尔 (3璐?</span><span class="hero-tag hero-cost-2" data-trait="裁决使,莲华,永恒之森,斗士,法师,绝命花妖" data-hex="大百宝袋,更要命的战刃,双城赢家,嘀个痛快！ I,游神的盟友,便携锻炉,玻璃大炮 II,杖之工匠,团队建设,阿福的百宝袋">乐芙兰 (2璐?</span></div>
-</div></div><div class="section"><h3 class="tier-D">娈典綅 D (13 涓樀瀹?</h3><div class="card" data-traits="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hexes="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">
-<div class="card-header">
-<span class="card-name">剑圣大嘴</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">奈德丽莫甘娜苍蓝雕纹魔像蔚塔里克黛安娜克格莫洛</span>
 </div>
+<div class="code-box" id="code-83"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4</span><button class="copy-btn" onclick="copyCode('83', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">裁决奶妈</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.82</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.11%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">6.52%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">43.83%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">1903</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">40.5%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">6.6%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.56%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.01</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">777</div></div>
 </div>
-<div class="game-code">【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hex="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">克格莫 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hex="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hex="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">奈德丽 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hex="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">瑟提 (4璐?</span><span class="hero-tag hero-cost-2" data-trait="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hex="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">魔沼蛙 (2璐?</span><span class="hero-tag hero-cost-1" data-trait="魔战士,灵魂莲华,斗士,野兽之灵,主宰,帝王斑蝶" data-hex="便携锻炉,前线地基,金色炊具,英勇福袋++,双城赢家,大百宝袋,三幻神,飞升,团队建设,活体锻炉">约里克 (1璐?</span></div>
-</div><div class="card" data-traits="主宰,猎人,野兽之灵,远古树精" data-hexes="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">
-<div class="card-header">
-<span class="card-name">6主宰Flex</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">索拉卡婕拉墨菲特凯南艾翁阿木木阿兹尔费德提克约里克</span>
 </div>
+<div class="code-box" id="code-90"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw</span><button class="copy-btn" onclick="copyCode('90', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">黑豹轮</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.86</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.15%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">7.69%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">43.52%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">2562</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">38.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">5.3%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.1%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.15</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">138</div></div>
 </div>
-<div class="game-code">【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="主宰,猎人,野兽之灵,远古树精" data-hex="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">希维尔 (4璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="主宰,猎人,野兽之灵,远古树精" data-hex="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">艾希 (5璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="主宰,猎人,野兽之灵,远古树精" data-hex="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">阿木木 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="主宰,猎人,野兽之灵,远古树精" data-hex="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">茂凯 (5璐?</span><span class="hero-tag hero-cost-2" data-trait="主宰,猎人,野兽之灵,远古树精" data-hex="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">瑟庄妮 (2璐?</span><span class="hero-tag hero-cost-2" data-trait="主宰,猎人,野兽之灵,远古树精" data-hex="炽天使之拥,飞升,双城赢家,便携锻炉,男爵幻域,大百宝袋,兽性本能,镀金钢铁,专属定制,兽性本能+">峡谷迅捷蟹 (2璐?</span></div>
-</div><div class="card" data-traits="护卫,法师,绝命花妖,宿敌" data-hexes="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">
-<div class="card-header">
-<span class="card-name">螳螂蛇女</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">希维尔奈德丽墨菲特塔里克苍蓝雕纹魔像远古石甲虫克格莫雷克塞绯红树怪</span>
 </div>
+<div class="code-box" id="code-102"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2</span><button class="copy-btn" onclick="copyCode('102', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">世纪和解</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.86</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.04%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">4.42%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">43.29%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">633</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">35.1%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">4.9%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.04%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.28</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">55</div></div>
 </div>
-<div class="game-code">【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">卡西奥佩娅 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">卡兹克 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">费德提克 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">拉莫斯 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">阿狸 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">莉莉娅 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="护卫,法师,绝命花妖,宿敌" data-hex="便携锻炉,三幻神,后排蓝图,英勇福袋++,前线地基,飞升,双城赢家,致命丽花,大百宝袋,炽天使之拥">索拉卡 (4璐?</span></div>
-</div><div class="card" data-traits="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hexes="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">
-<div class="card-header">
-<span class="card-name">莲华阿狸</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">雷恩加尔卡兹克厄斐琉斯伊泽瑞尔黛安娜赫卡里姆乐芙兰</span>
 </div>
+<div class="code-box" id="code-93"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw</span><button class="copy-btn" onclick="copyCode('93', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">护卫蛇女</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">4.87</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.36%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">13.11%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">41.11%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">6283</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">34.5%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">2.4%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.01%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.24</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">13</div></div>
 </div>
-<div class="game-code">【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">阿狸 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">希维尔 (4璐?</span><span class="hero-tag hero-cost-5 hero-core" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">艾希 (5璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">瑟提 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">纳尔 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">婕拉 (4璐?</span><span class="hero-tag hero-cost-1" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">约里克 (1璐?</span><span class="hero-tag hero-cost-1" data-trait="灵魂莲华,斗士,法师,猎人,野兽之灵,召唤师,主宰,荆棘之兴" data-hex="蔓延之根,大百宝袋,双城赢家,便携锻炉,专属定制,厨神阿福,双排,绽灵花的约定,杖之工匠,纹章树">卡尔玛 (1璐?</span></div>
-</div><div class="card" data-traits="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hexes="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">
-<div class="card-header">
-<span class="card-name">重装豹女</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">卡西奥佩娅拉莫斯费德提克莉莉娅慎蕾欧娜奥恩</span>
 </div>
+<div class="code-box" id="code-101"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz</span><button class="copy-btn" onclick="copyCode('101', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">召唤双鸡</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.03</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.01%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">6.4%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">40.89%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">203</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">32.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">6.7%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.01%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.43</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">13</div></div>
 </div>
-<div class="game-code">【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hex="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">奈德丽 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hex="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">莫甘娜 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hex="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hex="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">塔里克 (5璐?</span><span class="hero-tag hero-cost-3" data-trait="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hex="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">黛安娜 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="前卫,神谕者,魔战士,野兽之灵,主宰,宝石骑士,腐蚀巨口" data-hex="双城赢家,专属定制,蔓延之根,兽性本能,便携锻炉,飞升,大百宝袋,兽性本能+,嘀嘀街区加强版,女巫使魔">克格莫 (3璐?</span></div>
-</div><div class="card" data-traits="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hexes="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">
-<div class="card-header">
-<span class="card-name">裁决奶妈</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">阿兹尔深红锋喙鸟婕拉远古石甲虫卡兹克峡谷迅捷蟹雷克塞约里克</span>
 </div>
+<div class="code-box" id="code-94"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjY5NDgxNTM1</span><button class="copy-btn" onclick="copyCode('94', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">花仙狮子狗</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.01</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.56%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">6.58%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">40.48%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">9752</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">26.0%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">6.8%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.01%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.89</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">13</div></div>
 </div>
-<div class="game-code">【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">索拉卡 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">婕拉 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">墨菲特 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">凯南 (5璐?</span><span class="hero-tag hero-cost-5" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">艾翁 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">阿木木 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">阿兹尔 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">费德提克 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="裁决使,召唤师,地狱火,黑荆棘,绝命花妖,主宰,翠神,荆棘之兴,魔岩巨兽" data-hex="金色炊具,双城赢家,后排蓝图,致命丽花,厨神阿福,大百宝袋,便携锻炉,双排,蔓延之根,专属定制">约里克 (1璐?</span></div>
-</div><div class="card" data-traits="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hexes="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">
-<div class="card-header">
-<span class="card-name">黑豹轮</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">雷恩加尔崔丝塔娜拉莫斯蔚希维尔莉莉娅洛可酷伯</span>
 </div>
+<div class="code-box" id="code-97"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3</span><button class="copy-btn" onclick="copyCode('97', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">花仙小炮</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.15</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.1%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">5.27%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">38.04%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">1785</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">25.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">2.2%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.02%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">5.71</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">27</div></div>
 </div>
-<div class="game-code">【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">希维尔 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">奈德丽 (4璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">墨菲特 (4璐?</span><span class="hero-tag hero-cost-5" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">塔里克 (5璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">克格莫 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">雷克塞 (1璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,斗士,黑荆棘,猎人,魔战士,神谕,野兽之灵,重装战士,宝石骑士,帝王斑蝶,魔岩巨兽" data-hex="兽性本能,便携锻炉,双城赢家,终身黄铜 I,兽性本能+,终身黄铜 II,大百宝袋,专属定制,小小福袋,剑之工匠">绯红树怪 (1璐?</span></div>
-</div><div class="card" data-traits="永恒之森,宿敌,月蚀骑士,重装战士" data-hexes="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">
-<div class="card-header">
-<span class="card-name">世纪和解</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">崔丝塔娜拉莫斯希维尔莉莉娅蔚霞可酷伯洛</span>
 </div>
+<div class="code-box" id="code-98"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5</span><button class="copy-btn" onclick="copyCode('98', this)">复制</button></div>
+</div>
+<div class="card" data-tier="D">
+<div class="card-header"><span class="card-name">召唤鸡哥</span><span class="card-tier tier-D">D级</span></div>
 <div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.28</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.04%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">4.91%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">35.06%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">713</div></div>
+<div class="metric"><div class="metric-label">前四率</div><div class="metric-value">21.9%</div></div>
+<div class="metric"><div class="metric-label">登顶率</div><div class="metric-value">1.6%</div></div>
+<div class="metric"><div class="metric-label">出场率</div><div class="metric-value">0.0%</div></div>
+<div class="metric"><div class="metric-label">平均排名</div><div class="metric-value">6.27</div></div>
+<div class="metric"><div class="metric-label">样本数</div><div class="metric-value">0</div></div>
 </div>
-<div class="game-code">【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">雷恩加尔 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">卡兹克 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">伊泽瑞尔 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">黛安娜 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">赫卡里姆 (3璐?</span><span class="hero-tag hero-cost-2" data-trait="永恒之森,宿敌,月蚀骑士,重装战士" data-hex="世纪和解,英勇福袋++,便携锻炉,双城赢家,大百宝袋,专属定制,黄金命运,剑之工匠,杖之工匠,星界赐福 II">乐芙兰 (2璐?</span></div>
-</div><div class="card" data-traits="护卫,法师,绝命花妖" data-hexes="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">
-<div class="card-header">
-<span class="card-name">护卫蛇女</span>
-<span class="card-tier tier-D">D</span>
+<div class="heroes">
+<span class="hero-tag">深红锋喙鸟厄斐琉斯远古石甲虫瑟提婕拉苍蓝雕纹魔像黛安娜约里克</span>
 </div>
-<div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.24</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.01%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">2.43%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">34.47%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">206</div></div>
+<div class="code-box" id="code-96"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2</span><button class="copy-btn" onclick="copyCode('96', this)">复制</button></div>
 </div>
-<div class="game-code">【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖" data-hex="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">卡西奥佩娅 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖" data-hex="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">拉莫斯 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="护卫,法师,绝命花妖" data-hex="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">费德提克 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="护卫,法师,绝命花妖" data-hex="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">莉莉娅 (4璐?</span><span class="hero-tag hero-cost-1" data-trait="护卫,法师,绝命花妖" data-hex="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">蕾欧娜 (1璐?</span><span class="hero-tag hero-cost-1" data-trait="护卫,法师,绝命花妖" data-hex="前线地基,便携锻炉,英勇福袋++,飞升,炽天使之拥,后排蓝图,双城赢家,致命丽花,男爵幻域,专属定制">奥恩 (1璐?</span></div>
-</div><div class="card" data-traits="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hexes="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">
-<div class="card-header">
-<span class="card-name">召唤双鸡</span>
-<span class="card-tier tier-D">D</span>
+<div class="subtitle">共 33 个阵容 | 33 个有阵容码 | 数据来源: dataj.cc</div>
 </div>
-<div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.43</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.01%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">6.7%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">31.96%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">194</div></div>
-</div>
-<div class="game-code">【阵容码】#召唤双鸡#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjY5NDgxNTM1<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">阿兹尔 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">深红锋喙鸟 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">婕拉 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">卡兹克 (3璐?</span><span class="hero-tag hero-cost-2" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">峡谷迅捷蟹 (2璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">雷克塞 (1璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,召唤师,斗士,黑荆棘,主宰,荆棘之兴,宿敌" data-hex="便携锻炉,双城赢家,大百宝袋,英勇福袋++,飞升,三幻神,一波带走俩,团队建设,杖之工匠,加冕礼">约里克 (1璐?</span></div>
-</div><div class="card" data-traits="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hexes="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">
-<div class="card-header">
-<span class="card-name">花仙狮子狗</span>
-<span class="card-tier tier-D">D</span>
-</div>
-<div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.89</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.01%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">6.81%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">25.96%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">235</div></div>
-</div>
-<div class="game-code">【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hex="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">雷恩加尔 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hex="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">崔丝塔娜 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hex="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">拉莫斯 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hex="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">希维尔 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hex="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">莉莉娅 (4璐?</span><span class="hero-tag hero-cost-1" data-trait="约德尔人,护卫,花仙子,猎人,野兽之灵,主宰,宿敌" data-hex="蔓延之根,英勇福袋++,纹章树,三幻神,便携锻炉,锅铲厨房,星界赐福 II,大百宝袋,双城赢家,厨神阿福">可酷伯 (1璐?</span></div>
-</div><div class="card" data-traits="花仙子,约德尔人,护卫,猎人,野兽之灵,主宰" data-hexes="巨化术,蔓延之根,黄金命运,英勇福袋++,三幻神,纹章树,便携锻炉,双城赢家,毛茸茸小朋友,大百宝袋">
-<div class="card-header">
-<span class="card-name">花仙小炮</span>
-<span class="card-tier tier-D">D</span>
-</div>
-<div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">5.71</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0.02%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">2.22%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">25.86%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">406</div></div>
-</div>
-<div class="game-code">【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="花仙子,约德尔人,护卫,猎人,野兽之灵,主宰" data-hex="巨化术,蔓延之根,黄金命运,英勇福袋++,三幻神,纹章树,便携锻炉,双城赢家,毛茸茸小朋友,大百宝袋">崔丝塔娜 (3璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="花仙子,约德尔人,护卫,猎人,野兽之灵,主宰" data-hex="巨化术,蔓延之根,黄金命运,英勇福袋++,三幻神,纹章树,便携锻炉,双城赢家,毛茸茸小朋友,大百宝袋">拉莫斯 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="花仙子,约德尔人,护卫,猎人,野兽之灵,主宰" data-hex="巨化术,蔓延之根,黄金命运,英勇福袋++,三幻神,纹章树,便携锻炉,双城赢家,毛茸茸小朋友,大百宝袋">希维尔 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="花仙子,约德尔人,护卫,猎人,野兽之灵,主宰" data-hex="巨化术,蔓延之根,黄金命运,英勇福袋++,三幻神,纹章树,便携锻炉,双城赢家,毛茸茸小朋友,大百宝袋">莉莉娅 (4璐?</span><span class="hero-tag hero-cost-1" data-trait="花仙子,约德尔人,护卫,猎人,野兽之灵,主宰" data-hex="巨化术,蔓延之根,黄金命运,英勇福袋++,三幻神,纹章树,便携锻炉,双城赢家,毛茸茸小朋友,大百宝袋">可酷伯 (1璐?</span></div>
-</div><div class="card" data-traits="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hexes="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">
-<div class="card-header">
-<span class="card-name">召唤鸡哥</span>
-<span class="card-tier tier-D">D</span>
-</div>
-<div class="metrics">
-<div class="metric"><div class="metric-label">骞冲潎鍚嶆</div><div class="metric-value">6.27</div></div>
-<div class="metric"><div class="metric-label">閫夊彇鐜?/div><div class="metric-value">0%</div></div>
-<div class="metric"><div class="metric-label">鍚冮浮鐜?/div><div class="metric-value">1.56%</div></div>
-<div class="metric"><div class="metric-label">鍓嶅洓鐜?/div><div class="metric-value">21.88%</div></div>
-<div class="metric"><div class="metric-label">鏍锋湰閲?/div><div class="metric-value">64</div></div>
-</div>
-<div class="game-code">【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2<button class="copy-btn" onclick="copyCode(this)">澶嶅埗</button></div>
-<div class="hero-tags"><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">深红锋喙鸟 (3璐?</span><span class="hero-tag hero-cost-4 hero-core" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">厄斐琉斯 (4璐?</span><span class="hero-tag hero-cost-3 hero-core" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">远古石甲虫 (3璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">瑟提 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">婕拉 (4璐?</span><span class="hero-tag hero-cost-4" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">苍蓝雕纹魔像 (4璐?</span><span class="hero-tag hero-cost-3" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">黛安娜 (3璐?</span><span class="hero-tag hero-cost-1" data-trait="峡谷野怪,召唤师,斗士,迅捷射手,月蚀骑士,重装战士,荆棘之兴" data-hex="大百宝袋,便携锻炉,双城赢家,大剑溢流,飞升,蔓延之根+,光明圣物,手气不错,双子守护神,强化之能量">约里克 (1璐?</span></div>
-</div></div></div>
 <script>
-function copyCode(btn) {
-    var code = btn.parentElement.textContent.replace('澶嶅埗','').trim();
-    navigator.clipboard.writeText(code).then(function() {
-        btn.textContent = '宸插鍒?;
-        setTimeout(function() { btn.textContent = '澶嶅埗'; }, 2000);
-    });
-}
-function switchFilter(type, tab) {
-    document.querySelectorAll('.filter-tab').forEach(function(t) { t.classList.remove('active'); });
-    tab.classList.add('active');
-    document.getElementById('traits-filter').style.display = type === 'traits' ? 'flex' : 'none';
-    document.getElementById('hexes-filter').style.display = type === 'hexes' ? 'flex' : 'none';
-    document.querySelectorAll('.trait-tag, .hex-tag').forEach(function(t) { t.classList.remove('selected'); });
-    document.querySelectorAll('.card').forEach(function(c) { c.style.display = ''; });
-}
-var selectedFilters = [];
-function toggleFilter(el, name) {
-    el.classList.toggle('selected');
-    if (el.classList.contains('selected')) {
-        selectedFilters.push(name);
+function copyCode(id, btn) {
+    var box = document.getElementById('code-' + id);
+    var code = box.querySelector('span').textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function() {
+            btn.textContent = '已复制';
+            setTimeout(function() { btn.textContent = '复制'; }, 2000);
+        }).catch(function() {
+            fallbackCopy(code, btn);
+        });
     } else {
-        selectedFilters = selectedFilters.filter(function(f) { return f !== name; });
+        fallbackCopy(code, btn);
     }
-    document.querySelectorAll('.card').forEach(function(card) {
-        if (selectedFilters.length === 0) {
-            card.style.display = '';
-            return;
+}
+function fallbackCopy(code, btn) {
+    var textarea = document.createElement('textarea');
+    textarea.value = code;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(textarea);
+    btn.textContent = '已复制';
+    setTimeout(function() { btn.textContent = '复制'; }, 2000);
+}
+function filterTier(tier) {
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(c) {
+        if (tier === 'all' || c.dataset.tier === tier) {
+            c.style.display = '';
+        } else {
+            c.style.display = 'none';
         }
-        var traits = (card.getAttribute('data-traits') || '').split(',');
-        var hexes = (card.getAttribute('data-hexes') || '').split(',');
-        var all = traits.concat(hexes);
-        var match = selectedFilters.every(function(f) { return all.includes(f); });
-        card.style.display = match ? '' : 'none';
     });
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.remove('active');
+    });
+    event.target.classList.add('active');
 }
 </script>
 </body>
