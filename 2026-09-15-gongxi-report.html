@@ -31,10 +31,12 @@ tr:hover { background: #1f2937; }
 .metric-value { font-size: 0.9em; font-weight: bold; }
 .heroes { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
 .hero-tag { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 3px 8px; font-size: 0.8em; }
-.code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; margin-top: 8px; font-family: monospace; font-size: 0.8em; word-break: break-all; position: relative; }
+.code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; margin-top: 8px; font-family: monospace; font-size: 0.8em; position: relative; display: flex; align-items: center; gap: 8px; }
 .code-box:hover { border-color: #58a6ff; }
-.copy-btn { background: #21262d; border: 1px solid #30363d; border-radius: 3px; padding: 2px 8px; cursor: pointer; color: #58a6ff; font-size: 0.75em; }
-.copy-btn:hover { background: #30363d; }
+.code-box span { flex: 1; word-break: break-all; user-select: all; }
+.copy-btn { padding: 4px 12px; background: #4a90d9; color: white; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap; font-size: 0.85em; flex-shrink: 0; }
+.copy-btn:hover { background: #357abd; }
+.copy-btn:active { background: #2a5a9d; }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
 .filter-btn { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 5px 12px; cursor: pointer; color: #c9d1d9; font-size: 0.85em; }
 .filter-btn.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
@@ -293,11 +295,29 @@ tr:hover { background: #1f2937; }
 <script>
 function copyCode(id, btn) {
     var box = document.getElementById('code-' + id);
-    var code = box.querySelector('span').textContent;
-    navigator.clipboard.writeText(code).then(function() {
-        btn.textContent = '已复制';
-        setTimeout(function() { btn.textContent = '复制'; }, 2000);
-    });
+    var code = box.querySelector('span').textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function() {
+            btn.textContent = '已复制';
+            setTimeout(function() { btn.textContent = '复制'; }, 2000);
+        }).catch(function() {
+            fallbackCopy(code, btn);
+        });
+    } else {
+        fallbackCopy(code, btn);
+    }
+}
+function fallbackCopy(code, btn) {
+    var textarea = document.createElement('textarea');
+    textarea.value = code;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(textarea);
+    btn.textContent = '已复制';
+    setTimeout(function() { btn.textContent = '复制'; }, 2000);
 }
 function filterTier(tier) {
     var cards = document.querySelectorAll('.card');
