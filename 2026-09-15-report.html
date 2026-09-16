@@ -31,10 +31,15 @@ tr:hover { background: #1f2937; }
 .metric-value { font-size: 0.9em; font-weight: bold; }
 .heroes { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
 .hero-tag { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 3px 8px; font-size: 0.8em; }
-.code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; margin-top: 8px; font-family: monospace; font-size: 0.8em; word-break: break-all; position: relative; }
+.code-box { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; margin-top: 8px; font-family: monospace; font-size: 0.8em; position: relative; display: flex; align-items: center; gap: 8px; }
 .code-box:hover { border-color: #58a6ff; }
-.copy-btn { background: #21262d; border: 1px solid #30363d; border-radius: 3px; padding: 2px 8px; cursor: pointer; color: #58a6ff; font-size: 0.75em; }
-.copy-btn:hover { background: #30363d; }
+.code-box span { flex: 1; word-break: break-all; user-select: all; }
+.copy-btn { padding: 4px 12px; background: #4a90d9; color: white; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap; font-size: 0.85em; flex-shrink: 0; }
+.copy-btn:hover { background: #357abd; }
+.copy-btn:active { background: #2a5a9d; }
+td .code-box { margin-top: 0; padding: 4px 6px; }
+td .code-box span { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
 .filter-btn { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 5px 12px; cursor: pointer; color: #c9d1d9; font-size: 0.85em; }
 .filter-btn.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
@@ -52,39 +57,39 @@ tr:hover { background: #1f2937; }
 <div class="subtitle">S18 自然之力 | 版本 18.2 | 138,888 局 | 数据来源: dataj.cc</div>
 <h2>胜率排行</h2>
 <table><thead><tr><th>#</th><th>阵容名称</th><th>段位</th><th>前四率</th><th>登顶率</th><th>出场率</th><th>平均排名</th><th>样本数</th><th>阵容码</th></tr></thead><tbody>
-<tr><td>1</td><td>地狱火95</td><td class="tier-S">S</td><td>66.3%</td><td>28.7%</td><td>0.81%</td><td>3.52</td><td>1124</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>2</td><td>巨龙95</td><td class="tier-S">S</td><td>64.0%</td><td>26.7%</td><td>0.52%</td><td>3.65</td><td>722</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>3</td><td>重装女警</td><td class="tier-S">S</td><td>60.7%</td><td>7.2%</td><td>0.2%</td><td>4.11</td><td>277</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>4</td><td>野怪小红</td><td class="tier-S">S</td><td>60.6%</td><td>15.4%</td><td>0.32%</td><td>3.92</td><td>444</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>5</td><td>7野怪鸡哥</td><td class="tier-S">S</td><td>59.4%</td><td>13.2%</td><td>0.13%</td><td>4.02</td><td>180</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>6</td><td>古纳拉95</td><td class="tier-S">S</td><td>57.3%</td><td>17.0%</td><td>0.14%</td><td>4.11</td><td>194</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>7</td><td>射箭韦鲁斯</td><td class="tier-S">S</td><td>57.2%</td><td>12.4%</td><td>0.14%</td><td>4.18</td><td>194</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>8</td><td>卡丽蜜儿</td><td class="tier-S">S</td><td>56.0%</td><td>12.6%</td><td>0.52%</td><td>4.23</td><td>722</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>9</td><td>永森95</td><td class="tier-S">S</td><td>54.3%</td><td>18.0%</td><td>0.02%</td><td>4.12</td><td>27</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>10</td><td>主宰女警</td><td class="tier-A">A</td><td>56.0%</td><td>6.0%</td><td>0.3%</td><td>4.29</td><td>416</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>11</td><td>森林天使</td><td class="tier-A">A</td><td>53.6%</td><td>11.3%</td><td>0.11%</td><td>4.35</td><td>152</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>12</td><td>森林月男</td><td class="tier-B">B</td><td>51.9%</td><td>10.9%</td><td>0.24%</td><td>4.41</td><td>333</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>13</td><td>5迅射月男</td><td class="tier-B">B</td><td>51.9%</td><td>8.3%</td><td>0.19%</td><td>4.48</td><td>263</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>14</td><td>月男Flex</td><td class="tier-B">B</td><td>49.2%</td><td>7.3%</td><td>1.14%</td><td>4.59</td><td>1583</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>15</td><td>皎月螳螂</td><td class="tier-B">B</td><td>48.2%</td><td>9.6%</td><td>0.11%</td><td>4.57</td><td>152</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>16</td><td>护卫豹轮</td><td class="tier-B">B</td><td>47.8%</td><td>14.7%</td><td>0.02%</td><td>4.52</td><td>27</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>17</td><td>神谕狐狸</td><td class="tier-C">C</td><td>47.9%</td><td>9.9%</td><td>0.03%</td><td>4.67</td><td>41</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>18</td><td>裁决螳螂</td><td class="tier-C">C</td><td>47.6%</td><td>8.9%</td><td>0.19%</td><td>4.61</td><td>263</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>19</td><td>野怪小蓝</td><td class="tier-C">C</td><td>46.3%</td><td>9.6%</td><td>0.09%</td><td>4.63</td><td>124</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>20</td><td>裁决芸阿娜</td><td class="tier-C">C</td><td>44.1%</td><td>5.9%</td><td>0.0%</td><td>4.68</td><td>0</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>21</td><td>剑圣大嘴</td><td class="tier-D">D</td><td>43.8%</td><td>6.5%</td><td>0.11%</td><td>4.82</td><td>152</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>22</td><td>6主宰Flex</td><td class="tier-D">D</td><td>43.5%</td><td>7.7%</td><td>0.15%</td><td>4.86</td><td>208</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>23</td><td>螳螂蛇女</td><td class="tier-D">D</td><td>43.3%</td><td>4.4%</td><td>0.04%</td><td>4.86</td><td>55</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>24</td><td>莲华阿狸</td><td class="tier-D">D</td><td>41.1%</td><td>13.1%</td><td>0.36%</td><td>4.87</td><td>499</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>25</td><td>重装豹女</td><td class="tier-D">D</td><td>40.9%</td><td>6.4%</td><td>0.01%</td><td>5.03</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>26</td><td>裁决奶妈</td><td class="tier-D">D</td><td>40.5%</td><td>6.6%</td><td>0.56%</td><td>5.01</td><td>777</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>27</td><td>黑豹轮</td><td class="tier-D">D</td><td>38.0%</td><td>5.3%</td><td>0.1%</td><td>5.15</td><td>138</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>28</td><td>世纪和解</td><td class="tier-D">D</td><td>35.1%</td><td>4.9%</td><td>0.04%</td><td>5.28</td><td>55</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>29</td><td>护卫蛇女</td><td class="tier-D">D</td><td>34.5%</td><td>2.4%</td><td>0.01%</td><td>5.24</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>30</td><td>召唤双鸡</td><td class="tier-D">D</td><td>32.0%</td><td>6.7%</td><td>0.01%</td><td>5.43</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>31</td><td>花仙狮子狗</td><td class="tier-D">D</td><td>26.0%</td><td>6.8%</td><td>0.01%</td><td>5.89</td><td>13</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>32</td><td>花仙小炮</td><td class="tier-D">D</td><td>25.9%</td><td>2.2%</td><td>0.02%</td><td>5.71</td><td>27</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
-<tr><td>33</td><td>召唤鸡哥</td><td class="tier-D">D</td><td>21.9%</td><td>1.6%</td><td>0.0%</td><td>6.27</td><td>0</td><td style="font-size:0.75em">MjIwMDY3MzAyODc5ODA4...</td></tr>
+<tr><td>1</td><td>地狱火95</td><td class="tier-S">S</td><td>66.3%</td><td>28.7%</td><td>0.81%</td><td>3.52</td><td>1124</td><td><div class="code-box" id="code-rank-1"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw</span><button class="copy-btn" onclick="copyCode('rank-1', this)">复制</button></div></td></tr>
+<tr><td>2</td><td>巨龙95</td><td class="tier-S">S</td><td>64.0%</td><td>26.7%</td><td>0.52%</td><td>3.65</td><td>722</td><td><div class="code-box" id="code-rank-2"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz</span><button class="copy-btn" onclick="copyCode('rank-2', this)">复制</button></div></td></tr>
+<tr><td>3</td><td>重装女警</td><td class="tier-S">S</td><td>60.7%</td><td>7.2%</td><td>0.2%</td><td>4.11</td><td>277</td><td><div class="code-box" id="code-rank-3"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</span><button class="copy-btn" onclick="copyCode('rank-3', this)">复制</button></div></td></tr>
+<tr><td>4</td><td>野怪小红</td><td class="tier-S">S</td><td>60.6%</td><td>15.4%</td><td>0.32%</td><td>3.92</td><td>444</td><td><div class="code-box" id="code-rank-4"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</span><button class="copy-btn" onclick="copyCode('rank-4', this)">复制</button></div></td></tr>
+<tr><td>5</td><td>7野怪鸡哥</td><td class="tier-S">S</td><td>59.4%</td><td>13.2%</td><td>0.13%</td><td>4.02</td><td>180</td><td><div class="code-box" id="code-rank-5"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5</span><button class="copy-btn" onclick="copyCode('rank-5', this)">复制</button></div></td></tr>
+<tr><td>6</td><td>古纳拉95</td><td class="tier-S">S</td><td>57.3%</td><td>17.0%</td><td>0.14%</td><td>4.11</td><td>194</td><td><div class="code-box" id="code-rank-6"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</span><button class="copy-btn" onclick="copyCode('rank-6', this)">复制</button></div></td></tr>
+<tr><td>7</td><td>射箭韦鲁斯</td><td class="tier-S">S</td><td>57.2%</td><td>12.4%</td><td>0.14%</td><td>4.18</td><td>194</td><td><div class="code-box" id="code-rank-7"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</span><button class="copy-btn" onclick="copyCode('rank-7', this)">复制</button></div></td></tr>
+<tr><td>8</td><td>卡丽蜜儿</td><td class="tier-S">S</td><td>56.0%</td><td>12.6%</td><td>0.52%</td><td>4.23</td><td>722</td><td><div class="code-box" id="code-rank-8"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2</span><button class="copy-btn" onclick="copyCode('rank-8', this)">复制</button></div></td></tr>
+<tr><td>9</td><td>永森95</td><td class="tier-S">S</td><td>54.3%</td><td>18.0%</td><td>0.02%</td><td>4.12</td><td>27</td><td><div class="code-box" id="code-rank-9"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3</span><button class="copy-btn" onclick="copyCode('rank-9', this)">复制</button></div></td></tr>
+<tr><td>10</td><td>主宰女警</td><td class="tier-A">A</td><td>56.0%</td><td>6.0%</td><td>0.3%</td><td>4.29</td><td>416</td><td><div class="code-box" id="code-rank-10"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy</span><button class="copy-btn" onclick="copyCode('rank-10', this)">复制</button></div></td></tr>
+<tr><td>11</td><td>森林天使</td><td class="tier-A">A</td><td>53.6%</td><td>11.3%</td><td>0.11%</td><td>4.35</td><td>152</td><td><div class="code-box" id="code-rank-11"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0</span><button class="copy-btn" onclick="copyCode('rank-11', this)">复制</button></div></td></tr>
+<tr><td>12</td><td>森林月男</td><td class="tier-B">B</td><td>51.9%</td><td>10.9%</td><td>0.24%</td><td>4.41</td><td>333</td><td><div class="code-box" id="code-rank-12"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy</span><button class="copy-btn" onclick="copyCode('rank-12', this)">复制</button></div></td></tr>
+<tr><td>13</td><td>5迅射月男</td><td class="tier-B">B</td><td>51.9%</td><td>8.3%</td><td>0.19%</td><td>4.48</td><td>263</td><td><div class="code-box" id="code-rank-13"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz</span><button class="copy-btn" onclick="copyCode('rank-13', this)">复制</button></div></td></tr>
+<tr><td>14</td><td>月男Flex</td><td class="tier-B">B</td><td>49.2%</td><td>7.3%</td><td>1.14%</td><td>4.59</td><td>1583</td><td><div class="code-box" id="code-rank-14"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4</span><button class="copy-btn" onclick="copyCode('rank-14', this)">复制</button></div></td></tr>
+<tr><td>15</td><td>皎月螳螂</td><td class="tier-B">B</td><td>48.2%</td><td>9.6%</td><td>0.11%</td><td>4.57</td><td>152</td><td><div class="code-box" id="code-rank-15"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5</span><button class="copy-btn" onclick="copyCode('rank-15', this)">复制</button></div></td></tr>
+<tr><td>16</td><td>护卫豹轮</td><td class="tier-B">B</td><td>47.8%</td><td>14.7%</td><td>0.02%</td><td>4.52</td><td>27</td><td><div class="code-box" id="code-rank-16"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1</span><button class="copy-btn" onclick="copyCode('rank-16', this)">复制</button></div></td></tr>
+<tr><td>17</td><td>神谕狐狸</td><td class="tier-C">C</td><td>47.9%</td><td>9.9%</td><td>0.03%</td><td>4.67</td><td>41</td><td><div class="code-box" id="code-rank-17"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2</span><button class="copy-btn" onclick="copyCode('rank-17', this)">复制</button></div></td></tr>
+<tr><td>18</td><td>裁决螳螂</td><td class="tier-C">C</td><td>47.6%</td><td>8.9%</td><td>0.19%</td><td>4.61</td><td>263</td><td><div class="code-box" id="code-rank-18"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5</span><button class="copy-btn" onclick="copyCode('rank-18', this)">复制</button></div></td></tr>
+<tr><td>19</td><td>野怪小蓝</td><td class="tier-C">C</td><td>46.3%</td><td>9.6%</td><td>0.09%</td><td>4.63</td><td>124</td><td><div class="code-box" id="code-rank-19"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3</span><button class="copy-btn" onclick="copyCode('rank-19', this)">复制</button></div></td></tr>
+<tr><td>20</td><td>裁决芸阿娜</td><td class="tier-C">C</td><td>44.1%</td><td>5.9%</td><td>0.0%</td><td>4.68</td><td>0</td><td><div class="code-box" id="code-rank-20"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5</span><button class="copy-btn" onclick="copyCode('rank-20', this)">复制</button></div></td></tr>
+<tr><td>21</td><td>剑圣大嘴</td><td class="tier-D">D</td><td>43.8%</td><td>6.5%</td><td>0.11%</td><td>4.82</td><td>152</td><td><div class="code-box" id="code-rank-21"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5</span><button class="copy-btn" onclick="copyCode('rank-21', this)">复制</button></div></td></tr>
+<tr><td>22</td><td>6主宰Flex</td><td class="tier-D">D</td><td>43.5%</td><td>7.7%</td><td>0.15%</td><td>4.86</td><td>208</td><td><div class="code-box" id="code-rank-22"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5</span><button class="copy-btn" onclick="copyCode('rank-22', this)">复制</button></div></td></tr>
+<tr><td>23</td><td>螳螂蛇女</td><td class="tier-D">D</td><td>43.3%</td><td>4.4%</td><td>0.04%</td><td>4.86</td><td>55</td><td><div class="code-box" id="code-rank-23"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0</span><button class="copy-btn" onclick="copyCode('rank-23', this)">复制</button></div></td></tr>
+<tr><td>24</td><td>莲华阿狸</td><td class="tier-D">D</td><td>41.1%</td><td>13.1%</td><td>0.36%</td><td>4.87</td><td>499</td><td><div class="code-box" id="code-rank-24"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0</span><button class="copy-btn" onclick="copyCode('rank-24', this)">复制</button></div></td></tr>
+<tr><td>25</td><td>重装豹女</td><td class="tier-D">D</td><td>40.9%</td><td>6.4%</td><td>0.01%</td><td>5.03</td><td>13</td><td><div class="code-box" id="code-rank-25"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4</span><button class="copy-btn" onclick="copyCode('rank-25', this)">复制</button></div></td></tr>
+<tr><td>26</td><td>裁决奶妈</td><td class="tier-D">D</td><td>40.5%</td><td>6.6%</td><td>0.56%</td><td>5.01</td><td>777</td><td><div class="code-box" id="code-rank-26"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw</span><button class="copy-btn" onclick="copyCode('rank-26', this)">复制</button></div></td></tr>
+<tr><td>27</td><td>黑豹轮</td><td class="tier-D">D</td><td>38.0%</td><td>5.3%</td><td>0.1%</td><td>5.15</td><td>138</td><td><div class="code-box" id="code-rank-27"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2</span><button class="copy-btn" onclick="copyCode('rank-27', this)">复制</button></div></td></tr>
+<tr><td>28</td><td>世纪和解</td><td class="tier-D">D</td><td>35.1%</td><td>4.9%</td><td>0.04%</td><td>5.28</td><td>55</td><td><div class="code-box" id="code-rank-28"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw</span><button class="copy-btn" onclick="copyCode('rank-28', this)">复制</button></div></td></tr>
+<tr><td>29</td><td>护卫蛇女</td><td class="tier-D">D</td><td>34.5%</td><td>2.4%</td><td>0.01%</td><td>5.24</td><td>13</td><td><div class="code-box" id="code-rank-29"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz</span><button class="copy-btn" onclick="copyCode('rank-29', this)">复制</button></div></td></tr>
+<tr><td>30</td><td>召唤双鸡</td><td class="tier-D">D</td><td>32.0%</td><td>6.7%</td><td>0.01%</td><td>5.43</td><td>13</td><td><div class="code-box" id="code-rank-30"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3MjY5NDgxNTM1</span><button class="copy-btn" onclick="copyCode('rank-30', this)">复制</button></div></td></tr>
+<tr><td>31</td><td>花仙狮子狗</td><td class="tier-D">D</td><td>26.0%</td><td>6.8%</td><td>0.01%</td><td>5.89</td><td>13</td><td><div class="code-box" id="code-rank-31"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3</span><button class="copy-btn" onclick="copyCode('rank-31', this)">复制</button></div></td></tr>
+<tr><td>32</td><td>花仙小炮</td><td class="tier-D">D</td><td>25.9%</td><td>2.2%</td><td>0.02%</td><td>5.71</td><td>27</td><td><div class="code-box" id="code-rank-32"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5</span><button class="copy-btn" onclick="copyCode('rank-32', this)">复制</button></div></td></tr>
+<tr><td>33</td><td>召唤鸡哥</td><td class="tier-D">D</td><td>21.9%</td><td>1.6%</td><td>0.0%</td><td>6.27</td><td>0</td><td><div class="code-box" id="code-rank-33"><span>MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2</span><button class="copy-btn" onclick="copyCode('rank-33', this)">复制</button></div></td></tr>
 </tbody></table>
 <h2>转职/海克斯筛选器</h2>
 <div class="filter-bar">
@@ -563,11 +568,29 @@ tr:hover { background: #1f2937; }
 <script>
 function copyCode(id, btn) {
     var box = document.getElementById('code-' + id);
-    var code = box.querySelector('span').textContent;
-    navigator.clipboard.writeText(code).then(function() {
-        btn.textContent = '已复制';
-        setTimeout(function() { btn.textContent = '复制'; }, 2000);
-    });
+    var code = box.querySelector('span').textContent.trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function() {
+            btn.textContent = '已复制';
+            setTimeout(function() { btn.textContent = '复制'; }, 2000);
+        }).catch(function() {
+            fallbackCopy(code, btn);
+        });
+    } else {
+        fallbackCopy(code, btn);
+    }
+}
+function fallbackCopy(code, btn) {
+    var textarea = document.createElement('textarea');
+    textarea.value = code;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(textarea);
+    btn.textContent = '已复制';
+    setTimeout(function() { btn.textContent = '复制'; }, 2000);
 }
 function filterTier(tier) {
     var cards = document.querySelectorAll('.card');
