@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S18自然之力 阵容胜率分析报告 - 2026-09-24</title>
+<style>
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --border-color: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --accent-blue: #58a6ff;
+  --accent-gold: #ffd700;
+  --accent-purple: #c77dff;
+  --accent-green: #4caf50;
+  --accent-red: #f85149;
+  --accent-orange: #f0883e;
+  --accent-silver: #c0c0c0;
+  --accent-bronze: #cd7f32;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "WenQuanYi Micro Hei", Helvetica, Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 40px 20px 30px;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd700, #ffaa00, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::before {
+  content: "";
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(180deg, var(--accent-gold), var(--accent-orange));
+  border-radius: 2px;
+}
+
+/* 梯队徽章 */
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.tier-S {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  box-shadow: 0 2px 12px rgba(255, 215, 0, 0.3);
+}
+
+.tier-A {
+  background: linear-gradient(135deg, #c77dff, #9d4edd);
+  box-shadow: 0 2px 12px rgba(199, 125, 255, 0.3);
+}
+
+.tier-B {
+  background: linear-gradient(135deg, #58a6ff, #1f6feb);
+  box-shadow: 0 2px 12px rgba(88, 166, 255, 0.3);
+}
+
+.tier-C {
+  background: linear-gradient(135deg, #3fb950, #238636);
+  box-shadow: 0 2px 12px rgba(63, 185, 80, 0.3);
+}
+
+.tier-D {
+  background: linear-gradient(135deg, #6e7681, #484f58);
+  box-shadow: 0 2px 12px rgba(110, 118, 129, 0.3);
+}
+
+/* 胜率排行表格 */
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.ranking-table th {
+  background: var(--bg-tertiary);
+  padding: 14px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.ranking-table th:hover {
+  background: #30363d;
+}
+
+.ranking-table th .sort-arrow {
+  margin-left: 4px;
+  font-size: 0.7rem;
+}
+
+.ranking-table td {
+  padding: 12px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+.ranking-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ranking-table tbody tr:hover {
+  background: rgba(88, 166, 255, 0.08);
+}
+
+.ranking-table .highlight {
+  background: rgba(255, 215, 0, 0.08) !important;
+}
+
+.rank-num {
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 40px;
+  text-align: center;
+}
+
+.rank-1 { color: var(--accent-gold); }
+.rank-2 { color: var(--accent-silver); }
+.rank-3 { color: var(--accent-bronze); }
+
+.comp-name-cell {
+  font-weight: 600;
+  min-width: 120px;
+}
+
+/* 统计数值颜色 */
+.stat-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-value.good {
+  color: var(--accent-green);
+}
+
+.stat-value.warn {
+  color: var(--accent-orange);
+}
+
+.stat-value.bad {
+  color: var(--accent-red);
+}
+
+/* 搜索框 */
+#searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+#searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+/* 阵容码 */
+.code-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-tertiary);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  max-width: 200px;
+}
+
+.code-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.copy-btn {
+  padding: 4px 10px;
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  background: #1f6feb;
+}
+
+.copy-btn.copied {
+  background: var(--accent-green);
+}
+
+/* 阵容卡片网格 */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.comp-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.comp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-blue);
+}
+
+.comp-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.comp-card-title {
+  flex: 1;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 8px 4px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* 英雄标签 */
+.heroes-section {
+  margin-bottom: 12px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  margin: 2px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.hero-tag.carry {
+  border-color: var(--accent-gold);
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--accent-gold);
+}
+
+.hero-tag.subcarry {
+  border-color: var(--accent-blue);
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--accent-blue);
+}
+
+.hero-tag.core {
+  border-color: var(--accent-purple);
+  background: rgba(199, 125, 255, 0.1);
+  color: var(--accent-purple);
+}
+
+.hero-price {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+/* 羁绊/海克斯标签 */
+.traits-section, .hexes-section {
+  margin-bottom: 12px;
+}
+
+.trait-tag, .hex-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  margin: 2px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.trait-tag {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent-blue);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+}
+
+.hex-tag {
+  background: rgba(199, 125, 255, 0.15);
+  color: var(--accent-purple);
+  border: 1px solid rgba(199, 125, 255, 0.3);
+}
+
+/* 段位分组 */
+.tier-section {
+  margin-bottom: 30px;
+}
+
+.tier-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tier-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.tier-count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* 推荐卡片 */
+.rec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.rec-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s;
+}
+
+.rec-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-gold);
+}
+
+.rec-card-title {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rec-card-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rec-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rec-stat {
+  text-align: center;
+}
+
+.rec-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.rec-stat-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* 筛选器 */
+.filter-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.filter-group h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+#hexFilterList, #traitFilterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-item {
+  padding: 4px 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.filter-item:hover {
+  border-color: var(--accent-blue);
+}
+
+.filter-item.checked {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #fff;
+}
+
+.filter-item.checked.hex {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+}
+
+.filter-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 12px;
+}
+
+.filter-empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--accent-green);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .header {
+    padding: 24px 12px 20px;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .ranking-table {
+    font-size: 0.8rem;
+  }
+  
+  .ranking-table th, .ranking-table td {
+    padding: 8px 6px;
+  }
+  
+  .code-box {
+    max-width: 120px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>S18自然之力 阵容胜率分析报告</h1>
+    <div class="subtitle">数据来源 dataj.cc | 版本 18.2 | 总样本 177,152局 | 生成时间 2026-09-24</div>
+  </div>
+
+  <!-- 胜率排行 -->
+  <div class="section">
+    <h2 class="section-title">胜率排行</h2>
+    <input type="text" id="searchInput" oninput="filterCompositions()" placeholder="搜索阵容名称、英雄、羁绊...">
+    <table class="ranking-table" id="rankingTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable('rank')">排名 <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable('name')">阵容名称 <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable('tier')">段位 <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable('avgPlacement')">平均名次 <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable('top4Rate')">前四率 <span class="sort-arrow">↓</span></th>
+          <th onclick="sortTable('topRate')">吃鸡率 <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable('pickRate')">选取率 <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable('sampleCount')">样本量 <span class="sort-arrow">↕</span></th>
+          <th>阵容码</th>
+        </tr>
+      </thead>
+      <tbody id="rankingBody"></tbody>
+    </table>
+  </div>
+
+  <!-- 阵容推荐 -->
+  <div class="section">
+    <h2 class="section-title">阵容推荐</h2>
+    <div class="rec-grid" id="recGrid"></div>
+  </div>
+
+  <!-- 转职/海克斯 筛选器 -->
+  <div class="section">
+    <h2 class="section-title">转职/海克斯 筛选器</h2>
+    <div class="filter-section">
+      <div class="filter-group">
+        <h3>强化符文</h3>
+        <div id="hexFilterList"></div>
+      </div>
+      <div class="filter-group">
+        <h3>羁绊/特质</h3>
+        <div id="traitFilterList"></div>
+      </div>
+    </div>
+    <div class="filter-results" id="filterResults"></div>
+  </div>
+
+  <!-- 段位分组阵容 -->
+  <div class="section">
+    <h2 class="section-title">段位分组阵容</h2>
+    <div id="tier-sections"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">已复制到剪贴板</div>
+
+<script>
+const COMPOSITIONS = [{"compId": "112", "name": "地狱火95", "gameCode": "【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw", "tier": "S", "stats": {"avgPlacement": 3.7, "pickRate": 1.25, "topRate": 25.91, "top4Rate": 63.34, "sampleCount": 32040, "dataMode": "stats"}, "coreHeroes": [{"heroName": "希维尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "艾希", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "凯南", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 5}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "慎", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "韦鲁斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["地狱火", "猎人", "野兽之灵", "重装战士", "主宰", "宝石骑士"], "equips": [{"heroId": "5454", "equipId": "2004", "compHeroId": "2287"}, {"heroId": "5454", "equipId": "2037", "compHeroId": "2287"}, {"heroId": "5454", "equipId": "2001", "compHeroId": "2287"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2288"}, {"heroId": "4510", "equipId": "41806", "compHeroId": "2288"}, {"heroId": "4510", "equipId": "2009", "compHeroId": "2288"}, {"heroId": "4503", "equipId": "2034", "compHeroId": "2289"}, {"heroId": "4503", "equipId": "2028", "compHeroId": "2289"}, {"heroId": "4503", "equipId": "2018", "compHeroId": "2289"}, {"heroId": "5453", "equipId": "2005", "compHeroId": "2291"}, {"heroId": "5453", "equipId": "2016", "compHeroId": "2291"}, {"heroId": "5453", "equipId": "2039", "compHeroId": "2291"}], "recommendedHexes": []}, {"compId": "104", "name": "野怪小红", "gameCode": "【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx", "tier": "S", "stats": {"avgPlacement": 3.88, "pickRate": 0.37, "topRate": 15.33, "top4Rate": 61.53, "sampleCount": 9408, "dataMode": "stats"}, "coreHeroes": [{"heroName": "绯红树怪", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "远古巨龙", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "苍蓝哨戒", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "纳尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "峡谷迅捷蟹", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["峡谷野怪", "斗士", "神谕", "重装战士", "主宰", "顶级掠食者"], "equips": [{"heroId": "1511", "equipId": "2038", "compHeroId": "2232"}, {"heroId": "1511", "equipId": "2017", "compHeroId": "2232"}, {"heroId": "1511", "equipId": "2017", "compHeroId": "2232"}, {"heroId": "1508", "equipId": "2001", "compHeroId": "2204"}, {"heroId": "1508", "equipId": "2004", "compHeroId": "2204"}, {"heroId": "1508", "equipId": "2037", "compHeroId": "2204"}, {"heroId": "3503", "equipId": "2025", "compHeroId": "2207"}, {"heroId": "3503", "equipId": "2028", "compHeroId": "2207"}, {"heroId": "3503", "equipId": "2034", "compHeroId": "2207"}, {"heroId": "5458", "equipId": "2001", "compHeroId": "2208"}, {"heroId": "5458", "equipId": "2007", "compHeroId": "2208"}, {"heroId": "5458", "equipId": "2039", "compHeroId": "2208"}], "recommendedHexes": []}, {"compId": "89", "name": "巨龙95", "gameCode": "【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz", "tier": "S", "stats": {"avgPlacement": 3.84, "pickRate": 0.33, "topRate": 23.85, "top4Rate": 60.9, "sampleCount": 8351, "dataMode": "stats"}, "coreHeroes": [{"heroName": "远古巨龙", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 5}, {"heroName": "德莱文", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "茂凯", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "艾翁", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "凯南", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}], "traits": ["地狱火", "重装战士", "主宰", "宝石骑士", "翠神", "顶级掠食者", "赏金猎人", "远古树精"], "equips": [{"heroId": "5455", "equipId": "2010", "compHeroId": "1930"}, {"heroId": "5455", "equipId": "2013", "compHeroId": "1930"}, {"heroId": "5455", "equipId": "2013", "compHeroId": "1930"}, {"heroId": "5458", "equipId": "2001", "compHeroId": "1931"}, {"heroId": "5458", "equipId": "2042", "compHeroId": "1931"}, {"heroId": "5458", "equipId": "2037", "compHeroId": "1931"}, {"heroId": "5450", "equipId": "2034", "compHeroId": "1933"}, {"heroId": "5450", "equipId": "2028", "compHeroId": "1933"}, {"heroId": "5450", "equipId": "2025", "compHeroId": "1933"}, {"heroId": "4500", "equipId": "2034", "compHeroId": "1937"}, {"heroId": "4500", "equipId": "2028", "compHeroId": "1937"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "1937"}], "recommendedHexes": []}, {"compId": "116", "name": "裁决螳螂", "gameCode": "【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5", "tier": "S", "stats": {"avgPlacement": 4, "pickRate": 0.34, "topRate": 14.25, "top4Rate": 60, "sampleCount": 8626, "dataMode": "stats"}, "coreHeroes": [{"heroName": "卡兹克", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "索拉卡", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "费德提克", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "伊泽瑞尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "厄斐琉斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "奥恩", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "生命花", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}, {"heroName": "石皮树", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}], "traits": ["永恒之森", "裁决使", "护卫", "绝命花妖", "月蚀骑士", "重装战士", "宿敌"], "equips": [{"heroId": "3500", "equipId": "2025", "compHeroId": "2326"}, {"heroId": "3500", "equipId": "2028", "compHeroId": "2326"}, {"heroId": "3500", "equipId": "2034", "compHeroId": "2326"}, {"heroId": "3505", "equipId": "2005", "compHeroId": "2324"}, {"heroId": "3505", "equipId": "2016", "compHeroId": "2324"}, {"heroId": "3505", "equipId": "2039", "compHeroId": "2324"}, {"heroId": "4513", "equipId": "2004", "compHeroId": "2333"}, {"heroId": "4513", "equipId": "2011", "compHeroId": "2333"}, {"heroId": "4513", "equipId": "2020", "compHeroId": "2333"}], "recommendedHexes": []}, {"compId": "100", "name": "重装女警", "gameCode": "【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3", "tier": "A", "stats": {"avgPlacement": 4.18, "pickRate": 0.14, "topRate": 6.29, "top4Rate": 58.46, "sampleCount": 3483, "dataMode": "stats"}, "coreHeroes": [{"heroName": "凯特琳", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "希维尔", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "伊莉丝", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "崔丝塔娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["重装战士", "猎人", "花仙子", "野兽之灵", "主宰"], "equips": [{"heroId": "2504", "equipId": "2025", "compHeroId": "2152"}, {"heroId": "2504", "equipId": "2028", "compHeroId": "2152"}, {"heroId": "2504", "equipId": "2034", "compHeroId": "2152"}, {"heroId": "2510", "equipId": "2045", "compHeroId": "2153"}, {"heroId": "2510", "equipId": "2013", "compHeroId": "2153"}, {"heroId": "2510", "equipId": "2010", "compHeroId": "2153"}, {"heroId": "3500", "equipId": "2029", "compHeroId": "2157"}, {"heroId": "3500", "equipId": "2034", "compHeroId": "2157"}, {"heroId": "3500", "equipId": "2032", "compHeroId": "2157"}], "recommendedHexes": []}, {"compId": "113", "name": "古纳拉95", "gameCode": "【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx", "tier": "S", "stats": {"avgPlacement": 4.04, "pickRate": 0.08, "topRate": 18.03, "top4Rate": 58.39, "sampleCount": 2158, "dataMode": "stats"}, "coreHeroes": [{"heroName": "拉露恩", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 5}, {"heroName": "远古巨龙", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "纳尔", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "阿利斯塔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "石皮树", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}, {"heroName": "生命花", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}], "traits": ["重装战士", "永恒之森", "峡谷野怪", "斗士", "月蚀骑士", "宝石骑士", "顶级掠食者", "月华神女"], "equips": [{"heroId": "5452", "equipId": "2012", "compHeroId": "2303"}, {"heroId": "5452", "equipId": "2007", "compHeroId": "2303"}, {"heroId": "5452", "equipId": "2006", "compHeroId": "2303"}, {"heroId": "5458", "equipId": "2037", "compHeroId": "2296"}, {"heroId": "5458", "equipId": "2007", "compHeroId": "2296"}, {"heroId": "5458", "equipId": "2001", "compHeroId": "2296"}, {"heroId": "5456", "equipId": "2038", "compHeroId": "2297"}, {"heroId": "5456", "equipId": "2014", "compHeroId": "2297"}, {"heroId": "5456", "equipId": "2004", "compHeroId": "2297"}, {"heroId": "4500", "equipId": "2034", "compHeroId": "2298"}, {"heroId": "4500", "equipId": "2028", "compHeroId": "2298"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2298"}], "recommendedHexes": []}, {"compId": "91", "name": "永森95", "gameCode": "【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3", "tier": "S", "stats": {"avgPlacement": 3.96, "pickRate": 0.01, "topRate": 19.57, "top4Rate": 57.61, "sampleCount": 184, "dataMode": "stats"}, "coreHeroes": [{"heroName": "伊泽瑞尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "德莱文", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "艾翁", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "凯南", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "纳尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "茂凯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "阿利斯塔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}], "traits": ["永恒之森", "裁决使", "地狱火", "斗士", "主宰", "宝石骑士", "翠神", "赏金猎人", "远古树精"], "equips": [{"heroId": "4508", "equipId": "2042", "compHeroId": "1898"}, {"heroId": "4508", "equipId": "2045", "compHeroId": "1898"}, {"heroId": "4508", "equipId": "2004", "compHeroId": "1898"}, {"heroId": "5455", "equipId": "2013", "compHeroId": "1899"}, {"heroId": "5455", "equipId": "2013", "compHeroId": "1899"}, {"heroId": "5455", "equipId": "2010", "compHeroId": "1899"}, {"heroId": "5451", "equipId": "2025", "compHeroId": "1902"}, {"heroId": "5451", "equipId": "2028", "compHeroId": "1902"}, {"heroId": "5451", "equipId": "2034", "compHeroId": "1902"}, {"heroId": "5450", "equipId": "2028", "compHeroId": "1905"}, {"heroId": "5450", "equipId": "2034", "compHeroId": "1905"}, {"heroId": "5450", "equipId": "2032", "compHeroId": "1905"}], "recommendedHexes": []}, {"compId": "99", "name": "7野怪鸡哥", "gameCode": "【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5", "tier": "S", "stats": {"avgPlacement": 4.14, "pickRate": 0.48, "topRate": 12.23, "top4Rate": 56.35, "sampleCount": 12285, "dataMode": "stats"}, "coreHeroes": [{"heroName": "深红锋喙鸟", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "绯红印记树怪", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "魔沼蛙", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "峡谷迅捷蟹", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "暗影狼", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "绯红树怪", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "苍蓝哨戒", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["峡谷野怪", "狂战士", "神谕"], "equips": [{"heroId": "4500", "equipId": "2034", "compHeroId": "2125"}, {"heroId": "4500", "equipId": "2028", "compHeroId": "2125"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2125"}, {"heroId": "3503", "equipId": "2034", "compHeroId": "2127"}, {"heroId": "3503", "equipId": "2028", "compHeroId": "2127"}, {"heroId": "3503", "equipId": "2025", "compHeroId": "2127"}, {"heroId": "3509", "equipId": "2045", "compHeroId": "2120"}, {"heroId": "3509", "equipId": "2013", "compHeroId": "2120"}, {"heroId": "3509", "equipId": "2010", "compHeroId": "2120"}, {"heroId": "4506", "equipId": "2045", "compHeroId": "2121"}, {"heroId": "4506", "equipId": "2041", "compHeroId": "2121"}, {"heroId": "4506", "equipId": "2007", "compHeroId": "2121"}], "recommendedHexes": []}, {"compId": "106", "name": "主宰女警", "gameCode": "【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy", "tier": "A", "stats": {"avgPlacement": 4.37, "pickRate": 0.25, "topRate": 5.73, "top4Rate": 54.26, "sampleCount": 6515, "dataMode": "stats"}, "coreHeroes": [{"heroName": "凯特琳", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "希维尔", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "峡谷迅捷蟹", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "瑟庄妮", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "崔丝塔娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["主宰", "猎人", "花仙子", "野兽之灵"], "equips": [{"heroId": "2510", "equipId": "2045", "compHeroId": "2224"}, {"heroId": "2510", "equipId": "2013", "compHeroId": "2224"}, {"heroId": "2510", "equipId": "2010", "compHeroId": "2224"}, {"heroId": "2500", "equipId": "2034", "compHeroId": "2225"}, {"heroId": "2500", "equipId": "2028", "compHeroId": "2225"}, {"heroId": "2500", "equipId": "2025", "compHeroId": "2225"}, {"heroId": "2502", "equipId": "2029", "compHeroId": "2226"}, {"heroId": "2502", "equipId": "2034", "compHeroId": "2226"}, {"heroId": "2502", "equipId": "2028", "compHeroId": "2226"}, {"heroId": "4510", "equipId": "2037", "compHeroId": "2228"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2228"}, {"heroId": "4510", "equipId": "2001", "compHeroId": "2228"}], "recommendedHexes": []}, {"compId": "120", "name": "黑暗仪式蜘蛛", "gameCode": "【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz", "tier": "S", "stats": {"avgPlacement": 4.24, "pickRate": 0.11, "topRate": 23.07, "top4Rate": 53.87, "sampleCount": 2714, "dataMode": "stats"}, "coreHeroes": [{"heroName": "伊莉丝", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "莫甘娜", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "卡西奥佩娅", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "拉露恩", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["重装战士", "魔女", "法师", "月蚀骑士", "宝石骑士", "月华神女"], "equips": [{"heroId": "2504", "equipId": "2010", "compHeroId": "2358"}, {"heroId": "2504", "equipId": "2012", "compHeroId": "2358"}, {"heroId": "2504", "equipId": "2028", "compHeroId": "2358"}, {"heroId": "3511", "equipId": "2004", "compHeroId": "2363"}, {"heroId": "3511", "equipId": "2038", "compHeroId": "2363"}, {"heroId": "3511", "equipId": "2003", "compHeroId": "2363"}, {"heroId": "4501", "equipId": "2011", "compHeroId": "2362"}, {"heroId": "4501", "equipId": "2020", "compHeroId": "2362"}], "recommendedHexes": []}, {"compId": "103", "name": "螳螂蛇女", "gameCode": "【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0", "tier": "B", "stats": {"avgPlacement": 4.47, "pickRate": 0.02, "topRate": 7.31, "top4Rate": 53.44, "sampleCount": 479, "dataMode": "stats"}, "coreHeroes": [{"heroName": "卡西奥佩娅", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "卡兹克", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "费德提克", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "拉莫斯", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "阿狸", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "莉莉娅", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "索拉卡", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "慎", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}], "traits": ["护卫", "法师", "绝命花妖", "宿敌"], "equips": [{"heroId": "3502", "equipId": "2034", "compHeroId": "2196"}, {"heroId": "3502", "equipId": "2028", "compHeroId": "2196"}, {"heroId": "3502", "equipId": "2025", "compHeroId": "2196"}, {"heroId": "4511", "equipId": "2038", "compHeroId": "2197"}, {"heroId": "4511", "equipId": "2014", "compHeroId": "2197"}, {"heroId": "4511", "equipId": "2004", "compHeroId": "2197"}, {"heroId": "3505", "equipId": "2039", "compHeroId": "2202"}, {"heroId": "3505", "equipId": "2016", "compHeroId": "2202"}, {"heroId": "3505", "equipId": "2005", "compHeroId": "2202"}, {"heroId": "3511", "equipId": "2020", "compHeroId": "2203"}, {"heroId": "3511", "equipId": "2011", "compHeroId": "2203"}, {"heroId": "3511", "equipId": "2004", "compHeroId": "2203"}], "recommendedHexes": []}, {"compId": "109", "name": "皎月螳螂", "gameCode": "【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5", "tier": "B", "stats": {"avgPlacement": 4.43, "pickRate": 0.06, "topRate": 10.54, "top4Rate": 52.7, "sampleCount": 1480, "dataMode": "stats"}, "coreHeroes": [{"heroName": "黛安娜", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "卡兹克", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "伊莉丝", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "拉露恩", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "厄斐琉斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "克格莫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}], "traits": ["重装战士", "月蚀骑士", "神谕", "帝王斑蝶", "宿敌", "月华神女"], "equips": [{"heroId": "3500", "equipId": "2025", "compHeroId": "2253"}, {"heroId": "3500", "equipId": "2028", "compHeroId": "2253"}, {"heroId": "3500", "equipId": "2034", "compHeroId": "2253"}, {"heroId": "3506", "equipId": "2014", "compHeroId": "2254"}, {"heroId": "3506", "equipId": "2038", "compHeroId": "2254"}, {"heroId": "3506", "equipId": "2041", "compHeroId": "2254"}, {"heroId": "3505", "equipId": "2005", "compHeroId": "2255"}, {"heroId": "3505", "equipId": "2038", "compHeroId": "2255"}, {"heroId": "3505", "equipId": "2039", "compHeroId": "2255"}], "recommendedHexes": []}, {"compId": "88", "name": "森林天使", "gameCode": "【阵容码】#神器天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0", "tier": "B", "stats": {"avgPlacement": 4.42, "pickRate": 0.23, "topRate": 11.01, "top4Rate": 52.37, "sampleCount": 5897, "dataMode": "stats"}, "coreHeroes": [{"heroName": "凯尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "霞", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 1}, {"heroName": "奥恩", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "蕾欧娜", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "瑟庄妮", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "乐芙兰", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["日蚀骑士", "永恒之森", "护卫", "花仙子", "迅捷射手", "主宰"], "equips": [{"heroId": "1500", "equipId": "2028", "compHeroId": "1923"}, {"heroId": "1500", "equipId": "2025", "compHeroId": "1923"}, {"heroId": "1500", "equipId": "2034", "compHeroId": "1923"}, {"heroId": "1502", "equipId": "2028", "compHeroId": "1926"}, {"heroId": "1502", "equipId": "2025", "compHeroId": "1926"}, {"heroId": "1502", "equipId": "2034", "compHeroId": "1926"}, {"heroId": "1509", "equipId": "2010", "compHeroId": "1927"}, {"heroId": "1509", "equipId": "2013", "compHeroId": "1927"}, {"heroId": "1509", "equipId": "2046", "compHeroId": "1927"}, {"heroId": "2512", "equipId": "2010", "compHeroId": "1928"}, {"heroId": "2512", "equipId": "2038", "compHeroId": "1928"}, {"heroId": "2512", "equipId": "2016", "compHeroId": "1928"}], "recommendedHexes": []}, {"compId": "108", "name": "护卫豹轮", "gameCode": "【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1", "tier": "A", "stats": {"avgPlacement": 4.31, "pickRate": 0.02, "topRate": 18.72, "top4Rate": 51.4, "sampleCount": 609, "dataMode": "stats"}, "coreHeroes": [{"heroName": "希维尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "奈德丽", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "莉莉娅", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "艾希", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "克格莫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "慎", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["地狱火", "护卫", "花仙子", "猎人", "魔战士", "神谕", "野兽之灵", "重装战士", "主宰", "帝王斑蝶"], "equips": [{"heroId": "4502", "equipId": "2034", "compHeroId": "2241"}, {"heroId": "4502", "equipId": "2028", "compHeroId": "2241"}, {"heroId": "4502", "equipId": "2023", "compHeroId": "2241"}, {"heroId": "4500", "equipId": "2034", "compHeroId": "2243"}, {"heroId": "4500", "equipId": "2028", "compHeroId": "2243"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2243"}, {"heroId": "4510", "equipId": "2045", "compHeroId": "2246"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2246"}, {"heroId": "4510", "equipId": "2001", "compHeroId": "2246"}, {"heroId": "4507", "equipId": "2042", "compHeroId": "2247"}, {"heroId": "4507", "equipId": "2038", "compHeroId": "2247"}, {"heroId": "4507", "equipId": "2010", "compHeroId": "2247"}], "recommendedHexes": []}, {"compId": "105", "name": "森林月男", "gameCode": "【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy", "tier": "B", "stats": {"avgPlacement": 4.48, "pickRate": 0.2, "topRate": 10.45, "top4Rate": 51.2, "sampleCount": 5006, "dataMode": "stats"}, "coreHeroes": [{"heroName": "厄斐琉斯", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "伊泽瑞尔", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "莉莉娅", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "纳尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "拉露恩", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "索拉卡", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "阿利斯塔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "奥恩", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "霞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "石皮树", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}, {"heroName": "石皮树", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}, {"heroName": "生命花", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 0}], "traits": ["永恒之森", "裁决使", "斗士", "护卫", "花仙子", "迅捷射手", "月蚀骑士", "绝命花妖", "月华神女"], "equips": [{"heroId": "4502", "equipId": "2023", "compHeroId": "2212"}, {"heroId": "4502", "equipId": "2028", "compHeroId": "2212"}, {"heroId": "4502", "equipId": "2034", "compHeroId": "2212"}, {"heroId": "4509", "equipId": "2001", "compHeroId": "2213"}, {"heroId": "4509", "equipId": "2010", "compHeroId": "2213"}, {"heroId": "4509", "equipId": "2013", "compHeroId": "2213"}, {"heroId": "4508", "equipId": "2004", "compHeroId": "2214"}, {"heroId": "4508", "equipId": "2037", "compHeroId": "2214"}, {"heroId": "4508", "equipId": "2009", "compHeroId": "2214"}, {"heroId": "5452", "equipId": "2006", "compHeroId": "2219"}, {"heroId": "5452", "equipId": "2007", "compHeroId": "2219"}, {"heroId": "5452", "equipId": "2012", "compHeroId": "2219"}], "recommendedHexes": []}, {"compId": "114", "name": "5迅射月男", "gameCode": "【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz", "tier": "C", "stats": {"avgPlacement": 4.61, "pickRate": 0.07, "topRate": 7.38, "top4Rate": 49.73, "sampleCount": 1870, "dataMode": "stats"}, "coreHeroes": [{"heroName": "绯红印记树怪", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "厄斐琉斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "深红锋喙鸟", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "霞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "韦鲁斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["迅捷射手", "峡谷野怪", "地狱火", "花仙子", "狂战士", "月蚀骑士", "重装战士", "主宰"], "equips": [{"heroId": "4509", "equipId": "2045", "compHeroId": "2306"}, {"heroId": "4509", "equipId": "2013", "compHeroId": "2306"}, {"heroId": "4509", "equipId": "2001", "compHeroId": "2306"}, {"heroId": "4506", "equipId": "2046", "compHeroId": "2307"}, {"heroId": "4506", "equipId": "2005", "compHeroId": "2307"}, {"heroId": "4506", "equipId": "41815", "compHeroId": "2307"}, {"heroId": "4503", "equipId": "2034", "compHeroId": "2311"}, {"heroId": "4503", "equipId": "2028", "compHeroId": "2311"}, {"heroId": "4503", "equipId": "2028", "compHeroId": "2311"}, {"heroId": "4500", "equipId": "2024", "compHeroId": "2312"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2312"}, {"heroId": "4500", "equipId": "2032", "compHeroId": "2312"}], "recommendedHexes": []}, {"compId": "119", "name": "神谕大嘴", "gameCode": "【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky", "tier": "B", "stats": {"avgPlacement": 4.53, "pickRate": 0.27, "topRate": 9.22, "top4Rate": 49.55, "sampleCount": 6844, "dataMode": "stats"}, "coreHeroes": [{"heroName": "克格莫", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "莫甘娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "提莫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "苍蓝哨戒", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["神谕", "峡谷野怪", "重装战士", "帝王斑蝶"], "equips": [{"heroId": "3512", "equipId": "2001", "compHeroId": "2357"}, {"heroId": "3512", "equipId": "2045", "compHeroId": "2357"}, {"heroId": "3512", "equipId": "2046", "compHeroId": "2357"}, {"heroId": "4501", "equipId": "2020", "compHeroId": "2355"}, {"heroId": "4501", "equipId": "2038", "compHeroId": "2355"}, {"heroId": "4501", "equipId": "2003", "compHeroId": "2355"}, {"heroId": "3500", "equipId": "2025", "compHeroId": "2353"}, {"heroId": "3500", "equipId": "2028", "compHeroId": "2353"}, {"heroId": "3500", "equipId": "2034", "compHeroId": "2353"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2354"}, {"heroId": "4500", "equipId": "2028", "compHeroId": "2354"}, {"heroId": "4500", "equipId": "2032", "compHeroId": "2354"}], "recommendedHexes": []}, {"compId": "115", "name": "卡丽蜜儿", "gameCode": "【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2", "tier": "C", "stats": {"avgPlacement": 4.66, "pickRate": 0.14, "topRate": 6.99, "top4Rate": 48.87, "sampleCount": 3589, "dataMode": "stats"}, "coreHeroes": [{"heroName": "阿卡丽", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "卡蜜尔", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 1}, {"heroName": "奥恩", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "韦鲁斯", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "蕾欧娜", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "瑟庄妮", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "凯尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}], "traits": ["地狱火", "日蚀骑士", "护卫", "狂战士", "迅捷射手", "主宰"], "equips": [{"heroId": "1500", "equipId": "2034", "compHeroId": "2315"}, {"heroId": "1500", "equipId": "2028", "compHeroId": "2315"}, {"heroId": "1500", "equipId": "2025", "compHeroId": "2315"}, {"heroId": "1507", "equipId": "2037", "compHeroId": "2316"}, {"heroId": "1507", "equipId": "2004", "compHeroId": "2316"}, {"heroId": "1507", "equipId": "2001", "compHeroId": "2316"}, {"heroId": "1505", "equipId": "2041", "compHeroId": "2318"}, {"heroId": "1505", "equipId": "2007", "compHeroId": "2318"}, {"heroId": "1505", "equipId": "2001", "compHeroId": "2318"}, {"heroId": "1513", "equipId": "2039", "compHeroId": "2323"}, {"heroId": "1513", "equipId": "2038", "compHeroId": "2323"}, {"heroId": "1513", "equipId": "2005", "compHeroId": "2323"}], "recommendedHexes": []}, {"compId": "95", "name": "月男Flex", "gameCode": "【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4", "tier": "C", "stats": {"avgPlacement": 4.66, "pickRate": 1.16, "topRate": 7.27, "top4Rate": 47.59, "sampleCount": 29629, "dataMode": "stats"}, "coreHeroes": [{"heroName": "厄斐琉斯", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "婕拉", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "墨菲特", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "深红锋喙鸟", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "雷克塞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["峡谷野怪", "斗士", "黑荆棘", "迅捷射手", "月蚀骑士", "召唤师", "重装战士", "荆棘之兴", "魔岩巨兽"], "equips": [{"heroId": "4509", "equipId": "2045", "compHeroId": "2063"}, {"heroId": "4509", "equipId": "2010", "compHeroId": "2063"}, {"heroId": "4509", "equipId": "2013", "compHeroId": "2063"}, {"heroId": "4512", "equipId": "2011", "compHeroId": "2065"}, {"heroId": "4512", "equipId": "2004", "compHeroId": "2065"}, {"heroId": "4512", "equipId": "2038", "compHeroId": "2065"}, {"heroId": "4500", "equipId": "2032", "compHeroId": "2066"}, {"heroId": "4500", "equipId": "2029", "compHeroId": "2066"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2066"}, {"heroId": "4504", "equipId": "2034", "compHeroId": "2260"}, {"heroId": "4504", "equipId": "2028", "compHeroId": "2260"}, {"heroId": "4504", "equipId": "2028", "compHeroId": "2260"}], "recommendedHexes": []}, {"compId": "86", "name": "剑圣大嘴", "gameCode": "【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5", "tier": "C", "stats": {"avgPlacement": 4.79, "pickRate": 0.04, "topRate": 5.77, "top4Rate": 43.92, "sampleCount": 970, "dataMode": "stats"}, "coreHeroes": [{"heroName": "易", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "克格莫", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "奈德丽", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "瑟提", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "魔沼蛙", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "约里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["魔战士", "灵魂莲华", "斗士", "野兽之灵", "主宰", "帝王斑蝶"], "equips": [{"heroId": "3507", "equipId": "2012", "compHeroId": "2071"}, {"heroId": "3507", "equipId": "2005", "compHeroId": "2071"}, {"heroId": "3507", "equipId": "2010", "compHeroId": "2071"}, {"heroId": "3512", "equipId": "2001", "compHeroId": "2072"}, {"heroId": "3512", "equipId": "2009", "compHeroId": "2072"}, {"heroId": "3512", "equipId": "2004", "compHeroId": "2072"}, {"heroId": "3503", "equipId": "2025", "compHeroId": "2077"}, {"heroId": "3503", "equipId": "2034", "compHeroId": "2077"}, {"heroId": "3503", "equipId": "2028", "compHeroId": "2077"}], "recommendedHexes": []}, {"compId": "107", "name": "野怪小蓝", "gameCode": "【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3", "tier": "C", "stats": {"avgPlacement": 4.75, "pickRate": 0.18, "topRate": 8.48, "top4Rate": 43.46, "sampleCount": 4715, "dataMode": "stats"}, "coreHeroes": [{"heroName": "苍蓝哨戒", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "远古巨龙", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "纳尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "绯红印记树怪", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "峡谷迅捷蟹", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}], "traits": ["峡谷野怪", "斗士", "神谕", "重装战士", "宝石骑士", "顶级掠食者"], "equips": [{"heroId": "1511", "equipId": "2038", "compHeroId": "2233"}, {"heroId": "1511", "equipId": "2017", "compHeroId": "2233"}, {"heroId": "1511", "equipId": "2017", "compHeroId": "2233"}, {"heroId": "3503", "equipId": "2034", "compHeroId": "2234"}, {"heroId": "3503", "equipId": "2028", "compHeroId": "2234"}, {"heroId": "3503", "equipId": "2025", "compHeroId": "2234"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2236"}, {"heroId": "4500", "equipId": "2029", "compHeroId": "2236"}, {"heroId": "4500", "equipId": "2019", "compHeroId": "2236"}, {"heroId": "5458", "equipId": "2039", "compHeroId": "2238"}, {"heroId": "5458", "equipId": "2007", "compHeroId": "2238"}, {"heroId": "5458", "equipId": "2001", "compHeroId": "2238"}], "recommendedHexes": []}, {"compId": "84", "name": "莲华阿狸", "gameCode": "【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0", "tier": "C", "stats": {"avgPlacement": 4.84, "pickRate": 0.34, "topRate": 13.01, "top4Rate": 42.49, "sampleCount": 8733, "dataMode": "stats"}, "coreHeroes": [{"heroName": "阿狸", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "希维尔", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "艾希", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 5}, {"heroName": "瑟提", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "纳尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "婕拉", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "约里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "卡尔玛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["灵魂莲华", "斗士", "法师", "猎人", "野兽之灵", "召唤师", "主宰", "荆棘之兴"], "equips": [{"heroId": "4512", "equipId": "2011", "compHeroId": "2085"}, {"heroId": "5454", "equipId": "2001", "compHeroId": "2087"}, {"heroId": "5454", "equipId": "2004", "compHeroId": "2087"}, {"heroId": "5454", "equipId": "2009", "compHeroId": "2087"}, {"heroId": "4505", "equipId": "2025", "compHeroId": "2080"}, {"heroId": "4505", "equipId": "2034", "compHeroId": "2080"}, {"heroId": "4505", "equipId": "2028", "compHeroId": "2080"}, {"heroId": "4511", "equipId": "2004", "compHeroId": "2083"}, {"heroId": "4511", "equipId": "2014", "compHeroId": "2083"}, {"heroId": "4511", "equipId": "2038", "compHeroId": "2083"}, {"heroId": "4510", "equipId": "2001", "compHeroId": "2084"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2084"}, {"heroId": "4510", "equipId": "2037", "compHeroId": "2084"}], "recommendedHexes": []}, {"compId": "94", "name": "召唤双鸡", "gameCode": "【阵容码】#召唤双鸡#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjY5NDgxNTM1", "tier": "D", "stats": {"avgPlacement": 4.96, "pickRate": 0, "topRate": 12, "top4Rate": 42.4, "sampleCount": 125, "dataMode": "stats"}, "coreHeroes": [{"heroName": "阿兹尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "深红锋喙鸟", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "婕拉", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "卡兹克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "峡谷迅捷蟹", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "雷克塞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "约里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["峡谷野怪", "召唤师", "斗士", "黑荆棘", "主宰", "荆棘之兴", "宿敌"], "equips": [{"heroId": "3503", "equipId": "2028", "compHeroId": "2055"}, {"heroId": "3503", "equipId": "2025", "compHeroId": "2055"}, {"heroId": "3503", "equipId": "2034", "compHeroId": "2055"}, {"heroId": "3510", "equipId": "2010", "compHeroId": "2057"}, {"heroId": "3510", "equipId": "2016", "compHeroId": "2057"}, {"heroId": "3510", "equipId": "2046", "compHeroId": "2057"}, {"heroId": "3509", "equipId": "2010", "compHeroId": "2056"}, {"heroId": "3509", "equipId": "2045", "compHeroId": "2056"}, {"heroId": "3509", "equipId": "2046", "compHeroId": "2056"}, {"heroId": "4512", "equipId": "2011", "compHeroId": "2061"}, {"heroId": "4512", "equipId": "2020", "compHeroId": "2061"}, {"heroId": "4512", "equipId": "2004", "compHeroId": "2061"}, {"heroId": "2500", "equipId": "9456", "compHeroId": "2060"}], "recommendedHexes": []}, {"compId": "117", "name": "6主宰Flex", "gameCode": "【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5", "tier": "D", "stats": {"avgPlacement": 4.9, "pickRate": 0.5, "topRate": 7.32, "top4Rate": 42.18, "sampleCount": 12874, "dataMode": "stats"}, "coreHeroes": [{"heroName": "希维尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "艾希", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 5}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "茂凯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "瑟庄妮", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "峡谷迅捷蟹", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["主宰", "猎人", "野兽之灵", "远古树精"], "equips": [{"heroId": "4510", "equipId": "2001", "compHeroId": "2340"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2340"}, {"heroId": "4510", "equipId": "2045", "compHeroId": "2340"}, {"heroId": "5454", "equipId": "2004", "compHeroId": "2341"}, {"heroId": "5454", "equipId": "2009", "compHeroId": "2341"}, {"heroId": "5454", "equipId": "2037", "compHeroId": "2341"}, {"heroId": "4503", "equipId": "2018", "compHeroId": "2339"}, {"heroId": "4503", "equipId": "2028", "compHeroId": "2339"}, {"heroId": "4503", "equipId": "2034", "compHeroId": "2339"}], "recommendedHexes": []}, {"compId": "93", "name": "世纪和解", "gameCode": "【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw", "tier": "D", "stats": {"avgPlacement": 4.93, "pickRate": 0.04, "topRate": 5.6, "top4Rate": 41.6, "sampleCount": 1036, "dataMode": "stats"}, "coreHeroes": [{"heroName": "雷恩加尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "卡兹克", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "厄斐琉斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "伊泽瑞尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "赫卡里姆", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "乐芙兰", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}], "traits": ["永恒之森", "宿敌", "月蚀骑士", "重装战士"], "equips": [{"heroId": "3506", "equipId": "2028", "compHeroId": "1993"}, {"heroId": "3506", "equipId": "2029", "compHeroId": "1993"}, {"heroId": "3506", "equipId": "2032", "compHeroId": "1993"}, {"heroId": "3500", "equipId": "2034", "compHeroId": "1994"}, {"heroId": "3500", "equipId": "2028", "compHeroId": "1994"}, {"heroId": "3500", "equipId": "2025", "compHeroId": "1994"}, {"heroId": "3505", "equipId": "2039", "compHeroId": "1998"}, {"heroId": "3505", "equipId": "2005", "compHeroId": "1998"}, {"heroId": "3505", "equipId": "2016", "compHeroId": "1998"}, {"heroId": "3504", "equipId": "2010", "compHeroId": "1999"}, {"heroId": "3504", "equipId": "2012", "compHeroId": "1999"}, {"heroId": "3504", "equipId": "2005", "compHeroId": "1999"}], "recommendedHexes": []}, {"compId": "83", "name": "重装豹女", "gameCode": "【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4", "tier": "D", "stats": {"avgPlacement": 4.99, "pickRate": 0.01, "topRate": 3.09, "top4Rate": 40.12, "sampleCount": 162, "dataMode": "stats"}, "coreHeroes": [{"heroName": "奈德丽", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "莫甘娜", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "克格莫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["前卫", "神谕者", "魔战士", "野兽之灵", "主宰", "宝石骑士", "腐蚀巨口"], "equips": [{"heroId": "4507", "equipId": "2010", "compHeroId": "2174"}, {"heroId": "4507", "equipId": "2038", "compHeroId": "2174"}, {"heroId": "4507", "equipId": "2016", "compHeroId": "2174"}, {"heroId": "4514", "equipId": "2011", "compHeroId": "2169"}, {"heroId": "4514", "equipId": "2020", "compHeroId": "2169"}, {"heroId": "4514", "equipId": "2022", "compHeroId": "2169"}, {"heroId": "4500", "equipId": "2028", "compHeroId": "2170"}, {"heroId": "4500", "equipId": "2034", "compHeroId": "2170"}, {"heroId": "4500", "equipId": "2023", "compHeroId": "2170"}], "recommendedHexes": []}, {"compId": "90", "name": "裁决奶妈", "gameCode": "【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw", "tier": "D", "stats": {"avgPlacement": 5.12, "pickRate": 0.2, "topRate": 6.22, "top4Rate": 38.69, "sampleCount": 5148, "dataMode": "stats"}, "coreHeroes": [{"heroName": "索拉卡", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "婕拉", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "墨菲特", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "凯南", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "艾翁", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "阿木木", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "阿兹尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "费德提克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "约里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["裁决使", "召唤师", "地狱火", "黑荆棘", "绝命花妖", "主宰", "翠神", "荆棘之兴", "魔岩巨兽"], "equips": [{"heroId": "4504", "equipId": "2025", "compHeroId": "1906"}, {"heroId": "4504", "equipId": "2034", "compHeroId": "1906"}, {"heroId": "4504", "equipId": "2028", "compHeroId": "1906"}, {"heroId": "4513", "equipId": "2016", "compHeroId": "1907"}, {"heroId": "4513", "equipId": "2014", "compHeroId": "1907"}, {"heroId": "4513", "equipId": "2004", "compHeroId": "1907"}, {"heroId": "4512", "equipId": "41818", "compHeroId": "1908"}, {"heroId": "4512", "equipId": "2004", "compHeroId": "1908"}, {"heroId": "4512", "equipId": "2011", "compHeroId": "1908"}], "recommendedHexes": []}, {"compId": "110", "name": "射箭韦鲁斯", "gameCode": "【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0", "tier": "D", "stats": {"avgPlacement": 5.16, "pickRate": 0.01, "topRate": 4.43, "top4Rate": 37.4, "sampleCount": 361, "dataMode": "stats"}, "coreHeroes": [{"heroName": "韦鲁斯", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "凯尔", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 2}, {"heroName": "瑟庄妮", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "慎", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "蕾欧娜", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 1}, {"heroName": "厄斐琉斯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}], "traits": ["日蚀骑士", "迅捷射手", "地狱火", "护卫", "月蚀骑士", "重装战士", "主宰"], "equips": [{"heroId": "2502", "equipId": "2025", "compHeroId": "2271"}, {"heroId": "2502", "equipId": "2028", "compHeroId": "2271"}, {"heroId": "2502", "equipId": "2034", "compHeroId": "2271"}, {"heroId": "4509", "equipId": "2010", "compHeroId": "2272"}, {"heroId": "4509", "equipId": "2037", "compHeroId": "2272"}, {"heroId": "2512", "equipId": "2010", "compHeroId": "2275"}, {"heroId": "2512", "equipId": "2038", "compHeroId": "2275"}, {"heroId": "2512", "equipId": "2046", "compHeroId": "2275"}, {"heroId": "1507", "equipId": "2001", "compHeroId": "2270"}, {"heroId": "1507", "equipId": "2004", "compHeroId": "2270"}, {"heroId": "1507", "equipId": "2045", "compHeroId": "2270"}], "recommendedHexes": []}, {"compId": "87", "name": "双狼互保", "gameCode": "【阵容码】#双狼互保#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMjY0Mzgx", "tier": "D", "stats": {"avgPlacement": 5.14, "pickRate": 0, "topRate": 1.8, "top4Rate": 36.04, "sampleCount": 111, "dataMode": "stats"}, "coreHeroes": [{"heroName": "沃里克", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 2}, {"heroName": "暗影狼", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 2}, {"heroName": "墨菲特", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "绯红印记树怪", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "阿兹尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "雷克塞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["黑色荆棘", "劫掠梦魇", "峡谷野怪", "斗士", "魔岩巨兽"], "equips": [{"heroId": "4504", "equipId": "2028", "compHeroId": "1978"}, {"heroId": "4504", "equipId": "2025", "compHeroId": "1978"}, {"heroId": "4504", "equipId": "2034", "compHeroId": "1978"}, {"heroId": "2508", "equipId": "2004", "compHeroId": "1979"}, {"heroId": "2508", "equipId": "2007", "compHeroId": "1979"}, {"heroId": "2508", "equipId": "2012", "compHeroId": "1979"}, {"heroId": "2507", "equipId": "2045", "compHeroId": "1981"}, {"heroId": "2507", "equipId": "2005", "compHeroId": "1981"}, {"heroId": "2507", "equipId": "2039", "compHeroId": "1981"}, {"heroId": "3510", "equipId": "2010", "compHeroId": "1985"}, {"heroId": "3510", "equipId": "2020", "compHeroId": "1985"}, {"heroId": "3510", "equipId": "2046", "compHeroId": "1985"}], "recommendedHexes": []}, {"compId": "102", "name": "黑豹轮", "gameCode": "【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2", "tier": "D", "stats": {"avgPlacement": 5.28, "pickRate": 0.03, "topRate": 5.03, "top4Rate": 34.97, "sampleCount": 795, "dataMode": "stats"}, "coreHeroes": [{"heroName": "希维尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "奈德丽", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "墨菲特", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 4}, {"heroName": "塔里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 5}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "克格莫", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "雷克塞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "绯红树怪", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["峡谷野怪", "斗士", "黑荆棘", "猎人", "魔战士", "神谕", "野兽之灵", "重装战士", "宝石骑士", "帝王斑蝶", "魔岩巨兽"], "equips": [{"heroId": "4507", "equipId": "2042", "compHeroId": "2183"}, {"heroId": "4507", "equipId": "2038", "compHeroId": "2183"}, {"heroId": "4507", "equipId": "2010", "compHeroId": "2183"}, {"heroId": "4510", "equipId": "2045", "compHeroId": "2184"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2184"}, {"heroId": "4510", "equipId": "2001", "compHeroId": "2184"}, {"heroId": "4504", "equipId": "2034", "compHeroId": "2186"}, {"heroId": "4504", "equipId": "2028", "compHeroId": "2186"}, {"heroId": "4504", "equipId": "2028", "compHeroId": "2186"}], "recommendedHexes": []}, {"compId": "101", "name": "护卫蛇女", "gameCode": "【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz", "tier": "D", "stats": {"avgPlacement": 5.31, "pickRate": 0.01, "topRate": 3.79, "top4Rate": 33.65, "sampleCount": 211, "dataMode": "stats"}, "coreHeroes": [{"heroName": "卡西奥佩娅", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "拉莫斯", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "费德提克", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "莉莉娅", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "慎", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 2}, {"heroName": "蕾欧娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "奥恩", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["护卫", "法师", "绝命花妖"], "equips": [{"heroId": "3515", "equipId": "2025", "compHeroId": "2176"}, {"heroId": "3515", "equipId": "2028", "compHeroId": "2176"}, {"heroId": "3515", "equipId": "2034", "compHeroId": "2176"}, {"heroId": "3502", "equipId": "2025", "compHeroId": "2177"}, {"heroId": "3502", "equipId": "2028", "compHeroId": "2177"}, {"heroId": "3502", "equipId": "2034", "compHeroId": "2177"}, {"heroId": "3511", "equipId": "2004", "compHeroId": "2178"}, {"heroId": "3511", "equipId": "2011", "compHeroId": "2178"}, {"heroId": "3511", "equipId": "2020", "compHeroId": "2178"}], "recommendedHexes": []}, {"compId": "97", "name": "花仙狮子狗", "gameCode": "【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3", "tier": "D", "stats": {"avgPlacement": 5.48, "pickRate": 0.01, "topRate": 5.33, "top4Rate": 31.11, "sampleCount": 225, "dataMode": "stats"}, "coreHeroes": [{"heroName": "雷恩加尔", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "崔丝塔娜", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 3}, {"heroName": "拉莫斯", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "希维尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "莉莉娅", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "可酷伯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["约德尔人", "护卫", "花仙子", "猎人", "野兽之灵", "主宰", "宿敌"], "equips": [{"heroId": "3504", "equipId": "41804", "compHeroId": "2096"}, {"heroId": "3504", "equipId": "2010", "compHeroId": "2096"}, {"heroId": "3504", "equipId": "2005", "compHeroId": "2096"}, {"heroId": "3515", "equipId": "2034", "compHeroId": "2264"}, {"heroId": "3515", "equipId": "2028", "compHeroId": "2264"}, {"heroId": "3515", "equipId": "2025", "compHeroId": "2264"}, {"heroId": "4510", "equipId": "2009", "compHeroId": "2265"}, {"heroId": "4510", "equipId": "2037", "compHeroId": "2265"}, {"heroId": "4510", "equipId": "2004", "compHeroId": "2265"}, {"heroId": "3508", "equipId": "2013", "compHeroId": "2266"}, {"heroId": "3508", "equipId": "2010", "compHeroId": "2266"}, {"heroId": "3508", "equipId": "2003", "compHeroId": "2266"}, {"heroId": "3501", "equipId": "2034", "compHeroId": "2267"}, {"heroId": "3501", "equipId": "2028", "compHeroId": "2267"}, {"heroId": "3501", "equipId": "2025", "compHeroId": "2267"}], "recommendedHexes": []}, {"compId": "98", "name": "花仙小炮", "gameCode": "【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5", "tier": "D", "stats": {"avgPlacement": 5.53, "pickRate": 0.02, "topRate": 2.76, "top4Rate": 30.4, "sampleCount": 398, "dataMode": "stats"}, "coreHeroes": [{"heroName": "崔丝塔娜", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "拉莫斯", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "希维尔", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "莉莉娅", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "蔚", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "霞", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "可酷伯", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}, {"heroName": "洛", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["花仙子", "约德尔人", "护卫", "猎人", "野兽之灵", "主宰"], "equips": [{"heroId": "3515", "equipId": "2025", "compHeroId": "2104"}, {"heroId": "3515", "equipId": "2028", "compHeroId": "2104"}, {"heroId": "3515", "equipId": "2034", "compHeroId": "2104"}, {"heroId": "3508", "equipId": "2003", "compHeroId": "2105"}, {"heroId": "3508", "equipId": "2010", "compHeroId": "2105"}, {"heroId": "3508", "equipId": "2013", "compHeroId": "2105"}, {"heroId": "4510", "equipId": "2001", "compHeroId": "2106"}, {"heroId": "4510", "equipId": "2037", "compHeroId": "2106"}, {"heroId": "4510", "equipId": "2009", "compHeroId": "2106"}], "recommendedHexes": []}, {"compId": "96", "name": "召唤鸡哥", "gameCode": "【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2", "tier": "D", "stats": {"avgPlacement": 6.26, "pickRate": 0, "topRate": 3.31, "top4Rate": 19.83, "sampleCount": 121, "dataMode": "stats"}, "coreHeroes": [{"heroName": "深红锋喙鸟", "isCarry": true, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "厄斐琉斯", "isCarry": false, "isSubCarry": true, "isCore": true, "price": 4}, {"heroName": "远古石甲虫", "isCarry": false, "isSubCarry": false, "isCore": true, "price": 3}, {"heroName": "瑟提", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "婕拉", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "苍蓝雕纹魔像", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 4}, {"heroName": "黛安娜", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 3}, {"heroName": "约里克", "isCarry": false, "isSubCarry": false, "isCore": false, "price": 1}], "traits": ["峡谷野怪", "召唤师", "斗士", "迅捷射手", "月蚀骑士", "重装战士", "荆棘之兴"], "equips": [{"heroId": "4505", "equipId": "2029", "compHeroId": "2137"}, {"heroId": "4505", "equipId": "2032", "compHeroId": "2137"}, {"heroId": "4505", "equipId": "2034", "compHeroId": "2137"}, {"heroId": "3503", "equipId": "2025", "compHeroId": "2139"}, {"heroId": "3503", "equipId": "2028", "compHeroId": "2139"}, {"heroId": "3503", "equipId": "2034", "compHeroId": "2139"}, {"heroId": "3509", "equipId": "2010", "compHeroId": "2140"}, {"heroId": "3509", "equipId": "2013", "compHeroId": "2140"}, {"heroId": "3509", "equipId": "2045", "compHeroId": "2140"}, {"heroId": "4509", "equipId": "2001", "compHeroId": "2141"}, {"heroId": "4509", "equipId": "2010", "compHeroId": "2141"}, {"heroId": "4509", "equipId": "2045", "compHeroId": "2141"}], "recommendedHexes": []}];
+
+const ALL_HEXES = [...new Set(COMPOSITIONS.flatMap(c => (c.recommendedHexes || []).map(h => h.name)))].sort();
+const ALL_TRAITS = [...new Set(COMPOSITIONS.flatMap(c => c.traits || []))].sort();
+const TOTAL_SAMPLES = COMPOSITIONS.reduce((sum, c) => sum + c.stats.sampleCount, 0);
+
+// 只保留有阵容码的
+const VALID_COMPS = COMPOSITIONS.filter(c => c.gameCode);
+
+let currentSort = { field: 'top4Rate', asc: false };
+let searchQuery = '';
+let selectedHexes = new Set();
+let selectedTraits = new Set();
+
+function copyCode(code, btn) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = '已复制';
+      btn.classList.add('copied');
+      showToast('阵容码已复制到剪贴板');
+      setTimeout(() => {
+        btn.textContent = '复制';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  } else {
+    // 降级方案
+    const textarea = document.createElement('textarea');
+    textarea.value = code;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    btn.textContent = '已复制';
+    btn.classList.add('copied');
+    showToast('阵容码已复制到剪贴板');
+    setTimeout(() => {
+      btn.textContent = '复制';
+      btn.classList.remove('copied');
+    }, 2000);
+  }
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+function getTierClass(tier) {
+  return 'tier-' + (tier || 'D');
+}
+
+function formatNum(num, decimals = 1) {
+  return Number(num).toFixed(decimals);
+}
+
+function getStatClass(value, type) {
+  if (type === 'top4Rate') {
+    if (value >= 55) return 'good';
+    if (value >= 45) return 'warn';
+    return 'bad';
+  }
+  if (type === 'topRate') {
+    if (value >= 20) return 'good';
+    if (value >= 10) return 'warn';
+    return 'bad';
+  }
+  if (type === 'avgPlacement') {
+    if (value <= 4) return 'good';
+    if (value <= 4.5) return 'warn';
+    return 'bad';
+  }
+  return '';
+}
+
+function renderCard(c) {
+  const heroes = (c.coreHeroes || []).sort((a, b) => b.price - a.price);
+  const heroTags = heroes.map(h => {
+    let cls = 'hero-tag';
+    let prefix = '';
+    if (h.isCarry) { cls += ' carry'; prefix = '★'; }
+    else if (h.isSubCarry) { cls += ' subcarry'; prefix = '◇'; }
+    else if (h.isCore) { cls += ' core'; prefix = '●'; }
+    return `<span class="${cls}">${prefix}${h.heroName}<span class="hero-price">${h.price}费</span></span>`;
+  }).join('');
+
+  const traitTags = (c.traits || []).slice(0, 6).map(t => 
+    `<span class="trait-tag">${t}</span>`
+  ).join('');
+
+  return `
+    <div class="comp-card">
+      <div class="comp-card-header">
+        <span class="tier-badge ${getTierClass(c.tier)}">${c.tier}</span>
+        <span class="comp-card-title">${c.name}</span>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-label">平均名次</div>
+          <div class="stat-value ${getStatClass(c.stats.avgPlacement, 'avgPlacement')}">${formatNum(c.stats.avgPlacement)}</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">前四率</div>
+          <div class="stat-value ${getStatClass(c.stats.top4Rate, 'top4Rate')}">${formatNum(c.stats.top4Rate)}%</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">吃鸡率</div>
+          <div class="stat-value ${getStatClass(c.stats.topRate, 'topRate')}">${formatNum(c.stats.topRate)}%</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">选取率</div>
+          <div class="stat-value">${formatNum(c.stats.pickRate)}%</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">样本量</div>
+          <div class="stat-value">${c.stats.sampleCount.toLocaleString()}</div>
+        </div>
+      </div>
+      <div class="code-box">
+        <span class="code-text" title="${c.gameCode}">${c.gameCode.substring(0, 20)}...</span>
+        <button class="copy-btn" onclick="copyCode('${c.gameCode.replace(/'/g, "\'")}', this)">复制</button>
+      </div>
+      <div class="heroes-section">
+        ${heroTags}
+      </div>
+      <div class="traits-section">
+        ${traitTags}
+      </div>
+    </div>
+  `;
+}
+
+function renderTierSections() {
+  const container = document.getElementById('tier-sections');
+  const tiers = ['S', 'A', 'B', 'C', 'D'];
+  
+  const filteredComps = VALID_COMPS.filter(c => filterMatch(c));
+  
+  let html = '';
+  for (const tier of tiers) {
+    const tierComps = filteredComps.filter(c => c.tier === tier);
+    if (tierComps.length === 0) continue;
+    
+    // 按前四率降序排列
+    tierComps.sort((a, b) => b.stats.top4Rate - a.stats.top4Rate);
+    
+    const cardsHtml = tierComps.map(c => renderCard(c)).join('');
+    
+    html += `
+      <div class="tier-section">
+        <div class="tier-section-header">
+          <span class="tier-badge ${getTierClass(tier)}">${tier}</span>
+          <span class="tier-section-title">${tier}级阵容</span>
+          <span class="tier-count">${tierComps.length} 个阵容</span>
+        </div>
+        <div class="cards-grid">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+  }
+  
+  container.innerHTML = html;
+}
+
+function filterMatch(c) {
+  if (!searchQuery) return true;
+  const q = searchQuery.toLowerCase();
+  
+  // 匹配名称
+  if (c.name.toLowerCase().includes(q)) return true;
+  
+  // 匹配英雄
+  if ((c.coreHeroes || []).some(h => h.heroName.toLowerCase().includes(q))) return true;
+  
+  // 匹配羁绊
+  if ((c.traits || []).some(t => t.toLowerCase().includes(q))) return true;
+  
+  return false;
+}
+
+function filterCompositions() {
+  searchQuery = document.getElementById('searchInput').value;
+  renderTierSections();
+  renderRanking();
+}
+
+function sortTable(field) {
+  if (currentSort.field === field) {
+    currentSort.asc = !currentSort.asc;
+  } else {
+    currentSort.field = field;
+    currentSort.asc = false; // 默认降序
+  }
+  
+  // 更新排序箭头
+  const headers = document.querySelectorAll('.ranking-table th');
+  headers.forEach(th => {
+    const arrow = th.querySelector('.sort-arrow');
+    if (arrow) arrow.textContent = '↕';
+  });
+  
+  const fieldMap = {
+    'rank': 0, 'name': 1, 'tier': 2, 'avgPlacement': 3,
+    'top4Rate': 4, 'topRate': 5, 'pickRate': 6, 'sampleCount': 7
+  };
+  const idx = fieldMap[field];
+  if (idx !== undefined && headers[idx]) {
+    const arrow = headers[idx].querySelector('.sort-arrow');
+    if (arrow) arrow.textContent = currentSort.asc ? '↑' : '↓';
+  }
+  
+  renderRanking();
+}
+
+function renderRanking() {
+  const tbody = document.getElementById('rankingBody');
+  
+  let comps = [...VALID_COMPS].filter(c => filterMatch(c));
+  
+  // 排序
+  const tierOrder = { S: 0, A: 1, B: 2, C: 3, D: 4 };
+  
+  comps.sort((a, b) => {
+    let valA, valB;
+    
+    switch (currentSort.field) {
+      case 'name':
+        valA = a.name;
+        valB = b.name;
+        return currentSort.asc ? valA.localeCompare(valB, 'zh') : valB.localeCompare(valA, 'zh');
+      case 'tier':
+        valA = tierOrder[a.tier] || 5;
+        valB = tierOrder[b.tier] || 5;
+        return currentSort.asc ? valA - valB : valB - valA;
+      case 'avgPlacement':
+        valA = a.stats.avgPlacement;
+        valB = b.stats.avgPlacement;
+        // 平均名次数值越小越好，默认升序（第一名在前）
+        return currentSort.asc ? valA - valB : valB - valA;
+      case 'top4Rate':
+        valA = a.stats.top4Rate;
+        valB = b.stats.top4Rate;
+        return currentSort.asc ? valA - valB : valB - valA;
+      case 'topRate':
+        valA = a.stats.topRate;
+        valB = b.stats.topRate;
+        return currentSort.asc ? valA - valB : valB - valA;
+      case 'pickRate':
+        valA = a.stats.pickRate;
+        valB = b.stats.pickRate;
+        return currentSort.asc ? valA - valB : valB - valA;
+      case 'sampleCount':
+        valA = a.stats.sampleCount;
+        valB = b.stats.sampleCount;
+        return currentSort.asc ? valA - valB : valB - valA;
+      case 'rank':
+      default:
+        valA = a.stats.top4Rate;
+        valB = b.stats.top4Rate;
+        return currentSort.asc ? valA - valB : valB - valA;
+    }
+  });
+  
+  let html = '';
+  comps.forEach((c, i) => {
+    const rank = i + 1;
+    let rankClass = '';
+    let highlightClass = '';
+    if (rank === 1) { rankClass = 'rank-1'; highlightClass = 'highlight'; }
+    else if (rank === 2) { rankClass = 'rank-2'; highlightClass = 'highlight'; }
+    else if (rank === 3) { rankClass = 'rank-3'; highlightClass = 'highlight'; }
+    
+    html += `
+      <tr class="${highlightClass}">
+        <td class="rank-num ${rankClass}">${rank}</td>
+        <td class="comp-name-cell">${c.name}</td>
+        <td><span class="tier-badge ${getTierClass(c.tier)}" style="width:28px;height:28px;font-size:0.8rem;">${c.tier}</span></td>
+        <td class="stat-value ${getStatClass(c.stats.avgPlacement, 'avgPlacement')}">${formatNum(c.stats.avgPlacement)}</td>
+        <td class="stat-value ${getStatClass(c.stats.top4Rate, 'top4Rate')}">${formatNum(c.stats.top4Rate)}%</td>
+        <td class="stat-value ${getStatClass(c.stats.topRate, 'topRate')}">${formatNum(c.stats.topRate)}%</td>
+        <td class="stat-value">${formatNum(c.stats.pickRate)}%</td>
+        <td class="stat-value">${c.stats.sampleCount.toLocaleString()}</td>
+        <td>
+          <div class="code-box" style="max-width:150px;">
+            <button class="copy-btn" onclick="copyCode('${c.gameCode.replace(/'/g, "\'")}', this)">复制</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+  
+  tbody.innerHTML = html;
+}
+
+function renderFilters() {
+  const hexContainer = document.getElementById('hexFilterList');
+  const traitContainer = document.getElementById('traitFilterList');
+  
+  if (ALL_HEXES.length === 0) {
+    hexContainer.innerHTML = '<span style="color: var(--text-muted); font-size: 0.85rem;">暂无数据</span>';
+  } else {
+    hexContainer.innerHTML = ALL_HEXES.map(h => 
+      `<span class="filter-item hex" onclick="toggleHex('${h.replace(/'/g, "\'")}')">${h}</span>`
+    ).join('');
+  }
+  
+  traitContainer.innerHTML = ALL_TRAITS.map(t => 
+    `<span class="filter-item" onclick="toggleTrait('${t.replace(/'/g, "\'")}')">${t}</span>`
+  ).join('');
+}
+
+function toggleHex(name) {
+  if (selectedHexes.has(name)) {
+    selectedHexes.delete(name);
+  } else {
+    selectedHexes.add(name);
+  }
+  updateFilterUI();
+  renderFilterResults();
+}
+
+function toggleTrait(name) {
+  if (selectedTraits.has(name)) {
+    selectedTraits.delete(name);
+  } else {
+    selectedTraits.add(name);
+  }
+  updateFilterUI();
+  renderFilterResults();
+}
+
+function updateFilterUI() {
+  document.querySelectorAll('#hexFilterList .filter-item').forEach(el => {
+    const name = el.textContent;
+    if (selectedHexes.has(name)) {
+      el.classList.add('checked');
+    } else {
+      el.classList.remove('checked');
+    }
+  });
+  
+  document.querySelectorAll('#traitFilterList .filter-item').forEach(el => {
+    const name = el.textContent;
+    if (selectedTraits.has(name)) {
+      el.classList.add('checked');
+    } else {
+      el.classList.remove('checked');
+    }
+  });
+}
+
+function renderFilterResults() {
+  const container = document.getElementById('filterResults');
+  
+  if (selectedHexes.size === 0 && selectedTraits.size === 0) {
+    container.innerHTML = '<div class="filter-empty">请选择上方的强化符文或羁绊进行筛选</div>';
+    return;
+  }
+  
+  let filtered = VALID_COMPS.filter(c => {
+    // 海克斯筛选（AND逻辑）
+    if (selectedHexes.size > 0) {
+      const compHexes = (c.recommendedHexes || []).map(h => h.name);
+      for (const hex of selectedHexes) {
+        if (!compHexes.includes(hex)) return false;
+      }
+    }
+    
+    // 羁绊筛选（AND逻辑）
+    if (selectedTraits.size > 0) {
+      const compTraits = c.traits || [];
+      for (const trait of selectedTraits) {
+        if (!compTraits.includes(trait)) return false;
+      }
+    }
+    
+    return true;
+  });
+  
+  filtered.sort((a, b) => b.stats.top4Rate - a.stats.top4Rate);
+  
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="filter-empty">没有找到匹配的阵容</div>';
+    return;
+  }
+  
+  container.innerHTML = filtered.map(c => renderCard(c)).join('');
+}
+
+function renderRecommendations() {
+  const container = document.getElementById('recGrid');
+  
+  // 前四率最高
+  const byTop4 = [...VALID_COMPS].sort((a, b) => b.stats.top4Rate - a.stats.top4Rate)[0];
+  
+  // 吃鸡率最高
+  const byTopRate = [...VALID_COMPS].sort((a, b) => b.stats.topRate - a.stats.topRate)[0];
+  
+  // 最稳定（样本>1000的前四率最高）
+  const stable = [...VALID_COMPS].filter(c => c.stats.sampleCount > 1000)
+    .sort((a, b) => b.stats.top4Rate - a.stats.top4Rate)[0];
+  
+  // 低分段推荐（C/D级，样本多的）
+  const lowTier = [...VALID_COMPS].filter(c => c.tier === 'C' || c.tier === 'D')
+    .sort((a, b) => b.stats.sampleCount - a.stats.sampleCount)[0];
+  
+  // 高分段推荐（S/A级，前四率最高）
+  const highTier = [...VALID_COMPS].filter(c => c.tier === 'S' || c.tier === 'A')
+    .sort((a, b) => b.stats.top4Rate - a.stats.top4Rate)[0];
+  
+  const recs = [
+    { title: '前四率最高', comp: byTop4, color: '#ffd700' },
+    { title: '吃鸡率最高', comp: byTopRate, color: '#f85149' },
+    { title: '最稳定阵容', comp: stable, color: '#4caf50' },
+    { title: '低分段推荐', comp: lowTier, color: '#c77dff' },
+    { title: '高分段首选', comp: highTier, color: '#58a6ff' },
+  ];
+  
+  let html = '';
+  for (const rec of recs) {
+    if (!rec.comp) continue;
+    const c = rec.comp;
+    html += `
+      <div class="rec-card">
+        <div class="rec-card-title" style="color: ${rec.color};">${rec.title}</div>
+        <div class="rec-card-name">
+          <span class="tier-badge ${getTierClass(c.tier)}" style="width:32px;height:32px;font-size:0.9rem;">${c.tier}</span>
+          ${c.name}
+        </div>
+        <div class="rec-card-stats">
+          <div class="rec-stat">
+            <div class="rec-stat-label">前四率</div>
+            <div class="rec-stat-value ${getStatClass(c.stats.top4Rate, 'top4Rate')}">${formatNum(c.stats.top4Rate)}%</div>
+          </div>
+          <div class="rec-stat">
+            <div class="rec-stat-label">吃鸡率</div>
+            <div class="rec-stat-value ${getStatClass(c.stats.topRate, 'topRate')}">${formatNum(c.stats.topRate)}%</div>
+          </div>
+          <div class="rec-stat">
+            <div class="rec-stat-label">样本量</div>
+            <div class="rec-stat-value">${c.stats.sampleCount.toLocaleString()}</div>
+          </div>
+        </div>
+        <div class="code-box">
+          <button class="copy-btn" onclick="copyCode('${c.gameCode.replace(/'/g, "\'")}', this)" style="width:100%;">复制阵容码</button>
+        </div>
+      </div>
+    `;
+  }
+  
+  container.innerHTML = html;
+}
+
+// 初始化
+renderTierSections();
+renderRanking();
+renderFilters();
+renderRecommendations();
+</script>
+</body>
+</html>
