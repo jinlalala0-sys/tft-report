@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFT阵容数据报告 2026-10-08 - 恭喜发财模式</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'PingFang SC', 'Microsoft YaHei', 'STKaiti', 'KaiTi', sans-serif; background: #1a0a0a; color: #ffe0c0; line-height: 1.6; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+.header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #2b0505, #4a0a0a, #3d0808); border-radius: 12px; margin-bottom: 30px; border: 1px solid #6b2020; position: relative; overflow: hidden; }
+.header::before { content: '恭 喜 发 财'; position: absolute; font-size: 8em; opacity: 0.05; top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; }
+.header h1 { font-size: 2.2em; color: #ffd700; margin-bottom: 10px; position: relative; z-index: 1; }
+.header .theme-badge { display: inline-block; padding: 4px 14px; background: #2a1a05; color: #ffd700; border-radius: 20px; font-size: 0.8em; margin-bottom: 10px; position: relative; z-index: 1; }
+.header .meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 15px; position: relative; z-index: 1; }
+.header .meta-item { background: #2a0a0a; padding: 6px 16px; border-radius: 20px; font-size: 0.9em; color: #ffaa00; border: 1px solid #4a2020; }
+.header .meta-item b { color: #ffd700; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.4em; color: #ffd700; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #5a3020; display: flex; align-items: center; gap: 10px; }
+.section-title::before { content: ''; width: 4px; height: 24px; background: #ffd700; border-radius: 2px; }
+.comp-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.comp-table th { background: #2a0505; padding: 10px 8px; text-align: left; color: #ffaa00; font-weight: 600; border-bottom: 2px solid #5a3020; position: sticky; top: 0; }
+.comp-table td { padding: 8px; border-bottom: 1px solid #3a1010; vertical-align: top; }
+.comp-table tr:hover { background: #3a0a0a; }
+.rank { text-align: center; color: #8a6030; font-weight: bold; }
+.tier-cell { text-align: center; }
+.tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; color: #fff; font-weight: bold; font-size: 0.85em; }
+.tier-S { background: #cc2222 ; }
+.tier-A { background: #cc6600 ; }
+.tier-B { background: #ccaa00 ; }
+.tier-C { background: #44aa44 ; }
+.tier-D { background: #666666 ; }
+.tier-badge-lg { display: inline-block; padding: 4px 12px; border-radius: 6px; color: #fff; font-weight: bold; }
+.name { font-weight: 600; color: #fff8e0; white-space: nowrap; }
+.hero { display: inline-block; margin: 1px 2px; padding: 1px 6px; background: #3a1515; border-radius: 3px; font-size: 0.85em; }
+.hero.carry { background: #4a2020; color: #ffcc66; border: 1px solid #8a5020; }
+.trait { display: inline-block; margin: 1px 2px; padding: 1px 6px; background: #2a1a10; border-radius: 3px; font-size: 0.8em; color: #ddbb80; }
+.stat { text-align: center; font-family: 'Consolas', monospace; }
+.stat.sample { color: #8a6030; font-size: 0.85em; }
+.hexes { max-width: 150px; }
+.hex { display: block; font-size: 0.75em; color: #88aa44; margin: 1px 0; }
+.gamecode { min-width: 200px; }
+.gc-box { cursor: pointer; display: flex; align-items: center; gap: 5px; background: #2a0505; padding: 4px 8px; border-radius: 4px; border: 1px solid #5a3020; transition: all 0.2s; }
+.gc-box:hover { border-color: #ffd700; background: #3a0a0a; }
+.gc-text { font-size: 0.75em; color: #88cc44; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+.copy-btn { font-size: 0.7em; color: #ffd700; white-space: nowrap; }
+.rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+.rec-card { background: #2a0808; border: 1px solid #5a2020; border-radius: 8px; padding: 15px; cursor: pointer; transition: all 0.2s; }
+.rec-card:hover { border-color: #ffd700; transform: translateY(-2px); }
+.rec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.rec-name { font-size: 1.1em; font-weight: 600; color: #fff8e0; }
+.rec-heroes { margin-bottom: 8px; }
+.rec-hero { display: inline-block; margin: 1px 2px; padding: 2px 8px; background: #3a1515; border-radius: 3px; font-size: 0.85em; }
+.rec-stats { display: flex; gap: 12px; margin-bottom: 8px; }
+.rec-stat { font-size: 0.8em; color: #8a6030; }
+.rec-stat b { color: #ffd700; }
+.rec-gc { font-size: 0.7em; color: #88cc44; font-family: monospace; word-break: break-all; }
+.filter-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.filter-btn { padding: 6px 16px; background: #2a0505; border: 1px solid #4a2020; border-radius: 20px; color: #8a6030; cursor: pointer; font-size: 0.9em; transition: all 0.2s; }
+.filter-btn:hover { border-color: #ffd700; color: #ffe0c0; }
+.filter-btn.active { background: #ffd700; color: #1a0a0a; border-color: #ffd700; font-weight: 600; }
+.tier-section { margin-bottom: 30px; }
+.tier-title { font-size: 1.2em; color: #ffd700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #5a3020; display: flex; align-items: center; gap: 10px; }
+.tier-count { font-size: 0.8em; color: #8a6030; }
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #ffd700; color: #1a0a0a; padding: 10px 24px; border-radius: 8px; font-weight: 600; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 999; }
+.toast.show { opacity: 1; }
+.comp-row.hidden { display: none; }
+.footer { text-align: center; padding: 30px 0; color: #8a6030; font-size: 0.8em; }
+.footer a { color: #ffd700; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="theme-badge">恭喜发财模式</div>
+        <h1>恭喜发财 · TFT阵容数据</h1>
+        <div class="meta">
+            <span class="meta-item">🏮 <b>2026-10-08</b></span>
+            <span class="meta-item">🎲 <b>18.3</b></span>
+            <span class="meta-item">🎯 <b>260,280</b> 局</span>
+            <span class="meta-item">📋 <b>37</b> 阵容</span>
+            <span class="meta-item">数据来源 <b>dataj.cc</b></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">胜率排行（前四率排序）</h2>
+        <table class="comp-table">
+            <thead><tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr></thead>
+            <tbody>    <tr class="comp-row" data-tier="S">
+        <td class="rank">1</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">野怪小红</td>
+        <td class="heroes"><span class="hero carry">绯红树怪 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">远古石甲虫</span><span class="hero">苍蓝哨戒</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">顶级掠食者</span></td>
+        <td class="stat">62.9%</td>
+        <td class="stat">17.8%</td>
+        <td class="stat">3.79</td>
+        <td class="stat">0.27%</td>
+        <td class="stat sample">8,700</td>
+        <td class="hexes"><span class="hex">欧米茄之怪 8.63%</span><span class="hex">纵深 II 4.14%</span><span class="hex">炽天使之拥 3.8%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx')" title="点击复制阵容码">
+                <span class="gc-text">#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">2</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">古纳拉95</td>
+        <td class="heroes"><span class="hero carry">拉露恩 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">纳尔</span><span class="hero">苍蓝雕纹魔像</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">永恒之森</span> <span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span> <span class="trait">月华神女</span></td>
+        <td class="stat">62.4%</td>
+        <td class="stat">22.8%</td>
+        <td class="stat">3.81</td>
+        <td class="stat">0.09%</td>
+        <td class="stat sample">2,885</td>
+        <td class="hexes"><span class="hex">生日聚会 6.24%</span><span class="hex">后期收益 2.87%</span><span class="hex">双排 2.75%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx')" title="点击复制阵容码">
+                <span class="gc-text">#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">3</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">黑暗仪式蜘蛛</td>
+        <td class="heroes"><span class="hero carry">伊莉丝 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">卡西奥佩娅 ☆</span><span class="hero">黛安娜</span><span class="hero">赫卡里姆</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">魔女</span> <span class="trait">法师</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">月华神女</span></td>
+        <td class="stat">62.4%</td>
+        <td class="stat">27.8%</td>
+        <td class="stat">3.77</td>
+        <td class="stat">0.25%</td>
+        <td class="stat sample">7,982</td>
+        <td class="hexes"><span class="hex">黑暗仪式 32.81%</span><span class="hex">飞升 3.99%</span><span class="hex">双城赢家 3.25%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz')" title="点击复制阵容码">
+                <span class="gc-text">#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">4</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">射箭韦鲁斯</td>
+        <td class="heroes"><span class="hero carry">韦鲁斯 ★</span><span class="hero">凯尔 ☆</span><span class="hero">瑟庄妮</span><span class="hero">慎</span><span class="hero">蕾欧娜</span><span class="hero">洛</span></td>
+        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">迅捷射手</span> <span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
+        <td class="stat">61.5%</td>
+        <td class="stat">16.3%</td>
+        <td class="stat">3.90</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">221</td>
+        <td class="hexes"><span class="hex">值得等待 5.43%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">大百宝袋 3.52%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0')" title="点击复制阵容码">
+                <span class="gc-text">#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">5</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">重装女警</td>
+        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
+        <td class="stat">60.5%</td>
+        <td class="stat">10.0%</td>
+        <td class="stat">4.01</td>
+        <td class="stat">0.07%</td>
+        <td class="stat sample">2,357</td>
+        <td class="hexes"><span class="hex">双城赢家 4.31%</span><span class="hex">飞升 3.69%</span><span class="hex">英勇福袋++ 3.2%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3')" title="点击复制阵容码">
+                <span class="gc-text">#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">6</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">献祭三狼</td>
+        <td class="heroes"><span class="hero carry">沃里克 ★</span><span class="hero">阿兹尔 ☆</span><span class="hero">卡兹克</span><span class="hero">暗影狼</span><span class="hero">伊莉丝</span></td>
+        <td class="traits"><span class="trait">狂战士</span> <span class="trait">裁决使</span> <span class="trait">黑荆棘</span> <span class="trait">重装战士</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
+        <td class="stat">60.5%</td>
+        <td class="stat">8.8%</td>
+        <td class="stat">4.05</td>
+        <td class="stat">0.22%</td>
+        <td class="stat sample">7,282</td>
+        <td class="hexes"><span class="hex">便携锻炉 7.63%</span><span class="hex">挑战者的优雅 3.57%</span><span class="hex">双城赢家 3.39%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw')" title="点击复制阵容码">
+                <span class="gc-text">#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">7</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">主宰女警</td>
+        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">峡谷迅捷蟹</span><span class="hero">瑟庄妮</span></td>
+        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span></td>
+        <td class="stat">59.3%</td>
+        <td class="stat">12.0%</td>
+        <td class="stat">4.04</td>
+        <td class="stat">0.17%</td>
+        <td class="stat sample">5,641</td>
+        <td class="hexes"><span class="hex">双城赢家 4.36%</span><span class="hex">更要命的战刃 3.59%</span><span class="hex">飞升 3.06%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy')" title="点击复制阵容码">
+                <span class="gc-text">#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">8</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">7野怪鸡哥</td>
+        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">绯红印记树怪</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">狂战士</span> <span class="trait">神谕</span></td>
+        <td class="stat">58.1%</td>
+        <td class="stat">14.6%</td>
+        <td class="stat">4.03</td>
+        <td class="stat">1.07%</td>
+        <td class="stat sample">34,907</td>
+        <td class="hexes"><span class="hex">欧米茄之怪 6.81%</span><span class="hex">纵深 II 4.54%</span><span class="hex">双城赢家 2.69%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5')" title="点击复制阵容码">
+                <span class="gc-text">#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">9</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">5迅射月男</td>
+        <td class="heroes"><span class="hero">绯红印记树怪</span><span class="hero">阿木木</span></td>
+        <td class="traits"><span class="trait">迅捷射手</span> <span class="trait">峡谷野怪</span> <span class="trait">地狱火</span> <span class="trait">花仙子</span> <span class="trait">狂战士</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
+        <td class="stat">57.7%</td>
+        <td class="stat">10.8%</td>
+        <td class="stat">4.19</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,388</td>
+        <td class="hexes"><span class="hex">后排蓝图 6.87%</span><span class="hex">金色炊具 6.67%</span><span class="hex">双城赢家 4.85%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz')" title="点击复制阵容码">
+                <span class="gc-text">#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">10</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">永森95</td>
+        <td class="heroes"><span class="hero carry">伊泽瑞尔 ★</span><span class="hero">德莱文 ☆</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">地狱火</span> <span class="trait">斗士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">赏金猎人</span></td>
+        <td class="stat">57.6%</td>
+        <td class="stat">23.0%</td>
+        <td class="stat">4.01</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">165</td>
+        <td class="hexes"><span class="hex">双排 3.3%</span><span class="hex">拼盘天梯 3.3%</span><span class="hex">生日聚会 3.11%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3')" title="点击复制阵容码">
+                <span class="gc-text">#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">11</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">裁决螳螂</td>
+        <td class="heroes"><span class="hero carry">卡兹克 ★</span><span class="hero">索拉卡 ☆</span><span class="hero">费德提克</span><span class="hero">赫卡里姆</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">宿敌</span></td>
+        <td class="stat">55.4%</td>
+        <td class="stat">12.7%</td>
+        <td class="stat">4.23</td>
+        <td class="stat">0.34%</td>
+        <td class="stat sample">11,072</td>
+        <td class="hexes"><span class="hex">便携锻炉 4.66%</span><span class="hex">双城赢家 3.63%</span><span class="hex">英勇福袋++ 3.24%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5')" title="点击复制阵容码">
+                <span class="gc-text">#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="A">
+        <td class="rank">12</td>
+        <td class="tier-cell"><span class="tier-badge tier-A">A</span></td>
+        <td class="name">卡丽蜜儿</td>
+        <td class="heroes"><span class="hero carry">阿卡丽 ★</span><span class="hero">卡蜜尔 ☆</span><span class="hero">奥恩</span><span class="hero">韦鲁斯</span><span class="hero">蕾欧娜</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">日蚀骑士</span> <span class="trait">护卫</span> <span class="trait">狂战士</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
+        <td class="stat">54.7%</td>
+        <td class="stat">11.8%</td>
+        <td class="stat">4.31</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,149</td>
+        <td class="hexes"><span class="hex">宝宝学院 14.16%</span><span class="hex">便携锻炉 7.37%</span><span class="hex">不侦察，不变阵 3.68%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2')" title="点击复制阵容码">
+                <span class="gc-text">#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">13</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">巨龙95</td>
+        <td class="heroes"><span class="hero carry">远古巨龙 ★</span><span class="hero">德莱文 ☆</span><span class="hero">茂凯</span><span class="hero">苍蓝雕纹魔像</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">顶级掠食者</span> <span class="trait">赏金猎人</span> <span class="trait">远古树精</span></td>
+        <td class="stat">54.7%</td>
+        <td class="stat">21.6%</td>
+        <td class="stat">4.17</td>
+        <td class="stat">0.18%</td>
+        <td class="stat sample">5,743</td>
+        <td class="hexes"><span class="hex">生日聚会 3.47%</span><span class="hex">双排 2.78%</span><span class="hex">厨神阿福 2.78%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz')" title="点击复制阵容码">
+                <span class="gc-text">#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="A">
+        <td class="rank">14</td>
+        <td class="tier-cell"><span class="tier-badge tier-A">A</span></td>
+        <td class="name">森林月男</td>
+        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">伊泽瑞尔 ☆</span><span class="hero">莉莉娅</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">斗士</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">绝命花妖</span></td>
+        <td class="stat">53.9%</td>
+        <td class="stat">15.3%</td>
+        <td class="stat">4.27</td>
+        <td class="stat">0.21%</td>
+        <td class="stat sample">6,969</td>
+        <td class="hexes"><span class="hex">厨神阿福 5.39%</span><span class="hex">蔓延之根 5.08%</span><span class="hex">飞升 3.53%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy')" title="点击复制阵容码">
+                <span class="gc-text">#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="A">
+        <td class="rank">15</td>
+        <td class="tier-cell"><span class="tier-badge tier-A">A</span></td>
+        <td class="name">地狱火95</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">凯南</span><span class="hero">阿木木</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span></td>
+        <td class="stat">51.0%</td>
+        <td class="stat">18.4%</td>
+        <td class="stat">4.38</td>
+        <td class="stat">0.34%</td>
+        <td class="stat sample">11,003</td>
+        <td class="hexes"><span class="hex">厨神阿福 14.79%</span><span class="hex">阿福的百宝袋 3.85%</span><span class="hex">双排 2.92%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw')" title="点击复制阵容码">
+                <span class="gc-text">#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="B">
+        <td class="rank">16</td>
+        <td class="tier-cell"><span class="tier-badge tier-B">B</span></td>
+        <td class="name">6主宰Flex</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">阿木木</span></td>
+        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">远古树精</span></td>
+        <td class="stat">50.4%</td>
+        <td class="stat">11.6%</td>
+        <td class="stat">4.48</td>
+        <td class="stat">1.03%</td>
+        <td class="stat sample">33,476</td>
+        <td class="hexes"><span class="hex">炽天使之拥 8.71%</span><span class="hex">飞升 4.78%</span><span class="hex">双城赢家 2.95%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5')" title="点击复制阵容码">
+                <span class="gc-text">#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="B">
+        <td class="rank">17</td>
+        <td class="tier-cell"><span class="tier-badge tier-B">B</span></td>
+        <td class="name">森林妖姬天使</td>
+        <td class="heroes"><span class="hero carry">凯尔 ★</span><span class="hero">奥恩</span><span class="hero">蕾欧娜</span><span class="hero">霞</span></td>
+        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">永恒之森</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
+        <td class="stat">49.3%</td>
+        <td class="stat">13.0%</td>
+        <td class="stat">4.57</td>
+        <td class="stat">0.41%</td>
+        <td class="stat sample">13,207</td>
+        <td class="hexes"><span class="hex">嘀嘀街区 4.53%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">飞升 3.31%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0')" title="点击复制阵容码">
+                <span class="gc-text">#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">18</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">裁决芸阿娜</td>
+        <td class="heroes"><span class="hero carry">芸阿娜 ★</span><span class="hero">阿利斯塔</span></td>
+        <td class="traits"><span class="trait">裁决使</span> <span class="trait">莲华</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
+        <td class="stat">49.2%</td>
+        <td class="stat">3.0%</td>
+        <td class="stat">4.73</td>
+        <td class="stat">0.00%</td>
+        <td class="stat sample">67</td>
+        <td class="hexes"><span class="hex">值得等待 II 4.76%</span><span class="hex">厨神阿福 4.29%</span><span class="hex">嘀嘀街区 3.81%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5')" title="点击复制阵容码">
+                <span class="gc-text">#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="B">
+        <td class="rank">19</td>
+        <td class="tier-cell"><span class="tier-badge tier-B">B</span></td>
+        <td class="name">野怪小蓝</td>
+        <td class="heroes"><span class="hero carry">苍蓝哨戒 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span></td>
+        <td class="stat">48.7%</td>
+        <td class="stat">10.7%</td>
+        <td class="stat">4.51</td>
+        <td class="stat">0.20%</td>
+        <td class="stat sample">6,398</td>
+        <td class="hexes"><span class="hex">欧米茄之怪 8.58%</span><span class="hex">炽天使之拥 6.61%</span><span class="hex">纵深 II 4.5%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3')" title="点击复制阵容码">
+                <span class="gc-text">#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">20</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">月男Flex</td>
+        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">婕拉 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">墨菲特</span><span class="hero">深红锋喙鸟</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">召唤师</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">48.1%</td>
+        <td class="stat">8.8%</td>
+        <td class="stat">4.62</td>
+        <td class="stat">1.13%</td>
+        <td class="stat sample">36,615</td>
+        <td class="hexes"><span class="hex">双城赢家 4.25%</span><span class="hex">飞升 3.3%</span><span class="hex">便携锻炉 2.93%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4')" title="点击复制阵容码">
+                <span class="gc-text">#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">21</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">莲华阿狸</td>
+        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">希维尔 ☆</span><span class="hero">艾希</span><span class="hero">瑟提</span></td>
+        <td class="traits"><span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">召唤师</span> <span class="trait">主宰</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">44.8%</td>
+        <td class="stat">14.3%</td>
+        <td class="stat">4.73</td>
+        <td class="stat">0.27%</td>
+        <td class="stat sample">8,831</td>
+        <td class="hexes"><span class="hex">双城赢家 2.67%</span><span class="hex">蔓延之根 2.67%</span><span class="hex">大百宝袋 2.24%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0')" title="点击复制阵容码">
+                <span class="gc-text">#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">22</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">重装豹女</td>
+        <td class="heroes"><span class="hero carry">奈德丽 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">蔚</span></td>
+        <td class="traits"><span class="trait">前卫</span> <span class="trait">神谕者</span> <span class="trait">魔战士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">腐蚀巨口</span></td>
+        <td class="stat">44.4%</td>
+        <td class="stat">6.8%</td>
+        <td class="stat">5.05</td>
+        <td class="stat">0.00%</td>
+        <td class="stat sample">133</td>
+        <td class="hexes"><span class="hex">飞升 3.52%</span><span class="hex">大百宝袋 3.52%</span><span class="hex">便携锻炉 3.27%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4')" title="点击复制阵容码">
+                <span class="gc-text">#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">23</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">护卫豹轮</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">莉莉娅</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
+        <td class="stat">44.0%</td>
+        <td class="stat">10.6%</td>
+        <td class="stat">4.84</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">282</td>
+        <td class="hexes"><span class="hex">厨神阿福 5.51%</span><span class="hex">蔓延之根 4.59%</span><span class="hex">纹章树 4.02%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1')" title="点击复制阵容码">
+                <span class="gc-text">#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">24</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">赌沙皇</td>
+        <td class="heroes"><span class="hero carry">阿兹尔 ★</span><span class="hero">婕拉 ☆</span><span class="hero">拉莫斯</span></td>
+        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">裁决使</span> <span class="trait">法师</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">召唤师</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">42.7%</td>
+        <td class="stat">8.4%</td>
+        <td class="stat">4.89</td>
+        <td class="stat">0.26%</td>
+        <td class="stat sample">8,543</td>
+        <td class="hexes"><span class="hex">便携锻炉 3.76%</span><span class="hex">英勇福袋++ 3.4%</span><span class="hex">双城赢家 3.09%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx')" title="点击复制阵容码">
+                <span class="gc-text">#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">25</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">神谕狐狸</td>
+        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">瑟提</span></td>
+        <td class="traits"><span class="trait">神谕</span> <span class="trait">灵魂莲华</span> <span class="trait">法师</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">帝王斑蝶</span></td>
+        <td class="stat">42.1%</td>
+        <td class="stat">9.2%</td>
+        <td class="stat">4.90</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,406</td>
+        <td class="hexes"><span class="hex">后排蓝图 9.4%</span><span class="hex">双城赢家 3.92%</span><span class="hex">纹章树 2.61%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2')" title="点击复制阵容码">
+                <span class="gc-text">#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">26</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">螳螂蛇女</td>
+        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">费德提克</span><span class="hero">拉莫斯</span></td>
+        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
+        <td class="stat">41.8%</td>
+        <td class="stat">5.2%</td>
+        <td class="stat">4.90</td>
+        <td class="stat">0.02%</td>
+        <td class="stat sample">619</td>
+        <td class="hexes"><span class="hex">便携锻炉 5.26%</span><span class="hex">后排蓝图 4.82%</span><span class="hex">炽天使之拥 3.73%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0')" title="点击复制阵容码">
+                <span class="gc-text">#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">27</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">剑圣大嘴</td>
+        <td class="heroes"><span class="hero carry">易 ★</span><span class="hero">克格莫 ☆</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">魔战士</span> <span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">帝王斑蝶</span></td>
+        <td class="stat">41.1%</td>
+        <td class="stat">4.9%</td>
+        <td class="stat">4.97</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">406</td>
+        <td class="hexes"><span class="hex">便携锻炉 10.19%</span><span class="hex">金色炊具 7.28%</span><span class="hex">前线地基 5.83%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5')" title="点击复制阵容码">
+                <span class="gc-text">#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">28</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">裁决奶妈</td>
+        <td class="heroes"><span class="hero carry">索拉卡 ★</span><span class="hero">婕拉 ☆</span><span class="hero">墨菲特</span></td>
+        <td class="traits"><span class="trait">裁决使</span> <span class="trait">召唤师</span> <span class="trait">地狱火</span> <span class="trait">黑荆棘</span> <span class="trait">绝命花妖</span> <span class="trait">主宰</span> <span class="trait">翠神</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">40.3%</td>
+        <td class="stat">8.9%</td>
+        <td class="stat">5.05</td>
+        <td class="stat">0.19%</td>
+        <td class="stat sample">6,045</td>
+        <td class="hexes"><span class="hex">厨神阿福 3.64%</span><span class="hex">双城赢家 3.37%</span><span class="hex">金色炊具 3.21%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw')" title="点击复制阵容码">
+                <span class="gc-text">#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">29</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">世纪和解</td>
+        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">卡兹克 ☆</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">宿敌</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span></td>
+        <td class="stat">39.2%</td>
+        <td class="stat">6.0%</td>
+        <td class="stat">5.09</td>
+        <td class="stat">0.03%</td>
+        <td class="stat sample">998</td>
+        <td class="hexes"><span class="hex">世纪和解 31.99%</span><span class="hex">大百宝袋 4.03%</span><span class="hex">英勇福袋++ 4.03%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw')" title="点击复制阵容码">
+                <span class="gc-text">#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">30</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">皎月螳螂</td>
+        <td class="heroes"><span class="hero carry">黛安娜 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">月蚀骑士</span> <span class="trait">神谕</span> <span class="trait">帝王斑蝶</span> <span class="trait">宿敌</span> <span class="trait">月华神女</span></td>
+        <td class="stat">35.9%</td>
+        <td class="stat">7.6%</td>
+        <td class="stat">5.21</td>
+        <td class="stat">0.02%</td>
+        <td class="stat sample">669</td>
+        <td class="hexes"><span class="hex">便携锻炉 5.69%</span><span class="hex">英勇福袋++ 3.25%</span><span class="hex">世纪和解 3.25%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5')" title="点击复制阵容码">
+                <span class="gc-text">#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">31</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">花仙狮子狗</td>
+        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">崔丝塔娜 ☆</span><span class="hero">拉莫斯</span><span class="hero">蔚</span></td>
+        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宿敌</span></td>
+        <td class="stat">34.0%</td>
+        <td class="stat">7.3%</td>
+        <td class="stat">5.45</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">206</td>
+        <td class="hexes"><span class="hex">蔓延之根 7.52%</span><span class="hex">三幻神 4.64%</span><span class="hex">纹章树 3.68%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3')" title="点击复制阵容码">
+                <span class="gc-text">#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">32</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">花仙小炮</td>
+        <td class="heroes"><span class="hero carry">崔丝塔娜 ★</span><span class="hero">拉莫斯</span></td>
+        <td class="traits"><span class="trait">花仙子</span> <span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
+        <td class="stat">31.9%</td>
+        <td class="stat">4.7%</td>
+        <td class="stat">5.54</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">429</td>
+        <td class="hexes"><span class="hex">黄金命运 7.03%</span><span class="hex">巨化术 5.95%</span><span class="hex">蔓延之根 4.86%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5')" title="点击复制阵容码">
+                <span class="gc-text">#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">33</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">护卫蛇女</td>
+        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">拉莫斯</span><span class="hero">费德提克</span></td>
+        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
+        <td class="stat">30.5%</td>
+        <td class="stat">4.0%</td>
+        <td class="stat">5.43</td>
+        <td class="stat">0.02%</td>
+        <td class="stat sample">653</td>
+        <td class="hexes"><span class="hex">前线地基 4.17%</span><span class="hex">双城赢家 3.8%</span><span class="hex">飞升 3.62%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz')" title="点击复制阵容码">
+                <span class="gc-text">#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">34</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">赌小法</td>
+        <td class="heroes"><span class="hero carry">维迦 ★</span><span class="hero">阿利斯塔</span><span class="hero">奥恩</span></td>
+        <td class="traits"><span class="trait">法师</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月华神女</span></td>
+        <td class="stat">26.2%</td>
+        <td class="stat">3.9%</td>
+        <td class="stat">5.67</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,259</td>
+        <td class="hexes"><span class="hex">便携锻炉 7.13%</span><span class="hex">值得等待 3.56%</span><span class="hex">双城赢家 3.56%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0')" title="点击复制阵容码">
+                <span class="gc-text">#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">35</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">黑豹轮</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">墨菲特</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
+        <td class="stat">26.2%</td>
+        <td class="stat">2.9%</td>
+        <td class="stat">5.82</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">378</td>
+        <td class="hexes"><span class="hex">终身黄铜 II 3.44%</span><span class="hex">后排蓝图 3.05%</span><span class="hex">便携锻炉 2.67%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2')" title="点击复制阵容码">
+                <span class="gc-text">#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">36</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">神谕大嘴</td>
+        <td class="heroes"><span class="hero carry">克格莫 ★</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span><span class="hero">赫卡里姆</span></td>
+        <td class="traits"><span class="trait">神谕</span> <span class="trait">峡谷野怪</span> <span class="trait">重装战士</span> <span class="trait">帝王斑蝶</span></td>
+        <td class="stat">23.8%</td>
+        <td class="stat">1.9%</td>
+        <td class="stat">5.85</td>
+        <td class="stat">0.05%</td>
+        <td class="stat sample">1,532</td>
+        <td class="hexes"><span class="hex">便携锻炉 6.23%</span><span class="hex">更要命的战刃 4.78%</span><span class="hex">双城赢家 2.98%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky')" title="点击复制阵容码">
+                <span class="gc-text">#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">37</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">召唤鸡哥</td>
+        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">厄斐琉斯 ☆</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">召唤师</span> <span class="trait">斗士</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">17.9%</td>
+        <td class="stat">1.9%</td>
+        <td class="stat">6.32</td>
+        <td class="stat">0.00%</td>
+        <td class="stat sample">162</td>
+        <td class="hexes"><span class="hex">双城赢家 4.65%</span><span class="hex">飞升 3.43%</span><span class="hex">一波带走俩 3.23%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2')" title="点击复制阵容码">
+                <span class="gc-text">#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr></tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">推荐阵容（S级）</h2>
+        <div class="rec-grid">
+    <div class="rec-card" onclick="copyGC('【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx')">
+        <div class="rec-header">
+            <span class="tier-badge tier-S">S</span>
+            <span class="rec-name">野怪小红</span>
+        </div>
+        <div class="rec-heroes"><span class="rec-hero">★绯红树怪</span> <span class="rec-hero">远古巨龙</span> <span class="rec-hero">远古石甲虫</span> <span class="rec-hero">苍蓝哨戒</span></div>
+        <div class="rec-stats">
+            <span class="rec-stat">前四 <b>62.9%</b></span>
+            <span class="rec-stat">登顶 <b>17.8%</b></span>
+            <span class="rec-stat">平均 <b>3.79</b></span>
+        </div>
+        <div class="rec-gc" title="点击复制">#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</div>
+    </div>
+    <div class="rec-card" onclick="copyGC('【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx')">
+        <div class="rec-header">
+            <span class="tier-badge tier-S">S</span>
+            <span class="rec-name">古纳拉95</span>
+        </div>
+        <div class="rec-heroes"><span class="rec-hero">★拉露恩</span> <span class="rec-hero">远古巨龙</span> <span class="rec-hero">纳尔</span> <span class="rec-hero">苍蓝雕纹魔像</span></div>
+        <div class="rec-stats">
+            <span class="rec-stat">前四 <b>62.4%</b></span>
+            <span class="rec-stat">登顶 <b>22.8%</b></span>
+            <span class="rec-stat">平均 <b>3.81</b></span>
+        </div>
+        <div class="rec-gc" title="点击复制">#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</div>
+    </div>
+    <div class="rec-card" onclick="copyGC('【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz')">
+        <div class="rec-header">
+            <span class="tier-badge tier-S">S</span>
+            <span class="rec-name">黑暗仪式蜘蛛</span>
+        </div>
+        <div class="rec-heroes"><span class="rec-hero">★伊莉丝</span> <span class="rec-hero">莫甘娜</span> <span class="rec-hero">卡西奥佩娅</span> <span class="rec-hero">黛安娜</span> <span class="rec-hero">赫卡里姆</span></div>
+        <div class="rec-stats">
+            <span class="rec-stat">前四 <b>62.4%</b></span>
+            <span class="rec-stat">登顶 <b>27.8%</b></span>
+            <span class="rec-stat">平均 <b>3.77</b></span>
+        </div>
+        <div class="rec-gc" title="点击复制">#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz</div>
+    </div>
+    <div class="rec-card" onclick="copyGC('【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0')">
+        <div class="rec-header">
+            <span class="tier-badge tier-S">S</span>
+            <span class="rec-name">射箭韦鲁斯</span>
+        </div>
+        <div class="rec-heroes"><span class="rec-hero">★韦鲁斯</span> <span class="rec-hero">凯尔</span> <span class="rec-hero">瑟庄妮</span> <span class="rec-hero">慎</span> <span class="rec-hero">蕾欧娜</span></div>
+        <div class="rec-stats">
+            <span class="rec-stat">前四 <b>61.5%</b></span>
+            <span class="rec-stat">登顶 <b>16.3%</b></span>
+            <span class="rec-stat">平均 <b>3.90</b></span>
+        </div>
+        <div class="rec-gc" title="点击复制">#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</div>
+    </div>
+    <div class="rec-card" onclick="copyGC('【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3')">
+        <div class="rec-header">
+            <span class="tier-badge tier-S">S</span>
+            <span class="rec-name">重装女警</span>
+        </div>
+        <div class="rec-heroes"><span class="rec-hero">★凯特琳</span> <span class="rec-hero">希维尔</span> <span class="rec-hero">赫卡里姆</span> <span class="rec-hero">伊莉丝</span></div>
+        <div class="rec-stats">
+            <span class="rec-stat">前四 <b>60.5%</b></span>
+            <span class="rec-stat">登顶 <b>10.0%</b></span>
+            <span class="rec-stat">平均 <b>4.01</b></span>
+        </div>
+        <div class="rec-gc" title="点击复制">#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</div>
+    </div>
+    <div class="rec-card" onclick="copyGC('【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw')">
+        <div class="rec-header">
+            <span class="tier-badge tier-S">S</span>
+            <span class="rec-name">献祭三狼</span>
+        </div>
+        <div class="rec-heroes"><span class="rec-hero">★沃里克</span> <span class="rec-hero">阿兹尔</span> <span class="rec-hero">卡兹克</span> <span class="rec-hero">暗影狼</span> <span class="rec-hero">伊莉丝</span></div>
+        <div class="rec-stats">
+            <span class="rec-stat">前四 <b>60.5%</b></span>
+            <span class="rec-stat">登顶 <b>8.8%</b></span>
+            <span class="rec-stat">平均 <b>4.05</b></span>
+        </div>
+        <div class="rec-gc" title="点击复制">#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw</div>
+    </div></div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">筛选</h2>
+        <div class="filter-bar"><button class="filter-btn active" data-filter="all" onclick="filterTier('all')">全部</button><button class="filter-btn" data-filter="S" onclick="filterTier('S')">S级</button><button class="filter-btn" data-filter="A" onclick="filterTier('A')">A级</button><button class="filter-btn" data-filter="B" onclick="filterTier('B')">B级</button><button class="filter-btn" data-filter="C" onclick="filterTier('C')">C级</button><button class="filter-btn" data-filter="D" onclick="filterTier('D')">D级</button></div>
+        <p style="color:#8a6030;font-size:0.85em;">点击阵容码可复制到剪贴板，游戏内导入使用</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">段位分组</h2>
+        
+    <div class="tier-section" id="tier-S">
+        <h2 class="tier-title">
+            <span class="tier-badge-lg tier-S">S级</span>
+            <span class="tier-count">12 个阵容</span>
+        </h2>
+        <table class="comp-table">
+            <thead><tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr></thead>
+            <tbody>    <tr class="comp-row" data-tier="S">
+        <td class="rank">1</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">野怪小红</td>
+        <td class="heroes"><span class="hero carry">绯红树怪 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">远古石甲虫</span><span class="hero">苍蓝哨戒</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">顶级掠食者</span></td>
+        <td class="stat">62.9%</td>
+        <td class="stat">17.8%</td>
+        <td class="stat">3.79</td>
+        <td class="stat">0.27%</td>
+        <td class="stat sample">8,700</td>
+        <td class="hexes"><span class="hex">欧米茄之怪 8.63%</span><span class="hex">纵深 II 4.14%</span><span class="hex">炽天使之拥 3.8%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx')" title="点击复制阵容码">
+                <span class="gc-text">#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">2</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">古纳拉95</td>
+        <td class="heroes"><span class="hero carry">拉露恩 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">纳尔</span><span class="hero">苍蓝雕纹魔像</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">永恒之森</span> <span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span> <span class="trait">月华神女</span></td>
+        <td class="stat">62.4%</td>
+        <td class="stat">22.8%</td>
+        <td class="stat">3.81</td>
+        <td class="stat">0.09%</td>
+        <td class="stat sample">2,885</td>
+        <td class="hexes"><span class="hex">生日聚会 6.24%</span><span class="hex">后期收益 2.87%</span><span class="hex">双排 2.75%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx')" title="点击复制阵容码">
+                <span class="gc-text">#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">3</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">黑暗仪式蜘蛛</td>
+        <td class="heroes"><span class="hero carry">伊莉丝 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">卡西奥佩娅 ☆</span><span class="hero">黛安娜</span><span class="hero">赫卡里姆</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">魔女</span> <span class="trait">法师</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">月华神女</span></td>
+        <td class="stat">62.4%</td>
+        <td class="stat">27.8%</td>
+        <td class="stat">3.77</td>
+        <td class="stat">0.25%</td>
+        <td class="stat sample">7,982</td>
+        <td class="hexes"><span class="hex">黑暗仪式 32.81%</span><span class="hex">飞升 3.99%</span><span class="hex">双城赢家 3.25%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz')" title="点击复制阵容码">
+                <span class="gc-text">#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">4</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">射箭韦鲁斯</td>
+        <td class="heroes"><span class="hero carry">韦鲁斯 ★</span><span class="hero">凯尔 ☆</span><span class="hero">瑟庄妮</span><span class="hero">慎</span><span class="hero">蕾欧娜</span><span class="hero">洛</span></td>
+        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">迅捷射手</span> <span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
+        <td class="stat">61.5%</td>
+        <td class="stat">16.3%</td>
+        <td class="stat">3.90</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">221</td>
+        <td class="hexes"><span class="hex">值得等待 5.43%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">大百宝袋 3.52%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0')" title="点击复制阵容码">
+                <span class="gc-text">#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">5</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">重装女警</td>
+        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
+        <td class="stat">60.5%</td>
+        <td class="stat">10.0%</td>
+        <td class="stat">4.01</td>
+        <td class="stat">0.07%</td>
+        <td class="stat sample">2,357</td>
+        <td class="hexes"><span class="hex">双城赢家 4.31%</span><span class="hex">飞升 3.69%</span><span class="hex">英勇福袋++ 3.2%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3')" title="点击复制阵容码">
+                <span class="gc-text">#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">6</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">献祭三狼</td>
+        <td class="heroes"><span class="hero carry">沃里克 ★</span><span class="hero">阿兹尔 ☆</span><span class="hero">卡兹克</span><span class="hero">暗影狼</span><span class="hero">伊莉丝</span></td>
+        <td class="traits"><span class="trait">狂战士</span> <span class="trait">裁决使</span> <span class="trait">黑荆棘</span> <span class="trait">重装战士</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
+        <td class="stat">60.5%</td>
+        <td class="stat">8.8%</td>
+        <td class="stat">4.05</td>
+        <td class="stat">0.22%</td>
+        <td class="stat sample">7,282</td>
+        <td class="hexes"><span class="hex">便携锻炉 7.63%</span><span class="hex">挑战者的优雅 3.57%</span><span class="hex">双城赢家 3.39%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw')" title="点击复制阵容码">
+                <span class="gc-text">#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">7</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">主宰女警</td>
+        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">峡谷迅捷蟹</span><span class="hero">瑟庄妮</span></td>
+        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span></td>
+        <td class="stat">59.3%</td>
+        <td class="stat">12.0%</td>
+        <td class="stat">4.04</td>
+        <td class="stat">0.17%</td>
+        <td class="stat sample">5,641</td>
+        <td class="hexes"><span class="hex">双城赢家 4.36%</span><span class="hex">更要命的战刃 3.59%</span><span class="hex">飞升 3.06%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy')" title="点击复制阵容码">
+                <span class="gc-text">#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">8</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">7野怪鸡哥</td>
+        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">绯红印记树怪</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">狂战士</span> <span class="trait">神谕</span></td>
+        <td class="stat">58.1%</td>
+        <td class="stat">14.6%</td>
+        <td class="stat">4.03</td>
+        <td class="stat">1.07%</td>
+        <td class="stat sample">34,907</td>
+        <td class="hexes"><span class="hex">欧米茄之怪 6.81%</span><span class="hex">纵深 II 4.54%</span><span class="hex">双城赢家 2.69%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5')" title="点击复制阵容码">
+                <span class="gc-text">#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">9</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">5迅射月男</td>
+        <td class="heroes"><span class="hero">绯红印记树怪</span><span class="hero">阿木木</span></td>
+        <td class="traits"><span class="trait">迅捷射手</span> <span class="trait">峡谷野怪</span> <span class="trait">地狱火</span> <span class="trait">花仙子</span> <span class="trait">狂战士</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
+        <td class="stat">57.7%</td>
+        <td class="stat">10.8%</td>
+        <td class="stat">4.19</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,388</td>
+        <td class="hexes"><span class="hex">后排蓝图 6.87%</span><span class="hex">金色炊具 6.67%</span><span class="hex">双城赢家 4.85%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz')" title="点击复制阵容码">
+                <span class="gc-text">#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">10</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">永森95</td>
+        <td class="heroes"><span class="hero carry">伊泽瑞尔 ★</span><span class="hero">德莱文 ☆</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">地狱火</span> <span class="trait">斗士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">赏金猎人</span></td>
+        <td class="stat">57.6%</td>
+        <td class="stat">23.0%</td>
+        <td class="stat">4.01</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">165</td>
+        <td class="hexes"><span class="hex">双排 3.3%</span><span class="hex">拼盘天梯 3.3%</span><span class="hex">生日聚会 3.11%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3')" title="点击复制阵容码">
+                <span class="gc-text">#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">11</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">裁决螳螂</td>
+        <td class="heroes"><span class="hero carry">卡兹克 ★</span><span class="hero">索拉卡 ☆</span><span class="hero">费德提克</span><span class="hero">赫卡里姆</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">宿敌</span></td>
+        <td class="stat">55.4%</td>
+        <td class="stat">12.7%</td>
+        <td class="stat">4.23</td>
+        <td class="stat">0.34%</td>
+        <td class="stat sample">11,072</td>
+        <td class="hexes"><span class="hex">便携锻炉 4.66%</span><span class="hex">双城赢家 3.63%</span><span class="hex">英勇福袋++ 3.24%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5')" title="点击复制阵容码">
+                <span class="gc-text">#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="S">
+        <td class="rank">12</td>
+        <td class="tier-cell"><span class="tier-badge tier-S">S</span></td>
+        <td class="name">巨龙95</td>
+        <td class="heroes"><span class="hero carry">远古巨龙 ★</span><span class="hero">德莱文 ☆</span><span class="hero">茂凯</span><span class="hero">苍蓝雕纹魔像</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">顶级掠食者</span> <span class="trait">赏金猎人</span> <span class="trait">远古树精</span></td>
+        <td class="stat">54.7%</td>
+        <td class="stat">21.6%</td>
+        <td class="stat">4.17</td>
+        <td class="stat">0.18%</td>
+        <td class="stat sample">5,743</td>
+        <td class="hexes"><span class="hex">生日聚会 3.47%</span><span class="hex">双排 2.78%</span><span class="hex">厨神阿福 2.78%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz')" title="点击复制阵容码">
+                <span class="gc-text">#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr></tbody>
+        </table>
+    </div>
+    <div class="tier-section" id="tier-A">
+        <h2 class="tier-title">
+            <span class="tier-badge-lg tier-A">A级</span>
+            <span class="tier-count">3 个阵容</span>
+        </h2>
+        <table class="comp-table">
+            <thead><tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr></thead>
+            <tbody>    <tr class="comp-row" data-tier="A">
+        <td class="rank">1</td>
+        <td class="tier-cell"><span class="tier-badge tier-A">A</span></td>
+        <td class="name">卡丽蜜儿</td>
+        <td class="heroes"><span class="hero carry">阿卡丽 ★</span><span class="hero">卡蜜尔 ☆</span><span class="hero">奥恩</span><span class="hero">韦鲁斯</span><span class="hero">蕾欧娜</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">日蚀骑士</span> <span class="trait">护卫</span> <span class="trait">狂战士</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
+        <td class="stat">54.7%</td>
+        <td class="stat">11.8%</td>
+        <td class="stat">4.31</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,149</td>
+        <td class="hexes"><span class="hex">宝宝学院 14.16%</span><span class="hex">便携锻炉 7.37%</span><span class="hex">不侦察，不变阵 3.68%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2')" title="点击复制阵容码">
+                <span class="gc-text">#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="A">
+        <td class="rank">2</td>
+        <td class="tier-cell"><span class="tier-badge tier-A">A</span></td>
+        <td class="name">森林月男</td>
+        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">伊泽瑞尔 ☆</span><span class="hero">莉莉娅</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">斗士</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">绝命花妖</span></td>
+        <td class="stat">53.9%</td>
+        <td class="stat">15.3%</td>
+        <td class="stat">4.27</td>
+        <td class="stat">0.21%</td>
+        <td class="stat sample">6,969</td>
+        <td class="hexes"><span class="hex">厨神阿福 5.39%</span><span class="hex">蔓延之根 5.08%</span><span class="hex">飞升 3.53%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy')" title="点击复制阵容码">
+                <span class="gc-text">#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="A">
+        <td class="rank">3</td>
+        <td class="tier-cell"><span class="tier-badge tier-A">A</span></td>
+        <td class="name">地狱火95</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">凯南</span><span class="hero">阿木木</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span></td>
+        <td class="stat">51.0%</td>
+        <td class="stat">18.4%</td>
+        <td class="stat">4.38</td>
+        <td class="stat">0.34%</td>
+        <td class="stat sample">11,003</td>
+        <td class="hexes"><span class="hex">厨神阿福 14.79%</span><span class="hex">阿福的百宝袋 3.85%</span><span class="hex">双排 2.92%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw')" title="点击复制阵容码">
+                <span class="gc-text">#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr></tbody>
+        </table>
+    </div>
+    <div class="tier-section" id="tier-B">
+        <h2 class="tier-title">
+            <span class="tier-badge-lg tier-B">B级</span>
+            <span class="tier-count">3 个阵容</span>
+        </h2>
+        <table class="comp-table">
+            <thead><tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr></thead>
+            <tbody>    <tr class="comp-row" data-tier="B">
+        <td class="rank">1</td>
+        <td class="tier-cell"><span class="tier-badge tier-B">B</span></td>
+        <td class="name">6主宰Flex</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">阿木木</span></td>
+        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">远古树精</span></td>
+        <td class="stat">50.4%</td>
+        <td class="stat">11.6%</td>
+        <td class="stat">4.48</td>
+        <td class="stat">1.03%</td>
+        <td class="stat sample">33,476</td>
+        <td class="hexes"><span class="hex">炽天使之拥 8.71%</span><span class="hex">飞升 4.78%</span><span class="hex">双城赢家 2.95%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5')" title="点击复制阵容码">
+                <span class="gc-text">#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="B">
+        <td class="rank">2</td>
+        <td class="tier-cell"><span class="tier-badge tier-B">B</span></td>
+        <td class="name">森林妖姬天使</td>
+        <td class="heroes"><span class="hero carry">凯尔 ★</span><span class="hero">奥恩</span><span class="hero">蕾欧娜</span><span class="hero">霞</span></td>
+        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">永恒之森</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
+        <td class="stat">49.3%</td>
+        <td class="stat">13.0%</td>
+        <td class="stat">4.57</td>
+        <td class="stat">0.41%</td>
+        <td class="stat sample">13,207</td>
+        <td class="hexes"><span class="hex">嘀嘀街区 4.53%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">飞升 3.31%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0')" title="点击复制阵容码">
+                <span class="gc-text">#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="B">
+        <td class="rank">3</td>
+        <td class="tier-cell"><span class="tier-badge tier-B">B</span></td>
+        <td class="name">野怪小蓝</td>
+        <td class="heroes"><span class="hero carry">苍蓝哨戒 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span></td>
+        <td class="stat">48.7%</td>
+        <td class="stat">10.7%</td>
+        <td class="stat">4.51</td>
+        <td class="stat">0.20%</td>
+        <td class="stat sample">6,398</td>
+        <td class="hexes"><span class="hex">欧米茄之怪 8.58%</span><span class="hex">炽天使之拥 6.61%</span><span class="hex">纵深 II 4.5%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3')" title="点击复制阵容码">
+                <span class="gc-text">#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr></tbody>
+        </table>
+    </div>
+    <div class="tier-section" id="tier-C">
+        <h2 class="tier-title">
+            <span class="tier-badge-lg tier-C">C级</span>
+            <span class="tier-count">4 个阵容</span>
+        </h2>
+        <table class="comp-table">
+            <thead><tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr></thead>
+            <tbody>    <tr class="comp-row" data-tier="C">
+        <td class="rank">1</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">裁决芸阿娜</td>
+        <td class="heroes"><span class="hero carry">芸阿娜 ★</span><span class="hero">阿利斯塔</span></td>
+        <td class="traits"><span class="trait">裁决使</span> <span class="trait">莲华</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
+        <td class="stat">49.2%</td>
+        <td class="stat">3.0%</td>
+        <td class="stat">4.73</td>
+        <td class="stat">0.00%</td>
+        <td class="stat sample">67</td>
+        <td class="hexes"><span class="hex">值得等待 II 4.76%</span><span class="hex">厨神阿福 4.29%</span><span class="hex">嘀嘀街区 3.81%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5')" title="点击复制阵容码">
+                <span class="gc-text">#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">2</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">月男Flex</td>
+        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">婕拉 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">墨菲特</span><span class="hero">深红锋喙鸟</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">召唤师</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">48.1%</td>
+        <td class="stat">8.8%</td>
+        <td class="stat">4.62</td>
+        <td class="stat">1.13%</td>
+        <td class="stat sample">36,615</td>
+        <td class="hexes"><span class="hex">双城赢家 4.25%</span><span class="hex">飞升 3.3%</span><span class="hex">便携锻炉 2.93%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4')" title="点击复制阵容码">
+                <span class="gc-text">#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">3</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">莲华阿狸</td>
+        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">希维尔 ☆</span><span class="hero">艾希</span><span class="hero">瑟提</span></td>
+        <td class="traits"><span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">召唤师</span> <span class="trait">主宰</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">44.8%</td>
+        <td class="stat">14.3%</td>
+        <td class="stat">4.73</td>
+        <td class="stat">0.27%</td>
+        <td class="stat sample">8,831</td>
+        <td class="hexes"><span class="hex">双城赢家 2.67%</span><span class="hex">蔓延之根 2.67%</span><span class="hex">大百宝袋 2.24%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0')" title="点击复制阵容码">
+                <span class="gc-text">#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="C">
+        <td class="rank">4</td>
+        <td class="tier-cell"><span class="tier-badge tier-C">C</span></td>
+        <td class="name">护卫豹轮</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">莉莉娅</span></td>
+        <td class="traits"><span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
+        <td class="stat">44.0%</td>
+        <td class="stat">10.6%</td>
+        <td class="stat">4.84</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">282</td>
+        <td class="hexes"><span class="hex">厨神阿福 5.51%</span><span class="hex">蔓延之根 4.59%</span><span class="hex">纹章树 4.02%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1')" title="点击复制阵容码">
+                <span class="gc-text">#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr></tbody>
+        </table>
+    </div>
+    <div class="tier-section" id="tier-D">
+        <h2 class="tier-title">
+            <span class="tier-badge-lg tier-D">D级</span>
+            <span class="tier-count">15 个阵容</span>
+        </h2>
+        <table class="comp-table">
+            <thead><tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr></thead>
+            <tbody>    <tr class="comp-row" data-tier="D">
+        <td class="rank">1</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">重装豹女</td>
+        <td class="heroes"><span class="hero carry">奈德丽 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">蔚</span></td>
+        <td class="traits"><span class="trait">前卫</span> <span class="trait">神谕者</span> <span class="trait">魔战士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">腐蚀巨口</span></td>
+        <td class="stat">44.4%</td>
+        <td class="stat">6.8%</td>
+        <td class="stat">5.05</td>
+        <td class="stat">0.00%</td>
+        <td class="stat sample">133</td>
+        <td class="hexes"><span class="hex">飞升 3.52%</span><span class="hex">大百宝袋 3.52%</span><span class="hex">便携锻炉 3.27%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4')" title="点击复制阵容码">
+                <span class="gc-text">#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">2</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">赌沙皇</td>
+        <td class="heroes"><span class="hero carry">阿兹尔 ★</span><span class="hero">婕拉 ☆</span><span class="hero">拉莫斯</span></td>
+        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">裁决使</span> <span class="trait">法师</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">召唤师</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">42.7%</td>
+        <td class="stat">8.4%</td>
+        <td class="stat">4.89</td>
+        <td class="stat">0.26%</td>
+        <td class="stat sample">8,543</td>
+        <td class="hexes"><span class="hex">便携锻炉 3.76%</span><span class="hex">英勇福袋++ 3.4%</span><span class="hex">双城赢家 3.09%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx')" title="点击复制阵容码">
+                <span class="gc-text">#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">3</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">神谕狐狸</td>
+        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">瑟提</span></td>
+        <td class="traits"><span class="trait">神谕</span> <span class="trait">灵魂莲华</span> <span class="trait">法师</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">帝王斑蝶</span></td>
+        <td class="stat">42.1%</td>
+        <td class="stat">9.2%</td>
+        <td class="stat">4.90</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,406</td>
+        <td class="hexes"><span class="hex">后排蓝图 9.4%</span><span class="hex">双城赢家 3.92%</span><span class="hex">纹章树 2.61%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2')" title="点击复制阵容码">
+                <span class="gc-text">#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">4</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">螳螂蛇女</td>
+        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">费德提克</span><span class="hero">拉莫斯</span></td>
+        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
+        <td class="stat">41.8%</td>
+        <td class="stat">5.2%</td>
+        <td class="stat">4.90</td>
+        <td class="stat">0.02%</td>
+        <td class="stat sample">619</td>
+        <td class="hexes"><span class="hex">便携锻炉 5.26%</span><span class="hex">后排蓝图 4.82%</span><span class="hex">炽天使之拥 3.73%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0')" title="点击复制阵容码">
+                <span class="gc-text">#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">5</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">剑圣大嘴</td>
+        <td class="heroes"><span class="hero carry">易 ★</span><span class="hero">克格莫 ☆</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">魔战士</span> <span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">帝王斑蝶</span></td>
+        <td class="stat">41.1%</td>
+        <td class="stat">4.9%</td>
+        <td class="stat">4.97</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">406</td>
+        <td class="hexes"><span class="hex">便携锻炉 10.19%</span><span class="hex">金色炊具 7.28%</span><span class="hex">前线地基 5.83%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5')" title="点击复制阵容码">
+                <span class="gc-text">#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">6</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">裁决奶妈</td>
+        <td class="heroes"><span class="hero carry">索拉卡 ★</span><span class="hero">婕拉 ☆</span><span class="hero">墨菲特</span></td>
+        <td class="traits"><span class="trait">裁决使</span> <span class="trait">召唤师</span> <span class="trait">地狱火</span> <span class="trait">黑荆棘</span> <span class="trait">绝命花妖</span> <span class="trait">主宰</span> <span class="trait">翠神</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">40.3%</td>
+        <td class="stat">8.9%</td>
+        <td class="stat">5.05</td>
+        <td class="stat">0.19%</td>
+        <td class="stat sample">6,045</td>
+        <td class="hexes"><span class="hex">厨神阿福 3.64%</span><span class="hex">双城赢家 3.37%</span><span class="hex">金色炊具 3.21%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw')" title="点击复制阵容码">
+                <span class="gc-text">#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">7</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">世纪和解</td>
+        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">卡兹克 ☆</span></td>
+        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">宿敌</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span></td>
+        <td class="stat">39.2%</td>
+        <td class="stat">6.0%</td>
+        <td class="stat">5.09</td>
+        <td class="stat">0.03%</td>
+        <td class="stat sample">998</td>
+        <td class="hexes"><span class="hex">世纪和解 31.99%</span><span class="hex">大百宝袋 4.03%</span><span class="hex">英勇福袋++ 4.03%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw')" title="点击复制阵容码">
+                <span class="gc-text">#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">8</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">皎月螳螂</td>
+        <td class="heroes"><span class="hero carry">黛安娜 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
+        <td class="traits"><span class="trait">重装战士</span> <span class="trait">月蚀骑士</span> <span class="trait">神谕</span> <span class="trait">帝王斑蝶</span> <span class="trait">宿敌</span> <span class="trait">月华神女</span></td>
+        <td class="stat">35.9%</td>
+        <td class="stat">7.6%</td>
+        <td class="stat">5.21</td>
+        <td class="stat">0.02%</td>
+        <td class="stat sample">669</td>
+        <td class="hexes"><span class="hex">便携锻炉 5.69%</span><span class="hex">英勇福袋++ 3.25%</span><span class="hex">世纪和解 3.25%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5')" title="点击复制阵容码">
+                <span class="gc-text">#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">9</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">花仙狮子狗</td>
+        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">崔丝塔娜 ☆</span><span class="hero">拉莫斯</span><span class="hero">蔚</span></td>
+        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宿敌</span></td>
+        <td class="stat">34.0%</td>
+        <td class="stat">7.3%</td>
+        <td class="stat">5.45</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">206</td>
+        <td class="hexes"><span class="hex">蔓延之根 7.52%</span><span class="hex">三幻神 4.64%</span><span class="hex">纹章树 3.68%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3')" title="点击复制阵容码">
+                <span class="gc-text">#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">10</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">花仙小炮</td>
+        <td class="heroes"><span class="hero carry">崔丝塔娜 ★</span><span class="hero">拉莫斯</span></td>
+        <td class="traits"><span class="trait">花仙子</span> <span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
+        <td class="stat">31.9%</td>
+        <td class="stat">4.7%</td>
+        <td class="stat">5.54</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">429</td>
+        <td class="hexes"><span class="hex">黄金命运 7.03%</span><span class="hex">巨化术 5.95%</span><span class="hex">蔓延之根 4.86%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5')" title="点击复制阵容码">
+                <span class="gc-text">#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">11</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">护卫蛇女</td>
+        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">拉莫斯</span><span class="hero">费德提克</span></td>
+        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
+        <td class="stat">30.5%</td>
+        <td class="stat">4.0%</td>
+        <td class="stat">5.43</td>
+        <td class="stat">0.02%</td>
+        <td class="stat sample">653</td>
+        <td class="hexes"><span class="hex">前线地基 4.17%</span><span class="hex">双城赢家 3.8%</span><span class="hex">飞升 3.62%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz')" title="点击复制阵容码">
+                <span class="gc-text">#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">12</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">赌小法</td>
+        <td class="heroes"><span class="hero carry">维迦 ★</span><span class="hero">阿利斯塔</span><span class="hero">奥恩</span></td>
+        <td class="traits"><span class="trait">法师</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月华神女</span></td>
+        <td class="stat">26.2%</td>
+        <td class="stat">3.9%</td>
+        <td class="stat">5.67</td>
+        <td class="stat">0.04%</td>
+        <td class="stat sample">1,259</td>
+        <td class="hexes"><span class="hex">便携锻炉 7.13%</span><span class="hex">值得等待 3.56%</span><span class="hex">双城赢家 3.56%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0')" title="点击复制阵容码">
+                <span class="gc-text">#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">13</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">黑豹轮</td>
+        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">墨菲特</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
+        <td class="stat">26.2%</td>
+        <td class="stat">2.9%</td>
+        <td class="stat">5.82</td>
+        <td class="stat">0.01%</td>
+        <td class="stat sample">378</td>
+        <td class="hexes"><span class="hex">终身黄铜 II 3.44%</span><span class="hex">后排蓝图 3.05%</span><span class="hex">便携锻炉 2.67%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2')" title="点击复制阵容码">
+                <span class="gc-text">#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">14</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">神谕大嘴</td>
+        <td class="heroes"><span class="hero carry">克格莫 ★</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span><span class="hero">赫卡里姆</span></td>
+        <td class="traits"><span class="trait">神谕</span> <span class="trait">峡谷野怪</span> <span class="trait">重装战士</span> <span class="trait">帝王斑蝶</span></td>
+        <td class="stat">23.8%</td>
+        <td class="stat">1.9%</td>
+        <td class="stat">5.85</td>
+        <td class="stat">0.05%</td>
+        <td class="stat sample">1,532</td>
+        <td class="hexes"><span class="hex">便携锻炉 6.23%</span><span class="hex">更要命的战刃 4.78%</span><span class="hex">双城赢家 2.98%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky')" title="点击复制阵容码">
+                <span class="gc-text">#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr>    <tr class="comp-row" data-tier="D">
+        <td class="rank">15</td>
+        <td class="tier-cell"><span class="tier-badge tier-D">D</span></td>
+        <td class="name">召唤鸡哥</td>
+        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">厄斐琉斯 ☆</span><span class="hero">远古石甲虫</span></td>
+        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">召唤师</span> <span class="trait">斗士</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
+        <td class="stat">17.9%</td>
+        <td class="stat">1.9%</td>
+        <td class="stat">6.32</td>
+        <td class="stat">0.00%</td>
+        <td class="stat sample">162</td>
+        <td class="hexes"><span class="hex">双城赢家 4.65%</span><span class="hex">飞升 3.43%</span><span class="hex">一波带走俩 3.23%</span></td>
+        <td class="gamecode">
+            <div class="gc-box" onclick="copyGC('【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2')" title="点击复制阵容码">
+                <span class="gc-text">#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2</span>
+                <span class="copy-btn">复制</span>
+            </div>
+        </td>
+    </tr></tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="footer">
+        <p>数据来源: <a href="https://www.dataj.cc/comp" target="_blank">dataj.cc</a> | 恭喜发财模式 | 报告生成时间: 2026-10-08 18:40</p>
+    </div>
+</div>
+<div class="toast" id="toast">已复制到剪贴板</div>
+<script>
+function copyGC(code) {
+    if (!code) return;
+    navigator.clipboard.writeText(code).then(() => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 1500);
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 1500);
+    });
+}
+function filterTier(tier) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-filter="' + tier + '"]').classList.add('active');
+    document.querySelectorAll('.comp-row').forEach(row => {
+        if (tier === 'all' || row.dataset.tier === tier) {
+            row.classList.remove('hidden');
+        } else {
+            row.classList.add('hidden');
+        }
+    });
+}
+</script>
+</body>
+</html>
