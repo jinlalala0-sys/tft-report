@@ -1,15 +1,171 @@
 [
   {
+    "compId": "104",
+    "name": "野怪小红",
+    "gameCode": "【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx",
+    "tier": "S",
+    "stats": {
+      "avgPlacement": 3.79,
+      "pickRate": 0.27,
+      "topRate": 17.75,
+      "top4Rate": 62.94,
+      "sampleCount": 8700,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "绯红树怪",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 1
+      },
+      {
+        "heroName": "远古巨龙",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 5
+      },
+      {
+        "heroName": "远古石甲虫",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "苍蓝哨戒",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 1
+      }
+    ],
+    "traits": [
+      "峡谷野怪",
+      "斗士",
+      "神谕",
+      "重装战士",
+      "主宰",
+      "顶级掠食者"
+    ],
+    "equips": [
+      {
+        "heroId": "1511",
+        "equipId": "2038",
+        "compHeroId": "2232"
+      },
+      {
+        "heroId": "1511",
+        "equipId": "2017",
+        "compHeroId": "2232"
+      },
+      {
+        "heroId": "1511",
+        "equipId": "2017",
+        "compHeroId": "2232"
+      },
+      {
+        "heroId": "1508",
+        "equipId": "2001",
+        "compHeroId": "2204"
+      },
+      {
+        "heroId": "1508",
+        "equipId": "2004",
+        "compHeroId": "2204"
+      },
+      {
+        "heroId": "1508",
+        "equipId": "2037",
+        "compHeroId": "2204"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2025",
+        "compHeroId": "2207"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2028",
+        "compHeroId": "2207"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2034",
+        "compHeroId": "2207"
+      },
+      {
+        "heroId": "5458",
+        "equipId": "2001",
+        "compHeroId": "2208"
+      },
+      {
+        "heroId": "5458",
+        "equipId": "2007",
+        "compHeroId": "2208"
+      },
+      {
+        "heroId": "5458",
+        "equipId": "2039",
+        "compHeroId": "2208"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "欧米茄之怪",
+        "pickRate": 8.63
+      },
+      {
+        "name": "纵深 II",
+        "pickRate": 4.14
+      },
+      {
+        "name": "炽天使之拥",
+        "pickRate": 3.8
+      },
+      {
+        "name": "加冕礼",
+        "pickRate": 3
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.42
+      },
+      {
+        "name": "纵深 III",
+        "pickRate": 2.14
+      },
+      {
+        "name": "纵深 I",
+        "pickRate": 2
+      },
+      {
+        "name": "更要命的帽子",
+        "pickRate": 1.93
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 1.93
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 1.73
+      }
+    ]
+  },
+  {
     "compId": "113",
     "name": "古纳拉95",
     "gameCode": "【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx",
     "tier": "S",
     "stats": {
-      "avgPlacement": 3.8,
-      "pickRate": 0.08,
-      "topRate": 20.85,
-      "top4Rate": 64.09,
-      "sampleCount": 259,
+      "avgPlacement": 3.81,
+      "pickRate": 0.09,
+      "topRate": 22.84,
+      "top4Rate": 62.39,
+      "sampleCount": 2885,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -163,11 +319,11 @@
     "gameCode": "【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz",
     "tier": "S",
     "stats": {
-      "avgPlacement": 3.65,
-      "pickRate": 0.24,
-      "topRate": 29.59,
-      "top4Rate": 63.67,
-      "sampleCount": 757,
+      "avgPlacement": 3.77,
+      "pickRate": 0.25,
+      "topRate": 27.8,
+      "top4Rate": 62.35,
+      "sampleCount": 7982,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -301,193 +457,30 @@
     ]
   },
   {
-    "compId": "104",
-    "name": "野怪小红",
-    "gameCode": "【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx",
+    "compId": "110",
+    "name": "射箭韦鲁斯",
+    "gameCode": "【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0",
     "tier": "S",
     "stats": {
-      "avgPlacement": 3.72,
-      "pickRate": 0.3,
-      "topRate": 18.94,
-      "top4Rate": 63.62,
-      "sampleCount": 940,
+      "avgPlacement": 3.9,
+      "pickRate": 0.01,
+      "topRate": 16.29,
+      "top4Rate": 61.54,
+      "sampleCount": 221,
       "dataMode": "stats"
     },
     "coreHeroes": [
       {
-        "heroName": "绯红树怪",
+        "heroName": "韦鲁斯",
         "isCarry": true,
         "isSubCarry": false,
         "isCore": true,
         "price": 1
       },
       {
-        "heroName": "远古巨龙",
+        "heroName": "凯尔",
         "isCarry": false,
         "isSubCarry": true,
-        "isCore": true,
-        "price": 5
-      },
-      {
-        "heroName": "远古石甲虫",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      },
-      {
-        "heroName": "苍蓝哨戒",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 1
-      }
-    ],
-    "traits": [
-      "峡谷野怪",
-      "斗士",
-      "神谕",
-      "重装战士",
-      "主宰",
-      "顶级掠食者"
-    ],
-    "equips": [
-      {
-        "heroId": "1511",
-        "equipId": "2038",
-        "compHeroId": "2232"
-      },
-      {
-        "heroId": "1511",
-        "equipId": "2017",
-        "compHeroId": "2232"
-      },
-      {
-        "heroId": "1511",
-        "equipId": "2017",
-        "compHeroId": "2232"
-      },
-      {
-        "heroId": "1508",
-        "equipId": "2001",
-        "compHeroId": "2204"
-      },
-      {
-        "heroId": "1508",
-        "equipId": "2004",
-        "compHeroId": "2204"
-      },
-      {
-        "heroId": "1508",
-        "equipId": "2037",
-        "compHeroId": "2204"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2025",
-        "compHeroId": "2207"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2028",
-        "compHeroId": "2207"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2034",
-        "compHeroId": "2207"
-      },
-      {
-        "heroId": "5458",
-        "equipId": "2001",
-        "compHeroId": "2208"
-      },
-      {
-        "heroId": "5458",
-        "equipId": "2007",
-        "compHeroId": "2208"
-      },
-      {
-        "heroId": "5458",
-        "equipId": "2039",
-        "compHeroId": "2208"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "欧米茄之怪",
-        "pickRate": 8.63
-      },
-      {
-        "name": "纵深 II",
-        "pickRate": 4.14
-      },
-      {
-        "name": "炽天使之拥",
-        "pickRate": 3.8
-      },
-      {
-        "name": "加冕礼",
-        "pickRate": 3
-      },
-      {
-        "name": "飞升",
-        "pickRate": 2.42
-      },
-      {
-        "name": "纵深 III",
-        "pickRate": 2.14
-      },
-      {
-        "name": "纵深 I",
-        "pickRate": 2
-      },
-      {
-        "name": "更要命的帽子",
-        "pickRate": 1.93
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 1.93
-      },
-      {
-        "name": "便携锻炉",
-        "pickRate": 1.73
-      }
-    ]
-  },
-  {
-    "compId": "106",
-    "name": "主宰女警",
-    "gameCode": "【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy",
-    "tier": "S",
-    "stats": {
-      "avgPlacement": 3.97,
-      "pickRate": 0.18,
-      "topRate": 10.79,
-      "top4Rate": 62.23,
-      "sampleCount": 556,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "凯特琳",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 2
-      },
-      {
-        "heroName": "希维尔",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "峡谷迅捷蟹",
-        "isCarry": false,
-        "isSubCarry": false,
         "isCore": true,
         "price": 2
       },
@@ -497,413 +490,135 @@
         "isSubCarry": false,
         "isCore": true,
         "price": 2
-      }
-    ],
-    "traits": [
-      "主宰",
-      "猎人",
-      "花仙子",
-      "野兽之灵"
-    ],
-    "equips": [
-      {
-        "heroId": "2510",
-        "equipId": "2045",
-        "compHeroId": "2224"
       },
       {
-        "heroId": "2510",
-        "equipId": "2013",
-        "compHeroId": "2224"
-      },
-      {
-        "heroId": "2510",
-        "equipId": "2010",
-        "compHeroId": "2224"
-      },
-      {
-        "heroId": "2500",
-        "equipId": "2034",
-        "compHeroId": "2225"
-      },
-      {
-        "heroId": "2500",
-        "equipId": "2028",
-        "compHeroId": "2225"
-      },
-      {
-        "heroId": "2500",
-        "equipId": "2025",
-        "compHeroId": "2225"
-      },
-      {
-        "heroId": "2502",
-        "equipId": "2029",
-        "compHeroId": "2226"
-      },
-      {
-        "heroId": "2502",
-        "equipId": "2034",
-        "compHeroId": "2226"
-      },
-      {
-        "heroId": "2502",
-        "equipId": "2028",
-        "compHeroId": "2226"
-      },
-      {
-        "heroId": "4510",
-        "equipId": "2037",
-        "compHeroId": "2228"
-      },
-      {
-        "heroId": "4510",
-        "equipId": "2004",
-        "compHeroId": "2228"
-      },
-      {
-        "heroId": "4510",
-        "equipId": "2001",
-        "compHeroId": "2228"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "双城赢家",
-        "pickRate": 4.36
-      },
-      {
-        "name": "更要命的战刃",
-        "pickRate": 3.59
-      },
-      {
-        "name": "飞升",
-        "pickRate": 3.06
-      },
-      {
-        "name": "便携锻炉",
-        "pickRate": 3.06
-      },
-      {
-        "name": "团队建设",
-        "pickRate": 2.94
-      },
-      {
-        "name": "远征",
-        "pickRate": 2.77
-      },
-      {
-        "name": "一波带走俩",
-        "pickRate": 2.71
-      },
-      {
-        "name": "部分飞升",
-        "pickRate": 2.41
-      },
-      {
-        "name": "男爵幻域",
-        "pickRate": 2.36
-      },
-      {
-        "name": "光明圣物",
-        "pickRate": 2.12
-      }
-    ]
-  },
-  {
-    "compId": "114",
-    "name": "5迅射月男",
-    "gameCode": "【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz",
-    "tier": "S",
-    "stats": {
-      "avgPlacement": 4.01,
-      "pickRate": 0.05,
-      "topRate": 15.85,
-      "top4Rate": 60.37,
-      "sampleCount": 164,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "绯红印记树怪",
+        "heroName": "慎",
         "isCarry": false,
         "isSubCarry": false,
         "isCore": true,
-        "price": 4
+        "price": 2
       },
       {
-        "heroName": "阿木木",
+        "heroName": "蕾欧娜",
         "isCarry": false,
         "isSubCarry": false,
         "isCore": true,
-        "price": 4
+        "price": 1
+      },
+      {
+        "heroName": "洛",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 1
       }
     ],
     "traits": [
+      "日蚀骑士",
       "迅捷射手",
-      "峡谷野怪",
       "地狱火",
-      "花仙子",
-      "狂战士",
+      "护卫",
       "月蚀骑士",
       "重装战士",
       "主宰"
     ],
     "equips": [
       {
-        "heroId": "4509",
-        "equipId": "2045",
-        "compHeroId": "2306"
-      },
-      {
-        "heroId": "4509",
-        "equipId": "2013",
-        "compHeroId": "2306"
-      },
-      {
-        "heroId": "4509",
-        "equipId": "2001",
-        "compHeroId": "2306"
-      },
-      {
-        "heroId": "4506",
-        "equipId": "2046",
-        "compHeroId": "2307"
-      },
-      {
-        "heroId": "4506",
-        "equipId": "2005",
-        "compHeroId": "2307"
-      },
-      {
-        "heroId": "4506",
-        "equipId": "41815",
-        "compHeroId": "2307"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2034",
-        "compHeroId": "2311"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2028",
-        "compHeroId": "2311"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2028",
-        "compHeroId": "2311"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2024",
-        "compHeroId": "2312"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2023",
-        "compHeroId": "2312"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2032",
-        "compHeroId": "2312"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "后排蓝图",
-        "pickRate": 6.87
-      },
-      {
-        "name": "金色炊具",
-        "pickRate": 6.67
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 4.85
-      },
-      {
-        "name": "剑之工匠",
-        "pickRate": 3.43
-      },
-      {
-        "name": "便携锻炉",
-        "pickRate": 2.83
-      },
-      {
-        "name": "嘀个痛快！ I",
-        "pickRate": 2.42
-      },
-      {
-        "name": "蔓延之根",
-        "pickRate": 2.02
-      },
-      {
-        "name": "男爵幻域",
-        "pickRate": 2.02
-      },
-      {
-        "name": "厨神阿福",
-        "pickRate": 2.02
-      },
-      {
-        "name": "节外生枝",
-        "pickRate": 1.82
-      }
-    ]
-  },
-  {
-    "compId": "99",
-    "name": "7野怪鸡哥",
-    "gameCode": "【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5",
-    "tier": "S",
-    "stats": {
-      "avgPlacement": 3.99,
-      "pickRate": 0.96,
-      "topRate": 16.04,
-      "top4Rate": 58.67,
-      "sampleCount": 3029,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "深红锋喙鸟",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      },
-      {
-        "heroName": "绯红印记树怪",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "苍蓝雕纹魔像",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "远古石甲虫",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      }
-    ],
-    "traits": [
-      "峡谷野怪",
-      "狂战士",
-      "神谕"
-    ],
-    "equips": [
-      {
-        "heroId": "4500",
-        "equipId": "2034",
-        "compHeroId": "2125"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2028",
-        "compHeroId": "2125"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2023",
-        "compHeroId": "2125"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2034",
-        "compHeroId": "2127"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2028",
-        "compHeroId": "2127"
-      },
-      {
-        "heroId": "3503",
+        "heroId": "2502",
         "equipId": "2025",
-        "compHeroId": "2127"
+        "compHeroId": "2271"
       },
       {
-        "heroId": "3509",
-        "equipId": "2045",
-        "compHeroId": "2120"
+        "heroId": "2502",
+        "equipId": "2028",
+        "compHeroId": "2271"
       },
       {
-        "heroId": "3509",
-        "equipId": "2013",
-        "compHeroId": "2120"
+        "heroId": "2502",
+        "equipId": "2034",
+        "compHeroId": "2271"
       },
       {
-        "heroId": "3509",
+        "heroId": "4509",
         "equipId": "2010",
-        "compHeroId": "2120"
+        "compHeroId": "2272"
       },
       {
-        "heroId": "4506",
+        "heroId": "4509",
+        "equipId": "2037",
+        "compHeroId": "2272"
+      },
+      {
+        "heroId": "2512",
+        "equipId": "2010",
+        "compHeroId": "2275"
+      },
+      {
+        "heroId": "2512",
+        "equipId": "2038",
+        "compHeroId": "2275"
+      },
+      {
+        "heroId": "2512",
+        "equipId": "2046",
+        "compHeroId": "2275"
+      },
+      {
+        "heroId": "1507",
+        "equipId": "2001",
+        "compHeroId": "2270"
+      },
+      {
+        "heroId": "1507",
+        "equipId": "2004",
+        "compHeroId": "2270"
+      },
+      {
+        "heroId": "1507",
         "equipId": "2045",
-        "compHeroId": "2121"
-      },
-      {
-        "heroId": "4506",
-        "equipId": "2041",
-        "compHeroId": "2121"
-      },
-      {
-        "heroId": "4506",
-        "equipId": "2007",
-        "compHeroId": "2121"
+        "compHeroId": "2270"
       }
     ],
     "recommendedHexes": [
       {
-        "name": "欧米茄之怪",
-        "pickRate": 6.81
-      },
-      {
-        "name": "纵深 II",
-        "pickRate": 4.54
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 2.69
-      },
-      {
-        "name": "飞升",
-        "pickRate": 2.53
-      },
-      {
-        "name": "纵深 III",
-        "pickRate": 2.38
-      },
-      {
-        "name": "加冕礼",
-        "pickRate": 2.16
+        "name": "值得等待",
+        "pickRate": 5.43
       },
       {
         "name": "便携锻炉",
-        "pickRate": 2.13
+        "pickRate": 4.11
       },
       {
         "name": "大百宝袋",
-        "pickRate": 2.02
+        "pickRate": 3.52
       },
       {
-        "name": "双排",
-        "pickRate": 1.72
+        "name": "嘀嘀街区",
+        "pickRate": 2.64
       },
       {
-        "name": "纵深 I",
-        "pickRate": 1.69
+        "name": "别再错过",
+        "pickRate": 2.35
+      },
+      {
+        "name": "专属定制",
+        "pickRate": 2.35
+      },
+      {
+        "name": "光明圣物",
+        "pickRate": 2.2
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 2.2
+      },
+      {
+        "name": "杖之工匠",
+        "pickRate": 2.05
+      },
+      {
+        "name": "加冕礼",
+        "pickRate": 1.76
       }
     ]
   },
@@ -913,11 +628,11 @@
     "gameCode": "【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3",
     "tier": "S",
     "stats": {
-      "avgPlacement": 4.1,
-      "pickRate": 0.08,
-      "topRate": 9.13,
-      "top4Rate": 58.17,
-      "sampleCount": 263,
+      "avgPlacement": 4.01,
+      "pickRate": 0.07,
+      "topRate": 10.01,
+      "top4Rate": 60.54,
+      "sampleCount": 2357,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -1048,168 +763,16 @@
     ]
   },
   {
-    "compId": "105",
-    "name": "森林月男",
-    "gameCode": "【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy",
-    "tier": "S",
-    "stats": {
-      "avgPlacement": 4,
-      "pickRate": 0.17,
-      "topRate": 17.78,
-      "top4Rate": 58.15,
-      "sampleCount": 540,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "厄斐琉斯",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "伊泽瑞尔",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "莉莉娅",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      }
-    ],
-    "traits": [
-      "永恒之森",
-      "裁决使",
-      "斗士",
-      "护卫",
-      "花仙子",
-      "迅捷射手",
-      "月蚀骑士",
-      "绝命花妖",
-      "月华神女"
-    ],
-    "equips": [
-      {
-        "heroId": "4502",
-        "equipId": "2023",
-        "compHeroId": "2212"
-      },
-      {
-        "heroId": "4502",
-        "equipId": "2028",
-        "compHeroId": "2212"
-      },
-      {
-        "heroId": "4502",
-        "equipId": "2034",
-        "compHeroId": "2212"
-      },
-      {
-        "heroId": "4509",
-        "equipId": "2001",
-        "compHeroId": "2213"
-      },
-      {
-        "heroId": "4509",
-        "equipId": "2010",
-        "compHeroId": "2213"
-      },
-      {
-        "heroId": "4509",
-        "equipId": "2013",
-        "compHeroId": "2213"
-      },
-      {
-        "heroId": "4508",
-        "equipId": "2004",
-        "compHeroId": "2214"
-      },
-      {
-        "heroId": "4508",
-        "equipId": "2037",
-        "compHeroId": "2214"
-      },
-      {
-        "heroId": "4508",
-        "equipId": "2009",
-        "compHeroId": "2214"
-      },
-      {
-        "heroId": "5452",
-        "equipId": "2006",
-        "compHeroId": "2219"
-      },
-      {
-        "heroId": "5452",
-        "equipId": "2007",
-        "compHeroId": "2219"
-      },
-      {
-        "heroId": "5452",
-        "equipId": "2012",
-        "compHeroId": "2219"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "厨神阿福",
-        "pickRate": 5.39
-      },
-      {
-        "name": "蔓延之根",
-        "pickRate": 5.08
-      },
-      {
-        "name": "飞升",
-        "pickRate": 3.53
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 2.79
-      },
-      {
-        "name": "纹章树",
-        "pickRate": 2.66
-      },
-      {
-        "name": "纹章树+",
-        "pickRate": 2.23
-      },
-      {
-        "name": "大百宝袋",
-        "pickRate": 1.98
-      },
-      {
-        "name": "自然庇护所",
-        "pickRate": 1.98
-      },
-      {
-        "name": "节外生枝+",
-        "pickRate": 1.92
-      },
-      {
-        "name": "双排",
-        "pickRate": 1.86
-      }
-    ]
-  },
-  {
     "compId": "87",
     "name": "献祭三狼",
     "gameCode": "【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw",
-    "tier": "A",
+    "tier": "S",
     "stats": {
-      "avgPlacement": 4.21,
-      "pickRate": 0.23,
-      "topRate": 6.78,
-      "top4Rate": 56.31,
-      "sampleCount": 737,
+      "avgPlacement": 4.05,
+      "pickRate": 0.22,
+      "topRate": 8.79,
+      "top4Rate": 60.48,
+      "sampleCount": 7282,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -1358,16 +921,749 @@
     ]
   },
   {
-    "compId": "115",
-    "name": "卡丽蜜儿",
-    "gameCode": "【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2",
+    "compId": "106",
+    "name": "主宰女警",
+    "gameCode": "【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy",
+    "tier": "S",
+    "stats": {
+      "avgPlacement": 4.04,
+      "pickRate": 0.17,
+      "topRate": 12,
+      "top4Rate": 59.33,
+      "sampleCount": 5641,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "凯特琳",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 2
+      },
+      {
+        "heroName": "希维尔",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "峡谷迅捷蟹",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 2
+      },
+      {
+        "heroName": "瑟庄妮",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 2
+      }
+    ],
+    "traits": [
+      "主宰",
+      "猎人",
+      "花仙子",
+      "野兽之灵"
+    ],
+    "equips": [
+      {
+        "heroId": "2510",
+        "equipId": "2045",
+        "compHeroId": "2224"
+      },
+      {
+        "heroId": "2510",
+        "equipId": "2013",
+        "compHeroId": "2224"
+      },
+      {
+        "heroId": "2510",
+        "equipId": "2010",
+        "compHeroId": "2224"
+      },
+      {
+        "heroId": "2500",
+        "equipId": "2034",
+        "compHeroId": "2225"
+      },
+      {
+        "heroId": "2500",
+        "equipId": "2028",
+        "compHeroId": "2225"
+      },
+      {
+        "heroId": "2500",
+        "equipId": "2025",
+        "compHeroId": "2225"
+      },
+      {
+        "heroId": "2502",
+        "equipId": "2029",
+        "compHeroId": "2226"
+      },
+      {
+        "heroId": "2502",
+        "equipId": "2034",
+        "compHeroId": "2226"
+      },
+      {
+        "heroId": "2502",
+        "equipId": "2028",
+        "compHeroId": "2226"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2037",
+        "compHeroId": "2228"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2004",
+        "compHeroId": "2228"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2001",
+        "compHeroId": "2228"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "双城赢家",
+        "pickRate": 4.36
+      },
+      {
+        "name": "更要命的战刃",
+        "pickRate": 3.59
+      },
+      {
+        "name": "飞升",
+        "pickRate": 3.06
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 3.06
+      },
+      {
+        "name": "团队建设",
+        "pickRate": 2.94
+      },
+      {
+        "name": "远征",
+        "pickRate": 2.77
+      },
+      {
+        "name": "一波带走俩",
+        "pickRate": 2.71
+      },
+      {
+        "name": "部分飞升",
+        "pickRate": 2.41
+      },
+      {
+        "name": "男爵幻域",
+        "pickRate": 2.36
+      },
+      {
+        "name": "光明圣物",
+        "pickRate": 2.12
+      }
+    ]
+  },
+  {
+    "compId": "99",
+    "name": "7野怪鸡哥",
+    "gameCode": "【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5",
+    "tier": "S",
+    "stats": {
+      "avgPlacement": 4.03,
+      "pickRate": 1.07,
+      "topRate": 14.58,
+      "top4Rate": 58.1,
+      "sampleCount": 34907,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "深红锋喙鸟",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "绯红印记树怪",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "苍蓝雕纹魔像",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "远古石甲虫",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "峡谷野怪",
+      "狂战士",
+      "神谕"
+    ],
+    "equips": [
+      {
+        "heroId": "4500",
+        "equipId": "2034",
+        "compHeroId": "2125"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2028",
+        "compHeroId": "2125"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2023",
+        "compHeroId": "2125"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2034",
+        "compHeroId": "2127"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2028",
+        "compHeroId": "2127"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2025",
+        "compHeroId": "2127"
+      },
+      {
+        "heroId": "3509",
+        "equipId": "2045",
+        "compHeroId": "2120"
+      },
+      {
+        "heroId": "3509",
+        "equipId": "2013",
+        "compHeroId": "2120"
+      },
+      {
+        "heroId": "3509",
+        "equipId": "2010",
+        "compHeroId": "2120"
+      },
+      {
+        "heroId": "4506",
+        "equipId": "2045",
+        "compHeroId": "2121"
+      },
+      {
+        "heroId": "4506",
+        "equipId": "2041",
+        "compHeroId": "2121"
+      },
+      {
+        "heroId": "4506",
+        "equipId": "2007",
+        "compHeroId": "2121"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "欧米茄之怪",
+        "pickRate": 6.81
+      },
+      {
+        "name": "纵深 II",
+        "pickRate": 4.54
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 2.69
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.53
+      },
+      {
+        "name": "纵深 III",
+        "pickRate": 2.38
+      },
+      {
+        "name": "加冕礼",
+        "pickRate": 2.16
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.13
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.02
+      },
+      {
+        "name": "双排",
+        "pickRate": 1.72
+      },
+      {
+        "name": "纵深 I",
+        "pickRate": 1.69
+      }
+    ]
+  },
+  {
+    "compId": "114",
+    "name": "5迅射月男",
+    "gameCode": "【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz",
     "tier": "S",
     "stats": {
       "avgPlacement": 4.19,
       "pickRate": 0.04,
-      "topRate": 14.04,
-      "top4Rate": 56.14,
-      "sampleCount": 114,
+      "topRate": 10.81,
+      "top4Rate": 57.71,
+      "sampleCount": 1388,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "绯红印记树怪",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "阿木木",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      }
+    ],
+    "traits": [
+      "迅捷射手",
+      "峡谷野怪",
+      "地狱火",
+      "花仙子",
+      "狂战士",
+      "月蚀骑士",
+      "重装战士",
+      "主宰"
+    ],
+    "equips": [
+      {
+        "heroId": "4509",
+        "equipId": "2045",
+        "compHeroId": "2306"
+      },
+      {
+        "heroId": "4509",
+        "equipId": "2013",
+        "compHeroId": "2306"
+      },
+      {
+        "heroId": "4509",
+        "equipId": "2001",
+        "compHeroId": "2306"
+      },
+      {
+        "heroId": "4506",
+        "equipId": "2046",
+        "compHeroId": "2307"
+      },
+      {
+        "heroId": "4506",
+        "equipId": "2005",
+        "compHeroId": "2307"
+      },
+      {
+        "heroId": "4506",
+        "equipId": "41815",
+        "compHeroId": "2307"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2034",
+        "compHeroId": "2311"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2028",
+        "compHeroId": "2311"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2028",
+        "compHeroId": "2311"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2024",
+        "compHeroId": "2312"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2023",
+        "compHeroId": "2312"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2032",
+        "compHeroId": "2312"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "后排蓝图",
+        "pickRate": 6.87
+      },
+      {
+        "name": "金色炊具",
+        "pickRate": 6.67
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 4.85
+      },
+      {
+        "name": "剑之工匠",
+        "pickRate": 3.43
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.83
+      },
+      {
+        "name": "嘀个痛快！ I",
+        "pickRate": 2.42
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 2.02
+      },
+      {
+        "name": "男爵幻域",
+        "pickRate": 2.02
+      },
+      {
+        "name": "厨神阿福",
+        "pickRate": 2.02
+      },
+      {
+        "name": "节外生枝",
+        "pickRate": 1.82
+      }
+    ]
+  },
+  {
+    "compId": "91",
+    "name": "永森95",
+    "gameCode": "【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3",
+    "tier": "S",
+    "stats": {
+      "avgPlacement": 4.01,
+      "pickRate": 0.01,
+      "topRate": 23.03,
+      "top4Rate": 57.58,
+      "sampleCount": 165,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "伊泽瑞尔",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "德莱文",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 5
+      }
+    ],
+    "traits": [
+      "永恒之森",
+      "裁决使",
+      "地狱火",
+      "斗士",
+      "主宰",
+      "宝石骑士",
+      "翠神",
+      "赏金猎人",
+      "远古树精"
+    ],
+    "equips": [
+      {
+        "heroId": "4508",
+        "equipId": "2042",
+        "compHeroId": "1898"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2045",
+        "compHeroId": "1898"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2004",
+        "compHeroId": "1898"
+      },
+      {
+        "heroId": "5455",
+        "equipId": "2013",
+        "compHeroId": "1899"
+      },
+      {
+        "heroId": "5455",
+        "equipId": "2010",
+        "compHeroId": "1899"
+      },
+      {
+        "heroId": "5451",
+        "equipId": "2025",
+        "compHeroId": "1902"
+      },
+      {
+        "heroId": "5451",
+        "equipId": "2028",
+        "compHeroId": "1902"
+      },
+      {
+        "heroId": "5451",
+        "equipId": "2034",
+        "compHeroId": "1902"
+      },
+      {
+        "heroId": "5450",
+        "equipId": "2028",
+        "compHeroId": "1905"
+      },
+      {
+        "heroId": "5450",
+        "equipId": "2034",
+        "compHeroId": "1905"
+      },
+      {
+        "heroId": "5450",
+        "equipId": "2032",
+        "compHeroId": "1905"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "双排",
+        "pickRate": 3.3
+      },
+      {
+        "name": "拼盘天梯",
+        "pickRate": 3.3
+      },
+      {
+        "name": "生日聚会",
+        "pickRate": 3.11
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.52
+      },
+      {
+        "name": "加冕礼",
+        "pickRate": 2.52
+      },
+      {
+        "name": "后期收益",
+        "pickRate": 2.33
+      },
+      {
+        "name": "镀金钢铁",
+        "pickRate": 2.14
+      },
+      {
+        "name": "顶尖构筑",
+        "pickRate": 2.14
+      },
+      {
+        "name": "纹章树+",
+        "pickRate": 1.94
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 1.55
+      }
+    ]
+  },
+  {
+    "compId": "116",
+    "name": "裁决螳螂",
+    "gameCode": "【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5",
+    "tier": "S",
+    "stats": {
+      "avgPlacement": 4.23,
+      "pickRate": 0.34,
+      "topRate": 12.71,
+      "top4Rate": 55.44,
+      "sampleCount": 11072,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "卡兹克",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "索拉卡",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "费德提克",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "赫卡里姆",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "永恒之森",
+      "裁决使",
+      "护卫",
+      "绝命花妖",
+      "月蚀骑士",
+      "重装战士",
+      "宿敌"
+    ],
+    "equips": [
+      {
+        "heroId": "3505",
+        "equipId": "2005",
+        "compHeroId": "2324"
+      },
+      {
+        "heroId": "3505",
+        "equipId": "2016",
+        "compHeroId": "2324"
+      },
+      {
+        "heroId": "3505",
+        "equipId": "2039",
+        "compHeroId": "2324"
+      },
+      {
+        "heroId": "3500",
+        "equipId": "2025",
+        "compHeroId": "2326"
+      },
+      {
+        "heroId": "3500",
+        "equipId": "2028",
+        "compHeroId": "2326"
+      },
+      {
+        "heroId": "3500",
+        "equipId": "2034",
+        "compHeroId": "2326"
+      },
+      {
+        "heroId": "4513",
+        "equipId": "2004",
+        "compHeroId": "2333"
+      },
+      {
+        "heroId": "4513",
+        "equipId": "2011",
+        "compHeroId": "2333"
+      },
+      {
+        "heroId": "4513",
+        "equipId": "2020",
+        "compHeroId": "2333"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "便携锻炉",
+        "pickRate": 4.66
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 3.63
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 3.24
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.48
+      },
+      {
+        "name": "三幻神",
+        "pickRate": 2.29
+      },
+      {
+        "name": "团队建设",
+        "pickRate": 2.15
+      },
+      {
+        "name": "英勇福袋+",
+        "pickRate": 1.95
+      },
+      {
+        "name": "治疗法球 II",
+        "pickRate": 1.87
+      },
+      {
+        "name": "专属定制",
+        "pickRate": 1.81
+      },
+      {
+        "name": "独自升级",
+        "pickRate": 1.79
+      }
+    ]
+  },
+  {
+    "compId": "115",
+    "name": "卡丽蜜儿",
+    "gameCode": "【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2",
+    "tier": "A",
+    "stats": {
+      "avgPlacement": 4.31,
+      "pickRate": 0.04,
+      "topRate": 11.75,
+      "top4Rate": 54.74,
+      "sampleCount": 1149,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -1526,11 +1822,11 @@
     "gameCode": "【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz",
     "tier": "S",
     "stats": {
-      "avgPlacement": 4.18,
-      "pickRate": 0.22,
-      "topRate": 20.95,
-      "top4Rate": 55.78,
-      "sampleCount": 692,
+      "avgPlacement": 4.17,
+      "pickRate": 0.18,
+      "topRate": 21.61,
+      "top4Rate": 54.73,
+      "sampleCount": 5743,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -1679,16 +1975,456 @@
     ]
   },
   {
+    "compId": "105",
+    "name": "森林月男",
+    "gameCode": "【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy",
+    "tier": "A",
+    "stats": {
+      "avgPlacement": 4.27,
+      "pickRate": 0.21,
+      "topRate": 15.27,
+      "top4Rate": 53.91,
+      "sampleCount": 6969,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "厄斐琉斯",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "伊泽瑞尔",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "莉莉娅",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      }
+    ],
+    "traits": [
+      "永恒之森",
+      "裁决使",
+      "斗士",
+      "护卫",
+      "花仙子",
+      "迅捷射手",
+      "月蚀骑士",
+      "绝命花妖",
+      "月华神女"
+    ],
+    "equips": [
+      {
+        "heroId": "4502",
+        "equipId": "2023",
+        "compHeroId": "2212"
+      },
+      {
+        "heroId": "4502",
+        "equipId": "2028",
+        "compHeroId": "2212"
+      },
+      {
+        "heroId": "4502",
+        "equipId": "2034",
+        "compHeroId": "2212"
+      },
+      {
+        "heroId": "4509",
+        "equipId": "2001",
+        "compHeroId": "2213"
+      },
+      {
+        "heroId": "4509",
+        "equipId": "2010",
+        "compHeroId": "2213"
+      },
+      {
+        "heroId": "4509",
+        "equipId": "2013",
+        "compHeroId": "2213"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2004",
+        "compHeroId": "2214"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2037",
+        "compHeroId": "2214"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2009",
+        "compHeroId": "2214"
+      },
+      {
+        "heroId": "5452",
+        "equipId": "2006",
+        "compHeroId": "2219"
+      },
+      {
+        "heroId": "5452",
+        "equipId": "2007",
+        "compHeroId": "2219"
+      },
+      {
+        "heroId": "5452",
+        "equipId": "2012",
+        "compHeroId": "2219"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "厨神阿福",
+        "pickRate": 5.39
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 5.08
+      },
+      {
+        "name": "飞升",
+        "pickRate": 3.53
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 2.79
+      },
+      {
+        "name": "纹章树",
+        "pickRate": 2.66
+      },
+      {
+        "name": "纹章树+",
+        "pickRate": 2.23
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 1.98
+      },
+      {
+        "name": "自然庇护所",
+        "pickRate": 1.98
+      },
+      {
+        "name": "节外生枝+",
+        "pickRate": 1.92
+      },
+      {
+        "name": "双排",
+        "pickRate": 1.86
+      }
+    ]
+  },
+  {
+    "compId": "112",
+    "name": "地狱火95",
+    "gameCode": "【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw",
+    "tier": "A",
+    "stats": {
+      "avgPlacement": 4.38,
+      "pickRate": 0.34,
+      "topRate": 18.42,
+      "top4Rate": 51.03,
+      "sampleCount": 11003,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "希维尔",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "艾希",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 5
+      },
+      {
+        "heroName": "凯南",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 5
+      },
+      {
+        "heroName": "阿木木",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      }
+    ],
+    "traits": [
+      "地狱火",
+      "猎人",
+      "野兽之灵",
+      "重装战士",
+      "主宰",
+      "宝石骑士"
+    ],
+    "equips": [
+      {
+        "heroId": "5454",
+        "equipId": "2004",
+        "compHeroId": "2287"
+      },
+      {
+        "heroId": "5454",
+        "equipId": "2037",
+        "compHeroId": "2287"
+      },
+      {
+        "heroId": "5454",
+        "equipId": "2001",
+        "compHeroId": "2287"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2004",
+        "compHeroId": "2288"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "41806",
+        "compHeroId": "2288"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2009",
+        "compHeroId": "2288"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2034",
+        "compHeroId": "2289"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2028",
+        "compHeroId": "2289"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2018",
+        "compHeroId": "2289"
+      },
+      {
+        "heroId": "5453",
+        "equipId": "2005",
+        "compHeroId": "2291"
+      },
+      {
+        "heroId": "5453",
+        "equipId": "2016",
+        "compHeroId": "2291"
+      },
+      {
+        "heroId": "5453",
+        "equipId": "2039",
+        "compHeroId": "2291"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "厨神阿福",
+        "pickRate": 14.79
+      },
+      {
+        "name": "阿福的百宝袋",
+        "pickRate": 3.85
+      },
+      {
+        "name": "双排",
+        "pickRate": 2.92
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 2.8
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 2.58
+      },
+      {
+        "name": "镀金钢铁",
+        "pickRate": 2.39
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.11
+      },
+      {
+        "name": "专属定制",
+        "pickRate": 1.7
+      },
+      {
+        "name": "纹章树+",
+        "pickRate": 1.66
+      },
+      {
+        "name": "金色炊具",
+        "pickRate": 1.63
+      }
+    ]
+  },
+  {
+    "compId": "117",
+    "name": "6主宰Flex",
+    "gameCode": "【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5",
+    "tier": "B",
+    "stats": {
+      "avgPlacement": 4.48,
+      "pickRate": 1.03,
+      "topRate": 11.6,
+      "top4Rate": 50.37,
+      "sampleCount": 33476,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "希维尔",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "艾希",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 5
+      },
+      {
+        "heroName": "阿木木",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      }
+    ],
+    "traits": [
+      "主宰",
+      "猎人",
+      "野兽之灵",
+      "远古树精"
+    ],
+    "equips": [
+      {
+        "heroId": "4510",
+        "equipId": "2001",
+        "compHeroId": "2340"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2004",
+        "compHeroId": "2340"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2045",
+        "compHeroId": "2340"
+      },
+      {
+        "heroId": "5454",
+        "equipId": "2004",
+        "compHeroId": "2341"
+      },
+      {
+        "heroId": "5454",
+        "equipId": "2009",
+        "compHeroId": "2341"
+      },
+      {
+        "heroId": "5454",
+        "equipId": "2037",
+        "compHeroId": "2341"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2018",
+        "compHeroId": "2339"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2028",
+        "compHeroId": "2339"
+      },
+      {
+        "heroId": "4503",
+        "equipId": "2034",
+        "compHeroId": "2339"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "炽天使之拥",
+        "pickRate": 8.71
+      },
+      {
+        "name": "飞升",
+        "pickRate": 4.78
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 2.95
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.66
+      },
+      {
+        "name": "男爵幻域",
+        "pickRate": 2.14
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.1
+      },
+      {
+        "name": "部分飞升",
+        "pickRate": 2
+      },
+      {
+        "name": "专属定制",
+        "pickRate": 1.66
+      },
+      {
+        "name": "坚守防线",
+        "pickRate": 1.39
+      },
+      {
+        "name": "杖之工匠",
+        "pickRate": 1.34
+      }
+    ]
+  },
+  {
     "compId": "88",
     "name": "森林妖姬天使",
     "gameCode": "【阵容码】#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0",
-    "tier": "S",
+    "tier": "B",
     "stats": {
-      "avgPlacement": 4.22,
-      "pickRate": 0.35,
-      "topRate": 15.67,
-      "top4Rate": 55.34,
-      "sampleCount": 1104,
+      "avgPlacement": 4.57,
+      "pickRate": 0.41,
+      "topRate": 13.04,
+      "top4Rate": 49.34,
+      "sampleCount": 13207,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -1835,276 +2571,295 @@
     ]
   },
   {
-    "compId": "116",
-    "name": "裁决螳螂",
-    "gameCode": "【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5",
-    "tier": "A",
+    "compId": "85",
+    "name": "裁决芸阿娜",
+    "gameCode": "【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5",
+    "tier": "C",
     "stats": {
-      "avgPlacement": 4.3,
-      "pickRate": 0.37,
-      "topRate": 12.39,
-      "top4Rate": 54.36,
-      "sampleCount": 1170,
+      "avgPlacement": 4.73,
+      "pickRate": 0.0,
+      "topRate": 2.99,
+      "top4Rate": 49.25,
+      "sampleCount": 67,
       "dataMode": "stats"
     },
     "coreHeroes": [
       {
-        "heroName": "卡兹克",
+        "heroName": "芸阿娜",
         "isCarry": true,
         "isSubCarry": false,
         "isCore": true,
-        "price": 3
+        "price": 2
       },
       {
-        "heroName": "索拉卡",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "费德提克",
+        "heroName": "阿利斯塔",
         "isCarry": false,
         "isSubCarry": false,
         "isCore": true,
-        "price": 3
-      },
-      {
-        "heroName": "赫卡里姆",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
+        "price": 2
       }
     ],
     "traits": [
-      "永恒之森",
       "裁决使",
-      "护卫",
-      "绝命花妖",
-      "月蚀骑士",
-      "重装战士",
-      "宿敌"
+      "莲华",
+      "永恒之森",
+      "斗士",
+      "法师",
+      "绝命花妖"
     ],
     "equips": [
       {
-        "heroId": "3505",
-        "equipId": "2005",
-        "compHeroId": "2324"
-      },
-      {
-        "heroId": "3505",
-        "equipId": "2016",
-        "compHeroId": "2324"
-      },
-      {
-        "heroId": "3505",
-        "equipId": "2039",
-        "compHeroId": "2324"
-      },
-      {
-        "heroId": "3500",
-        "equipId": "2025",
-        "compHeroId": "2326"
-      },
-      {
-        "heroId": "3500",
+        "heroId": "2501",
         "equipId": "2028",
-        "compHeroId": "2326"
+        "compHeroId": "2001"
       },
       {
-        "heroId": "3500",
+        "heroId": "2501",
         "equipId": "2034",
-        "compHeroId": "2326"
+        "compHeroId": "2001"
       },
       {
-        "heroId": "4513",
+        "heroId": "4505",
+        "equipId": "2032",
+        "compHeroId": "2002"
+      },
+      {
+        "heroId": "4505",
+        "equipId": "2029",
+        "compHeroId": "2002"
+      },
+      {
+        "heroId": "4505",
+        "equipId": "2034",
+        "compHeroId": "2002"
+      },
+      {
+        "heroId": "2509",
         "equipId": "2004",
-        "compHeroId": "2333"
+        "compHeroId": "2000"
       },
       {
-        "heroId": "4513",
-        "equipId": "2011",
-        "compHeroId": "2333"
+        "heroId": "2509",
+        "equipId": "2045",
+        "compHeroId": "2000"
       },
       {
-        "heroId": "4513",
-        "equipId": "2020",
-        "compHeroId": "2333"
+        "heroId": "2509",
+        "equipId": "2042",
+        "compHeroId": "2000"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2004",
+        "compHeroId": "2003"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2009",
+        "compHeroId": "2003"
+      },
+      {
+        "heroId": "4508",
+        "equipId": "2037",
+        "compHeroId": "2003"
       }
     ],
     "recommendedHexes": [
       {
+        "name": "值得等待 II",
+        "pickRate": 4.76
+      },
+      {
+        "name": "厨神阿福",
+        "pickRate": 4.29
+      },
+      {
+        "name": "嘀嘀街区",
+        "pickRate": 3.81
+      },
+      {
         "name": "便携锻炉",
-        "pickRate": 4.66
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 3.63
-      },
-      {
-        "name": "英勇福袋++",
-        "pickRate": 3.24
-      },
-      {
-        "name": "大百宝袋",
-        "pickRate": 2.48
-      },
-      {
-        "name": "三幻神",
-        "pickRate": 2.29
-      },
-      {
-        "name": "团队建设",
-        "pickRate": 2.15
-      },
-      {
-        "name": "英勇福袋+",
-        "pickRate": 1.95
-      },
-      {
-        "name": "治疗法球 II",
-        "pickRate": 1.87
+        "pickRate": 3.33
       },
       {
         "name": "专属定制",
-        "pickRate": 1.81
+        "pickRate": 3.33
       },
       {
-        "name": "独自升级",
-        "pickRate": 1.79
+        "name": "双城赢家",
+        "pickRate": 2.86
+      },
+      {
+        "name": "游神的盟友",
+        "pickRate": 2.38
+      },
+      {
+        "name": "仙灵报恩",
+        "pickRate": 2.38
+      },
+      {
+        "name": "绽灵花的约定",
+        "pickRate": 2.38
+      },
+      {
+        "name": "更要命的战刃",
+        "pickRate": 2.38
       }
     ]
   },
   {
-    "compId": "117",
-    "name": "6主宰Flex",
-    "gameCode": "【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5",
+    "compId": "107",
+    "name": "野怪小蓝",
+    "gameCode": "【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3",
     "tier": "B",
     "stats": {
-      "avgPlacement": 4.45,
-      "pickRate": 0.67,
-      "topRate": 11.45,
-      "top4Rate": 51.16,
-      "sampleCount": 2113,
+      "avgPlacement": 4.51,
+      "pickRate": 0.2,
+      "topRate": 10.74,
+      "top4Rate": 48.66,
+      "sampleCount": 6398,
       "dataMode": "stats"
     },
     "coreHeroes": [
       {
-        "heroName": "希维尔",
+        "heroName": "苍蓝哨戒",
         "isCarry": true,
         "isSubCarry": false,
         "isCore": true,
-        "price": 4
+        "price": 1
       },
       {
-        "heroName": "艾希",
+        "heroName": "远古巨龙",
         "isCarry": false,
         "isSubCarry": true,
         "isCore": true,
         "price": 5
       },
       {
-        "heroName": "阿木木",
+        "heroName": "苍蓝雕纹魔像",
         "isCarry": false,
         "isSubCarry": false,
         "isCore": true,
         "price": 4
+      },
+      {
+        "heroName": "远古石甲虫",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
       }
     ],
     "traits": [
-      "主宰",
-      "猎人",
-      "野兽之灵",
-      "远古树精"
+      "峡谷野怪",
+      "斗士",
+      "神谕",
+      "重装战士",
+      "宝石骑士",
+      "顶级掠食者"
     ],
     "equips": [
       {
-        "heroId": "4510",
-        "equipId": "2001",
-        "compHeroId": "2340"
+        "heroId": "1511",
+        "equipId": "2038",
+        "compHeroId": "2233"
       },
       {
-        "heroId": "4510",
-        "equipId": "2004",
-        "compHeroId": "2340"
+        "heroId": "1511",
+        "equipId": "2017",
+        "compHeroId": "2233"
       },
       {
-        "heroId": "4510",
-        "equipId": "2045",
-        "compHeroId": "2340"
+        "heroId": "1511",
+        "equipId": "2017",
+        "compHeroId": "2233"
       },
       {
-        "heroId": "5454",
-        "equipId": "2004",
-        "compHeroId": "2341"
-      },
-      {
-        "heroId": "5454",
-        "equipId": "2009",
-        "compHeroId": "2341"
-      },
-      {
-        "heroId": "5454",
-        "equipId": "2037",
-        "compHeroId": "2341"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2018",
-        "compHeroId": "2339"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2028",
-        "compHeroId": "2339"
-      },
-      {
-        "heroId": "4503",
+        "heroId": "3503",
         "equipId": "2034",
-        "compHeroId": "2339"
+        "compHeroId": "2234"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2028",
+        "compHeroId": "2234"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2025",
+        "compHeroId": "2234"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2023",
+        "compHeroId": "2236"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2029",
+        "compHeroId": "2236"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2019",
+        "compHeroId": "2236"
+      },
+      {
+        "heroId": "5458",
+        "equipId": "2039",
+        "compHeroId": "2238"
+      },
+      {
+        "heroId": "5458",
+        "equipId": "2007",
+        "compHeroId": "2238"
+      },
+      {
+        "heroId": "5458",
+        "equipId": "2001",
+        "compHeroId": "2238"
       }
     ],
     "recommendedHexes": [
       {
-        "name": "炽天使之拥",
-        "pickRate": 8.71
+        "name": "欧米茄之怪",
+        "pickRate": 8.58
       },
       {
-        "name": "飞升",
-        "pickRate": 4.78
+        "name": "炽天使之拥",
+        "pickRate": 6.61
+      },
+      {
+        "name": "纵深 II",
+        "pickRate": 4.5
+      },
+      {
+        "name": "更要命的帽子",
+        "pickRate": 3.63
       },
       {
         "name": "双城赢家",
-        "pickRate": 2.95
+        "pickRate": 2.8
+      },
+      {
+        "name": "纵深 III",
+        "pickRate": 2.57
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.25
+      },
+      {
+        "name": "纵深 I",
+        "pickRate": 1.93
+      },
+      {
+        "name": "双排",
+        "pickRate": 1.93
       },
       {
         "name": "便携锻炉",
-        "pickRate": 2.66
-      },
-      {
-        "name": "男爵幻域",
-        "pickRate": 2.14
-      },
-      {
-        "name": "大百宝袋",
-        "pickRate": 2.1
-      },
-      {
-        "name": "部分飞升",
-        "pickRate": 2
-      },
-      {
-        "name": "专属定制",
-        "pickRate": 1.66
-      },
-      {
-        "name": "坚守防线",
-        "pickRate": 1.39
-      },
-      {
-        "name": "杖之工匠",
-        "pickRate": 1.34
+        "pickRate": 1.84
       }
     ]
   },
@@ -2112,13 +2867,13 @@
     "compId": "95",
     "name": "月男Flex",
     "gameCode": "【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4",
-    "tier": "B",
+    "tier": "C",
     "stats": {
-      "avgPlacement": 4.51,
-      "pickRate": 1.1,
-      "topRate": 9.08,
-      "top4Rate": 50.66,
-      "sampleCount": 3480,
+      "avgPlacement": 4.62,
+      "pickRate": 1.13,
+      "topRate": 8.79,
+      "top4Rate": 48.06,
+      "sampleCount": 36615,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -2275,758 +3030,16 @@
     ]
   },
   {
-    "compId": "107",
-    "name": "野怪小蓝",
-    "gameCode": "【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3",
-    "tier": "B",
-    "stats": {
-      "avgPlacement": 4.4,
-      "pickRate": 0.22,
-      "topRate": 13.22,
-      "top4Rate": 49.93,
-      "sampleCount": 711,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "苍蓝哨戒",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 1
-      },
-      {
-        "heroName": "远古巨龙",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 5
-      },
-      {
-        "heroName": "苍蓝雕纹魔像",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "远古石甲虫",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      }
-    ],
-    "traits": [
-      "峡谷野怪",
-      "斗士",
-      "神谕",
-      "重装战士",
-      "宝石骑士",
-      "顶级掠食者"
-    ],
-    "equips": [
-      {
-        "heroId": "1511",
-        "equipId": "2038",
-        "compHeroId": "2233"
-      },
-      {
-        "heroId": "1511",
-        "equipId": "2017",
-        "compHeroId": "2233"
-      },
-      {
-        "heroId": "1511",
-        "equipId": "2017",
-        "compHeroId": "2233"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2034",
-        "compHeroId": "2234"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2028",
-        "compHeroId": "2234"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2025",
-        "compHeroId": "2234"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2023",
-        "compHeroId": "2236"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2029",
-        "compHeroId": "2236"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2019",
-        "compHeroId": "2236"
-      },
-      {
-        "heroId": "5458",
-        "equipId": "2039",
-        "compHeroId": "2238"
-      },
-      {
-        "heroId": "5458",
-        "equipId": "2007",
-        "compHeroId": "2238"
-      },
-      {
-        "heroId": "5458",
-        "equipId": "2001",
-        "compHeroId": "2238"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "欧米茄之怪",
-        "pickRate": 8.58
-      },
-      {
-        "name": "炽天使之拥",
-        "pickRate": 6.61
-      },
-      {
-        "name": "纵深 II",
-        "pickRate": 4.5
-      },
-      {
-        "name": "更要命的帽子",
-        "pickRate": 3.63
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 2.8
-      },
-      {
-        "name": "纵深 III",
-        "pickRate": 2.57
-      },
-      {
-        "name": "飞升",
-        "pickRate": 2.25
-      },
-      {
-        "name": "纵深 I",
-        "pickRate": 1.93
-      },
-      {
-        "name": "双排",
-        "pickRate": 1.93
-      },
-      {
-        "name": "便携锻炉",
-        "pickRate": 1.84
-      }
-    ]
-  },
-  {
-    "compId": "112",
-    "name": "地狱火95",
-    "gameCode": "【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw",
-    "tier": "B",
-    "stats": {
-      "avgPlacement": 4.47,
-      "pickRate": 0.55,
-      "topRate": 15.53,
-      "top4Rate": 49.8,
-      "sampleCount": 1751,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "希维尔",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "艾希",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 5
-      },
-      {
-        "heroName": "凯南",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 5
-      },
-      {
-        "heroName": "阿木木",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      }
-    ],
-    "traits": [
-      "地狱火",
-      "猎人",
-      "野兽之灵",
-      "重装战士",
-      "主宰",
-      "宝石骑士"
-    ],
-    "equips": [
-      {
-        "heroId": "5454",
-        "equipId": "2004",
-        "compHeroId": "2287"
-      },
-      {
-        "heroId": "5454",
-        "equipId": "2037",
-        "compHeroId": "2287"
-      },
-      {
-        "heroId": "5454",
-        "equipId": "2001",
-        "compHeroId": "2287"
-      },
-      {
-        "heroId": "4510",
-        "equipId": "2004",
-        "compHeroId": "2288"
-      },
-      {
-        "heroId": "4510",
-        "equipId": "41806",
-        "compHeroId": "2288"
-      },
-      {
-        "heroId": "4510",
-        "equipId": "2009",
-        "compHeroId": "2288"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2034",
-        "compHeroId": "2289"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2028",
-        "compHeroId": "2289"
-      },
-      {
-        "heroId": "4503",
-        "equipId": "2018",
-        "compHeroId": "2289"
-      },
-      {
-        "heroId": "5453",
-        "equipId": "2005",
-        "compHeroId": "2291"
-      },
-      {
-        "heroId": "5453",
-        "equipId": "2016",
-        "compHeroId": "2291"
-      },
-      {
-        "heroId": "5453",
-        "equipId": "2039",
-        "compHeroId": "2291"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "厨神阿福",
-        "pickRate": 14.79
-      },
-      {
-        "name": "阿福的百宝袋",
-        "pickRate": 3.85
-      },
-      {
-        "name": "双排",
-        "pickRate": 2.92
-      },
-      {
-        "name": "蔓延之根",
-        "pickRate": 2.8
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 2.58
-      },
-      {
-        "name": "镀金钢铁",
-        "pickRate": 2.39
-      },
-      {
-        "name": "大百宝袋",
-        "pickRate": 2.11
-      },
-      {
-        "name": "专属定制",
-        "pickRate": 1.7
-      },
-      {
-        "name": "纹章树+",
-        "pickRate": 1.66
-      },
-      {
-        "name": "金色炊具",
-        "pickRate": 1.63
-      }
-    ]
-  },
-  {
-    "compId": "93",
-    "name": "世纪和解",
-    "gameCode": "【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw",
-    "tier": "C",
-    "stats": {
-      "avgPlacement": 4.79,
-      "pickRate": 0.04,
-      "topRate": 8.4,
-      "top4Rate": 44.54,
-      "sampleCount": 119,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "雷恩加尔",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      },
-      {
-        "heroName": "卡兹克",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 3
-      }
-    ],
-    "traits": [
-      "永恒之森",
-      "宿敌",
-      "月蚀骑士",
-      "重装战士"
-    ],
-    "equips": [
-      {
-        "heroId": "3506",
-        "equipId": "2028",
-        "compHeroId": "1993"
-      },
-      {
-        "heroId": "3506",
-        "equipId": "2029",
-        "compHeroId": "1993"
-      },
-      {
-        "heroId": "3506",
-        "equipId": "2032",
-        "compHeroId": "1993"
-      },
-      {
-        "heroId": "3500",
-        "equipId": "2034",
-        "compHeroId": "1994"
-      },
-      {
-        "heroId": "3500",
-        "equipId": "2028",
-        "compHeroId": "1994"
-      },
-      {
-        "heroId": "3500",
-        "equipId": "2025",
-        "compHeroId": "1994"
-      },
-      {
-        "heroId": "3505",
-        "equipId": "2039",
-        "compHeroId": "1998"
-      },
-      {
-        "heroId": "3505",
-        "equipId": "2005",
-        "compHeroId": "1998"
-      },
-      {
-        "heroId": "3505",
-        "equipId": "2016",
-        "compHeroId": "1998"
-      },
-      {
-        "heroId": "3504",
-        "equipId": "2010",
-        "compHeroId": "1999"
-      },
-      {
-        "heroId": "3504",
-        "equipId": "2012",
-        "compHeroId": "1999"
-      },
-      {
-        "heroId": "3504",
-        "equipId": "2005",
-        "compHeroId": "1999"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "世纪和解",
-        "pickRate": 31.99
-      },
-      {
-        "name": "大百宝袋",
-        "pickRate": 4.03
-      },
-      {
-        "name": "英勇福袋++",
-        "pickRate": 4.03
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 3.76
-      },
-      {
-        "name": "剑之工匠",
-        "pickRate": 2.42
-      },
-      {
-        "name": "便携锻炉",
-        "pickRate": 2.15
-      },
-      {
-        "name": "黄金命运",
-        "pickRate": 2.15
-      },
-      {
-        "name": "可大可小",
-        "pickRate": 1.88
-      },
-      {
-        "name": "团队建设",
-        "pickRate": 1.61
-      },
-      {
-        "name": "小小福袋",
-        "pickRate": 1.61
-      }
-    ]
-  },
-  {
-    "compId": "86",
-    "name": "剑圣大嘴",
-    "gameCode": "【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5",
-    "tier": "D",
-    "stats": {
-      "avgPlacement": 5.01,
-      "pickRate": 0.02,
-      "topRate": 4.41,
-      "top4Rate": 44.12,
-      "sampleCount": 68,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "易",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      },
-      {
-        "heroName": "克格莫",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 3
-      },
-      {
-        "heroName": "远古石甲虫",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 3
-      }
-    ],
-    "traits": [
-      "魔战士",
-      "灵魂莲华",
-      "斗士",
-      "野兽之灵",
-      "主宰",
-      "帝王斑蝶"
-    ],
-    "equips": [
-      {
-        "heroId": "3507",
-        "equipId": "2012",
-        "compHeroId": "2071"
-      },
-      {
-        "heroId": "3507",
-        "equipId": "2005",
-        "compHeroId": "2071"
-      },
-      {
-        "heroId": "3507",
-        "equipId": "2010",
-        "compHeroId": "2071"
-      },
-      {
-        "heroId": "3512",
-        "equipId": "2001",
-        "compHeroId": "2072"
-      },
-      {
-        "heroId": "3512",
-        "equipId": "2009",
-        "compHeroId": "2072"
-      },
-      {
-        "heroId": "3512",
-        "equipId": "2004",
-        "compHeroId": "2072"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2025",
-        "compHeroId": "2077"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2034",
-        "compHeroId": "2077"
-      },
-      {
-        "heroId": "3503",
-        "equipId": "2028",
-        "compHeroId": "2077"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "便携锻炉",
-        "pickRate": 10.19
-      },
-      {
-        "name": "金色炊具",
-        "pickRate": 7.28
-      },
-      {
-        "name": "前线地基",
-        "pickRate": 5.83
-      },
-      {
-        "name": "三幻神",
-        "pickRate": 3.4
-      },
-      {
-        "name": "飞升",
-        "pickRate": 2.91
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 2.91
-      },
-      {
-        "name": "英勇福袋++",
-        "pickRate": 2.43
-      },
-      {
-        "name": "团队建设",
-        "pickRate": 1.94
-      },
-      {
-        "name": "小小福袋",
-        "pickRate": 1.94
-      },
-      {
-        "name": "星界赐福 II",
-        "pickRate": 1.46
-      }
-    ]
-  },
-  {
-    "compId": "111",
-    "name": "神谕狐狸",
-    "gameCode": "【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2",
-    "tier": "D",
-    "stats": {
-      "avgPlacement": 4.93,
-      "pickRate": 0.04,
-      "topRate": 12,
-      "top4Rate": 44,
-      "sampleCount": 125,
-      "dataMode": "stats"
-    },
-    "coreHeroes": [
-      {
-        "heroName": "阿狸",
-        "isCarry": true,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "莫甘娜",
-        "isCarry": false,
-        "isSubCarry": true,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "苍蓝雕纹魔像",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      },
-      {
-        "heroName": "瑟提",
-        "isCarry": false,
-        "isSubCarry": false,
-        "isCore": true,
-        "price": 4
-      }
-    ],
-    "traits": [
-      "神谕",
-      "灵魂莲华",
-      "法师",
-      "重装战士",
-      "宝石骑士",
-      "帝王斑蝶"
-    ],
-    "equips": [
-      {
-        "heroId": "4511",
-        "equipId": "41820",
-        "compHeroId": "2278"
-      },
-      {
-        "heroId": "4511",
-        "equipId": "2016",
-        "compHeroId": "2278"
-      },
-      {
-        "heroId": "4511",
-        "equipId": "2038",
-        "compHeroId": "2278"
-      },
-      {
-        "heroId": "4505",
-        "equipId": "2034",
-        "compHeroId": "2281"
-      },
-      {
-        "heroId": "4505",
-        "equipId": "2028",
-        "compHeroId": "2281"
-      },
-      {
-        "heroId": "4505",
-        "equipId": "2025",
-        "compHeroId": "2281"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2023",
-        "compHeroId": "2279"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2034",
-        "compHeroId": "2279"
-      },
-      {
-        "heroId": "4500",
-        "equipId": "2028",
-        "compHeroId": "2279"
-      },
-      {
-        "heroId": "4501",
-        "equipId": "2011",
-        "compHeroId": "2282"
-      },
-      {
-        "heroId": "4501",
-        "equipId": "2020",
-        "compHeroId": "2282"
-      },
-      {
-        "heroId": "4501",
-        "equipId": "2038",
-        "compHeroId": "2282"
-      }
-    ],
-    "recommendedHexes": [
-      {
-        "name": "后排蓝图",
-        "pickRate": 9.4
-      },
-      {
-        "name": "双城赢家",
-        "pickRate": 3.92
-      },
-      {
-        "name": "纹章树",
-        "pickRate": 2.61
-      },
-      {
-        "name": "珠光莲花 I",
-        "pickRate": 2.35
-      },
-      {
-        "name": "便携锻炉",
-        "pickRate": 2.35
-      },
-      {
-        "name": "混沌召唤",
-        "pickRate": 2.09
-      },
-      {
-        "name": "三幻神",
-        "pickRate": 2.09
-      },
-      {
-        "name": "纹章树+",
-        "pickRate": 2.09
-      },
-      {
-        "name": "节外生枝+",
-        "pickRate": 1.83
-      },
-      {
-        "name": "杖之工匠",
-        "pickRate": 1.83
-      }
-    ]
-  },
-  {
     "compId": "84",
     "name": "莲华阿狸",
     "gameCode": "【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0",
     "tier": "C",
     "stats": {
-      "avgPlacement": 4.83,
-      "pickRate": 0.29,
-      "topRate": 13.1,
-      "top4Rate": 43.67,
-      "sampleCount": 916,
+      "avgPlacement": 4.73,
+      "pickRate": 0.27,
+      "topRate": 14.3,
+      "top4Rate": 44.79,
+      "sampleCount": 8831,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -3180,16 +3193,311 @@
     ]
   },
   {
+    "compId": "83",
+    "name": "重装豹女",
+    "gameCode": "【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4",
+    "tier": "D",
+    "stats": {
+      "avgPlacement": 5.05,
+      "pickRate": 0.0,
+      "topRate": 6.77,
+      "top4Rate": 44.36,
+      "sampleCount": 133,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "奈德丽",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "莫甘娜",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "苍蓝雕纹魔像",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "蔚",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "前卫",
+      "神谕者",
+      "魔战士",
+      "野兽之灵",
+      "主宰",
+      "宝石骑士",
+      "腐蚀巨口"
+    ],
+    "equips": [
+      {
+        "heroId": "4507",
+        "equipId": "2010",
+        "compHeroId": "2174"
+      },
+      {
+        "heroId": "4507",
+        "equipId": "2038",
+        "compHeroId": "2174"
+      },
+      {
+        "heroId": "4507",
+        "equipId": "2016",
+        "compHeroId": "2174"
+      },
+      {
+        "heroId": "4514",
+        "equipId": "2011",
+        "compHeroId": "2169"
+      },
+      {
+        "heroId": "4514",
+        "equipId": "2020",
+        "compHeroId": "2169"
+      },
+      {
+        "heroId": "4514",
+        "equipId": "2022",
+        "compHeroId": "2169"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2028",
+        "compHeroId": "2170"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2034",
+        "compHeroId": "2170"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2023",
+        "compHeroId": "2170"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "飞升",
+        "pickRate": 3.52
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 3.52
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 3.27
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 2.51
+      },
+      {
+        "name": "部分飞升",
+        "pickRate": 2.01
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 1.76
+      },
+      {
+        "name": "女巫使魔",
+        "pickRate": 1.76
+      },
+      {
+        "name": "加冕礼",
+        "pickRate": 1.76
+      },
+      {
+        "name": "男爵幻域",
+        "pickRate": 1.76
+      },
+      {
+        "name": "纹章树",
+        "pickRate": 1.76
+      }
+    ]
+  },
+  {
+    "compId": "108",
+    "name": "护卫豹轮",
+    "gameCode": "【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1",
+    "tier": "C",
+    "stats": {
+      "avgPlacement": 4.84,
+      "pickRate": 0.01,
+      "topRate": 10.64,
+      "top4Rate": 43.97,
+      "sampleCount": 282,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "希维尔",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "奈德丽",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "莉莉娅",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      }
+    ],
+    "traits": [
+      "地狱火",
+      "护卫",
+      "花仙子",
+      "猎人",
+      "魔战士",
+      "神谕",
+      "野兽之灵",
+      "重装战士",
+      "主宰",
+      "帝王斑蝶"
+    ],
+    "equips": [
+      {
+        "heroId": "4502",
+        "equipId": "2034",
+        "compHeroId": "2241"
+      },
+      {
+        "heroId": "4502",
+        "equipId": "2028",
+        "compHeroId": "2241"
+      },
+      {
+        "heroId": "4502",
+        "equipId": "2023",
+        "compHeroId": "2241"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2034",
+        "compHeroId": "2243"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2028",
+        "compHeroId": "2243"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2023",
+        "compHeroId": "2243"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2045",
+        "compHeroId": "2246"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2004",
+        "compHeroId": "2246"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2001",
+        "compHeroId": "2246"
+      },
+      {
+        "heroId": "4507",
+        "equipId": "2042",
+        "compHeroId": "2247"
+      },
+      {
+        "heroId": "4507",
+        "equipId": "2038",
+        "compHeroId": "2247"
+      },
+      {
+        "heroId": "4507",
+        "equipId": "2010",
+        "compHeroId": "2247"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "厨神阿福",
+        "pickRate": 5.51
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 4.59
+      },
+      {
+        "name": "纹章树",
+        "pickRate": 4.02
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 3.1
+      },
+      {
+        "name": "终身黄铜 I",
+        "pickRate": 2.41
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.18
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 1.95
+      },
+      {
+        "name": "阿福的百宝袋",
+        "pickRate": 1.95
+      },
+      {
+        "name": "蔓延之根+",
+        "pickRate": 1.84
+      },
+      {
+        "name": "专属定制",
+        "pickRate": 1.72
+      }
+    ]
+  },
+  {
     "compId": "121",
     "name": "赌沙皇",
     "gameCode": "【阵容码】#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx",
     "tier": "D",
     "stats": {
-      "avgPlacement": 4.93,
-      "pickRate": 0.17,
-      "topRate": 6.45,
-      "top4Rate": 42.36,
-      "sampleCount": 543,
+      "avgPlacement": 4.89,
+      "pickRate": 0.26,
+      "topRate": 8.44,
+      "top4Rate": 42.68,
+      "sampleCount": 8543,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -3311,35 +3619,42 @@
     ]
   },
   {
-    "compId": "90",
-    "name": "裁决奶妈",
-    "gameCode": "【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw",
+    "compId": "111",
+    "name": "神谕狐狸",
+    "gameCode": "【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2",
     "tier": "D",
     "stats": {
-      "avgPlacement": 4.94,
-      "pickRate": 0.19,
-      "topRate": 8.79,
-      "top4Rate": 42.18,
-      "sampleCount": 614,
+      "avgPlacement": 4.9,
+      "pickRate": 0.04,
+      "topRate": 9.17,
+      "top4Rate": 42.11,
+      "sampleCount": 1406,
       "dataMode": "stats"
     },
     "coreHeroes": [
       {
-        "heroName": "索拉卡",
+        "heroName": "阿狸",
         "isCarry": true,
         "isSubCarry": false,
         "isCore": true,
         "price": 4
       },
       {
-        "heroName": "婕拉",
+        "heroName": "莫甘娜",
         "isCarry": false,
         "isSubCarry": true,
         "isCore": true,
         "price": 4
       },
       {
-        "heroName": "墨菲特",
+        "heroName": "苍蓝雕纹魔像",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "瑟提",
         "isCarry": false,
         "isSubCarry": false,
         "isCore": true,
@@ -3347,103 +3662,115 @@
       }
     ],
     "traits": [
-      "裁决使",
-      "召唤师",
-      "地狱火",
-      "黑荆棘",
-      "绝命花妖",
-      "主宰",
-      "翠神",
-      "荆棘之兴",
-      "魔岩巨兽"
+      "神谕",
+      "灵魂莲华",
+      "法师",
+      "重装战士",
+      "宝石骑士",
+      "帝王斑蝶"
     ],
     "equips": [
       {
-        "heroId": "4504",
-        "equipId": "2028",
-        "compHeroId": "1906"
+        "heroId": "4511",
+        "equipId": "41820",
+        "compHeroId": "2278"
       },
       {
-        "heroId": "4504",
-        "equipId": "2034",
-        "compHeroId": "1906"
-      },
-      {
-        "heroId": "4504",
-        "equipId": "2025",
-        "compHeroId": "1906"
-      },
-      {
-        "heroId": "4513",
-        "equipId": "2004",
-        "compHeroId": "1907"
-      },
-      {
-        "heroId": "4513",
-        "equipId": "2014",
-        "compHeroId": "1907"
-      },
-      {
-        "heroId": "4513",
+        "heroId": "4511",
         "equipId": "2016",
-        "compHeroId": "1907"
+        "compHeroId": "2278"
       },
       {
-        "heroId": "4512",
+        "heroId": "4511",
+        "equipId": "2038",
+        "compHeroId": "2278"
+      },
+      {
+        "heroId": "4505",
+        "equipId": "2034",
+        "compHeroId": "2281"
+      },
+      {
+        "heroId": "4505",
+        "equipId": "2028",
+        "compHeroId": "2281"
+      },
+      {
+        "heroId": "4505",
+        "equipId": "2025",
+        "compHeroId": "2281"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2023",
+        "compHeroId": "2279"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2034",
+        "compHeroId": "2279"
+      },
+      {
+        "heroId": "4500",
+        "equipId": "2028",
+        "compHeroId": "2279"
+      },
+      {
+        "heroId": "4501",
         "equipId": "2011",
-        "compHeroId": "1908"
+        "compHeroId": "2282"
       },
       {
-        "heroId": "4512",
-        "equipId": "2004",
-        "compHeroId": "1908"
+        "heroId": "4501",
+        "equipId": "2020",
+        "compHeroId": "2282"
       },
       {
-        "heroId": "4512",
-        "equipId": "41818",
-        "compHeroId": "1908"
+        "heroId": "4501",
+        "equipId": "2038",
+        "compHeroId": "2282"
       }
     ],
     "recommendedHexes": [
       {
-        "name": "厨神阿福",
-        "pickRate": 3.64
+        "name": "后排蓝图",
+        "pickRate": 9.4
       },
       {
         "name": "双城赢家",
-        "pickRate": 3.37
+        "pickRate": 3.92
       },
       {
-        "name": "金色炊具",
-        "pickRate": 3.21
+        "name": "纹章树",
+        "pickRate": 2.61
       },
       {
-        "name": "后排蓝图",
-        "pickRate": 3.21
-      },
-      {
-        "name": "蔓延之根",
-        "pickRate": 3
-      },
-      {
-        "name": "飞升",
-        "pickRate": 2.32
-      },
-      {
-        "name": "大百宝袋",
-        "pickRate": 2.32
+        "name": "珠光莲花 I",
+        "pickRate": 2.35
       },
       {
         "name": "便携锻炉",
-        "pickRate": 2.16
+        "pickRate": 2.35
       },
       {
-        "name": "双排",
-        "pickRate": 2
+        "name": "混沌召唤",
+        "pickRate": 2.09
+      },
+      {
+        "name": "三幻神",
+        "pickRate": 2.09
+      },
+      {
+        "name": "纹章树+",
+        "pickRate": 2.09
+      },
+      {
+        "name": "节外生枝+",
+        "pickRate": 1.83
       },
       {
         "name": "杖之工匠",
-        "pickRate": 2
+        "pickRate": 1.83
       }
     ]
   },
@@ -3453,11 +3780,11 @@
     "gameCode": "【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0",
     "tier": "D",
     "stats": {
-      "avgPlacement": 4.99,
-      "pickRate": 0.05,
-      "topRate": 5.37,
-      "top4Rate": 38.93,
-      "sampleCount": 149,
+      "avgPlacement": 4.9,
+      "pickRate": 0.02,
+      "topRate": 5.17,
+      "top4Rate": 41.84,
+      "sampleCount": 619,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -3602,16 +3929,427 @@
     ]
   },
   {
+    "compId": "86",
+    "name": "剑圣大嘴",
+    "gameCode": "【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5",
+    "tier": "D",
+    "stats": {
+      "avgPlacement": 4.97,
+      "pickRate": 0.01,
+      "topRate": 4.93,
+      "top4Rate": 41.13,
+      "sampleCount": 406,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "易",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "克格莫",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "远古石甲虫",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "魔战士",
+      "灵魂莲华",
+      "斗士",
+      "野兽之灵",
+      "主宰",
+      "帝王斑蝶"
+    ],
+    "equips": [
+      {
+        "heroId": "3507",
+        "equipId": "2012",
+        "compHeroId": "2071"
+      },
+      {
+        "heroId": "3507",
+        "equipId": "2005",
+        "compHeroId": "2071"
+      },
+      {
+        "heroId": "3507",
+        "equipId": "2010",
+        "compHeroId": "2071"
+      },
+      {
+        "heroId": "3512",
+        "equipId": "2001",
+        "compHeroId": "2072"
+      },
+      {
+        "heroId": "3512",
+        "equipId": "2009",
+        "compHeroId": "2072"
+      },
+      {
+        "heroId": "3512",
+        "equipId": "2004",
+        "compHeroId": "2072"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2025",
+        "compHeroId": "2077"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2034",
+        "compHeroId": "2077"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2028",
+        "compHeroId": "2077"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "便携锻炉",
+        "pickRate": 10.19
+      },
+      {
+        "name": "金色炊具",
+        "pickRate": 7.28
+      },
+      {
+        "name": "前线地基",
+        "pickRate": 5.83
+      },
+      {
+        "name": "三幻神",
+        "pickRate": 3.4
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.91
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 2.91
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 2.43
+      },
+      {
+        "name": "团队建设",
+        "pickRate": 1.94
+      },
+      {
+        "name": "小小福袋",
+        "pickRate": 1.94
+      },
+      {
+        "name": "星界赐福 II",
+        "pickRate": 1.46
+      }
+    ]
+  },
+  {
+    "compId": "90",
+    "name": "裁决奶妈",
+    "gameCode": "【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw",
+    "tier": "D",
+    "stats": {
+      "avgPlacement": 5.05,
+      "pickRate": 0.19,
+      "topRate": 8.92,
+      "top4Rate": 40.31,
+      "sampleCount": 6045,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "索拉卡",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "婕拉",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "墨菲特",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 4
+      }
+    ],
+    "traits": [
+      "裁决使",
+      "召唤师",
+      "地狱火",
+      "黑荆棘",
+      "绝命花妖",
+      "主宰",
+      "翠神",
+      "荆棘之兴",
+      "魔岩巨兽"
+    ],
+    "equips": [
+      {
+        "heroId": "4504",
+        "equipId": "2028",
+        "compHeroId": "1906"
+      },
+      {
+        "heroId": "4504",
+        "equipId": "2034",
+        "compHeroId": "1906"
+      },
+      {
+        "heroId": "4504",
+        "equipId": "2025",
+        "compHeroId": "1906"
+      },
+      {
+        "heroId": "4513",
+        "equipId": "2004",
+        "compHeroId": "1907"
+      },
+      {
+        "heroId": "4513",
+        "equipId": "2014",
+        "compHeroId": "1907"
+      },
+      {
+        "heroId": "4513",
+        "equipId": "2016",
+        "compHeroId": "1907"
+      },
+      {
+        "heroId": "4512",
+        "equipId": "2011",
+        "compHeroId": "1908"
+      },
+      {
+        "heroId": "4512",
+        "equipId": "2004",
+        "compHeroId": "1908"
+      },
+      {
+        "heroId": "4512",
+        "equipId": "41818",
+        "compHeroId": "1908"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "厨神阿福",
+        "pickRate": 3.64
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 3.37
+      },
+      {
+        "name": "金色炊具",
+        "pickRate": 3.21
+      },
+      {
+        "name": "后排蓝图",
+        "pickRate": 3.21
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 3
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.32
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.32
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.16
+      },
+      {
+        "name": "双排",
+        "pickRate": 2
+      },
+      {
+        "name": "杖之工匠",
+        "pickRate": 2
+      }
+    ]
+  },
+  {
+    "compId": "93",
+    "name": "世纪和解",
+    "gameCode": "【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw",
+    "tier": "D",
+    "stats": {
+      "avgPlacement": 5.09,
+      "pickRate": 0.03,
+      "topRate": 6.01,
+      "top4Rate": 39.18,
+      "sampleCount": 998,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "雷恩加尔",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "卡兹克",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "永恒之森",
+      "宿敌",
+      "月蚀骑士",
+      "重装战士"
+    ],
+    "equips": [
+      {
+        "heroId": "3506",
+        "equipId": "2028",
+        "compHeroId": "1993"
+      },
+      {
+        "heroId": "3506",
+        "equipId": "2029",
+        "compHeroId": "1993"
+      },
+      {
+        "heroId": "3506",
+        "equipId": "2032",
+        "compHeroId": "1993"
+      },
+      {
+        "heroId": "3500",
+        "equipId": "2034",
+        "compHeroId": "1994"
+      },
+      {
+        "heroId": "3500",
+        "equipId": "2028",
+        "compHeroId": "1994"
+      },
+      {
+        "heroId": "3500",
+        "equipId": "2025",
+        "compHeroId": "1994"
+      },
+      {
+        "heroId": "3505",
+        "equipId": "2039",
+        "compHeroId": "1998"
+      },
+      {
+        "heroId": "3505",
+        "equipId": "2005",
+        "compHeroId": "1998"
+      },
+      {
+        "heroId": "3505",
+        "equipId": "2016",
+        "compHeroId": "1998"
+      },
+      {
+        "heroId": "3504",
+        "equipId": "2010",
+        "compHeroId": "1999"
+      },
+      {
+        "heroId": "3504",
+        "equipId": "2012",
+        "compHeroId": "1999"
+      },
+      {
+        "heroId": "3504",
+        "equipId": "2005",
+        "compHeroId": "1999"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "世纪和解",
+        "pickRate": 31.99
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 4.03
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 4.03
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 3.76
+      },
+      {
+        "name": "剑之工匠",
+        "pickRate": 2.42
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.15
+      },
+      {
+        "name": "黄金命运",
+        "pickRate": 2.15
+      },
+      {
+        "name": "可大可小",
+        "pickRate": 1.88
+      },
+      {
+        "name": "团队建设",
+        "pickRate": 1.61
+      },
+      {
+        "name": "小小福袋",
+        "pickRate": 1.61
+      }
+    ]
+  },
+  {
     "compId": "109",
     "name": "皎月螳螂",
     "gameCode": "【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5",
     "tier": "D",
     "stats": {
-      "avgPlacement": 5.23,
-      "pickRate": 0.03,
-      "topRate": 10,
-      "top4Rate": 37.5,
-      "sampleCount": 80,
+      "avgPlacement": 5.21,
+      "pickRate": 0.02,
+      "topRate": 7.62,
+      "top4Rate": 35.87,
+      "sampleCount": 669,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -3743,16 +4481,315 @@
     ]
   },
   {
+    "compId": "97",
+    "name": "花仙狮子狗",
+    "gameCode": "【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3",
+    "tier": "D",
+    "stats": {
+      "avgPlacement": 5.45,
+      "pickRate": 0.01,
+      "topRate": 7.28,
+      "top4Rate": 33.98,
+      "sampleCount": 206,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "雷恩加尔",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "崔丝塔娜",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "拉莫斯",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "蔚",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "约德尔人",
+      "护卫",
+      "花仙子",
+      "猎人",
+      "野兽之灵",
+      "主宰",
+      "宿敌"
+    ],
+    "equips": [
+      {
+        "heroId": "3504",
+        "equipId": "41804",
+        "compHeroId": "2096"
+      },
+      {
+        "heroId": "3504",
+        "equipId": "2010",
+        "compHeroId": "2096"
+      },
+      {
+        "heroId": "3504",
+        "equipId": "2005",
+        "compHeroId": "2096"
+      },
+      {
+        "heroId": "3515",
+        "equipId": "2034",
+        "compHeroId": "2264"
+      },
+      {
+        "heroId": "3515",
+        "equipId": "2028",
+        "compHeroId": "2264"
+      },
+      {
+        "heroId": "3515",
+        "equipId": "2025",
+        "compHeroId": "2264"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2009",
+        "compHeroId": "2265"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2037",
+        "compHeroId": "2265"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2004",
+        "compHeroId": "2265"
+      },
+      {
+        "heroId": "3508",
+        "equipId": "2013",
+        "compHeroId": "2266"
+      },
+      {
+        "heroId": "3508",
+        "equipId": "2010",
+        "compHeroId": "2266"
+      },
+      {
+        "heroId": "3508",
+        "equipId": "2003",
+        "compHeroId": "2266"
+      },
+      {
+        "heroId": "3501",
+        "equipId": "2034",
+        "compHeroId": "2267"
+      },
+      {
+        "heroId": "3501",
+        "equipId": "2028",
+        "compHeroId": "2267"
+      },
+      {
+        "heroId": "3501",
+        "equipId": "2025",
+        "compHeroId": "2267"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "蔓延之根",
+        "pickRate": 7.52
+      },
+      {
+        "name": "三幻神",
+        "pickRate": 4.64
+      },
+      {
+        "name": "纹章树",
+        "pickRate": 3.68
+      },
+      {
+        "name": "星界赐福 II",
+        "pickRate": 2.72
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.72
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 2.56
+      },
+      {
+        "name": "厨神阿福",
+        "pickRate": 2.56
+      },
+      {
+        "name": "嘀个痛快！ I",
+        "pickRate": 2.4
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.24
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.08
+      }
+    ]
+  },
+  {
+    "compId": "98",
+    "name": "花仙小炮",
+    "gameCode": "【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5",
+    "tier": "D",
+    "stats": {
+      "avgPlacement": 5.54,
+      "pickRate": 0.01,
+      "topRate": 4.66,
+      "top4Rate": 31.93,
+      "sampleCount": 429,
+      "dataMode": "stats"
+    },
+    "coreHeroes": [
+      {
+        "heroName": "崔丝塔娜",
+        "isCarry": true,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      },
+      {
+        "heroName": "拉莫斯",
+        "isCarry": false,
+        "isSubCarry": false,
+        "isCore": true,
+        "price": 3
+      }
+    ],
+    "traits": [
+      "花仙子",
+      "约德尔人",
+      "护卫",
+      "猎人",
+      "野兽之灵",
+      "主宰"
+    ],
+    "equips": [
+      {
+        "heroId": "3515",
+        "equipId": "2025",
+        "compHeroId": "2104"
+      },
+      {
+        "heroId": "3515",
+        "equipId": "2028",
+        "compHeroId": "2104"
+      },
+      {
+        "heroId": "3515",
+        "equipId": "2034",
+        "compHeroId": "2104"
+      },
+      {
+        "heroId": "3508",
+        "equipId": "2003",
+        "compHeroId": "2105"
+      },
+      {
+        "heroId": "3508",
+        "equipId": "2010",
+        "compHeroId": "2105"
+      },
+      {
+        "heroId": "3508",
+        "equipId": "2013",
+        "compHeroId": "2105"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2001",
+        "compHeroId": "2106"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2037",
+        "compHeroId": "2106"
+      },
+      {
+        "heroId": "4510",
+        "equipId": "2009",
+        "compHeroId": "2106"
+      }
+    ],
+    "recommendedHexes": [
+      {
+        "name": "黄金命运",
+        "pickRate": 7.03
+      },
+      {
+        "name": "巨化术",
+        "pickRate": 5.95
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 4.86
+      },
+      {
+        "name": "英勇福袋++",
+        "pickRate": 3.78
+      },
+      {
+        "name": "纹章树",
+        "pickRate": 3.78
+      },
+      {
+        "name": "嘀嘀街区加强版",
+        "pickRate": 2.7
+      },
+      {
+        "name": "双城赢家",
+        "pickRate": 2.7
+      },
+      {
+        "name": "毛茸茸小朋友",
+        "pickRate": 2.7
+      },
+      {
+        "name": "嘀个痛快！ I",
+        "pickRate": 2.16
+      },
+      {
+        "name": "飞升",
+        "pickRate": 2.16
+      }
+    ]
+  },
+  {
     "compId": "101",
     "name": "护卫蛇女",
     "gameCode": "【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz",
     "tier": "D",
     "stats": {
-      "avgPlacement": 5.48,
-      "pickRate": 0.06,
-      "topRate": 5.52,
-      "top4Rate": 27.07,
-      "sampleCount": 181,
+      "avgPlacement": 5.43,
+      "pickRate": 0.02,
+      "topRate": 3.98,
+      "top4Rate": 30.47,
+      "sampleCount": 653,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -3879,11 +4916,11 @@
     "gameCode": "【阵容码】#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0",
     "tier": "D",
     "stats": {
-      "avgPlacement": 5.72,
-      "pickRate": 0.05,
-      "topRate": 3.01,
-      "top4Rate": 25.9,
-      "sampleCount": 166,
+      "avgPlacement": 5.67,
+      "pickRate": 0.04,
+      "topRate": 3.89,
+      "top4Rate": 26.21,
+      "sampleCount": 1259,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -4029,11 +5066,11 @@
     "gameCode": "【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2",
     "tier": "D",
     "stats": {
-      "avgPlacement": 5.88,
-      "pickRate": 0.03,
-      "topRate": 2.22,
-      "top4Rate": 25.56,
-      "sampleCount": 90,
+      "avgPlacement": 5.82,
+      "pickRate": 0.01,
+      "topRate": 2.91,
+      "top4Rate": 26.19,
+      "sampleCount": 378,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -4168,11 +5205,11 @@
     "gameCode": "【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky",
     "tier": "D",
     "stats": {
-      "avgPlacement": 5.9,
-      "pickRate": 0.15,
-      "topRate": 1.9,
-      "top4Rate": 24.05,
-      "sampleCount": 474,
+      "avgPlacement": 5.85,
+      "pickRate": 0.05,
+      "topRate": 1.89,
+      "top4Rate": 23.83,
+      "sampleCount": 1532,
       "dataMode": "stats"
     },
     "coreHeroes": [
@@ -4317,28 +5354,35 @@
     ]
   },
   {
-    "compId": "98",
-    "name": "花仙小炮",
-    "gameCode": "【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5",
+    "compId": "96",
+    "name": "召唤鸡哥",
+    "gameCode": "【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2",
     "tier": "D",
     "stats": {
-      "avgPlacement": 6.09,
-      "pickRate": 0.02,
-      "topRate": 0,
-      "top4Rate": 22.41,
-      "sampleCount": 58,
+      "avgPlacement": 6.32,
+      "pickRate": 0.0,
+      "topRate": 1.85,
+      "top4Rate": 17.9,
+      "sampleCount": 162,
       "dataMode": "stats"
     },
     "coreHeroes": [
       {
-        "heroName": "崔丝塔娜",
+        "heroName": "深红锋喙鸟",
         "isCarry": true,
         "isSubCarry": false,
         "isCore": true,
         "price": 3
       },
       {
-        "heroName": "拉莫斯",
+        "heroName": "厄斐琉斯",
+        "isCarry": false,
+        "isSubCarry": true,
+        "isCore": true,
+        "price": 4
+      },
+      {
+        "heroName": "远古石甲虫",
         "isCarry": false,
         "isSubCarry": false,
         "isCore": true,
@@ -4346,100 +5390,116 @@
       }
     ],
     "traits": [
-      "花仙子",
-      "约德尔人",
-      "护卫",
-      "猎人",
-      "野兽之灵",
-      "主宰"
+      "峡谷野怪",
+      "召唤师",
+      "斗士",
+      "迅捷射手",
+      "月蚀骑士",
+      "重装战士",
+      "荆棘之兴"
     ],
     "equips": [
       {
-        "heroId": "3515",
-        "equipId": "2025",
-        "compHeroId": "2104"
+        "heroId": "4505",
+        "equipId": "2029",
+        "compHeroId": "2137"
       },
       {
-        "heroId": "3515",
-        "equipId": "2028",
-        "compHeroId": "2104"
+        "heroId": "4505",
+        "equipId": "2032",
+        "compHeroId": "2137"
       },
       {
-        "heroId": "3515",
+        "heroId": "4505",
         "equipId": "2034",
-        "compHeroId": "2104"
+        "compHeroId": "2137"
       },
       {
-        "heroId": "3508",
-        "equipId": "2003",
-        "compHeroId": "2105"
+        "heroId": "3503",
+        "equipId": "2025",
+        "compHeroId": "2139"
       },
       {
-        "heroId": "3508",
+        "heroId": "3503",
+        "equipId": "2028",
+        "compHeroId": "2139"
+      },
+      {
+        "heroId": "3503",
+        "equipId": "2034",
+        "compHeroId": "2139"
+      },
+      {
+        "heroId": "3509",
         "equipId": "2010",
-        "compHeroId": "2105"
+        "compHeroId": "2140"
       },
       {
-        "heroId": "3508",
+        "heroId": "3509",
         "equipId": "2013",
-        "compHeroId": "2105"
+        "compHeroId": "2140"
       },
       {
-        "heroId": "4510",
+        "heroId": "3509",
+        "equipId": "2045",
+        "compHeroId": "2140"
+      },
+      {
+        "heroId": "4509",
         "equipId": "2001",
-        "compHeroId": "2106"
+        "compHeroId": "2141"
       },
       {
-        "heroId": "4510",
-        "equipId": "2037",
-        "compHeroId": "2106"
+        "heroId": "4509",
+        "equipId": "2010",
+        "compHeroId": "2141"
       },
       {
-        "heroId": "4510",
-        "equipId": "2009",
-        "compHeroId": "2106"
+        "heroId": "4509",
+        "equipId": "2045",
+        "compHeroId": "2141"
       }
     ],
     "recommendedHexes": [
       {
-        "name": "黄金命运",
-        "pickRate": 7.03
-      },
-      {
-        "name": "巨化术",
-        "pickRate": 5.95
-      },
-      {
-        "name": "蔓延之根",
-        "pickRate": 4.86
-      },
-      {
-        "name": "英勇福袋++",
-        "pickRate": 3.78
-      },
-      {
-        "name": "纹章树",
-        "pickRate": 3.78
-      },
-      {
-        "name": "嘀嘀街区加强版",
-        "pickRate": 2.7
-      },
-      {
         "name": "双城赢家",
-        "pickRate": 2.7
-      },
-      {
-        "name": "毛茸茸小朋友",
-        "pickRate": 2.7
-      },
-      {
-        "name": "嘀个痛快！ I",
-        "pickRate": 2.16
+        "pickRate": 4.65
       },
       {
         "name": "飞升",
-        "pickRate": 2.16
+        "pickRate": 3.43
+      },
+      {
+        "name": "一波带走俩",
+        "pickRate": 3.23
+      },
+      {
+        "name": "大百宝袋",
+        "pickRate": 2.63
+      },
+      {
+        "name": "便携锻炉",
+        "pickRate": 2.63
+      },
+      {
+        "name": "专属定制",
+        "pickRate": 2.42
+      },
+      {
+        "name": "蔓延之根",
+        "pickRate": 2.42
+      },
+      {
+        "name": "节外生枝+",
+        "pickRate": 2.02
+      },
+      {
+        "name": "装备百宝袋 I",
+        "pickRate": 1.82
+      },
+      {
+        "name": "强化之能量",
+        "pickRate": 1.82
       }
     ]
   }
