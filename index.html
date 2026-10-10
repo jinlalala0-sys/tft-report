@@ -1,1698 +1,261 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TFT阵容数据报告 2026-10-08</title>
+<title>TFT 阵容数据报告 - 2026-10-10</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0f1419; color: #e0e0e0; line-height: 1.6; }
-.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-/* Header */
-.header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #1a1f2e, #252b3d); border-radius: 12px; margin-bottom: 30px; border: 1px solid #2a3040; }
-.header h1 { font-size: 2em; color: #fff; margin-bottom: 10px; }
-.header .meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 15px; }
-.header .meta-item { background: #1e2535; padding: 6px 16px; border-radius: 20px; font-size: 0.9em; color: #8ab4f8; border: 1px solid #2a3550; }
-.header .meta-item b { color: #fff; }
-/* Section */
-.section { margin-bottom: 40px; }
-.section-title { font-size: 1.4em; color: #fff; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #2a3550; display: flex; align-items: center; gap: 10px; }
-.section-title::before { content: ''; width: 4px; height: 24px; background: #8ab4f8; border-radius: 2px; }
-/* Table */
-.comp-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
-.comp-table th { background: #1a2030; padding: 10px 8px; text-align: left; color: #8ab4f8; font-weight: 600; border-bottom: 2px solid #2a3550; position: sticky; top: 0; }
-.comp-table td { padding: 8px; border-bottom: 1px solid #1e2535; vertical-align: top; }
-.comp-table tr:hover { background: #1a2030; }
-.rank { text-align: center; color: #666; font-weight: bold; }
-.tier-cell { text-align: center; }
-.tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; color: #fff; font-weight: bold; font-size: 0.85em; }
-.name { font-weight: 600; color: #fff; white-space: nowrap; }
-.hero { display: inline-block; margin: 1px 2px; padding: 1px 6px; background: #1e2535; border-radius: 3px; font-size: 0.85em; }
-.hero.carry { background: #2d1f1f; color: #ff9966; border: 1px solid #4a2a1a; }
-.trait { display: inline-block; margin: 1px 2px; padding: 1px 6px; background: #1a1a2e; border-radius: 3px; font-size: 0.8em; color: #aaaadd; }
-.stat { text-align: center; font-family: 'Consolas', monospace; }
-.stat.sample { color: #666; font-size: 0.85em; }
-.hexes { max-width: 150px; }
-.hex { display: block; font-size: 0.75em; color: #8c8; margin: 1px 0; }
-.gamecode { min-width: 200px; }
-.gc-box { cursor: pointer; display: flex; align-items: center; gap: 5px; background: #1a2030; padding: 4px 8px; border-radius: 4px; border: 1px solid #2a3550; transition: all 0.2s; }
-.gc-box:hover { border-color: #8ab4f8; background: #252b3d; }
-.gc-text { font-size: 0.75em; color: #6c9; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
-.copy-btn { font-size: 0.7em; color: #8ab4f8; white-space: nowrap; }
-/* Recommended */
-.rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-.rec-card { background: #1a1f2e; border: 1px solid #2a3550; border-radius: 8px; padding: 15px; cursor: pointer; transition: all 0.2s; }
-.rec-card:hover { border-color: #8ab4f8; transform: translateY(-2px); }
-.rec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.rec-name { font-size: 1.1em; font-weight: 600; color: #fff; }
-.rec-heroes { margin-bottom: 8px; }
-.rec-hero { display: inline-block; margin: 1px 2px; padding: 2px 8px; background: #252b3d; border-radius: 3px; font-size: 0.85em; }
-.rec-stats { display: flex; gap: 12px; margin-bottom: 8px; }
-.rec-stat { font-size: 0.8em; color: #888; }
-.rec-stat b { color: #8ab4f8; }
-.rec-gc { font-size: 0.7em; color: #6c9; font-family: monospace; word-break: break-all; }
-/* Filter */
-.filter-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-.filter-btn { padding: 6px 16px; background: #1a2030; border: 1px solid #2a3550; border-radius: 20px; color: #888; cursor: pointer; font-size: 0.9em; transition: all 0.2s; }
-.filter-btn:hover { border-color: #8ab4f8; color: #fff; }
-.filter-btn.active { background: #8ab4f8; color: #0f1419; border-color: #8ab4f8; font-weight: 600; }
-/* Tier section */
-.tier-section { margin-bottom: 30px; }
-.tier-title { font-size: 1.2em; color: #fff; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid; display: flex; align-items: center; gap: 10px; }
-.tier-badge-lg { display: inline-block; padding: 4px 12px; border-radius: 6px; color: #fff; font-weight: bold; }
-.tier-count { font-size: 0.8em; color: #666; }
-/* Toast */
-.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #8ab4f8; color: #0f1419; padding: 10px 24px; border-radius: 8px; font-weight: 600; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 999; }
-.toast.show { opacity: 1; }
-/* Hidden rows */
-.comp-row.hidden { display: none; }
-.footer { text-align: center; padding: 30px 0; color: #555; font-size: 0.8em; }
+:root{--bg:#0f0f17;--card:#1a1a2e;--border:#2a2a4a;--text:#e0e0e8;--muted:#8888a0;--accent:#6c5ce7;--gold:#ffd700;--green:#00b894;--red:#e74c3c;--blue:#3498db;--orange:#e67e22}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+.header{text-align:center;padding:32px 16px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;margin-bottom:24px;border:1px solid var(--border)}
+.header h1{font-size:28px;color:var(--gold);margin-bottom:8px}
+.header .meta{color:var(--muted);font-size:14px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.header .meta span{background:var(--card);padding:4px 12px;border-radius:20px;border:1px solid var(--border)}
+.section{margin-bottom:32px}
+.section-title{font-size:20px;color:var(--accent);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px}
+.section-title .icon{font-size:24px}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:8px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:#16213e;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;position:sticky;top:0}
+tr:hover{background:rgba(108,92,231,0.1)}
+.tier-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:bold;font-size:13px;min-width:24px;text-align:center}
+.tier-S{background:#e74c3c;color:#fff}
+.tier-A{background:#e67e22;color:#fff}
+.tier-B{background:#f1c40f;color:#333}
+.tier-C{background:#3498db;color:#fff}
+.tier-D{background:#95a5a6;color:#fff}
+.comp-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px}
+.comp-card .comp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.comp-card .comp-name{font-size:18px;font-weight:bold}
+.comp-card .comp-stats{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.comp-card .comp-stats .stat{background:var(--bg);padding:2px 8px;border-radius:4px}
+.code-box{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:8px 12px;margin-top:8px;font-family:"Courier New",monospace;font-size:12px;word-break:break-all;color:var(--green);position:relative}
+.copy-btn{position:absolute;top:4px;right:4px;background:var(--accent);color:#fff;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px}
+.copy-btn:hover{opacity:0.8}
+.hero-tags,.trait-tags,.hex-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.hero-tag{background:#2a2a4a;padding:2px 8px;border-radius:12px;font-size:11px}
+.hero-carry{border:1px solid var(--gold)}
+.hero-sub{border:1px solid var(--blue)}
+.trait-tag{background:rgba(108,92,231,0.2);padding:2px 8px;border-radius:12px;font-size:11px;color:var(--accent)}
+.hex-tag{background:rgba(0,184,148,0.15);padding:2px 8px;border-radius:12px;font-size:11px;color:var(--green)}
+.filter-bar{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px}
+.filter-bar input,.filter-bar select{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:4px;font-size:14px}
+.filter-bar input{flex:1;min-width:200px}
+.filter-bar .filter-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.tier-group{margin-bottom:24px}
+.tier-group-title{font-size:16px;font-weight:bold;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.winrate-bar{display:inline-block;height:8px;background:var(--green);border-radius:4px;vertical-align:middle;margin-left:4px}
+.search-highlight{background:rgba(255,215,0,0.2)}
+@media(max-width:768px){th,td{padding:6px 8px;font-size:12px}.header h1{font-size:20px}}
 </style>
 </head>
 <body>
 <div class="container">
-    <!-- 标题 -->
-    <div class="header">
-        <h1>TFT 阵容数据报告</h1>
-        <div class="meta">
-            <span class="meta-item">📅 <b>2026-10-08</b></span>
-            <span class="meta-item">🎮 版本 <b>18.3</b></span>
-            <span class="meta-item">📊 <b>260,280</b> 局</span>
-            <span class="meta-item">🔄 更新 <b>2026-10-06</b></span>
-            <span class="meta-item">📋 <b>37</b> 个阵容</span>
-            <span class="meta-item">🔗 数据来源 <b>dataj.cc</b></span>
-        </div>
-    </div>
-
-    <!-- 胜率排行 -->
-    <div class="section">
-        <h2 class="section-title">胜率排行（前四率排序）</h2>
-        <table class="comp-table">
-            <thead>
-                <tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr>
-            </thead>
-            <tbody>
-    <tr class="comp-row" data-tier="S" data-rank="1">
-        <td class="rank">1</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">野怪小红</td>
-        <td class="heroes"><span class="hero carry">绯红树怪 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">远古石甲虫</span><span class="hero">苍蓝哨戒</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">顶级掠食者</span></td>
-        <td class="stat">62.9%</td>
-        <td class="stat">17.8%</td>
-        <td class="stat">3.79</td>
-        <td class="stat">0.27%</td>
-        <td class="stat sample">8,700</td>
-        <td class="hexes"><span class="hex">欧米茄之怪 8.63%</span><span class="hex">纵深 II 4.14%</span><span class="hex">炽天使之拥 3.8%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx')" title="点击复制阵容码">
-                <span class="gc-text">#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="2">
-        <td class="rank">2</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">古纳拉95</td>
-        <td class="heroes"><span class="hero carry">拉露恩 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">纳尔</span><span class="hero">苍蓝雕纹魔像</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">永恒之森</span> <span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span> <span class="trait">月华神女</span></td>
-        <td class="stat">62.4%</td>
-        <td class="stat">22.8%</td>
-        <td class="stat">3.81</td>
-        <td class="stat">0.09%</td>
-        <td class="stat sample">2,885</td>
-        <td class="hexes"><span class="hex">生日聚会 6.24%</span><span class="hex">后期收益 2.87%</span><span class="hex">双排 2.75%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx')" title="点击复制阵容码">
-                <span class="gc-text">#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="3">
-        <td class="rank">3</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">黑暗仪式蜘蛛</td>
-        <td class="heroes"><span class="hero carry">伊莉丝 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">卡西奥佩娅 ☆</span><span class="hero">黛安娜</span><span class="hero">赫卡里姆</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">魔女</span> <span class="trait">法师</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">月华神女</span></td>
-        <td class="stat">62.4%</td>
-        <td class="stat">27.8%</td>
-        <td class="stat">3.77</td>
-        <td class="stat">0.25%</td>
-        <td class="stat sample">7,982</td>
-        <td class="hexes"><span class="hex">黑暗仪式 32.81%</span><span class="hex">飞升 3.99%</span><span class="hex">双城赢家 3.25%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz')" title="点击复制阵容码">
-                <span class="gc-text">#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="4">
-        <td class="rank">4</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">射箭韦鲁斯</td>
-        <td class="heroes"><span class="hero carry">韦鲁斯 ★</span><span class="hero">凯尔 ☆</span><span class="hero">瑟庄妮</span><span class="hero">慎</span><span class="hero">蕾欧娜</span><span class="hero">洛</span></td>
-        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">迅捷射手</span> <span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
-        <td class="stat">61.5%</td>
-        <td class="stat">16.3%</td>
-        <td class="stat">3.90</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">221</td>
-        <td class="hexes"><span class="hex">值得等待 5.43%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">大百宝袋 3.52%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0')" title="点击复制阵容码">
-                <span class="gc-text">#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="5">
-        <td class="rank">5</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">重装女警</td>
-        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
-        <td class="stat">60.5%</td>
-        <td class="stat">10.0%</td>
-        <td class="stat">4.01</td>
-        <td class="stat">0.07%</td>
-        <td class="stat sample">2,357</td>
-        <td class="hexes"><span class="hex">双城赢家 4.31%</span><span class="hex">飞升 3.69%</span><span class="hex">英勇福袋++ 3.2%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3')" title="点击复制阵容码">
-                <span class="gc-text">#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="6">
-        <td class="rank">6</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">献祭三狼</td>
-        <td class="heroes"><span class="hero carry">沃里克 ★</span><span class="hero">阿兹尔 ☆</span><span class="hero">卡兹克</span><span class="hero">暗影狼</span><span class="hero">伊莉丝</span></td>
-        <td class="traits"><span class="trait">狂战士</span> <span class="trait">裁决使</span> <span class="trait">黑荆棘</span> <span class="trait">重装战士</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
-        <td class="stat">60.5%</td>
-        <td class="stat">8.8%</td>
-        <td class="stat">4.05</td>
-        <td class="stat">0.22%</td>
-        <td class="stat sample">7,282</td>
-        <td class="hexes"><span class="hex">便携锻炉 7.63%</span><span class="hex">挑战者的优雅 3.57%</span><span class="hex">双城赢家 3.39%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw')" title="点击复制阵容码">
-                <span class="gc-text">#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="7">
-        <td class="rank">7</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">主宰女警</td>
-        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">峡谷迅捷蟹</span><span class="hero">瑟庄妮</span></td>
-        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span></td>
-        <td class="stat">59.3%</td>
-        <td class="stat">12.0%</td>
-        <td class="stat">4.04</td>
-        <td class="stat">0.17%</td>
-        <td class="stat sample">5,641</td>
-        <td class="hexes"><span class="hex">双城赢家 4.36%</span><span class="hex">更要命的战刃 3.59%</span><span class="hex">飞升 3.06%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy')" title="点击复制阵容码">
-                <span class="gc-text">#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="8">
-        <td class="rank">8</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">7野怪鸡哥</td>
-        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">绯红印记树怪</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">狂战士</span> <span class="trait">神谕</span></td>
-        <td class="stat">58.1%</td>
-        <td class="stat">14.6%</td>
-        <td class="stat">4.03</td>
-        <td class="stat">1.07%</td>
-        <td class="stat sample">34,907</td>
-        <td class="hexes"><span class="hex">欧米茄之怪 6.81%</span><span class="hex">纵深 II 4.54%</span><span class="hex">双城赢家 2.69%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5')" title="点击复制阵容码">
-                <span class="gc-text">#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="9">
-        <td class="rank">9</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">5迅射月男</td>
-        <td class="heroes"><span class="hero">绯红印记树怪</span><span class="hero">阿木木</span></td>
-        <td class="traits"><span class="trait">迅捷射手</span> <span class="trait">峡谷野怪</span> <span class="trait">地狱火</span> <span class="trait">花仙子</span> <span class="trait">狂战士</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
-        <td class="stat">57.7%</td>
-        <td class="stat">10.8%</td>
-        <td class="stat">4.19</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,388</td>
-        <td class="hexes"><span class="hex">后排蓝图 6.87%</span><span class="hex">金色炊具 6.67%</span><span class="hex">双城赢家 4.85%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz')" title="点击复制阵容码">
-                <span class="gc-text">#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="10">
-        <td class="rank">10</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">永森95</td>
-        <td class="heroes"><span class="hero carry">伊泽瑞尔 ★</span><span class="hero">德莱文 ☆</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">地狱火</span> <span class="trait">斗士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">赏金猎人</span></td>
-        <td class="stat">57.6%</td>
-        <td class="stat">23.0%</td>
-        <td class="stat">4.01</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">165</td>
-        <td class="hexes"><span class="hex">双排 3.3%</span><span class="hex">拼盘天梯 3.3%</span><span class="hex">生日聚会 3.11%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3')" title="点击复制阵容码">
-                <span class="gc-text">#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="11">
-        <td class="rank">11</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">裁决螳螂</td>
-        <td class="heroes"><span class="hero carry">卡兹克 ★</span><span class="hero">索拉卡 ☆</span><span class="hero">费德提克</span><span class="hero">赫卡里姆</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">宿敌</span></td>
-        <td class="stat">55.4%</td>
-        <td class="stat">12.7%</td>
-        <td class="stat">4.23</td>
-        <td class="stat">0.34%</td>
-        <td class="stat sample">11,072</td>
-        <td class="hexes"><span class="hex">便携锻炉 4.66%</span><span class="hex">双城赢家 3.63%</span><span class="hex">英勇福袋++ 3.24%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5')" title="点击复制阵容码">
-                <span class="gc-text">#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="A" data-rank="12">
-        <td class="rank">12</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff8800">A</span></td>
-        <td class="name">卡丽蜜儿</td>
-        <td class="heroes"><span class="hero carry">阿卡丽 ★</span><span class="hero">卡蜜尔 ☆</span><span class="hero">奥恩</span><span class="hero">韦鲁斯</span><span class="hero">蕾欧娜</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">日蚀骑士</span> <span class="trait">护卫</span> <span class="trait">狂战士</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
-        <td class="stat">54.7%</td>
-        <td class="stat">11.8%</td>
-        <td class="stat">4.31</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,149</td>
-        <td class="hexes"><span class="hex">宝宝学院 14.16%</span><span class="hex">便携锻炉 7.37%</span><span class="hex">不侦察，不变阵 3.68%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2')" title="点击复制阵容码">
-                <span class="gc-text">#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="13">
-        <td class="rank">13</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">巨龙95</td>
-        <td class="heroes"><span class="hero carry">远古巨龙 ★</span><span class="hero">德莱文 ☆</span><span class="hero">茂凯</span><span class="hero">苍蓝雕纹魔像</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">顶级掠食者</span> <span class="trait">赏金猎人</span> <span class="trait">远古树精</span></td>
-        <td class="stat">54.7%</td>
-        <td class="stat">21.6%</td>
-        <td class="stat">4.17</td>
-        <td class="stat">0.18%</td>
-        <td class="stat sample">5,743</td>
-        <td class="hexes"><span class="hex">生日聚会 3.47%</span><span class="hex">双排 2.78%</span><span class="hex">厨神阿福 2.78%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz')" title="点击复制阵容码">
-                <span class="gc-text">#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="A" data-rank="14">
-        <td class="rank">14</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff8800">A</span></td>
-        <td class="name">森林月男</td>
-        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">伊泽瑞尔 ☆</span><span class="hero">莉莉娅</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">斗士</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">绝命花妖</span></td>
-        <td class="stat">53.9%</td>
-        <td class="stat">15.3%</td>
-        <td class="stat">4.27</td>
-        <td class="stat">0.21%</td>
-        <td class="stat sample">6,969</td>
-        <td class="hexes"><span class="hex">厨神阿福 5.39%</span><span class="hex">蔓延之根 5.08%</span><span class="hex">飞升 3.53%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy')" title="点击复制阵容码">
-                <span class="gc-text">#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="A" data-rank="15">
-        <td class="rank">15</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff8800">A</span></td>
-        <td class="name">地狱火95</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">凯南</span><span class="hero">阿木木</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span></td>
-        <td class="stat">51.0%</td>
-        <td class="stat">18.4%</td>
-        <td class="stat">4.38</td>
-        <td class="stat">0.34%</td>
-        <td class="stat sample">11,003</td>
-        <td class="hexes"><span class="hex">厨神阿福 14.79%</span><span class="hex">阿福的百宝袋 3.85%</span><span class="hex">双排 2.92%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw')" title="点击复制阵容码">
-                <span class="gc-text">#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="B" data-rank="16">
-        <td class="rank">16</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ffcc00">B</span></td>
-        <td class="name">6主宰Flex</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">阿木木</span></td>
-        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">远古树精</span></td>
-        <td class="stat">50.4%</td>
-        <td class="stat">11.6%</td>
-        <td class="stat">4.48</td>
-        <td class="stat">1.03%</td>
-        <td class="stat sample">33,476</td>
-        <td class="hexes"><span class="hex">炽天使之拥 8.71%</span><span class="hex">飞升 4.78%</span><span class="hex">双城赢家 2.95%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5')" title="点击复制阵容码">
-                <span class="gc-text">#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="B" data-rank="17">
-        <td class="rank">17</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ffcc00">B</span></td>
-        <td class="name">森林妖姬天使</td>
-        <td class="heroes"><span class="hero carry">凯尔 ★</span><span class="hero">奥恩</span><span class="hero">蕾欧娜</span><span class="hero">霞</span></td>
-        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">永恒之森</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
-        <td class="stat">49.3%</td>
-        <td class="stat">13.0%</td>
-        <td class="stat">4.57</td>
-        <td class="stat">0.41%</td>
-        <td class="stat sample">13,207</td>
-        <td class="hexes"><span class="hex">嘀嘀街区 4.53%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">飞升 3.31%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0')" title="点击复制阵容码">
-                <span class="gc-text">#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="18">
-        <td class="rank">18</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">裁决芸阿娜</td>
-        <td class="heroes"><span class="hero carry">芸阿娜 ★</span><span class="hero">阿利斯塔</span></td>
-        <td class="traits"><span class="trait">裁决使</span> <span class="trait">莲华</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
-        <td class="stat">49.2%</td>
-        <td class="stat">3.0%</td>
-        <td class="stat">4.73</td>
-        <td class="stat">0.00%</td>
-        <td class="stat sample">67</td>
-        <td class="hexes"><span class="hex">值得等待 II 4.76%</span><span class="hex">厨神阿福 4.29%</span><span class="hex">嘀嘀街区 3.81%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5')" title="点击复制阵容码">
-                <span class="gc-text">#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="B" data-rank="19">
-        <td class="rank">19</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ffcc00">B</span></td>
-        <td class="name">野怪小蓝</td>
-        <td class="heroes"><span class="hero carry">苍蓝哨戒 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span></td>
-        <td class="stat">48.7%</td>
-        <td class="stat">10.7%</td>
-        <td class="stat">4.51</td>
-        <td class="stat">0.20%</td>
-        <td class="stat sample">6,398</td>
-        <td class="hexes"><span class="hex">欧米茄之怪 8.58%</span><span class="hex">炽天使之拥 6.61%</span><span class="hex">纵深 II 4.5%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3')" title="点击复制阵容码">
-                <span class="gc-text">#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="20">
-        <td class="rank">20</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">月男Flex</td>
-        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">婕拉 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">墨菲特</span><span class="hero">深红锋喙鸟</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">召唤师</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">48.1%</td>
-        <td class="stat">8.8%</td>
-        <td class="stat">4.62</td>
-        <td class="stat">1.13%</td>
-        <td class="stat sample">36,615</td>
-        <td class="hexes"><span class="hex">双城赢家 4.25%</span><span class="hex">飞升 3.3%</span><span class="hex">便携锻炉 2.93%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4')" title="点击复制阵容码">
-                <span class="gc-text">#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="21">
-        <td class="rank">21</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">莲华阿狸</td>
-        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">希维尔 ☆</span><span class="hero">艾希</span><span class="hero">瑟提</span></td>
-        <td class="traits"><span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">召唤师</span> <span class="trait">主宰</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">44.8%</td>
-        <td class="stat">14.3%</td>
-        <td class="stat">4.73</td>
-        <td class="stat">0.27%</td>
-        <td class="stat sample">8,831</td>
-        <td class="hexes"><span class="hex">双城赢家 2.67%</span><span class="hex">蔓延之根 2.67%</span><span class="hex">大百宝袋 2.24%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0')" title="点击复制阵容码">
-                <span class="gc-text">#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="22">
-        <td class="rank">22</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">重装豹女</td>
-        <td class="heroes"><span class="hero carry">奈德丽 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">蔚</span></td>
-        <td class="traits"><span class="trait">前卫</span> <span class="trait">神谕者</span> <span class="trait">魔战士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">腐蚀巨口</span></td>
-        <td class="stat">44.4%</td>
-        <td class="stat">6.8%</td>
-        <td class="stat">5.05</td>
-        <td class="stat">0.00%</td>
-        <td class="stat sample">133</td>
-        <td class="hexes"><span class="hex">飞升 3.52%</span><span class="hex">大百宝袋 3.52%</span><span class="hex">便携锻炉 3.27%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4')" title="点击复制阵容码">
-                <span class="gc-text">#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="23">
-        <td class="rank">23</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">护卫豹轮</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">莉莉娅</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
-        <td class="stat">44.0%</td>
-        <td class="stat">10.6%</td>
-        <td class="stat">4.84</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">282</td>
-        <td class="hexes"><span class="hex">厨神阿福 5.51%</span><span class="hex">蔓延之根 4.59%</span><span class="hex">纹章树 4.02%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1')" title="点击复制阵容码">
-                <span class="gc-text">#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="24">
-        <td class="rank">24</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">赌沙皇</td>
-        <td class="heroes"><span class="hero carry">阿兹尔 ★</span><span class="hero">婕拉 ☆</span><span class="hero">拉莫斯</span></td>
-        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">裁决使</span> <span class="trait">法师</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">召唤师</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">42.7%</td>
-        <td class="stat">8.4%</td>
-        <td class="stat">4.89</td>
-        <td class="stat">0.26%</td>
-        <td class="stat sample">8,543</td>
-        <td class="hexes"><span class="hex">便携锻炉 3.76%</span><span class="hex">英勇福袋++ 3.4%</span><span class="hex">双城赢家 3.09%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx')" title="点击复制阵容码">
-                <span class="gc-text">#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="25">
-        <td class="rank">25</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">神谕狐狸</td>
-        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">瑟提</span></td>
-        <td class="traits"><span class="trait">神谕</span> <span class="trait">灵魂莲华</span> <span class="trait">法师</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">帝王斑蝶</span></td>
-        <td class="stat">42.1%</td>
-        <td class="stat">9.2%</td>
-        <td class="stat">4.90</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,406</td>
-        <td class="hexes"><span class="hex">后排蓝图 9.4%</span><span class="hex">双城赢家 3.92%</span><span class="hex">纹章树 2.61%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2')" title="点击复制阵容码">
-                <span class="gc-text">#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="26">
-        <td class="rank">26</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">螳螂蛇女</td>
-        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">费德提克</span><span class="hero">拉莫斯</span></td>
-        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
-        <td class="stat">41.8%</td>
-        <td class="stat">5.2%</td>
-        <td class="stat">4.90</td>
-        <td class="stat">0.02%</td>
-        <td class="stat sample">619</td>
-        <td class="hexes"><span class="hex">便携锻炉 5.26%</span><span class="hex">后排蓝图 4.82%</span><span class="hex">炽天使之拥 3.73%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0')" title="点击复制阵容码">
-                <span class="gc-text">#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="27">
-        <td class="rank">27</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">剑圣大嘴</td>
-        <td class="heroes"><span class="hero carry">易 ★</span><span class="hero">克格莫 ☆</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">魔战士</span> <span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">帝王斑蝶</span></td>
-        <td class="stat">41.1%</td>
-        <td class="stat">4.9%</td>
-        <td class="stat">4.97</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">406</td>
-        <td class="hexes"><span class="hex">便携锻炉 10.19%</span><span class="hex">金色炊具 7.28%</span><span class="hex">前线地基 5.83%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5')" title="点击复制阵容码">
-                <span class="gc-text">#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="28">
-        <td class="rank">28</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">裁决奶妈</td>
-        <td class="heroes"><span class="hero carry">索拉卡 ★</span><span class="hero">婕拉 ☆</span><span class="hero">墨菲特</span></td>
-        <td class="traits"><span class="trait">裁决使</span> <span class="trait">召唤师</span> <span class="trait">地狱火</span> <span class="trait">黑荆棘</span> <span class="trait">绝命花妖</span> <span class="trait">主宰</span> <span class="trait">翠神</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">40.3%</td>
-        <td class="stat">8.9%</td>
-        <td class="stat">5.05</td>
-        <td class="stat">0.19%</td>
-        <td class="stat sample">6,045</td>
-        <td class="hexes"><span class="hex">厨神阿福 3.64%</span><span class="hex">双城赢家 3.37%</span><span class="hex">金色炊具 3.21%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw')" title="点击复制阵容码">
-                <span class="gc-text">#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="29">
-        <td class="rank">29</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">世纪和解</td>
-        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">卡兹克 ☆</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">宿敌</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span></td>
-        <td class="stat">39.2%</td>
-        <td class="stat">6.0%</td>
-        <td class="stat">5.09</td>
-        <td class="stat">0.03%</td>
-        <td class="stat sample">998</td>
-        <td class="hexes"><span class="hex">世纪和解 31.99%</span><span class="hex">大百宝袋 4.03%</span><span class="hex">英勇福袋++ 4.03%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw')" title="点击复制阵容码">
-                <span class="gc-text">#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="30">
-        <td class="rank">30</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">皎月螳螂</td>
-        <td class="heroes"><span class="hero carry">黛安娜 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">月蚀骑士</span> <span class="trait">神谕</span> <span class="trait">帝王斑蝶</span> <span class="trait">宿敌</span> <span class="trait">月华神女</span></td>
-        <td class="stat">35.9%</td>
-        <td class="stat">7.6%</td>
-        <td class="stat">5.21</td>
-        <td class="stat">0.02%</td>
-        <td class="stat sample">669</td>
-        <td class="hexes"><span class="hex">便携锻炉 5.69%</span><span class="hex">英勇福袋++ 3.25%</span><span class="hex">世纪和解 3.25%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5')" title="点击复制阵容码">
-                <span class="gc-text">#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="31">
-        <td class="rank">31</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">花仙狮子狗</td>
-        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">崔丝塔娜 ☆</span><span class="hero">拉莫斯</span><span class="hero">蔚</span></td>
-        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宿敌</span></td>
-        <td class="stat">34.0%</td>
-        <td class="stat">7.3%</td>
-        <td class="stat">5.45</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">206</td>
-        <td class="hexes"><span class="hex">蔓延之根 7.52%</span><span class="hex">三幻神 4.64%</span><span class="hex">纹章树 3.68%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3')" title="点击复制阵容码">
-                <span class="gc-text">#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="32">
-        <td class="rank">32</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">花仙小炮</td>
-        <td class="heroes"><span class="hero carry">崔丝塔娜 ★</span><span class="hero">拉莫斯</span></td>
-        <td class="traits"><span class="trait">花仙子</span> <span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
-        <td class="stat">31.9%</td>
-        <td class="stat">4.7%</td>
-        <td class="stat">5.54</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">429</td>
-        <td class="hexes"><span class="hex">黄金命运 7.03%</span><span class="hex">巨化术 5.95%</span><span class="hex">蔓延之根 4.86%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5')" title="点击复制阵容码">
-                <span class="gc-text">#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="33">
-        <td class="rank">33</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">护卫蛇女</td>
-        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">拉莫斯</span><span class="hero">费德提克</span></td>
-        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
-        <td class="stat">30.5%</td>
-        <td class="stat">4.0%</td>
-        <td class="stat">5.43</td>
-        <td class="stat">0.02%</td>
-        <td class="stat sample">653</td>
-        <td class="hexes"><span class="hex">前线地基 4.17%</span><span class="hex">双城赢家 3.8%</span><span class="hex">飞升 3.62%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz')" title="点击复制阵容码">
-                <span class="gc-text">#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="34">
-        <td class="rank">34</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">赌小法</td>
-        <td class="heroes"><span class="hero carry">维迦 ★</span><span class="hero">阿利斯塔</span><span class="hero">奥恩</span></td>
-        <td class="traits"><span class="trait">法师</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月华神女</span></td>
-        <td class="stat">26.2%</td>
-        <td class="stat">3.9%</td>
-        <td class="stat">5.67</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,259</td>
-        <td class="hexes"><span class="hex">便携锻炉 7.13%</span><span class="hex">值得等待 3.56%</span><span class="hex">双城赢家 3.56%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0')" title="点击复制阵容码">
-                <span class="gc-text">#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="35">
-        <td class="rank">35</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">黑豹轮</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">墨菲特</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
-        <td class="stat">26.2%</td>
-        <td class="stat">2.9%</td>
-        <td class="stat">5.82</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">378</td>
-        <td class="hexes"><span class="hex">终身黄铜 II 3.44%</span><span class="hex">后排蓝图 3.05%</span><span class="hex">便携锻炉 2.67%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2')" title="点击复制阵容码">
-                <span class="gc-text">#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="36">
-        <td class="rank">36</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">神谕大嘴</td>
-        <td class="heroes"><span class="hero carry">克格莫 ★</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span><span class="hero">赫卡里姆</span></td>
-        <td class="traits"><span class="trait">神谕</span> <span class="trait">峡谷野怪</span> <span class="trait">重装战士</span> <span class="trait">帝王斑蝶</span></td>
-        <td class="stat">23.8%</td>
-        <td class="stat">1.9%</td>
-        <td class="stat">5.85</td>
-        <td class="stat">0.05%</td>
-        <td class="stat sample">1,532</td>
-        <td class="hexes"><span class="hex">便携锻炉 6.23%</span><span class="hex">更要命的战刃 4.78%</span><span class="hex">双城赢家 2.98%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky')" title="点击复制阵容码">
-                <span class="gc-text">#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="37">
-        <td class="rank">37</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">召唤鸡哥</td>
-        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">厄斐琉斯 ☆</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">召唤师</span> <span class="trait">斗士</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">17.9%</td>
-        <td class="stat">1.9%</td>
-        <td class="stat">6.32</td>
-        <td class="stat">0.00%</td>
-        <td class="stat sample">162</td>
-        <td class="hexes"><span class="hex">双城赢家 4.65%</span><span class="hex">飞升 3.43%</span><span class="hex">一波带走俩 3.23%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2')" title="点击复制阵容码">
-                <span class="gc-text">#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr></tbody>
-        </table>
-    </div>
-
-    <!-- 推荐 -->
-    <div class="section">
-        <h2 class="section-title">推荐阵容（S级）</h2>
-        <div class="rec-grid">
-    <div class="rec-card" onclick="copyGC('【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx')">
-        <div class="rec-header">
-            <span class="tier-badge" style="background:#ff4444">S</span>
-            <span class="rec-name">野怪小红</span>
-        </div>
-        <div class="rec-heroes"><span class="rec-hero">★绯红树怪</span> <span class="rec-hero">远古巨龙</span> <span class="rec-hero">远古石甲虫</span> <span class="rec-hero">苍蓝哨戒</span></div>
-        <div class="rec-stats">
-            <span class="rec-stat">前四 <b>62.9%</b></span>
-            <span class="rec-stat">登顶 <b>17.8%</b></span>
-            <span class="rec-stat">平均 <b>3.79</b></span>
-        </div>
-        <div class="rec-gc" title="点击复制">#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</div>
-    </div>
-    <div class="rec-card" onclick="copyGC('【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx')">
-        <div class="rec-header">
-            <span class="tier-badge" style="background:#ff4444">S</span>
-            <span class="rec-name">古纳拉95</span>
-        </div>
-        <div class="rec-heroes"><span class="rec-hero">★拉露恩</span> <span class="rec-hero">远古巨龙</span> <span class="rec-hero">纳尔</span> <span class="rec-hero">苍蓝雕纹魔像</span></div>
-        <div class="rec-stats">
-            <span class="rec-stat">前四 <b>62.4%</b></span>
-            <span class="rec-stat">登顶 <b>22.8%</b></span>
-            <span class="rec-stat">平均 <b>3.81</b></span>
-        </div>
-        <div class="rec-gc" title="点击复制">#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</div>
-    </div>
-    <div class="rec-card" onclick="copyGC('【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz')">
-        <div class="rec-header">
-            <span class="tier-badge" style="background:#ff4444">S</span>
-            <span class="rec-name">黑暗仪式蜘蛛</span>
-        </div>
-        <div class="rec-heroes"><span class="rec-hero">★伊莉丝</span> <span class="rec-hero">莫甘娜</span> <span class="rec-hero">卡西奥佩娅</span> <span class="rec-hero">黛安娜</span> <span class="rec-hero">赫卡里姆</span></div>
-        <div class="rec-stats">
-            <span class="rec-stat">前四 <b>62.4%</b></span>
-            <span class="rec-stat">登顶 <b>27.8%</b></span>
-            <span class="rec-stat">平均 <b>3.77</b></span>
-        </div>
-        <div class="rec-gc" title="点击复制">#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz</div>
-    </div>
-    <div class="rec-card" onclick="copyGC('【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0')">
-        <div class="rec-header">
-            <span class="tier-badge" style="background:#ff4444">S</span>
-            <span class="rec-name">射箭韦鲁斯</span>
-        </div>
-        <div class="rec-heroes"><span class="rec-hero">★韦鲁斯</span> <span class="rec-hero">凯尔</span> <span class="rec-hero">瑟庄妮</span> <span class="rec-hero">慎</span> <span class="rec-hero">蕾欧娜</span></div>
-        <div class="rec-stats">
-            <span class="rec-stat">前四 <b>61.5%</b></span>
-            <span class="rec-stat">登顶 <b>16.3%</b></span>
-            <span class="rec-stat">平均 <b>3.90</b></span>
-        </div>
-        <div class="rec-gc" title="点击复制">#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</div>
-    </div>
-    <div class="rec-card" onclick="copyGC('【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3')">
-        <div class="rec-header">
-            <span class="tier-badge" style="background:#ff4444">S</span>
-            <span class="rec-name">重装女警</span>
-        </div>
-        <div class="rec-heroes"><span class="rec-hero">★凯特琳</span> <span class="rec-hero">希维尔</span> <span class="rec-hero">赫卡里姆</span> <span class="rec-hero">伊莉丝</span></div>
-        <div class="rec-stats">
-            <span class="rec-stat">前四 <b>60.5%</b></span>
-            <span class="rec-stat">登顶 <b>10.0%</b></span>
-            <span class="rec-stat">平均 <b>4.01</b></span>
-        </div>
-        <div class="rec-gc" title="点击复制">#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</div>
-    </div>
-    <div class="rec-card" onclick="copyGC('【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw')">
-        <div class="rec-header">
-            <span class="tier-badge" style="background:#ff4444">S</span>
-            <span class="rec-name">献祭三狼</span>
-        </div>
-        <div class="rec-heroes"><span class="rec-hero">★沃里克</span> <span class="rec-hero">阿兹尔</span> <span class="rec-hero">卡兹克</span> <span class="rec-hero">暗影狼</span> <span class="rec-hero">伊莉丝</span></div>
-        <div class="rec-stats">
-            <span class="rec-stat">前四 <b>60.5%</b></span>
-            <span class="rec-stat">登顶 <b>8.8%</b></span>
-            <span class="rec-stat">平均 <b>4.05</b></span>
-        </div>
-        <div class="rec-gc" title="点击复制">#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw</div>
-    </div></div>
-    </div>
-
-    <!-- 筛选 -->
-    <div class="section">
-        <h2 class="section-title">筛选</h2>
-        <div class="filter-bar"><button class="filter-btn active" data-filter="all" onclick="filterTier('all')">全部</button><button class="filter-btn active" data-filter="S" onclick="filterTier('S')">S级</button><button class="filter-btn active" data-filter="A" onclick="filterTier('A')">A级</button><button class="filter-btn active" data-filter="B" onclick="filterTier('B')">B级</button><button class="filter-btn active" data-filter="C" onclick="filterTier('C')">C级</button><button class="filter-btn active" data-filter="D" onclick="filterTier('D')">D级</button></div>
-        <p style="color:#666;font-size:0.85em;">点击阵容码可复制到剪贴板，游戏内导入使用</p>
-    </div>
-
-    <!-- 段位分组 -->
-    <div class="section">
-        <h2 class="section-title">段位分组</h2>
-        
-    <div class="tier-section" id="tier-S">
-        <h2 class="tier-title" style="border-color:#ff4444">
-            <span class="tier-badge-lg" style="background:#ff4444">S级</span>
-            <span class="tier-count">12 个阵容</span>
-        </h2>
-        <table class="comp-table">
-            <thead>
-                <tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr>
-            </thead>
-            <tbody>
-    <tr class="comp-row" data-tier="S" data-rank="1">
-        <td class="rank">1</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">野怪小红</td>
-        <td class="heroes"><span class="hero carry">绯红树怪 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">远古石甲虫</span><span class="hero">苍蓝哨戒</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">顶级掠食者</span></td>
-        <td class="stat">62.9%</td>
-        <td class="stat">17.8%</td>
-        <td class="stat">3.79</td>
-        <td class="stat">0.27%</td>
-        <td class="stat sample">8,700</td>
-        <td class="hexes"><span class="hex">欧米茄之怪 8.63%</span><span class="hex">纵深 II 4.14%</span><span class="hex">炽天使之拥 3.8%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx')" title="点击复制阵容码">
-                <span class="gc-text">#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="2">
-        <td class="rank">2</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">古纳拉95</td>
-        <td class="heroes"><span class="hero carry">拉露恩 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">纳尔</span><span class="hero">苍蓝雕纹魔像</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">永恒之森</span> <span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span> <span class="trait">月华神女</span></td>
-        <td class="stat">62.4%</td>
-        <td class="stat">22.8%</td>
-        <td class="stat">3.81</td>
-        <td class="stat">0.09%</td>
-        <td class="stat sample">2,885</td>
-        <td class="hexes"><span class="hex">生日聚会 6.24%</span><span class="hex">后期收益 2.87%</span><span class="hex">双排 2.75%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx')" title="点击复制阵容码">
-                <span class="gc-text">#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="3">
-        <td class="rank">3</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">黑暗仪式蜘蛛</td>
-        <td class="heroes"><span class="hero carry">伊莉丝 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">卡西奥佩娅 ☆</span><span class="hero">黛安娜</span><span class="hero">赫卡里姆</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">魔女</span> <span class="trait">法师</span> <span class="trait">月蚀骑士</span> <span class="trait">宝石骑士</span> <span class="trait">月华神女</span></td>
-        <td class="stat">62.4%</td>
-        <td class="stat">27.8%</td>
-        <td class="stat">3.77</td>
-        <td class="stat">0.25%</td>
-        <td class="stat sample">7,982</td>
-        <td class="hexes"><span class="hex">黑暗仪式 32.81%</span><span class="hex">飞升 3.99%</span><span class="hex">双城赢家 3.25%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz')" title="点击复制阵容码">
-                <span class="gc-text">#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="4">
-        <td class="rank">4</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">射箭韦鲁斯</td>
-        <td class="heroes"><span class="hero carry">韦鲁斯 ★</span><span class="hero">凯尔 ☆</span><span class="hero">瑟庄妮</span><span class="hero">慎</span><span class="hero">蕾欧娜</span><span class="hero">洛</span></td>
-        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">迅捷射手</span> <span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
-        <td class="stat">61.5%</td>
-        <td class="stat">16.3%</td>
-        <td class="stat">3.90</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">221</td>
-        <td class="hexes"><span class="hex">值得等待 5.43%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">大百宝袋 3.52%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0')" title="点击复制阵容码">
-                <span class="gc-text">#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="5">
-        <td class="rank">5</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">重装女警</td>
-        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
-        <td class="stat">60.5%</td>
-        <td class="stat">10.0%</td>
-        <td class="stat">4.01</td>
-        <td class="stat">0.07%</td>
-        <td class="stat sample">2,357</td>
-        <td class="hexes"><span class="hex">双城赢家 4.31%</span><span class="hex">飞升 3.69%</span><span class="hex">英勇福袋++ 3.2%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3')" title="点击复制阵容码">
-                <span class="gc-text">#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="6">
-        <td class="rank">6</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">献祭三狼</td>
-        <td class="heroes"><span class="hero carry">沃里克 ★</span><span class="hero">阿兹尔 ☆</span><span class="hero">卡兹克</span><span class="hero">暗影狼</span><span class="hero">伊莉丝</span></td>
-        <td class="traits"><span class="trait">狂战士</span> <span class="trait">裁决使</span> <span class="trait">黑荆棘</span> <span class="trait">重装战士</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
-        <td class="stat">60.5%</td>
-        <td class="stat">8.8%</td>
-        <td class="stat">4.05</td>
-        <td class="stat">0.22%</td>
-        <td class="stat sample">7,282</td>
-        <td class="hexes"><span class="hex">便携锻炉 7.63%</span><span class="hex">挑战者的优雅 3.57%</span><span class="hex">双城赢家 3.39%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw')" title="点击复制阵容码">
-                <span class="gc-text">#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="7">
-        <td class="rank">7</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">主宰女警</td>
-        <td class="heroes"><span class="hero carry">凯特琳 ★</span><span class="hero">希维尔 ☆</span><span class="hero">峡谷迅捷蟹</span><span class="hero">瑟庄妮</span></td>
-        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">花仙子</span> <span class="trait">野兽之灵</span></td>
-        <td class="stat">59.3%</td>
-        <td class="stat">12.0%</td>
-        <td class="stat">4.04</td>
-        <td class="stat">0.17%</td>
-        <td class="stat sample">5,641</td>
-        <td class="hexes"><span class="hex">双城赢家 4.36%</span><span class="hex">更要命的战刃 3.59%</span><span class="hex">飞升 3.06%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy')" title="点击复制阵容码">
-                <span class="gc-text">#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="8">
-        <td class="rank">8</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">7野怪鸡哥</td>
-        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">绯红印记树怪</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">狂战士</span> <span class="trait">神谕</span></td>
-        <td class="stat">58.1%</td>
-        <td class="stat">14.6%</td>
-        <td class="stat">4.03</td>
-        <td class="stat">1.07%</td>
-        <td class="stat sample">34,907</td>
-        <td class="hexes"><span class="hex">欧米茄之怪 6.81%</span><span class="hex">纵深 II 4.54%</span><span class="hex">双城赢家 2.69%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5')" title="点击复制阵容码">
-                <span class="gc-text">#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="9">
-        <td class="rank">9</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">5迅射月男</td>
-        <td class="heroes"><span class="hero">绯红印记树怪</span><span class="hero">阿木木</span></td>
-        <td class="traits"><span class="trait">迅捷射手</span> <span class="trait">峡谷野怪</span> <span class="trait">地狱火</span> <span class="trait">花仙子</span> <span class="trait">狂战士</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">主宰</span></td>
-        <td class="stat">57.7%</td>
-        <td class="stat">10.8%</td>
-        <td class="stat">4.19</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,388</td>
-        <td class="hexes"><span class="hex">后排蓝图 6.87%</span><span class="hex">金色炊具 6.67%</span><span class="hex">双城赢家 4.85%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz')" title="点击复制阵容码">
-                <span class="gc-text">#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="10">
-        <td class="rank">10</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">永森95</td>
-        <td class="heroes"><span class="hero carry">伊泽瑞尔 ★</span><span class="hero">德莱文 ☆</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">地狱火</span> <span class="trait">斗士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">赏金猎人</span></td>
-        <td class="stat">57.6%</td>
-        <td class="stat">23.0%</td>
-        <td class="stat">4.01</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">165</td>
-        <td class="hexes"><span class="hex">双排 3.3%</span><span class="hex">拼盘天梯 3.3%</span><span class="hex">生日聚会 3.11%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3')" title="点击复制阵容码">
-                <span class="gc-text">#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="11">
-        <td class="rank">11</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">裁决螳螂</td>
-        <td class="heroes"><span class="hero carry">卡兹克 ★</span><span class="hero">索拉卡 ☆</span><span class="hero">费德提克</span><span class="hero">赫卡里姆</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">宿敌</span></td>
-        <td class="stat">55.4%</td>
-        <td class="stat">12.7%</td>
-        <td class="stat">4.23</td>
-        <td class="stat">0.34%</td>
-        <td class="stat sample">11,072</td>
-        <td class="hexes"><span class="hex">便携锻炉 4.66%</span><span class="hex">双城赢家 3.63%</span><span class="hex">英勇福袋++ 3.24%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5')" title="点击复制阵容码">
-                <span class="gc-text">#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="S" data-rank="12">
-        <td class="rank">12</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff4444">S</span></td>
-        <td class="name">巨龙95</td>
-        <td class="heroes"><span class="hero carry">远古巨龙 ★</span><span class="hero">德莱文 ☆</span><span class="hero">茂凯</span><span class="hero">苍蓝雕纹魔像</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">翠神</span> <span class="trait">顶级掠食者</span> <span class="trait">赏金猎人</span> <span class="trait">远古树精</span></td>
-        <td class="stat">54.7%</td>
-        <td class="stat">21.6%</td>
-        <td class="stat">4.17</td>
-        <td class="stat">0.18%</td>
-        <td class="stat sample">5,743</td>
-        <td class="hexes"><span class="hex">生日聚会 3.47%</span><span class="hex">双排 2.78%</span><span class="hex">厨神阿福 2.78%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz')" title="点击复制阵容码">
-                <span class="gc-text">#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr></tbody>
-        </table>
-    </div>
-    <div class="tier-section" id="tier-A">
-        <h2 class="tier-title" style="border-color:#ff8800">
-            <span class="tier-badge-lg" style="background:#ff8800">A级</span>
-            <span class="tier-count">3 个阵容</span>
-        </h2>
-        <table class="comp-table">
-            <thead>
-                <tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr>
-            </thead>
-            <tbody>
-    <tr class="comp-row" data-tier="A" data-rank="1">
-        <td class="rank">1</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff8800">A</span></td>
-        <td class="name">卡丽蜜儿</td>
-        <td class="heroes"><span class="hero carry">阿卡丽 ★</span><span class="hero">卡蜜尔 ☆</span><span class="hero">奥恩</span><span class="hero">韦鲁斯</span><span class="hero">蕾欧娜</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">日蚀骑士</span> <span class="trait">护卫</span> <span class="trait">狂战士</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
-        <td class="stat">54.7%</td>
-        <td class="stat">11.8%</td>
-        <td class="stat">4.31</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,149</td>
-        <td class="hexes"><span class="hex">宝宝学院 14.16%</span><span class="hex">便携锻炉 7.37%</span><span class="hex">不侦察，不变阵 3.68%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2')" title="点击复制阵容码">
-                <span class="gc-text">#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="A" data-rank="2">
-        <td class="rank">2</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff8800">A</span></td>
-        <td class="name">森林月男</td>
-        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">伊泽瑞尔 ☆</span><span class="hero">莉莉娅</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">裁决使</span> <span class="trait">斗士</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">绝命花妖</span></td>
-        <td class="stat">53.9%</td>
-        <td class="stat">15.3%</td>
-        <td class="stat">4.27</td>
-        <td class="stat">0.21%</td>
-        <td class="stat sample">6,969</td>
-        <td class="hexes"><span class="hex">厨神阿福 5.39%</span><span class="hex">蔓延之根 5.08%</span><span class="hex">飞升 3.53%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy')" title="点击复制阵容码">
-                <span class="gc-text">#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="A" data-rank="3">
-        <td class="rank">3</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ff8800">A</span></td>
-        <td class="name">地狱火95</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">凯南</span><span class="hero">阿木木</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span></td>
-        <td class="stat">51.0%</td>
-        <td class="stat">18.4%</td>
-        <td class="stat">4.38</td>
-        <td class="stat">0.34%</td>
-        <td class="stat sample">11,003</td>
-        <td class="hexes"><span class="hex">厨神阿福 14.79%</span><span class="hex">阿福的百宝袋 3.85%</span><span class="hex">双排 2.92%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw')" title="点击复制阵容码">
-                <span class="gc-text">#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr></tbody>
-        </table>
-    </div>
-    <div class="tier-section" id="tier-B">
-        <h2 class="tier-title" style="border-color:#ffcc00">
-            <span class="tier-badge-lg" style="background:#ffcc00">B级</span>
-            <span class="tier-count">3 个阵容</span>
-        </h2>
-        <table class="comp-table">
-            <thead>
-                <tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr>
-            </thead>
-            <tbody>
-    <tr class="comp-row" data-tier="B" data-rank="1">
-        <td class="rank">1</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ffcc00">B</span></td>
-        <td class="name">6主宰Flex</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">艾希 ☆</span><span class="hero">阿木木</span></td>
-        <td class="traits"><span class="trait">主宰</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">远古树精</span></td>
-        <td class="stat">50.4%</td>
-        <td class="stat">11.6%</td>
-        <td class="stat">4.48</td>
-        <td class="stat">1.03%</td>
-        <td class="stat sample">33,476</td>
-        <td class="hexes"><span class="hex">炽天使之拥 8.71%</span><span class="hex">飞升 4.78%</span><span class="hex">双城赢家 2.95%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5')" title="点击复制阵容码">
-                <span class="gc-text">#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="B" data-rank="2">
-        <td class="rank">2</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ffcc00">B</span></td>
-        <td class="name">森林妖姬天使</td>
-        <td class="heroes"><span class="hero carry">凯尔 ★</span><span class="hero">奥恩</span><span class="hero">蕾欧娜</span><span class="hero">霞</span></td>
-        <td class="traits"><span class="trait">日蚀骑士</span> <span class="trait">永恒之森</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">迅捷射手</span> <span class="trait">主宰</span></td>
-        <td class="stat">49.3%</td>
-        <td class="stat">13.0%</td>
-        <td class="stat">4.57</td>
-        <td class="stat">0.41%</td>
-        <td class="stat sample">13,207</td>
-        <td class="hexes"><span class="hex">嘀嘀街区 4.53%</span><span class="hex">便携锻炉 4.11%</span><span class="hex">飞升 3.31%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0')" title="点击复制阵容码">
-                <span class="gc-text">#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="B" data-rank="3">
-        <td class="rank">3</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#ffcc00">B</span></td>
-        <td class="name">野怪小蓝</td>
-        <td class="heroes"><span class="hero carry">苍蓝哨戒 ★</span><span class="hero">远古巨龙 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">神谕</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">顶级掠食者</span></td>
-        <td class="stat">48.7%</td>
-        <td class="stat">10.7%</td>
-        <td class="stat">4.51</td>
-        <td class="stat">0.20%</td>
-        <td class="stat sample">6,398</td>
-        <td class="hexes"><span class="hex">欧米茄之怪 8.58%</span><span class="hex">炽天使之拥 6.61%</span><span class="hex">纵深 II 4.5%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3')" title="点击复制阵容码">
-                <span class="gc-text">#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr></tbody>
-        </table>
-    </div>
-    <div class="tier-section" id="tier-C">
-        <h2 class="tier-title" style="border-color:#44aa44">
-            <span class="tier-badge-lg" style="background:#44aa44">C级</span>
-            <span class="tier-count">4 个阵容</span>
-        </h2>
-        <table class="comp-table">
-            <thead>
-                <tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr>
-            </thead>
-            <tbody>
-    <tr class="comp-row" data-tier="C" data-rank="1">
-        <td class="rank">1</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">裁决芸阿娜</td>
-        <td class="heroes"><span class="hero carry">芸阿娜 ★</span><span class="hero">阿利斯塔</span></td>
-        <td class="traits"><span class="trait">裁决使</span> <span class="trait">莲华</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
-        <td class="stat">49.2%</td>
-        <td class="stat">3.0%</td>
-        <td class="stat">4.73</td>
-        <td class="stat">0.00%</td>
-        <td class="stat sample">67</td>
-        <td class="hexes"><span class="hex">值得等待 II 4.76%</span><span class="hex">厨神阿福 4.29%</span><span class="hex">嘀嘀街区 3.81%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5')" title="点击复制阵容码">
-                <span class="gc-text">#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="2">
-        <td class="rank">2</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">月男Flex</td>
-        <td class="heroes"><span class="hero carry">厄斐琉斯 ★</span><span class="hero">婕拉 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">墨菲特</span><span class="hero">深红锋喙鸟</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">召唤师</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">48.1%</td>
-        <td class="stat">8.8%</td>
-        <td class="stat">4.62</td>
-        <td class="stat">1.13%</td>
-        <td class="stat sample">36,615</td>
-        <td class="hexes"><span class="hex">双城赢家 4.25%</span><span class="hex">飞升 3.3%</span><span class="hex">便携锻炉 2.93%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4')" title="点击复制阵容码">
-                <span class="gc-text">#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="3">
-        <td class="rank">3</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">莲华阿狸</td>
-        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">希维尔 ☆</span><span class="hero">艾希</span><span class="hero">瑟提</span></td>
-        <td class="traits"><span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">法师</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">召唤师</span> <span class="trait">主宰</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">44.8%</td>
-        <td class="stat">14.3%</td>
-        <td class="stat">4.73</td>
-        <td class="stat">0.27%</td>
-        <td class="stat sample">8,831</td>
-        <td class="hexes"><span class="hex">双城赢家 2.67%</span><span class="hex">蔓延之根 2.67%</span><span class="hex">大百宝袋 2.24%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0')" title="点击复制阵容码">
-                <span class="gc-text">#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="C" data-rank="4">
-        <td class="rank">4</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#44aa44">C</span></td>
-        <td class="name">护卫豹轮</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">莉莉娅</span></td>
-        <td class="traits"><span class="trait">地狱火</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
-        <td class="stat">44.0%</td>
-        <td class="stat">10.6%</td>
-        <td class="stat">4.84</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">282</td>
-        <td class="hexes"><span class="hex">厨神阿福 5.51%</span><span class="hex">蔓延之根 4.59%</span><span class="hex">纹章树 4.02%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1')" title="点击复制阵容码">
-                <span class="gc-text">#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr></tbody>
-        </table>
-    </div>
-    <div class="tier-section" id="tier-D">
-        <h2 class="tier-title" style="border-color:#888888">
-            <span class="tier-badge-lg" style="background:#888888">D级</span>
-            <span class="tier-count">15 个阵容</span>
-        </h2>
-        <table class="comp-table">
-            <thead>
-                <tr><th>#</th><th>梯度</th><th>阵容名</th><th>核心英雄</th><th>羁绊</th><th>前四率</th><th>登顶率</th><th>平均名次</th><th>出场率</th><th>样本</th><th>推荐强化</th><th>阵容码</th></tr>
-            </thead>
-            <tbody>
-    <tr class="comp-row" data-tier="D" data-rank="1">
-        <td class="rank">1</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">重装豹女</td>
-        <td class="heroes"><span class="hero carry">奈德丽 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">蔚</span></td>
-        <td class="traits"><span class="trait">前卫</span> <span class="trait">神谕者</span> <span class="trait">魔战士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宝石骑士</span> <span class="trait">腐蚀巨口</span></td>
-        <td class="stat">44.4%</td>
-        <td class="stat">6.8%</td>
-        <td class="stat">5.05</td>
-        <td class="stat">0.00%</td>
-        <td class="stat sample">133</td>
-        <td class="hexes"><span class="hex">飞升 3.52%</span><span class="hex">大百宝袋 3.52%</span><span class="hex">便携锻炉 3.27%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4')" title="点击复制阵容码">
-                <span class="gc-text">#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="2">
-        <td class="rank">2</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">赌沙皇</td>
-        <td class="heroes"><span class="hero carry">阿兹尔 ★</span><span class="hero">婕拉 ☆</span><span class="hero">拉莫斯</span></td>
-        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">裁决使</span> <span class="trait">法师</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">召唤师</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">42.7%</td>
-        <td class="stat">8.4%</td>
-        <td class="stat">4.89</td>
-        <td class="stat">0.26%</td>
-        <td class="stat sample">8,543</td>
-        <td class="hexes"><span class="hex">便携锻炉 3.76%</span><span class="hex">英勇福袋++ 3.4%</span><span class="hex">双城赢家 3.09%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx')" title="点击复制阵容码">
-                <span class="gc-text">#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="3">
-        <td class="rank">3</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">神谕狐狸</td>
-        <td class="heroes"><span class="hero carry">阿狸 ★</span><span class="hero">莫甘娜 ☆</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">瑟提</span></td>
-        <td class="traits"><span class="trait">神谕</span> <span class="trait">灵魂莲华</span> <span class="trait">法师</span> <span class="trait">重装战士</span> <span class="trait">宝石骑士</span> <span class="trait">帝王斑蝶</span></td>
-        <td class="stat">42.1%</td>
-        <td class="stat">9.2%</td>
-        <td class="stat">4.90</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,406</td>
-        <td class="hexes"><span class="hex">后排蓝图 9.4%</span><span class="hex">双城赢家 3.92%</span><span class="hex">纹章树 2.61%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2')" title="点击复制阵容码">
-                <span class="gc-text">#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="4">
-        <td class="rank">4</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">螳螂蛇女</td>
-        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">费德提克</span><span class="hero">拉莫斯</span></td>
-        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span> <span class="trait">宿敌</span></td>
-        <td class="stat">41.8%</td>
-        <td class="stat">5.2%</td>
-        <td class="stat">4.90</td>
-        <td class="stat">0.02%</td>
-        <td class="stat sample">619</td>
-        <td class="hexes"><span class="hex">便携锻炉 5.26%</span><span class="hex">后排蓝图 4.82%</span><span class="hex">炽天使之拥 3.73%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0')" title="点击复制阵容码">
-                <span class="gc-text">#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="5">
-        <td class="rank">5</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">剑圣大嘴</td>
-        <td class="heroes"><span class="hero carry">易 ★</span><span class="hero">克格莫 ☆</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">魔战士</span> <span class="trait">灵魂莲华</span> <span class="trait">斗士</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">帝王斑蝶</span></td>
-        <td class="stat">41.1%</td>
-        <td class="stat">4.9%</td>
-        <td class="stat">4.97</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">406</td>
-        <td class="hexes"><span class="hex">便携锻炉 10.19%</span><span class="hex">金色炊具 7.28%</span><span class="hex">前线地基 5.83%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5')" title="点击复制阵容码">
-                <span class="gc-text">#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="6">
-        <td class="rank">6</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">裁决奶妈</td>
-        <td class="heroes"><span class="hero carry">索拉卡 ★</span><span class="hero">婕拉 ☆</span><span class="hero">墨菲特</span></td>
-        <td class="traits"><span class="trait">裁决使</span> <span class="trait">召唤师</span> <span class="trait">地狱火</span> <span class="trait">黑荆棘</span> <span class="trait">绝命花妖</span> <span class="trait">主宰</span> <span class="trait">翠神</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">40.3%</td>
-        <td class="stat">8.9%</td>
-        <td class="stat">5.05</td>
-        <td class="stat">0.19%</td>
-        <td class="stat sample">6,045</td>
-        <td class="hexes"><span class="hex">厨神阿福 3.64%</span><span class="hex">双城赢家 3.37%</span><span class="hex">金色炊具 3.21%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw')" title="点击复制阵容码">
-                <span class="gc-text">#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="7">
-        <td class="rank">7</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">世纪和解</td>
-        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">卡兹克 ☆</span></td>
-        <td class="traits"><span class="trait">永恒之森</span> <span class="trait">宿敌</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span></td>
-        <td class="stat">39.2%</td>
-        <td class="stat">6.0%</td>
-        <td class="stat">5.09</td>
-        <td class="stat">0.03%</td>
-        <td class="stat sample">998</td>
-        <td class="hexes"><span class="hex">世纪和解 31.99%</span><span class="hex">大百宝袋 4.03%</span><span class="hex">英勇福袋++ 4.03%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw')" title="点击复制阵容码">
-                <span class="gc-text">#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="8">
-        <td class="rank">8</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">皎月螳螂</td>
-        <td class="heroes"><span class="hero carry">黛安娜 ★</span><span class="hero">卡兹克 ☆</span><span class="hero">赫卡里姆</span><span class="hero">伊莉丝</span></td>
-        <td class="traits"><span class="trait">重装战士</span> <span class="trait">月蚀骑士</span> <span class="trait">神谕</span> <span class="trait">帝王斑蝶</span> <span class="trait">宿敌</span> <span class="trait">月华神女</span></td>
-        <td class="stat">35.9%</td>
-        <td class="stat">7.6%</td>
-        <td class="stat">5.21</td>
-        <td class="stat">0.02%</td>
-        <td class="stat sample">669</td>
-        <td class="hexes"><span class="hex">便携锻炉 5.69%</span><span class="hex">英勇福袋++ 3.25%</span><span class="hex">世纪和解 3.25%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5')" title="点击复制阵容码">
-                <span class="gc-text">#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="9">
-        <td class="rank">9</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">花仙狮子狗</td>
-        <td class="heroes"><span class="hero carry">雷恩加尔 ★</span><span class="hero">崔丝塔娜 ☆</span><span class="hero">拉莫斯</span><span class="hero">蔚</span></td>
-        <td class="traits"><span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">花仙子</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span> <span class="trait">宿敌</span></td>
-        <td class="stat">34.0%</td>
-        <td class="stat">7.3%</td>
-        <td class="stat">5.45</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">206</td>
-        <td class="hexes"><span class="hex">蔓延之根 7.52%</span><span class="hex">三幻神 4.64%</span><span class="hex">纹章树 3.68%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3')" title="点击复制阵容码">
-                <span class="gc-text">#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="10">
-        <td class="rank">10</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">花仙小炮</td>
-        <td class="heroes"><span class="hero carry">崔丝塔娜 ★</span><span class="hero">拉莫斯</span></td>
-        <td class="traits"><span class="trait">花仙子</span> <span class="trait">约德尔人</span> <span class="trait">护卫</span> <span class="trait">猎人</span> <span class="trait">野兽之灵</span> <span class="trait">主宰</span></td>
-        <td class="stat">31.9%</td>
-        <td class="stat">4.7%</td>
-        <td class="stat">5.54</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">429</td>
-        <td class="hexes"><span class="hex">黄金命运 7.03%</span><span class="hex">巨化术 5.95%</span><span class="hex">蔓延之根 4.86%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5')" title="点击复制阵容码">
-                <span class="gc-text">#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="11">
-        <td class="rank">11</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">护卫蛇女</td>
-        <td class="heroes"><span class="hero carry">卡西奥佩娅 ★</span><span class="hero">拉莫斯</span><span class="hero">费德提克</span></td>
-        <td class="traits"><span class="trait">护卫</span> <span class="trait">法师</span> <span class="trait">绝命花妖</span></td>
-        <td class="stat">30.5%</td>
-        <td class="stat">4.0%</td>
-        <td class="stat">5.43</td>
-        <td class="stat">0.02%</td>
-        <td class="stat sample">653</td>
-        <td class="hexes"><span class="hex">前线地基 4.17%</span><span class="hex">双城赢家 3.8%</span><span class="hex">飞升 3.62%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz')" title="点击复制阵容码">
-                <span class="gc-text">#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="12">
-        <td class="rank">12</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">赌小法</td>
-        <td class="heroes"><span class="hero carry">维迦 ★</span><span class="hero">阿利斯塔</span><span class="hero">奥恩</span></td>
-        <td class="traits"><span class="trait">法师</span> <span class="trait">永恒之森</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">护卫</span> <span class="trait">绝命花妖</span> <span class="trait">月华神女</span></td>
-        <td class="stat">26.2%</td>
-        <td class="stat">3.9%</td>
-        <td class="stat">5.67</td>
-        <td class="stat">0.04%</td>
-        <td class="stat sample">1,259</td>
-        <td class="hexes"><span class="hex">便携锻炉 7.13%</span><span class="hex">值得等待 3.56%</span><span class="hex">双城赢家 3.56%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0')" title="点击复制阵容码">
-                <span class="gc-text">#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="13">
-        <td class="rank">13</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">黑豹轮</td>
-        <td class="heroes"><span class="hero carry">希维尔 ★</span><span class="hero">奈德丽 ☆</span><span class="hero">墨菲特</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">斗士</span> <span class="trait">黑荆棘</span> <span class="trait">猎人</span> <span class="trait">魔战士</span> <span class="trait">神谕</span> <span class="trait">野兽之灵</span> <span class="trait">重装战士</span></td>
-        <td class="stat">26.2%</td>
-        <td class="stat">2.9%</td>
-        <td class="stat">5.82</td>
-        <td class="stat">0.01%</td>
-        <td class="stat sample">378</td>
-        <td class="hexes"><span class="hex">终身黄铜 II 3.44%</span><span class="hex">后排蓝图 3.05%</span><span class="hex">便携锻炉 2.67%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2')" title="点击复制阵容码">
-                <span class="gc-text">#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="14">
-        <td class="rank">14</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">神谕大嘴</td>
-        <td class="heroes"><span class="hero carry">克格莫 ★</span><span class="hero">苍蓝雕纹魔像</span><span class="hero">远古石甲虫</span><span class="hero">赫卡里姆</span></td>
-        <td class="traits"><span class="trait">神谕</span> <span class="trait">峡谷野怪</span> <span class="trait">重装战士</span> <span class="trait">帝王斑蝶</span></td>
-        <td class="stat">23.8%</td>
-        <td class="stat">1.9%</td>
-        <td class="stat">5.85</td>
-        <td class="stat">0.05%</td>
-        <td class="stat sample">1,532</td>
-        <td class="hexes"><span class="hex">便携锻炉 6.23%</span><span class="hex">更要命的战刃 4.78%</span><span class="hex">双城赢家 2.98%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky')" title="点击复制阵容码">
-                <span class="gc-text">#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr>
-    <tr class="comp-row" data-tier="D" data-rank="15">
-        <td class="rank">15</td>
-        <td class="tier-cell"><span class="tier-badge" style="background:#888888">D</span></td>
-        <td class="name">召唤鸡哥</td>
-        <td class="heroes"><span class="hero carry">深红锋喙鸟 ★</span><span class="hero">厄斐琉斯 ☆</span><span class="hero">远古石甲虫</span></td>
-        <td class="traits"><span class="trait">峡谷野怪</span> <span class="trait">召唤师</span> <span class="trait">斗士</span> <span class="trait">迅捷射手</span> <span class="trait">月蚀骑士</span> <span class="trait">重装战士</span> <span class="trait">荆棘之兴</span></td>
-        <td class="stat">17.9%</td>
-        <td class="stat">1.9%</td>
-        <td class="stat">6.32</td>
-        <td class="stat">0.00%</td>
-        <td class="stat sample">162</td>
-        <td class="hexes"><span class="hex">双城赢家 4.65%</span><span class="hex">飞升 3.43%</span><span class="hex">一波带走俩 3.23%</span></td>
-        <td class="gamecode">
-            <div class="gc-box" onclick="copyGC('【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2')" title="点击复制阵容码">
-                <span class="gc-text">#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2</span>
-                <span class="copy-btn">复制</span>
-            </div>
-        </td>
-    </tr></tbody>
-        </table>
-    </div>
-    </div>
-
-    <div class="footer">
-        <p>数据来源: <a href="https://www.dataj.cc/comp" style="color:#8ab4f8" target="_blank">dataj.cc</a> | 报告生成时间: 2026-10-08 16:24</p>
-    </div>
+<div class="header">
+<h1>TFT 阵容数据报告</h1>
+<div class="meta">
+<span>2026-10-10</span>
+<span>版本 18.3</span>
+<span>316,720 局</span>
+<span>38 个阵容</span>
 </div>
-<div class="toast" id="toast">已复制到剪贴板</div>
+</div>
+
+<div class="section" id="ranking">
+<h2 class="section-title"><span class="icon">[1]</span> 胜率排行</h2>
+<div style="overflow-x:auto">
+<table id="rankTable">
+<thead><tr><th>#</th><th>阵容</th><th>段位</th><th>前四率</th><th>登顶率</th><th>平均排名</th><th>出场率</th><th>样本数</th><th>阵容码</th></tr></thead>
+<tbody id="rankBody"></tbody>
+</table>
+</div>
+</div>
+
+<div class="section" id="recommend">
+<h2 class="section-title"><span class="icon">[2]</span> 推荐 (S级阵容)</h2>
+<div id="recommendBody"></div>
+</div>
+
+<div class="section" id="filter">
+<h2 class="section-title"><span class="icon">[3]</span> 筛选</h2>
+<div class="filter-bar">
+<div class="filter-row">
+<input type="text" id="searchInput" placeholder="搜索阵容名/英雄/羁绊..." oninput="applyFilter()">
+<select id="tierFilter" onchange="applyFilter()">
+<option value="">全部段位</option>
+<option value="S">S</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+</select>
+<select id="hexFilter" onchange="applyFilter()">
+<option value="">全部符文</option>
+</select>
+</div>
+</div>
+<div id="filterBody"></div>
+</div>
+
+<div class="section" id="tierGroup">
+<h2 class="section-title"><span class="icon">[4]</span> 段位分组</h2>
+<div id="tierGroupBody"></div>
+</div>
+</div>
+
 <script>
-function copyGC(code) {
-    if (!code) return;
-    navigator.clipboard.writeText(code).then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 1500);
-    }).catch(() => {
-        const ta = document.createElement('textarea');
-        ta.value = code;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 1500);
-    });
+const DATA = [{"compId":"104","name":"野怪小红","gameCode":"【阵容码】#野怪小红#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NDMwMjMx","tier":"S","stats":{"avgPlacement":3.78,"pickRate":0.26,"topRate":17.82,"top4Rate":62.99,"sampleCount":10116,"dataMode":"stats"},"coreHeroes":[{"heroName":"绯红树怪","isCarry":true,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"远古巨龙","isCarry":false,"isSubCarry":true,"isCore":true,"price":5},{"heroName":"远古石甲虫","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"苍蓝哨戒","isCarry":false,"isSubCarry":false,"isCore":true,"price":1}],"traits":["峡谷野怪","斗士","神谕","重装战士","主宰","顶级掠食者"],"equips":[{"heroId":"1511","equipId":"2038","compHeroId":"2232"},{"heroId":"1511","equipId":"2017","compHeroId":"2232"},{"heroId":"1511","equipId":"2017","compHeroId":"2232"},{"heroId":"1508","equipId":"2001","compHeroId":"2204"},{"heroId":"1508","equipId":"2004","compHeroId":"2204"},{"heroId":"1508","equipId":"2037","compHeroId":"2204"},{"heroId":"3503","equipId":"2025","compHeroId":"2207"},{"heroId":"3503","equipId":"2028","compHeroId":"2207"},{"heroId":"3503","equipId":"2034","compHeroId":"2207"},{"heroId":"5458","equipId":"2001","compHeroId":"2208"},{"heroId":"5458","equipId":"2007","compHeroId":"2208"},{"heroId":"5458","equipId":"2039","compHeroId":"2208"}],"recommendedHexes":[{"name":"欧米茄之怪","pickRate":8.63},{"name":"纵深 II","pickRate":4.14},{"name":"炽天使之拥","pickRate":3.8},{"name":"加冕礼","pickRate":3},{"name":"飞升","pickRate":2.42},{"name":"纵深 III","pickRate":2.14},{"name":"纵深 I","pickRate":2},{"name":"更要命的帽子","pickRate":1.93},{"name":"双城赢家","pickRate":1.93},{"name":"便携锻炉","pickRate":1.73}]},{"compId":"113","name":"古纳拉95","gameCode":"【阵容码】#古纳拉95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2ODY2MTcx","tier":"S","stats":{"avgPlacement":3.83,"pickRate":0.09,"topRate":22.44,"top4Rate":62.15,"sampleCount":3752,"dataMode":"stats"},"coreHeroes":[{"heroName":"拉露恩","isCarry":true,"isSubCarry":false,"isCore":true,"price":5},{"heroName":"远古巨龙","isCarry":false,"isSubCarry":true,"isCore":true,"price":5},{"heroName":"纳尔","isCarry":false,"isSubCarry":false,"isCore":true,"price":5},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["重装战士","永恒之森","峡谷野怪","斗士","月蚀骑士","宝石骑士","顶级掠食者","月华神女"],"equips":[{"heroId":"5452","equipId":"2012","compHeroId":"2303"},{"heroId":"5452","equipId":"2007","compHeroId":"2303"},{"heroId":"5452","equipId":"2006","compHeroId":"2303"},{"heroId":"5458","equipId":"2037","compHeroId":"2296"},{"heroId":"5458","equipId":"2007","compHeroId":"2296"},{"heroId":"5458","equipId":"2001","compHeroId":"2296"},{"heroId":"5456","equipId":"2038","compHeroId":"2297"},{"heroId":"5456","equipId":"2014","compHeroId":"2297"},{"heroId":"5456","equipId":"2004","compHeroId":"2297"},{"heroId":"4500","equipId":"2034","compHeroId":"2298"},{"heroId":"4500","equipId":"2028","compHeroId":"2298"},{"heroId":"4500","equipId":"2023","compHeroId":"2298"}],"recommendedHexes":[{"name":"生日聚会","pickRate":6.24},{"name":"后期收益","pickRate":2.87},{"name":"双排","pickRate":2.75},{"name":"顶尖构筑","pickRate":2.75},{"name":"爆炸式增长+","pickRate":2.75},{"name":"双城赢家","pickRate":2.5},{"name":"大百宝袋","pickRate":2.37},{"name":"升级咯！","pickRate":2.25},{"name":"镀金钢铁","pickRate":2},{"name":"混沌召唤","pickRate":1.75}]},{"compId":"120","name":"黑暗仪式蜘蛛","gameCode":"【阵容码】#黑暗仪式蜘蛛#MjIwMDY3MzAyODc5ODA4NTYxNzkwMDE2MjIwMTYz","tier":"S","stats":{"avgPlacement":3.78,"pickRate":0.24,"topRate":27.44,"top4Rate":62.14,"sampleCount":9682,"dataMode":"stats"},"coreHeroes":[{"heroName":"伊莉丝","isCarry":true,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"莫甘娜","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"卡西奥佩娅","isCarry":false,"isSubCarry":true,"isCore":true,"price":3},{"heroName":"黛安娜","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"赫卡里姆","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["重装战士","魔女","法师","月蚀骑士","宝石骑士","月华神女"],"equips":[{"heroId":"2504","equipId":"2028","compHeroId":"2358"},{"heroId":"2504","equipId":"2012","compHeroId":"2358"},{"heroId":"2504","equipId":"2010","compHeroId":"2358"},{"heroId":"4501","equipId":"2020","compHeroId":"2362"},{"heroId":"4501","equipId":"2011","compHeroId":"2362"},{"heroId":"3511","equipId":"2003","compHeroId":"2363"},{"heroId":"3511","equipId":"2038","compHeroId":"2363"},{"heroId":"3511","equipId":"2004","compHeroId":"2363"}],"recommendedHexes":[{"name":"黑暗仪式","pickRate":32.81},{"name":"飞升","pickRate":3.99},{"name":"双城赢家","pickRate":3.25},{"name":"英勇福袋++","pickRate":2.86},{"name":"大百宝袋","pickRate":2.69},{"name":"便携锻炉","pickRate":2.64},{"name":"挑战者的优雅","pickRate":2.6},{"name":"星界赐福 II","pickRate":1.99},{"name":"专属定制","pickRate":1.91},{"name":"核心位的觉悟","pickRate":1.78}]},{"compId":"87","name":"献祭三狼","gameCode":"【阵容码】#献祭三狼#MjIwMDY3MzAyODc5ODA4NTYxNzkwMjY0NzUwMjAw","tier":"S","stats":{"avgPlacement":3.99,"pickRate":0.22,"topRate":9.17,"top4Rate":61.78,"sampleCount":8900,"dataMode":"stats"},"coreHeroes":[{"heroName":"沃里克","isCarry":true,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"阿兹尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":3},{"heroName":"卡兹克","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"暗影狼","isCarry":false,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"伊莉丝","isCarry":false,"isSubCarry":false,"isCore":true,"price":2}],"traits":["狂战士","裁决使","黑荆棘","重装战士","绝命花妖","宿敌"],"equips":[{"heroId":"3510","equipId":"2020","compHeroId":"1985"},{"heroId":"2504","equipId":"2028","compHeroId":"2367"},{"heroId":"2504","equipId":"2034","compHeroId":"2367"},{"heroId":"2504","equipId":"2032","compHeroId":"2367"},{"heroId":"3505","equipId":"2039","compHeroId":"2368"},{"heroId":"3505","equipId":"2016","compHeroId":"2368"},{"heroId":"3505","equipId":"2005","compHeroId":"2368"},{"heroId":"3510","equipId":"2011","compHeroId":"1985"},{"heroId":"2508","equipId":"2001","compHeroId":"1979"},{"heroId":"2508","equipId":"2006","compHeroId":"1979"},{"heroId":"2508","equipId":"2041","compHeroId":"1979"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":7.63},{"name":"挑战者的优雅","pickRate":3.57},{"name":"双城赢家","pickRate":3.39},{"name":"英勇福袋++","pickRate":3.3},{"name":"大百宝袋","pickRate":2.9},{"name":"金色炊具","pickRate":2.19},{"name":"嘀嘀街区","pickRate":2.14},{"name":"专属定制","pickRate":2.01},{"name":"团队建设","pickRate":1.92},{"name":"治疗法球 II","pickRate":1.87}]},{"compId":"110","name":"射箭韦鲁斯","gameCode":"【阵容码】#射箭韦鲁斯#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNDA5NTU0","tier":"S","stats":{"avgPlacement":3.87,"pickRate":0.01,"topRate":16.25,"top4Rate":61.73,"sampleCount":277,"dataMode":"stats"},"coreHeroes":[{"heroName":"韦鲁斯","isCarry":true,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"凯尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":2},{"heroName":"瑟庄妮","isCarry":false,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"慎","isCarry":false,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"蕾欧娜","isCarry":false,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"洛","isCarry":false,"isSubCarry":false,"isCore":true,"price":1}],"traits":["日蚀骑士","迅捷射手","地狱火","护卫","月蚀骑士","重装战士","主宰"],"equips":[{"heroId":"2502","equipId":"2025","compHeroId":"2271"},{"heroId":"2502","equipId":"2028","compHeroId":"2271"},{"heroId":"2502","equipId":"2034","compHeroId":"2271"},{"heroId":"4509","equipId":"2010","compHeroId":"2272"},{"heroId":"4509","equipId":"2037","compHeroId":"2272"},{"heroId":"2512","equipId":"2010","compHeroId":"2275"},{"heroId":"2512","equipId":"2038","compHeroId":"2275"},{"heroId":"2512","equipId":"2046","compHeroId":"2275"},{"heroId":"1507","equipId":"2001","compHeroId":"2270"},{"heroId":"1507","equipId":"2004","compHeroId":"2270"},{"heroId":"1507","equipId":"2045","compHeroId":"2270"}],"recommendedHexes":[{"name":"值得等待","pickRate":5.43},{"name":"便携锻炉","pickRate":4.11},{"name":"大百宝袋","pickRate":3.52},{"name":"嘀嘀街区","pickRate":2.64},{"name":"别再错过","pickRate":2.35},{"name":"专属定制","pickRate":2.35},{"name":"光明圣物","pickRate":2.2},{"name":"英勇福袋++","pickRate":2.2},{"name":"杖之工匠","pickRate":2.05},{"name":"加冕礼","pickRate":1.76}]},{"compId":"100","name":"重装女警","gameCode":"【阵容码】#重装女警#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMjM1MzI3","tier":"S","stats":{"avgPlacement":3.98,"pickRate":0.07,"topRate":10.09,"top4Rate":61.28,"sampleCount":2766,"dataMode":"stats"},"coreHeroes":[{"heroName":"凯特琳","isCarry":true,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"希维尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"赫卡里姆","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"伊莉丝","isCarry":false,"isSubCarry":false,"isCore":true,"price":2}],"traits":["重装战士","猎人","花仙子","野兽之灵","主宰"],"equips":[{"heroId":"2504","equipId":"2025","compHeroId":"2152"},{"heroId":"2504","equipId":"2028","compHeroId":"2152"},{"heroId":"2504","equipId":"2034","compHeroId":"2152"},{"heroId":"2510","equipId":"2045","compHeroId":"2153"},{"heroId":"2510","equipId":"2013","compHeroId":"2153"},{"heroId":"2510","equipId":"2010","compHeroId":"2153"},{"heroId":"3500","equipId":"2029","compHeroId":"2157"},{"heroId":"3500","equipId":"2034","compHeroId":"2157"},{"heroId":"3500","equipId":"2032","compHeroId":"2157"}],"recommendedHexes":[{"name":"双城赢家","pickRate":4.31},{"name":"飞升","pickRate":3.69},{"name":"英勇福袋++","pickRate":3.2},{"name":"女巫使魔","pickRate":3.2},{"name":"便携锻炉","pickRate":2.46},{"name":"大百宝袋","pickRate":2.22},{"name":"嘀嘀街区","pickRate":1.97},{"name":"光明圣物","pickRate":1.85},{"name":"远征","pickRate":1.72},{"name":"男爵幻域","pickRate":1.72}]},{"compId":"106","name":"主宰女警","gameCode":"【阵容码】#主宰女警#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNjgwNTQy","tier":"S","stats":{"avgPlacement":4.04,"pickRate":0.17,"topRate":11.88,"top4Rate":59.32,"sampleCount":6775,"dataMode":"stats"},"coreHeroes":[{"heroName":"凯特琳","isCarry":true,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"希维尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"峡谷迅捷蟹","isCarry":false,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"瑟庄妮","isCarry":false,"isSubCarry":false,"isCore":true,"price":2}],"traits":["主宰","猎人","花仙子","野兽之灵"],"equips":[{"heroId":"2510","equipId":"2045","compHeroId":"2224"},{"heroId":"2510","equipId":"2013","compHeroId":"2224"},{"heroId":"2510","equipId":"2010","compHeroId":"2224"},{"heroId":"2500","equipId":"2034","compHeroId":"2225"},{"heroId":"2500","equipId":"2028","compHeroId":"2225"},{"heroId":"2500","equipId":"2025","compHeroId":"2225"},{"heroId":"2502","equipId":"2029","compHeroId":"2226"},{"heroId":"2502","equipId":"2034","compHeroId":"2226"},{"heroId":"2502","equipId":"2028","compHeroId":"2226"},{"heroId":"4510","equipId":"2037","compHeroId":"2228"},{"heroId":"4510","equipId":"2004","compHeroId":"2228"},{"heroId":"4510","equipId":"2001","compHeroId":"2228"}],"recommendedHexes":[{"name":"双城赢家","pickRate":4.36},{"name":"更要命的战刃","pickRate":3.59},{"name":"飞升","pickRate":3.06},{"name":"便携锻炉","pickRate":3.06},{"name":"团队建设","pickRate":2.94},{"name":"远征","pickRate":2.77},{"name":"一波带走俩","pickRate":2.71},{"name":"部分飞升","pickRate":2.41},{"name":"男爵幻域","pickRate":2.36},{"name":"光明圣物","pickRate":2.12}]},{"compId":"99","name":"7野怪鸡哥","gameCode":"【阵容码】#7野怪鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3OTEyNjQ5","tier":"S","stats":{"avgPlacement":4.02,"pickRate":1.07,"topRate":14.79,"top4Rate":58.38,"sampleCount":42439,"dataMode":"stats"},"coreHeroes":[{"heroName":"深红锋喙鸟","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"绯红印记树怪","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"远古石甲虫","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["峡谷野怪","狂战士","神谕"],"equips":[{"heroId":"4500","equipId":"2034","compHeroId":"2125"},{"heroId":"4500","equipId":"2028","compHeroId":"2125"},{"heroId":"4500","equipId":"2023","compHeroId":"2125"},{"heroId":"3503","equipId":"2034","compHeroId":"2127"},{"heroId":"3503","equipId":"2028","compHeroId":"2127"},{"heroId":"3503","equipId":"2025","compHeroId":"2127"},{"heroId":"3509","equipId":"2045","compHeroId":"2120"},{"heroId":"3509","equipId":"2013","compHeroId":"2120"},{"heroId":"3509","equipId":"2010","compHeroId":"2120"},{"heroId":"4506","equipId":"2045","compHeroId":"2121"},{"heroId":"4506","equipId":"2041","compHeroId":"2121"},{"heroId":"4506","equipId":"2007","compHeroId":"2121"}],"recommendedHexes":[{"name":"欧米茄之怪","pickRate":6.81},{"name":"纵深 II","pickRate":4.54},{"name":"双城赢家","pickRate":2.69},{"name":"飞升","pickRate":2.53},{"name":"纵深 III","pickRate":2.38},{"name":"加冕礼","pickRate":2.16},{"name":"便携锻炉","pickRate":2.13},{"name":"大百宝袋","pickRate":2.02},{"name":"双排","pickRate":1.72},{"name":"纵深 I","pickRate":1.69}]},{"compId":"91","name":"永森95","gameCode":"【阵容码】#永森95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNjcxMjY3","tier":"S","stats":{"avgPlacement":4.04,"pickRate":0.01,"topRate":23.12,"top4Rate":57.29,"sampleCount":199,"dataMode":"stats"},"coreHeroes":[{"heroName":"伊泽瑞尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"德莱文","isCarry":false,"isSubCarry":true,"isCore":true,"price":5}],"traits":["永恒之森","裁决使","地狱火","斗士","主宰","宝石骑士","翠神","赏金猎人","远古树精"],"equips":[{"heroId":"4508","equipId":"2042","compHeroId":"1898"},{"heroId":"4508","equipId":"2045","compHeroId":"1898"},{"heroId":"4508","equipId":"2004","compHeroId":"1898"},{"heroId":"5455","equipId":"2013","compHeroId":"1899"},{"heroId":"5455","equipId":"2013","compHeroId":"1899"},{"heroId":"5455","equipId":"2010","compHeroId":"1899"},{"heroId":"5451","equipId":"2025","compHeroId":"1902"},{"heroId":"5451","equipId":"2028","compHeroId":"1902"},{"heroId":"5451","equipId":"2034","compHeroId":"1902"},{"heroId":"5450","equipId":"2028","compHeroId":"1905"},{"heroId":"5450","equipId":"2034","compHeroId":"1905"},{"heroId":"5450","equipId":"2032","compHeroId":"1905"}],"recommendedHexes":[{"name":"双排","pickRate":3.3},{"name":"拼盘天梯","pickRate":3.3},{"name":"生日聚会","pickRate":3.11},{"name":"便携锻炉","pickRate":2.52},{"name":"加冕礼","pickRate":2.52},{"name":"后期收益","pickRate":2.33},{"name":"镀金钢铁","pickRate":2.14},{"name":"顶尖构筑","pickRate":2.14},{"name":"纹章树+","pickRate":1.94},{"name":"英勇福袋++","pickRate":1.55}]},{"compId":"114","name":"5迅射月男","gameCode":"【阵容码】#5迅射月男#MjIwMDY3MzAyODc5ODA4NTYxNzg5MDI2NzMyMzIz","tier":"S","stats":{"avgPlacement":4.2,"pickRate":0.04,"topRate":10.86,"top4Rate":57.28,"sampleCount":1620,"dataMode":"stats"},"coreHeroes":[{"heroName":"绯红印记树怪","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"阿木木","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["迅捷射手","峡谷野怪","地狱火","花仙子","狂战士","月蚀骑士","重装战士","主宰"],"equips":[{"heroId":"4509","equipId":"2045","compHeroId":"2306"},{"heroId":"4509","equipId":"2013","compHeroId":"2306"},{"heroId":"4509","equipId":"2001","compHeroId":"2306"},{"heroId":"4506","equipId":"2046","compHeroId":"2307"},{"heroId":"4506","equipId":"2005","compHeroId":"2307"},{"heroId":"4506","equipId":"41815","compHeroId":"2307"},{"heroId":"4503","equipId":"2034","compHeroId":"2311"},{"heroId":"4503","equipId":"2028","compHeroId":"2311"},{"heroId":"4503","equipId":"2028","compHeroId":"2311"},{"heroId":"4500","equipId":"2024","compHeroId":"2312"},{"heroId":"4500","equipId":"2023","compHeroId":"2312"},{"heroId":"4500","equipId":"2032","compHeroId":"2312"}],"recommendedHexes":[{"name":"后排蓝图","pickRate":6.87},{"name":"金色炊具","pickRate":6.67},{"name":"双城赢家","pickRate":4.85},{"name":"剑之工匠","pickRate":3.43},{"name":"便携锻炉","pickRate":2.83},{"name":"嘀个痛快！ I","pickRate":2.42},{"name":"蔓延之根","pickRate":2.02},{"name":"男爵幻域","pickRate":2.02},{"name":"厨神阿福","pickRate":2.02},{"name":"节外生枝","pickRate":1.82}]},{"compId":"116","name":"裁决螳螂","gameCode":"【阵容码】#裁决螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjE4MDI5MTQ5","tier":"S","stats":{"avgPlacement":4.17,"pickRate":0.33,"topRate":13.06,"top4Rate":56.58,"sampleCount":13185,"dataMode":"stats"},"coreHeroes":[{"heroName":"卡兹克","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"索拉卡","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"费德提克","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"赫卡里姆","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["永恒之森","裁决使","护卫","绝命花妖","月蚀骑士","重装战士","宿敌"],"equips":[{"heroId":"3505","equipId":"2005","compHeroId":"2324"},{"heroId":"3505","equipId":"2016","compHeroId":"2324"},{"heroId":"3505","equipId":"2039","compHeroId":"2324"},{"heroId":"3500","equipId":"2025","compHeroId":"2326"},{"heroId":"3500","equipId":"2028","compHeroId":"2326"},{"heroId":"3500","equipId":"2034","compHeroId":"2326"},{"heroId":"4513","equipId":"2004","compHeroId":"2333"},{"heroId":"4513","equipId":"2011","compHeroId":"2333"},{"heroId":"4513","equipId":"2020","compHeroId":"2333"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":4.66},{"name":"双城赢家","pickRate":3.63},{"name":"英勇福袋++","pickRate":3.24},{"name":"大百宝袋","pickRate":2.48},{"name":"三幻神","pickRate":2.29},{"name":"团队建设","pickRate":2.15},{"name":"英勇福袋+","pickRate":1.95},{"name":"治疗法球 II","pickRate":1.87},{"name":"专属定制","pickRate":1.81},{"name":"独自升级","pickRate":1.79}]},{"compId":"115","name":"卡丽蜜儿","gameCode":"【阵容码】#卡丽蜜儿#MjIwMDY3MzAyODc5ODA4NTYxNzg5MTEwOTYxNDE2","tier":"A","stats":{"avgPlacement":4.29,"pickRate":0.04,"topRate":11.81,"top4Rate":55.11,"sampleCount":1439,"dataMode":"stats"},"coreHeroes":[{"heroName":"阿卡丽","isCarry":true,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"卡蜜尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":1},{"heroName":"奥恩","isCarry":false,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"韦鲁斯","isCarry":false,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"蕾欧娜","isCarry":false,"isSubCarry":false,"isCore":true,"price":1}],"traits":["地狱火","日蚀骑士","护卫","狂战士","迅捷射手","主宰"],"equips":[{"heroId":"1500","equipId":"2034","compHeroId":"2315"},{"heroId":"1500","equipId":"2028","compHeroId":"2315"},{"heroId":"1500","equipId":"2025","compHeroId":"2315"},{"heroId":"1507","equipId":"2037","compHeroId":"2316"},{"heroId":"1507","equipId":"2004","compHeroId":"2316"},{"heroId":"1507","equipId":"2001","compHeroId":"2316"},{"heroId":"1505","equipId":"2041","compHeroId":"2318"},{"heroId":"1505","equipId":"2007","compHeroId":"2318"},{"heroId":"1505","equipId":"2001","compHeroId":"2318"},{"heroId":"1513","equipId":"2039","compHeroId":"2323"},{"heroId":"1513","equipId":"2038","compHeroId":"2323"},{"heroId":"1513","equipId":"2005","compHeroId":"2323"}],"recommendedHexes":[{"name":"宝宝学院","pickRate":14.16},{"name":"便携锻炉","pickRate":7.37},{"name":"不侦察，不变阵","pickRate":3.68},{"name":"大百宝袋","pickRate":3.4},{"name":"剑之工匠","pickRate":3.4},{"name":"专属定制","pickRate":2.55},{"name":"值得等待","pickRate":2.27},{"name":"双城赢家","pickRate":2.27},{"name":"别再错过","pickRate":1.98},{"name":"珠光莲花 I","pickRate":1.98}]},{"compId":"89","name":"巨龙95","gameCode":"【阵容码】#巨龙95#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgyMDgwODEz","tier":"S","stats":{"avgPlacement":4.15,"pickRate":0.17,"topRate":22.12,"top4Rate":55.07,"sampleCount":6850,"dataMode":"stats"},"coreHeroes":[{"heroName":"远古巨龙","isCarry":true,"isSubCarry":false,"isCore":true,"price":5},{"heroName":"德莱文","isCarry":false,"isSubCarry":true,"isCore":true,"price":5},{"heroName":"茂凯","isCarry":false,"isSubCarry":false,"isCore":true,"price":5},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["地狱火","重装战士","主宰","宝石骑士","翠神","顶级掠食者","赏金猎人","远古树精"],"equips":[{"heroId":"5455","equipId":"2010","compHeroId":"1930"},{"heroId":"5455","equipId":"2013","compHeroId":"1930"},{"heroId":"5455","equipId":"2013","compHeroId":"1930"},{"heroId":"5458","equipId":"2001","compHeroId":"1931"},{"heroId":"5458","equipId":"2042","compHeroId":"1931"},{"heroId":"5458","equipId":"2037","compHeroId":"1931"},{"heroId":"5450","equipId":"2034","compHeroId":"1933"},{"heroId":"5450","equipId":"2028","compHeroId":"1933"},{"heroId":"5450","equipId":"2025","compHeroId":"1933"},{"heroId":"4500","equipId":"2034","compHeroId":"1937"},{"heroId":"4500","equipId":"2028","compHeroId":"1937"},{"heroId":"4500","equipId":"2023","compHeroId":"1937"}],"recommendedHexes":[{"name":"生日聚会","pickRate":3.47},{"name":"双排","pickRate":2.78},{"name":"厨神阿福","pickRate":2.78},{"name":"后期收益","pickRate":2.45},{"name":"镀金钢铁","pickRate":2.45},{"name":"升级咯！","pickRate":2.31},{"name":"顶尖构筑","pickRate":2.31},{"name":"爆炸式增长+","pickRate":2.17},{"name":"双城赢家","pickRate":2.08},{"name":"混沌召唤","pickRate":1.99}]},{"compId":"105","name":"森林月男","gameCode":"【阵容码】#森林月男#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3MzM4NDUy","tier":"A","stats":{"avgPlacement":4.28,"pickRate":0.22,"topRate":14.84,"top4Rate":53.74,"sampleCount":8592,"dataMode":"stats"},"coreHeroes":[{"heroName":"厄斐琉斯","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"伊泽瑞尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"莉莉娅","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["永恒之森","裁决使","斗士","护卫","花仙子","迅捷射手","月蚀骑士","绝命花妖","月华神女"],"equips":[{"heroId":"4502","equipId":"2023","compHeroId":"2212"},{"heroId":"4502","equipId":"2028","compHeroId":"2212"},{"heroId":"4502","equipId":"2034","compHeroId":"2212"},{"heroId":"4509","equipId":"2001","compHeroId":"2213"},{"heroId":"4509","equipId":"2010","compHeroId":"2213"},{"heroId":"4509","equipId":"2013","compHeroId":"2213"},{"heroId":"4508","equipId":"2004","compHeroId":"2214"},{"heroId":"4508","equipId":"2037","compHeroId":"2214"},{"heroId":"4508","equipId":"2009","compHeroId":"2214"},{"heroId":"5452","equipId":"2006","compHeroId":"2219"},{"heroId":"5452","equipId":"2007","compHeroId":"2219"},{"heroId":"5452","equipId":"2012","compHeroId":"2219"}],"recommendedHexes":[{"name":"厨神阿福","pickRate":5.39},{"name":"蔓延之根","pickRate":5.08},{"name":"飞升","pickRate":3.53},{"name":"双城赢家","pickRate":2.79},{"name":"纹章树","pickRate":2.66},{"name":"纹章树+","pickRate":2.23},{"name":"大百宝袋","pickRate":1.98},{"name":"自然庇护所","pickRate":1.98},{"name":"节外生枝+","pickRate":1.92},{"name":"双排","pickRate":1.86}]},{"compId":"112","name":"地狱火95","gameCode":"【阵容码】#地狱火95#MjIwMDY3MzAyODc5ODA4NTYxNzg5MjQwODA3MzIw","tier":"A","stats":{"avgPlacement":4.35,"pickRate":0.31,"topRate":18.47,"top4Rate":51.62,"sampleCount":12466,"dataMode":"stats"},"coreHeroes":[{"heroName":"希维尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"艾希","isCarry":false,"isSubCarry":true,"isCore":true,"price":5},{"heroName":"凯南","isCarry":false,"isSubCarry":false,"isCore":true,"price":5},{"heroName":"阿木木","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["地狱火","猎人","野兽之灵","重装战士","主宰","宝石骑士"],"equips":[{"heroId":"5454","equipId":"2004","compHeroId":"2287"},{"heroId":"5454","equipId":"2037","compHeroId":"2287"},{"heroId":"5454","equipId":"2001","compHeroId":"2287"},{"heroId":"4510","equipId":"2004","compHeroId":"2288"},{"heroId":"4510","equipId":"41806","compHeroId":"2288"},{"heroId":"4510","equipId":"2009","compHeroId":"2288"},{"heroId":"4503","equipId":"2034","compHeroId":"2289"},{"heroId":"4503","equipId":"2028","compHeroId":"2289"},{"heroId":"4503","equipId":"2018","compHeroId":"2289"},{"heroId":"5453","equipId":"2005","compHeroId":"2291"},{"heroId":"5453","equipId":"2016","compHeroId":"2291"},{"heroId":"5453","equipId":"2039","compHeroId":"2291"}],"recommendedHexes":[{"name":"厨神阿福","pickRate":14.79},{"name":"阿福的百宝袋","pickRate":3.85},{"name":"双排","pickRate":2.92},{"name":"蔓延之根","pickRate":2.8},{"name":"双城赢家","pickRate":2.58},{"name":"镀金钢铁","pickRate":2.39},{"name":"大百宝袋","pickRate":2.11},{"name":"专属定制","pickRate":1.7},{"name":"纹章树+","pickRate":1.66},{"name":"金色炊具","pickRate":1.63}]},{"compId":"117","name":"6主宰Flex","gameCode":"【阵容码】#6主宰Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg5MzI0OTU3MjU5","tier":"B","stats":{"avgPlacement":4.49,"pickRate":1.09,"topRate":11.56,"top4Rate":50,"sampleCount":43159,"dataMode":"stats"},"coreHeroes":[{"heroName":"婕拉","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"奈德丽","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"阿木木","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["主宰","野兽之灵","荆棘之兴","远古树精"],"equips":[{"heroId":"4503","equipId":"2034","compHeroId":"2339"},{"heroId":"4503","equipId":"2028","compHeroId":"2339"},{"heroId":"4503","equipId":"2018","compHeroId":"2339"},{"heroId":"4507","equipId":"2011","compHeroId":"2387"},{"heroId":"4507","equipId":"2010","compHeroId":"2387"},{"heroId":"4512","equipId":"2003","compHeroId":"2386"},{"heroId":"4512","equipId":"2017","compHeroId":"2386"},{"heroId":"4512","equipId":"2017","compHeroId":"2386"},{"heroId":"4507","equipId":"2017","compHeroId":"2387"},{"heroId":"5450","equipId":"2025","compHeroId":"2342"},{"heroId":"5450","equipId":"2028","compHeroId":"2342"},{"heroId":"5450","equipId":"2034","compHeroId":"2342"}],"recommendedHexes":[{"name":"炽天使之拥","pickRate":8.71},{"name":"飞升","pickRate":4.78},{"name":"双城赢家","pickRate":2.95},{"name":"便携锻炉","pickRate":2.66},{"name":"男爵幻域","pickRate":2.14},{"name":"大百宝袋","pickRate":2.1},{"name":"部分飞升","pickRate":2},{"name":"专属定制","pickRate":1.66},{"name":"坚守防线","pickRate":1.39},{"name":"杖之工匠","pickRate":1.34}]},{"compId":"88","name":"森林妖姬天使","gameCode":"【阵容码】#森林妖姬天使#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxOTg4MDM0","tier":"B","stats":{"avgPlacement":4.58,"pickRate":0.4,"topRate":12.6,"top4Rate":49.12,"sampleCount":16013,"dataMode":"stats"},"coreHeroes":[{"heroName":"凯尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"奥恩","isCarry":false,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"蕾欧娜","isCarry":false,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"霞","isCarry":false,"isSubCarry":false,"isCore":true,"price":1}],"traits":["日蚀骑士","永恒之森","护卫","花仙子","迅捷射手","主宰"],"equips":[{"heroId":"1500","equipId":"2034","compHeroId":"1923"},{"heroId":"1500","equipId":"2025","compHeroId":"1923"},{"heroId":"1500","equipId":"2028","compHeroId":"1923"},{"heroId":"1502","equipId":"2034","compHeroId":"1926"},{"heroId":"1502","equipId":"2025","compHeroId":"1926"},{"heroId":"1502","equipId":"2028","compHeroId":"1926"},{"heroId":"2512","equipId":"2016","compHeroId":"1928"},{"heroId":"2512","equipId":"2038","compHeroId":"1928"},{"heroId":"2512","equipId":"2010","compHeroId":"1928"},{"heroId":"2511","equipId":"2004","compHeroId":"1929"},{"heroId":"2511","equipId":"2038","compHeroId":"1929"},{"heroId":"2511","equipId":"2014","compHeroId":"1929"}],"recommendedHexes":[{"name":"嘀嘀街区","pickRate":4.53},{"name":"便携锻炉","pickRate":4.11},{"name":"飞升","pickRate":3.31},{"name":"双城赢家","pickRate":2.89},{"name":"棱彩门票","pickRate":2.68},{"name":"大百宝袋","pickRate":2.44},{"name":"专属定制","pickRate":2.44},{"name":"英勇福袋++","pickRate":2.32},{"name":"太阳的抉择","pickRate":2.03},{"name":"加冕礼","pickRate":2.03}]},{"compId":"107","name":"野怪小蓝","gameCode":"【阵容码】#野怪小蓝#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NzgwODY3","tier":"B","stats":{"avgPlacement":4.48,"pickRate":0.19,"topRate":10.73,"top4Rate":49.06,"sampleCount":7587,"dataMode":"stats"},"coreHeroes":[{"heroName":"苍蓝哨戒","isCarry":true,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"远古巨龙","isCarry":false,"isSubCarry":true,"isCore":true,"price":5},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"远古石甲虫","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["峡谷野怪","斗士","神谕","重装战士","宝石骑士","顶级掠食者"],"equips":[{"heroId":"1511","equipId":"2038","compHeroId":"2233"},{"heroId":"1511","equipId":"2017","compHeroId":"2233"},{"heroId":"1511","equipId":"2017","compHeroId":"2233"},{"heroId":"3503","equipId":"2034","compHeroId":"2234"},{"heroId":"3503","equipId":"2028","compHeroId":"2234"},{"heroId":"3503","equipId":"2025","compHeroId":"2234"},{"heroId":"4500","equipId":"2023","compHeroId":"2236"},{"heroId":"4500","equipId":"2029","compHeroId":"2236"},{"heroId":"4500","equipId":"2019","compHeroId":"2236"},{"heroId":"5458","equipId":"2039","compHeroId":"2238"},{"heroId":"5458","equipId":"2007","compHeroId":"2238"},{"heroId":"5458","equipId":"2001","compHeroId":"2238"}],"recommendedHexes":[{"name":"欧米茄之怪","pickRate":8.58},{"name":"炽天使之拥","pickRate":6.61},{"name":"纵深 II","pickRate":4.5},{"name":"更要命的帽子","pickRate":3.63},{"name":"双城赢家","pickRate":2.8},{"name":"纵深 III","pickRate":2.57},{"name":"飞升","pickRate":2.25},{"name":"纵深 I","pickRate":1.93},{"name":"双排","pickRate":1.93},{"name":"便携锻炉","pickRate":1.84}]},{"compId":"85","name":"裁决芸阿娜","gameCode":"【阵容码】#裁决芸阿娜#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIzMTM0MTk5","tier":"C","stats":{"avgPlacement":4.75,"pickRate":0,"topRate":2.74,"top4Rate":47.95,"sampleCount":73,"dataMode":"stats"},"coreHeroes":[{"heroName":"芸阿娜","isCarry":true,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"阿利斯塔","isCarry":false,"isSubCarry":false,"isCore":true,"price":2}],"traits":["裁决使","莲华","永恒之森","斗士","法师","绝命花妖"],"equips":[{"heroId":"2501","equipId":"2028","compHeroId":"2001"},{"heroId":"2501","equipId":"2028","compHeroId":"2001"},{"heroId":"2501","equipId":"2034","compHeroId":"2001"},{"heroId":"4505","equipId":"2032","compHeroId":"2002"},{"heroId":"4505","equipId":"2029","compHeroId":"2002"},{"heroId":"4505","equipId":"2034","compHeroId":"2002"},{"heroId":"2509","equipId":"2004","compHeroId":"2000"},{"heroId":"2509","equipId":"2045","compHeroId":"2000"},{"heroId":"2509","equipId":"2042","compHeroId":"2000"},{"heroId":"4508","equipId":"2004","compHeroId":"2003"},{"heroId":"4508","equipId":"2009","compHeroId":"2003"},{"heroId":"4508","equipId":"2037","compHeroId":"2003"}],"recommendedHexes":[{"name":"值得等待 II","pickRate":4.76},{"name":"厨神阿福","pickRate":4.29},{"name":"嘀嘀街区","pickRate":3.81},{"name":"便携锻炉","pickRate":3.33},{"name":"专属定制","pickRate":3.33},{"name":"双城赢家","pickRate":2.86},{"name":"游神的盟友","pickRate":2.38},{"name":"仙灵报恩","pickRate":2.38},{"name":"绽灵花的约定","pickRate":2.38},{"name":"更要命的战刃","pickRate":2.38}]},{"compId":"95","name":"月男Flex","gameCode":"【阵容码】#月男Flex#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNTcyODk4","tier":"C","stats":{"avgPlacement":4.63,"pickRate":1.12,"topRate":8.74,"top4Rate":47.92,"sampleCount":44503,"dataMode":"stats"},"coreHeroes":[{"heroName":"厄斐琉斯","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"婕拉","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"墨菲特","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"深红锋喙鸟","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["峡谷野怪","斗士","黑荆棘","迅捷射手","月蚀骑士","召唤师","重装战士","荆棘之兴","魔岩巨兽"],"equips":[{"heroId":"4509","equipId":"2045","compHeroId":"2063"},{"heroId":"4509","equipId":"2010","compHeroId":"2063"},{"heroId":"4509","equipId":"2013","compHeroId":"2063"},{"heroId":"4512","equipId":"2011","compHeroId":"2065"},{"heroId":"4512","equipId":"2004","compHeroId":"2065"},{"heroId":"4512","equipId":"2038","compHeroId":"2065"},{"heroId":"4500","equipId":"2032","compHeroId":"2066"},{"heroId":"4500","equipId":"2029","compHeroId":"2066"},{"heroId":"4500","equipId":"2023","compHeroId":"2066"},{"heroId":"4504","equipId":"2034","compHeroId":"2260"},{"heroId":"4504","equipId":"2028","compHeroId":"2260"},{"heroId":"4504","equipId":"2028","compHeroId":"2260"}],"recommendedHexes":[{"name":"双城赢家","pickRate":4.25},{"name":"飞升","pickRate":3.3},{"name":"便携锻炉","pickRate":2.93},{"name":"大百宝袋","pickRate":2.47},{"name":"专属定制","pickRate":1.93},{"name":"部分飞升","pickRate":1.83},{"name":"一波带走俩","pickRate":1.83},{"name":"男爵幻域","pickRate":1.8},{"name":"蔓延之根","pickRate":1.42},{"name":"时间跳跃","pickRate":1.37}]},{"compId":"84","name":"莲华阿狸","gameCode":"【阵容码】#莲华阿狸#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyOTk1OTM0","tier":"C","stats":{"avgPlacement":4.76,"pickRate":0.27,"topRate":14.13,"top4Rate":44.25,"sampleCount":10563,"dataMode":"stats"},"coreHeroes":[{"heroName":"阿狸","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"希维尔","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"艾希","isCarry":false,"isSubCarry":false,"isCore":true,"price":5},{"heroName":"瑟提","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["灵魂莲华","斗士","法师","猎人","野兽之灵","召唤师","主宰","荆棘之兴"],"equips":[{"heroId":"4512","equipId":"2011","compHeroId":"2085"},{"heroId":"5454","equipId":"2009","compHeroId":"2087"},{"heroId":"5454","equipId":"2004","compHeroId":"2087"},{"heroId":"5454","equipId":"2001","compHeroId":"2087"},{"heroId":"4505","equipId":"2028","compHeroId":"2080"},{"heroId":"4505","equipId":"2034","compHeroId":"2080"},{"heroId":"4505","equipId":"2025","compHeroId":"2080"},{"heroId":"4511","equipId":"2038","compHeroId":"2083"},{"heroId":"4511","equipId":"2014","compHeroId":"2083"},{"heroId":"4511","equipId":"2004","compHeroId":"2083"},{"heroId":"4510","equipId":"2037","compHeroId":"2084"},{"heroId":"4510","equipId":"2004","compHeroId":"2084"},{"heroId":"4510","equipId":"2001","compHeroId":"2084"}],"recommendedHexes":[{"name":"双城赢家","pickRate":2.67},{"name":"蔓延之根","pickRate":2.67},{"name":"大百宝袋","pickRate":2.24},{"name":"厨神阿福","pickRate":2.21},{"name":"便携锻炉","pickRate":1.96},{"name":"绽灵花的约定","pickRate":1.89},{"name":"嘀嘀街区","pickRate":1.71},{"name":"专属定制","pickRate":1.71},{"name":"纹章树","pickRate":1.67},{"name":"杖之工匠","pickRate":1.64}]},{"compId":"83","name":"重装豹女","gameCode":"【阵容码】#重装豹女#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxODcwNDE4","tier":"D","stats":{"avgPlacement":5.05,"pickRate":0,"topRate":6.58,"top4Rate":44.08,"sampleCount":152,"dataMode":"stats"},"coreHeroes":[{"heroName":"奈德丽","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"莫甘娜","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"蔚","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["前卫","神谕者","魔战士","野兽之灵","主宰","宝石骑士","腐蚀巨口"],"equips":[{"heroId":"4507","equipId":"2010","compHeroId":"2174"},{"heroId":"4507","equipId":"2038","compHeroId":"2174"},{"heroId":"4507","equipId":"2016","compHeroId":"2174"},{"heroId":"4514","equipId":"2011","compHeroId":"2169"},{"heroId":"4514","equipId":"2020","compHeroId":"2169"},{"heroId":"4514","equipId":"2022","compHeroId":"2169"},{"heroId":"4500","equipId":"2028","compHeroId":"2170"},{"heroId":"4500","equipId":"2034","compHeroId":"2170"},{"heroId":"4500","equipId":"2023","compHeroId":"2170"}],"recommendedHexes":[{"name":"飞升","pickRate":3.52},{"name":"大百宝袋","pickRate":3.52},{"name":"便携锻炉","pickRate":3.27},{"name":"蔓延之根","pickRate":2.51},{"name":"部分飞升","pickRate":2.01},{"name":"双城赢家","pickRate":1.76},{"name":"女巫使魔","pickRate":1.76},{"name":"加冕礼","pickRate":1.76},{"name":"男爵幻域","pickRate":1.76},{"name":"纹章树","pickRate":1.76}]},{"compId":"108","name":"护卫豹轮","gameCode":"【阵容码】#护卫豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5NTAyNTY1","tier":"D","stats":{"avgPlacement":4.9,"pickRate":0.01,"topRate":10.32,"top4Rate":43.23,"sampleCount":310,"dataMode":"stats"},"coreHeroes":[{"heroName":"希维尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"奈德丽","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"莉莉娅","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["地狱火","护卫","花仙子","猎人","魔战士","神谕","野兽之灵","重装战士","主宰","帝王斑蝶"],"equips":[{"heroId":"4502","equipId":"2034","compHeroId":"2241"},{"heroId":"4502","equipId":"2028","compHeroId":"2241"},{"heroId":"4502","equipId":"2023","compHeroId":"2241"},{"heroId":"4500","equipId":"2034","compHeroId":"2243"},{"heroId":"4500","equipId":"2028","compHeroId":"2243"},{"heroId":"4500","equipId":"2023","compHeroId":"2243"},{"heroId":"4510","equipId":"2045","compHeroId":"2246"},{"heroId":"4510","equipId":"2004","compHeroId":"2246"},{"heroId":"4510","equipId":"2001","compHeroId":"2246"},{"heroId":"4507","equipId":"2042","compHeroId":"2247"},{"heroId":"4507","equipId":"2038","compHeroId":"2247"},{"heroId":"4507","equipId":"2010","compHeroId":"2247"}],"recommendedHexes":[{"name":"厨神阿福","pickRate":5.51},{"name":"蔓延之根","pickRate":4.59},{"name":"纹章树","pickRate":4.02},{"name":"双城赢家","pickRate":3.1},{"name":"终身黄铜 I","pickRate":2.41},{"name":"便携锻炉","pickRate":2.18},{"name":"大百宝袋","pickRate":1.95},{"name":"阿福的百宝袋","pickRate":1.95},{"name":"蔓延之根+","pickRate":1.84},{"name":"专属定制","pickRate":1.72}]},{"compId":"121","name":"赌沙皇","gameCode":"【阵容码】#赌沙皇#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkyNjAyMDQx","tier":"D","stats":{"avgPlacement":4.86,"pickRate":0.27,"topRate":8.61,"top4Rate":43.12,"sampleCount":10515,"dataMode":"stats"},"coreHeroes":[{"heroName":"阿兹尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"婕拉","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"拉莫斯","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["约德尔人","裁决使","法师","黑荆棘","护卫","绝命花妖","召唤师","荆棘之兴"],"equips":[{"heroId":"3515","equipId":"2028","compHeroId":"2370"},{"heroId":"3515","equipId":"2034","compHeroId":"2370"},{"heroId":"3515","equipId":"2025","compHeroId":"2370"},{"heroId":"3510","equipId":"2010","compHeroId":"2371"},{"heroId":"3510","equipId":"2003","compHeroId":"2371"},{"heroId":"3510","equipId":"2016","compHeroId":"2371"},{"heroId":"4512","equipId":"2011","compHeroId":"2375"},{"heroId":"4512","equipId":"2020","compHeroId":"2375"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":3.76},{"name":"英勇福袋++","pickRate":3.4},{"name":"双城赢家","pickRate":3.09},{"name":"飞升","pickRate":3.03},{"name":"装备提炼","pickRate":2.91},{"name":"团队建设","pickRate":2.24},{"name":"专属定制","pickRate":2.24},{"name":"三幻神","pickRate":2},{"name":"是我，宝贝！","pickRate":1.88},{"name":"英勇福袋+","pickRate":1.76}]},{"compId":"111","name":"神谕狐狸","gameCode":"【阵容码】#神谕狐狸#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgzNzQ1OTQ2","tier":"D","stats":{"avgPlacement":4.91,"pickRate":0.04,"topRate":9.27,"top4Rate":41.58,"sampleCount":1705,"dataMode":"stats"},"coreHeroes":[{"heroName":"阿狸","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"莫甘娜","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"瑟提","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["神谕","灵魂莲华","法师","重装战士","宝石骑士","帝王斑蝶"],"equips":[{"heroId":"4511","equipId":"41820","compHeroId":"2278"},{"heroId":"4511","equipId":"2016","compHeroId":"2278"},{"heroId":"4511","equipId":"2038","compHeroId":"2278"},{"heroId":"4505","equipId":"2034","compHeroId":"2281"},{"heroId":"4505","equipId":"2028","compHeroId":"2281"},{"heroId":"4505","equipId":"2025","compHeroId":"2281"},{"heroId":"4500","equipId":"2023","compHeroId":"2279"},{"heroId":"4500","equipId":"2034","compHeroId":"2279"},{"heroId":"4500","equipId":"2028","compHeroId":"2279"},{"heroId":"4501","equipId":"2011","compHeroId":"2282"},{"heroId":"4501","equipId":"2020","compHeroId":"2282"},{"heroId":"4501","equipId":"2038","compHeroId":"2282"}],"recommendedHexes":[{"name":"后排蓝图","pickRate":9.4},{"name":"双城赢家","pickRate":3.92},{"name":"纹章树","pickRate":2.61},{"name":"珠光莲花 I","pickRate":2.35},{"name":"便携锻炉","pickRate":2.35},{"name":"混沌召唤","pickRate":2.09},{"name":"三幻神","pickRate":2.09},{"name":"纹章树+","pickRate":2.09},{"name":"节外生枝+","pickRate":1.83},{"name":"杖之工匠","pickRate":1.83}]},{"compId":"103","name":"螳螂蛇女","gameCode":"【阵容码】#螳螂蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NTIyOTY0","tier":"D","stats":{"avgPlacement":4.91,"pickRate":0.02,"topRate":5.48,"top4Rate":41.48,"sampleCount":675,"dataMode":"stats"},"coreHeroes":[{"heroName":"卡西奥佩娅","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"卡兹克","isCarry":false,"isSubCarry":true,"isCore":true,"price":3},{"heroName":"费德提克","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"拉莫斯","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["护卫","法师","绝命花妖","宿敌"],"equips":[{"heroId":"3502","equipId":"2034","compHeroId":"2196"},{"heroId":"3502","equipId":"2028","compHeroId":"2196"},{"heroId":"3502","equipId":"2025","compHeroId":"2196"},{"heroId":"4511","equipId":"2038","compHeroId":"2197"},{"heroId":"4511","equipId":"2014","compHeroId":"2197"},{"heroId":"4511","equipId":"2004","compHeroId":"2197"},{"heroId":"3505","equipId":"2039","compHeroId":"2202"},{"heroId":"3505","equipId":"2016","compHeroId":"2202"},{"heroId":"3505","equipId":"2005","compHeroId":"2202"},{"heroId":"3511","equipId":"2020","compHeroId":"2203"},{"heroId":"3511","equipId":"2011","compHeroId":"2203"},{"heroId":"3511","equipId":"2004","compHeroId":"2203"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":5.26},{"name":"后排蓝图","pickRate":4.82},{"name":"炽天使之拥","pickRate":3.73},{"name":"三幻神","pickRate":3.73},{"name":"双城赢家","pickRate":3.51},{"name":"前线地基","pickRate":3.51},{"name":"大百宝袋","pickRate":2.19},{"name":"光明圣物","pickRate":2.19},{"name":"专属定制","pickRate":2.19},{"name":"团队建设","pickRate":1.97}]},{"compId":"86","name":"剑圣大嘴","gameCode":"【阵容码】#剑圣大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjIyODc3NDE5","tier":"D","stats":{"avgPlacement":4.97,"pickRate":0.01,"topRate":4.95,"top4Rate":40.54,"sampleCount":444,"dataMode":"stats"},"coreHeroes":[{"heroName":"易","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"克格莫","isCarry":false,"isSubCarry":true,"isCore":true,"price":3},{"heroName":"远古石甲虫","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["魔战士","灵魂莲华","斗士","野兽之灵","主宰","帝王斑蝶"],"equips":[{"heroId":"3507","equipId":"2012","compHeroId":"2071"},{"heroId":"3507","equipId":"2005","compHeroId":"2071"},{"heroId":"3507","equipId":"2010","compHeroId":"2071"},{"heroId":"3512","equipId":"2001","compHeroId":"2072"},{"heroId":"3512","equipId":"2009","compHeroId":"2072"},{"heroId":"3512","equipId":"2004","compHeroId":"2072"},{"heroId":"3503","equipId":"2025","compHeroId":"2077"},{"heroId":"3503","equipId":"2034","compHeroId":"2077"},{"heroId":"3503","equipId":"2028","compHeroId":"2077"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":10.19},{"name":"金色炊具","pickRate":7.28},{"name":"前线地基","pickRate":5.83},{"name":"三幻神","pickRate":3.4},{"name":"飞升","pickRate":2.91},{"name":"双城赢家","pickRate":2.91},{"name":"英勇福袋++","pickRate":2.43},{"name":"团队建设","pickRate":1.94},{"name":"小小福袋","pickRate":1.94},{"name":"星界赐福 II","pickRate":1.46}]},{"compId":"93","name":"世纪和解","gameCode":"【阵容码】#世纪和解#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyNzI2NzQw","tier":"D","stats":{"avgPlacement":5.03,"pickRate":0.03,"topRate":6.95,"top4Rate":39.91,"sampleCount":1165,"dataMode":"stats"},"coreHeroes":[{"heroName":"雷恩加尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"卡兹克","isCarry":false,"isSubCarry":true,"isCore":true,"price":3}],"traits":["永恒之森","宿敌","月蚀骑士","重装战士"],"equips":[{"heroId":"3506","equipId":"2028","compHeroId":"1993"},{"heroId":"3506","equipId":"2029","compHeroId":"1993"},{"heroId":"3506","equipId":"2032","compHeroId":"1993"},{"heroId":"3500","equipId":"2034","compHeroId":"1994"},{"heroId":"3500","equipId":"2028","compHeroId":"1994"},{"heroId":"3500","equipId":"2025","compHeroId":"1994"},{"heroId":"3505","equipId":"2039","compHeroId":"1998"},{"heroId":"3505","equipId":"2005","compHeroId":"1998"},{"heroId":"3505","equipId":"2016","compHeroId":"1998"},{"heroId":"3504","equipId":"2010","compHeroId":"1999"},{"heroId":"3504","equipId":"2012","compHeroId":"1999"},{"heroId":"3504","equipId":"2005","compHeroId":"1999"}],"recommendedHexes":[{"name":"世纪和解","pickRate":31.99},{"name":"大百宝袋","pickRate":4.03},{"name":"英勇福袋++","pickRate":4.03},{"name":"双城赢家","pickRate":3.76},{"name":"剑之工匠","pickRate":2.42},{"name":"便携锻炉","pickRate":2.15},{"name":"黄金命运","pickRate":2.15},{"name":"可大可小","pickRate":1.88},{"name":"团队建设","pickRate":1.61},{"name":"小小福袋","pickRate":1.61}]},{"compId":"90","name":"裁决奶妈","gameCode":"【阵容码】#裁决奶妈#MjIwMDY3MzAyODc5ODA4NTYxNzg3MTgxNzY4Mzcw","tier":"D","stats":{"avgPlacement":5.06,"pickRate":0.18,"topRate":8.88,"top4Rate":39.9,"sampleCount":7150,"dataMode":"stats"},"coreHeroes":[{"heroName":"索拉卡","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"婕拉","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"墨菲特","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["裁决使","召唤师","地狱火","黑荆棘","绝命花妖","主宰","翠神","荆棘之兴","魔岩巨兽"],"equips":[{"heroId":"4504","equipId":"2028","compHeroId":"1906"},{"heroId":"4504","equipId":"2034","compHeroId":"1906"},{"heroId":"4504","equipId":"2025","compHeroId":"1906"},{"heroId":"4513","equipId":"2004","compHeroId":"1907"},{"heroId":"4513","equipId":"2014","compHeroId":"1907"},{"heroId":"4513","equipId":"2016","compHeroId":"1907"},{"heroId":"4512","equipId":"2011","compHeroId":"1908"},{"heroId":"4512","equipId":"2004","compHeroId":"1908"},{"heroId":"4512","equipId":"41818","compHeroId":"1908"}],"recommendedHexes":[{"name":"厨神阿福","pickRate":3.64},{"name":"双城赢家","pickRate":3.37},{"name":"金色炊具","pickRate":3.21},{"name":"后排蓝图","pickRate":3.21},{"name":"蔓延之根","pickRate":3},{"name":"飞升","pickRate":2.32},{"name":"大百宝袋","pickRate":2.32},{"name":"便携锻炉","pickRate":2.16},{"name":"双排","pickRate":2},{"name":"杖之工匠","pickRate":2}]},{"compId":"109","name":"皎月螳螂","gameCode":"【阵容码】#皎月螳螂#MjIwMDY3MzAyODc5ODA4NTYxNzg4NTk5MzU2MDc5","tier":"D","stats":{"avgPlacement":5.17,"pickRate":0.02,"topRate":7.39,"top4Rate":36.45,"sampleCount":771,"dataMode":"stats"},"coreHeroes":[{"heroName":"黛安娜","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"卡兹克","isCarry":false,"isSubCarry":true,"isCore":true,"price":3},{"heroName":"赫卡里姆","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"伊莉丝","isCarry":false,"isSubCarry":false,"isCore":true,"price":2}],"traits":["重装战士","月蚀骑士","神谕","帝王斑蝶","宿敌","月华神女"],"equips":[{"heroId":"3500","equipId":"2025","compHeroId":"2253"},{"heroId":"3500","equipId":"2028","compHeroId":"2253"},{"heroId":"3500","equipId":"2034","compHeroId":"2253"},{"heroId":"3506","equipId":"2014","compHeroId":"2254"},{"heroId":"3506","equipId":"2038","compHeroId":"2254"},{"heroId":"3506","equipId":"2041","compHeroId":"2254"},{"heroId":"3505","equipId":"2005","compHeroId":"2255"},{"heroId":"3505","equipId":"2038","compHeroId":"2255"},{"heroId":"3505","equipId":"2039","compHeroId":"2255"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":5.69},{"name":"英勇福袋++","pickRate":3.25},{"name":"世纪和解","pickRate":3.25},{"name":"三幻神","pickRate":2.85},{"name":"恶意货币化","pickRate":2.44},{"name":"双城赢家","pickRate":2.44},{"name":"杖之工匠","pickRate":2.44},{"name":"正义报复","pickRate":2.44},{"name":"嘀个痛快！ I","pickRate":2.03},{"name":"潘朵拉的备战席","pickRate":2.03}]},{"compId":"97","name":"花仙狮子狗","gameCode":"【阵容码】#花仙狮子狗#MjIwMDY3MzAyODc5ODA4NTYxNzg4NzgyNDY4NzQ3","tier":"D","stats":{"avgPlacement":5.42,"pickRate":0.01,"topRate":6.74,"top4Rate":33.71,"sampleCount":267,"dataMode":"stats"},"coreHeroes":[{"heroName":"雷恩加尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"崔丝塔娜","isCarry":false,"isSubCarry":true,"isCore":true,"price":3},{"heroName":"拉莫斯","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"蔚","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["约德尔人","护卫","花仙子","猎人","野兽之灵","主宰","宿敌"],"equips":[{"heroId":"3504","equipId":"41804","compHeroId":"2096"},{"heroId":"3504","equipId":"2010","compHeroId":"2096"},{"heroId":"3504","equipId":"2005","compHeroId":"2096"},{"heroId":"3515","equipId":"2034","compHeroId":"2264"},{"heroId":"3515","equipId":"2028","compHeroId":"2264"},{"heroId":"3515","equipId":"2025","compHeroId":"2264"},{"heroId":"4510","equipId":"2009","compHeroId":"2265"},{"heroId":"4510","equipId":"2037","compHeroId":"2265"},{"heroId":"4510","equipId":"2004","compHeroId":"2265"},{"heroId":"3508","equipId":"2013","compHeroId":"2266"},{"heroId":"3508","equipId":"2010","compHeroId":"2266"},{"heroId":"3508","equipId":"2003","compHeroId":"2266"},{"heroId":"3501","equipId":"2034","compHeroId":"2267"},{"heroId":"3501","equipId":"2028","compHeroId":"2267"},{"heroId":"3501","equipId":"2025","compHeroId":"2267"}],"recommendedHexes":[{"name":"蔓延之根","pickRate":7.52},{"name":"三幻神","pickRate":4.64},{"name":"纹章树","pickRate":3.68},{"name":"星界赐福 II","pickRate":2.72},{"name":"大百宝袋","pickRate":2.72},{"name":"英勇福袋++","pickRate":2.56},{"name":"厨神阿福","pickRate":2.56},{"name":"嘀个痛快！ I","pickRate":2.4},{"name":"飞升","pickRate":2.24},{"name":"便携锻炉","pickRate":2.08}]},{"compId":"98","name":"花仙小炮","gameCode":"【阵容码】#花仙小炮#MjIwMDY3MzAyODc5ODA4NTYxNzg3NDAyMzQ2NDA5","tier":"D","stats":{"avgPlacement":5.55,"pickRate":0.01,"topRate":5.13,"top4Rate":31.83,"sampleCount":487,"dataMode":"stats"},"coreHeroes":[{"heroName":"崔丝塔娜","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"拉莫斯","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["花仙子","约德尔人","护卫","猎人","野兽之灵","主宰"],"equips":[{"heroId":"3515","equipId":"2025","compHeroId":"2104"},{"heroId":"3515","equipId":"2028","compHeroId":"2104"},{"heroId":"3515","equipId":"2034","compHeroId":"2104"},{"heroId":"3508","equipId":"2003","compHeroId":"2105"},{"heroId":"3508","equipId":"2010","compHeroId":"2105"},{"heroId":"3508","equipId":"2013","compHeroId":"2105"},{"heroId":"4510","equipId":"2001","compHeroId":"2106"},{"heroId":"4510","equipId":"2037","compHeroId":"2106"},{"heroId":"4510","equipId":"2009","compHeroId":"2106"}],"recommendedHexes":[{"name":"黄金命运","pickRate":7.03},{"name":"巨化术","pickRate":5.95},{"name":"蔓延之根","pickRate":4.86},{"name":"英勇福袋++","pickRate":3.78},{"name":"纹章树","pickRate":3.78},{"name":"嘀嘀街区加强版","pickRate":2.7},{"name":"双城赢家","pickRate":2.7},{"name":"毛茸茸小朋友","pickRate":2.7},{"name":"嘀个痛快！ I","pickRate":2.16},{"name":"飞升","pickRate":2.16}]},{"compId":"101","name":"护卫蛇女","gameCode":"【阵容码】#护卫蛇女#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NjE4NzAz","tier":"D","stats":{"avgPlacement":5.4,"pickRate":0.02,"topRate":4.27,"top4Rate":31.01,"sampleCount":703,"dataMode":"stats"},"coreHeroes":[{"heroName":"卡西奥佩娅","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"拉莫斯","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"费德提克","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["护卫","法师","绝命花妖"],"equips":[{"heroId":"3515","equipId":"2025","compHeroId":"2176"},{"heroId":"3515","equipId":"2028","compHeroId":"2176"},{"heroId":"3515","equipId":"2034","compHeroId":"2176"},{"heroId":"3502","equipId":"2025","compHeroId":"2177"},{"heroId":"3502","equipId":"2028","compHeroId":"2177"},{"heroId":"3502","equipId":"2034","compHeroId":"2177"},{"heroId":"3511","equipId":"2004","compHeroId":"2178"},{"heroId":"3511","equipId":"2011","compHeroId":"2178"},{"heroId":"3511","equipId":"2020","compHeroId":"2178"}],"recommendedHexes":[{"name":"前线地基","pickRate":4.17},{"name":"双城赢家","pickRate":3.8},{"name":"飞升","pickRate":3.62},{"name":"便携锻炉","pickRate":3.26},{"name":"英勇福袋++","pickRate":3.26},{"name":"致命丽花","pickRate":3.08},{"name":"后排蓝图","pickRate":2.72},{"name":"源计划上行链路","pickRate":2.54},{"name":"三幻神","pickRate":2.54},{"name":"光明圣物","pickRate":1.81}]},{"compId":"102","name":"黑豹轮","gameCode":"【阵容码】#黑豹轮#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3NzE5ODY2","tier":"D","stats":{"avgPlacement":5.79,"pickRate":0.01,"topRate":3.16,"top4Rate":27.01,"sampleCount":411,"dataMode":"stats"},"coreHeroes":[{"heroName":"希维尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"奈德丽","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"墨菲特","isCarry":false,"isSubCarry":false,"isCore":true,"price":4}],"traits":["峡谷野怪","斗士","黑荆棘","猎人","魔战士","神谕","野兽之灵","重装战士","宝石骑士","帝王斑蝶","魔岩巨兽"],"equips":[{"heroId":"4507","equipId":"2042","compHeroId":"2183"},{"heroId":"4507","equipId":"2038","compHeroId":"2183"},{"heroId":"4507","equipId":"2010","compHeroId":"2183"},{"heroId":"4510","equipId":"2045","compHeroId":"2184"},{"heroId":"4510","equipId":"2004","compHeroId":"2184"},{"heroId":"4510","equipId":"2001","compHeroId":"2184"},{"heroId":"4504","equipId":"2034","compHeroId":"2186"},{"heroId":"4504","equipId":"2028","compHeroId":"2186"},{"heroId":"4504","equipId":"2028","compHeroId":"2186"}],"recommendedHexes":[{"name":"终身黄铜 II","pickRate":3.44},{"name":"后排蓝图","pickRate":3.05},{"name":"便携锻炉","pickRate":2.67},{"name":"双城赢家","pickRate":2.67},{"name":"大百宝袋","pickRate":2.29},{"name":"飞升","pickRate":1.91},{"name":"终身黄铜 I","pickRate":1.91},{"name":"手气不错","pickRate":1.91},{"name":"专属定制","pickRate":1.91},{"name":"杖之工匠","pickRate":1.91}]},{"compId":"122","name":"赌小法","gameCode":"【阵容码】#赌小法#MjIwMDY3MzAyODc5ODA4NTYxNzkwNjkzMTE0OTg0","tier":"D","stats":{"avgPlacement":5.67,"pickRate":0.04,"topRate":3.6,"top4Rate":26.31,"sampleCount":1471,"dataMode":"stats"},"coreHeroes":[{"heroName":"维迦","isCarry":true,"isSubCarry":false,"isCore":true,"price":1},{"heroName":"阿利斯塔","isCarry":false,"isSubCarry":false,"isCore":true,"price":2},{"heroName":"奥恩","isCarry":false,"isSubCarry":false,"isCore":true,"price":1}],"traits":["法师","永恒之森","斗士","黑荆棘","护卫","绝命花妖","月华神女"],"equips":[{"heroId":"1500","equipId":"2025","compHeroId":"2380"},{"heroId":"1500","equipId":"2028","compHeroId":"2380"},{"heroId":"1500","equipId":"2034","compHeroId":"2380"},{"heroId":"1512","equipId":"2022","compHeroId":"2377"},{"heroId":"1512","equipId":"2038","compHeroId":"2377"},{"heroId":"1512","equipId":"2003","compHeroId":"2377"},{"heroId":"3511","equipId":"2011","compHeroId":"2383"},{"heroId":"3511","equipId":"2020","compHeroId":"2383"},{"heroId":"3511","equipId":"2004","compHeroId":"2383"},{"heroId":"2501","equipId":"2018","compHeroId":"2378"},{"heroId":"2501","equipId":"2028","compHeroId":"2378"},{"heroId":"2501","equipId":"2034","compHeroId":"2378"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":7.13},{"name":"值得等待","pickRate":3.56},{"name":"双城赢家","pickRate":3.56},{"name":"大百宝袋","pickRate":2.77},{"name":"嘀嘀街区","pickRate":2.57},{"name":"光明圣物","pickRate":2.57},{"name":"单身板甲","pickRate":2.38},{"name":"宝宝学院","pickRate":2.38},{"name":"源计划上行链路","pickRate":2.18},{"name":"致命丽花","pickRate":2.18}]},{"compId":"94","name":"召唤双鸡","gameCode":"【阵容码】#召唤双鸡#MjIwMDY3MzAyODc5ODA4NTYxNzg3MjY5NDgxNTM1","tier":"D","stats":{"avgPlacement":5.81,"pickRate":0,"topRate":5.08,"top4Rate":25.42,"sampleCount":59,"dataMode":"stats"},"coreHeroes":[{"heroName":"阿兹尔","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"深红锋喙鸟","isCarry":false,"isSubCarry":true,"isCore":true,"price":3}],"traits":["峡谷野怪","召唤师","斗士","黑荆棘","主宰","荆棘之兴","宿敌"],"equips":[{"heroId":"3503","equipId":"2034","compHeroId":"2055"},{"heroId":"3503","equipId":"2025","compHeroId":"2055"},{"heroId":"3503","equipId":"2028","compHeroId":"2055"},{"heroId":"3509","equipId":"2046","compHeroId":"2056"},{"heroId":"3509","equipId":"2045","compHeroId":"2056"},{"heroId":"3509","equipId":"2010","compHeroId":"2056"},{"heroId":"3510","equipId":"2046","compHeroId":"2057"},{"heroId":"3510","equipId":"2016","compHeroId":"2057"},{"heroId":"3510","equipId":"2010","compHeroId":"2057"},{"heroId":"2500","equipId":"9456","compHeroId":"2060"},{"heroId":"4512","equipId":"2004","compHeroId":"2061"},{"heroId":"4512","equipId":"2020","compHeroId":"2061"},{"heroId":"4512","equipId":"2011","compHeroId":"2061"}],"recommendedHexes":[{"name":"双城赢家","pickRate":4.42},{"name":"专属定制","pickRate":3.87},{"name":"英勇福袋++","pickRate":2.76},{"name":"光明圣物","pickRate":2.21},{"name":"更要命的战刃","pickRate":2.21},{"name":"三幻神","pickRate":2.21},{"name":"团队建设","pickRate":1.66},{"name":"嘀嘀街区","pickRate":1.66},{"name":"游神的眷顾","pickRate":1.66},{"name":"治疗法球 II","pickRate":1.66}]},{"compId":"119","name":"神谕大嘴","gameCode":"【阵容码】#神谕大嘴#MjIwMDY3MzAyODc5ODA4NTYxNzg5NzUwMjI1Njky","tier":"D","stats":{"avgPlacement":5.86,"pickRate":0.04,"topRate":1.93,"top4Rate":23.71,"sampleCount":1603,"dataMode":"stats"},"coreHeroes":[{"heroName":"克格莫","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"苍蓝雕纹魔像","isCarry":false,"isSubCarry":false,"isCore":true,"price":4},{"heroName":"远古石甲虫","isCarry":false,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"赫卡里姆","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["神谕","峡谷野怪","重装战士","帝王斑蝶"],"equips":[{"heroId":"3512","equipId":"2001","compHeroId":"2357"},{"heroId":"3512","equipId":"2045","compHeroId":"2357"},{"heroId":"3512","equipId":"2046","compHeroId":"2357"},{"heroId":"4501","equipId":"2020","compHeroId":"2355"},{"heroId":"4501","equipId":"2038","compHeroId":"2355"},{"heroId":"4501","equipId":"2003","compHeroId":"2355"},{"heroId":"3500","equipId":"2025","compHeroId":"2353"},{"heroId":"3500","equipId":"2028","compHeroId":"2353"},{"heroId":"3500","equipId":"2034","compHeroId":"2353"},{"heroId":"4500","equipId":"2023","compHeroId":"2354"},{"heroId":"4500","equipId":"2028","compHeroId":"2354"},{"heroId":"4500","equipId":"2032","compHeroId":"2354"}],"recommendedHexes":[{"name":"便携锻炉","pickRate":6.23},{"name":"更要命的战刃","pickRate":4.78},{"name":"双城赢家","pickRate":2.98},{"name":"英勇福袋++","pickRate":2.91},{"name":"大百宝袋","pickRate":2.77},{"name":"后排蓝图","pickRate":2.77},{"name":"光明圣物","pickRate":2.35},{"name":"飞升","pickRate":1.94},{"name":"团队建设","pickRate":1.87},{"name":"英勇福袋+","pickRate":1.8}]},{"compId":"96","name":"召唤鸡哥","gameCode":"【阵容码】#召唤鸡哥#MjIwMDY3MzAyODc5ODA4NTYxNzg4MDI3ODIwMzk2","tier":"D","stats":{"avgPlacement":6.39,"pickRate":0,"topRate":2.08,"top4Rate":17.71,"sampleCount":192,"dataMode":"stats"},"coreHeroes":[{"heroName":"深红锋喙鸟","isCarry":true,"isSubCarry":false,"isCore":true,"price":3},{"heroName":"厄斐琉斯","isCarry":false,"isSubCarry":true,"isCore":true,"price":4},{"heroName":"远古石甲虫","isCarry":false,"isSubCarry":false,"isCore":true,"price":3}],"traits":["峡谷野怪","召唤师","斗士","迅捷射手","月蚀骑士","重装战士","荆棘之兴"],"equips":[{"heroId":"4505","equipId":"2029","compHeroId":"2137"},{"heroId":"4505","equipId":"2032","compHeroId":"2137"},{"heroId":"4505","equipId":"2034","compHeroId":"2137"},{"heroId":"3503","equipId":"2025","compHeroId":"2139"},{"heroId":"3503","equipId":"2028","compHeroId":"2139"},{"heroId":"3503","equipId":"2034","compHeroId":"2139"},{"heroId":"3509","equipId":"2010","compHeroId":"2140"},{"heroId":"3509","equipId":"2013","compHeroId":"2140"},{"heroId":"3509","equipId":"2045","compHeroId":"2140"},{"heroId":"4509","equipId":"2001","compHeroId":"2141"},{"heroId":"4509","equipId":"2010","compHeroId":"2141"},{"heroId":"4509","equipId":"2045","compHeroId":"2141"}],"recommendedHexes":[{"name":"双城赢家","pickRate":4.65},{"name":"飞升","pickRate":3.43},{"name":"一波带走俩","pickRate":3.23},{"name":"大百宝袋","pickRate":2.63},{"name":"便携锻炉","pickRate":2.63},{"name":"专属定制","pickRate":2.42},{"name":"蔓延之根","pickRate":2.42},{"name":"节外生枝+","pickRate":2.02},{"name":"装备百宝袋 I","pickRate":1.82},{"name":"强化之能量","pickRate":1.82}]}];
+const tiers = ["S","A","B","C","D"];
+const tierColors = {"S":"#e74c3c","A":"#e67e22","B":"#f1c40f","C":"#3498db","D":"#95a5a6"};
+
+function tierBadge(t){return '<span class="tier-badge tier-'+t+'">'+t+'</span>';}
+
+function copyCode(btn,code){
+navigator.clipboard.writeText(code).then(()=>{
+btn.textContent='已复制';
+setTimeout(()=>btn.textContent='复制',2000);
+});
 }
-function filterTier(tier) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('[data-filter="' + tier + '"]').classList.add('active');
-    document.querySelectorAll('.comp-row').forEach(row => {
-        if (tier === 'all' || row.dataset.tier === tier) {
-            row.classList.remove('hidden');
-        } else {
-            row.classList.add('hidden');
-        }
-    });
+
+function heroTags(comp){
+let html='<div class="hero-tags">';
+comp.coreHeroes.forEach(h=>{
+let cls='hero-tag';
+if(h.isCarry)cls+=' hero-carry';
+if(h.isSubCarry)cls+=' hero-sub';
+html+='<span class="'+cls+'">'+h.heroName+(h.isCarry?'[主C]':h.isSubCarry?'[副C]':'')+'</span>';
+});
+html+='</div>';
+return html;
 }
+
+function traitTags(comp){
+return '<div class="trait-tags">'+comp.traits.map(t=>'<span class="trait-tag">'+t+'</span>').join('')+'</div>';
+}
+
+function hexTags(comp){
+if(!comp.recommendedHexes||comp.recommendedHexes.length===0)return'';
+return '<div class="hex-tags">'+comp.recommendedHexes.slice(0,5).map(h=>'<span class="hex-tag">'+h.name+' '+h.pickRate+'%</span>').join('')+'</div>';
+}
+
+function codeBox(comp){
+return '<div class="code-box">'+comp.gameCode+'<button class="copy-btn" onclick="copyCode(this,\'\'+this.previousSibling.textContent.replace(/复制/g,\'\')+'\'\')">复制</button></div>';
+}
+
+function renderRanking(){
+const sorted=[...DATA].sort((a,b)=>b.stats.top4Rate-a.stats.top4Rate);
+let html='';
+sorted.forEach((c,i)=>{
+html+='<tr>'+
+'<td>'+(i+1)+'</td>'+
+'<td><strong>'+c.name+'</strong></td>'+
+'<td>'+tierBadge(c.tier)+'</td>'+
+'<td><span style="color:var(--green)">'+c.stats.top4Rate+'%</span></td>'+
+'<td>'+c.stats.topRate+'%</td>'+
+'<td>'+c.stats.avgPlacement+'</td>'+
+'<td>'+c.stats.pickRate+'%</td>'+
+'<td>'+c.stats.sampleCount.toLocaleString()+'</td>'+
+'<td><button class="copy-btn" style="position:static" onclick="copyCode(this,\' '+c.gameCode+' \')">复制码</button></td>'+
+'</tr>';
+});
+document.getElementById('rankBody').innerHTML=html;
+}
+
+function renderRecommend(){
+const sTier=DATA.filter(c=>c.tier==='S').sort((a,b)=>b.stats.top4Rate-a.stats.top4Rate);
+let html='';
+sTier.forEach(c=>{
+html+='<div class="comp-card">'+
+'<div class="comp-header"><span class="comp-name">'+tierBadge(c.tier)+' '+c.name+'</span>'+
+'<div class="comp-stats">'+
+'<span class="stat">前四 '+c.stats.top4Rate+'%</span>'+
+'<span class="stat">登顶 '+c.stats.topRate+'%</span>'+
+'<span class="stat">均排名 '+c.stats.avgPlacement+'</span>'+
+'<span class="stat">样本 '+c.stats.sampleCount.toLocaleString()+'</span>'+
+'</div></div>'+
+heroTags(c)+traitTags(c)+hexTags(c)+
+'<div class="code-box" id="code_'+c.compId+'">'+c.gameCode+'<button class="copy-btn" onclick="copyCode(this,document.getElementById(\'code_'+c.compId+'\').firstChild.textContent)">复制</button></div>'+
+'</div>';
+});
+document.getElementById('recommendBody').innerHTML=html;
+}
+
+function renderFilter(){
+let html='';
+const filtered=getFiltered();
+filtered.forEach(c=>{
+html+='<div class="comp-card">'+
+'<div class="comp-header"><span class="comp-name">'+tierBadge(c.tier)+' '+c.name+'</span>'+
+'<div class="comp-stats">'+
+'<span class="stat">前四 '+c.stats.top4Rate+'%</span>'+
+'<span class="stat">登顶 '+c.stats.topRate+'%</span>'+
+'<span class="stat">均排名 '+c.stats.avgPlacement+'</span>'+
+'</div></div>'+
+heroTags(c)+traitTags(c)+
+'<div class="code-box" id="fcode_'+c.compId+'">'+c.gameCode+'<button class="copy-btn" onclick="copyCode(this,document.getElementById(\'fcode_'+c.compId+'\').firstChild.textContent)">复制</button></div>'+
+'</div>';
+});
+document.getElementById('filterBody').innerHTML=html;
+}
+
+function getFiltered(){
+const q=document.getElementById('searchInput').value.toLowerCase();
+const tf=document.getElementById('tierFilter').value;
+const hf=document.getElementById('hexFilter').value;
+return DATA.filter(c=>{
+if(tf&&c.tier!==tf)return false;
+if(hf&&(!c.recommendedHexes||!c.recommendedHexes.some(h=>h.name===hf)))return false;
+if(q){
+const text=(c.name+' '+c.traits.join(' ')+' '+c.coreHeroes.map(h=>h.heroName).join(' ')+' '+(c.recommendedHexes?c.recommendedHexes.map(h=>h.name).join(' '):'')).toLowerCase();
+if(!text.includes(q))return false;
+}
+return true;
+});
+}
+
+function applyFilter(){renderFilter();}
+
+function renderTierGroup(){
+let html='';
+tiers.forEach(t=>{
+const comps=DATA.filter(c=>c.tier===t).sort((a,b)=>b.stats.top4Rate-a.stats.top4Rate);
+if(comps.length===0)return;
+html+='<div class="tier-group">'+
+'<div class="tier-group-title">'+tierBadge(t)+' '+t+'级 ('+comps.length+')</div>';
+comps.forEach(c=>{
+html+='<div class="comp-card" style="margin-bottom:8px">'+
+'<div class="comp-header"><span class="comp-name">'+c.name+'</span>'+
+'<div class="comp-stats">'+
+'<span class="stat">前四 '+c.stats.top4Rate+'%</span>'+
+'<span class="stat">登顶 '+c.stats.topRate+'%</span>'+
+'<span class="stat">均排名 '+c.stats.avgPlacement+'</span>'+
+'<span class="stat">样本 '+c.stats.sampleCount.toLocaleString()+'</span>'+
+'</div></div>'+
+heroTags(c)+traitTags(c)+
+'<div class="code-box" id="tcode_'+c.compId+'">'+c.gameCode+'<button class="copy-btn" onclick="copyCode(this,document.getElementById(\'tcode_'+c.compId+'\').firstChild.textContent)">复制</button></div>'+
+'</div>';
+});
+html+='</div>';
+});
+document.getElementById('tierGroupBody').innerHTML=html;
+}
+
+function initHexFilter(){
+const hexSet=new Set();
+DATA.forEach(c=>{
+if(c.recommendedHexes)c.recommendedHexes.forEach(h=>hexSet.add(h.name));
+});
+const sel=document.getElementById('hexFilter');
+[...hexSet].sort().forEach(h=>{
+const opt=document.createElement('option');
+opt.value=h;opt.textContent=h;
+sel.appendChild(opt);
+});
+}
+
+renderRanking();
+renderRecommend();
+renderFilter();
+renderTierGroup();
+initHexFilter();
 </script>
 </body>
 </html>
